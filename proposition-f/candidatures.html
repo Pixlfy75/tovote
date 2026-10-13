@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidatures · TO VOTE 2027</title>
+<meta name="description" content="Les listes et candidat·es aux élections CSE 2027, collège par collège : PNC, PNT, Cadres, ETAM. Et comment te présenter.">
+<meta name="theme-color" content="#FFE3D8">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black la remplace provisoirement. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --glass:rgba(255,255,255,.55); --glass-b:rgba(255,255,255,.75);
+  --r:28px; --gutter:clamp(16px,5vw,72px); --maxw:1240px; --p:0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:100px;overflow-x:clip}
+body{font-family:var(--f-body);color:var(--ink);line-height:1.55;overflow-x:hidden;background:#FFE3D8}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:10px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.92;letter-spacing:-.01em}
+.g{color:var(--web-green)}
+.center{text-align:center}
+
+/* ---------- Ciel (identique à l'accueil) ---------- */
+.sky{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(60vmax 50vmax at calc(15% + var(--p)*30%) calc(10% + var(--p)*20%),rgba(243,133,255,calc(.5 - var(--p)*.3)),transparent 70%),
+    radial-gradient(55vmax 45vmax at calc(90% - var(--p)*20%) 20%,rgba(255,136,103,calc(.5 - var(--p)*.35)),transparent 70%),
+    radial-gradient(70vmax 60vmax at 50% calc(110% - var(--p)*40%),rgba(5,206,120,calc(.25 + var(--p)*.35)),transparent 70%),
+    radial-gradient(60vmax 50vmax at calc(80% - var(--p)*10%) calc(70% - var(--p)*30%),rgba(0,83,255,calc(.16 + var(--p)*.24)),transparent 70%),
+    linear-gradient(180deg,#FFE9E0,#F3ECFF 50%,#E6F7FF)}
+.cloud{position:fixed;z-index:-1;border-radius:50%;background:#fff;filter:blur(30px);opacity:.7;pointer-events:none}
+.c1{width:420px;height:150px;left:-80px;top:30%}.c2{width:520px;height:170px;right:-120px;top:65%}
+
+.glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1.5px solid var(--glass-b);border-radius:var(--r);box-shadow:0 26px 50px -30px rgba(20,13,138,.35)}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:.9em 1.4em;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn-ruby{background:var(--ruby);color:#fff;box-shadow:0 12px 30px -10px rgba(226,0,118,.7)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-glass{background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.btn-sm{padding:.6em 1em;font-size:.88rem}
+.chip{display:inline-flex;align-items:center;gap:.5em;padding:.4em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff;font-weight:600;font-size:.82rem}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(5,206,120,.25)}
+
+/* ---------- Navigation ---------- */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;width:max-content;max-width:calc(100% - 24px)}
+.nav img{width:40px;height:40px}
+.nav a.l{text-decoration:none;font-weight:600;font-size:.9rem;padding:.6em 1em;border-radius:999px}
+.nav a.l:hover{background:rgba(255,255,255,.7)}
+.nav a.l[aria-current="page"]{background:var(--ink);color:#fff}
+.nav a.l .soon{font-size:.65rem;opacity:.6;margin-left:4px}
+.nav .btn{padding:.7em 1.2em;font-size:.9rem}
+@media (max-width:860px){.nav a.l:not([aria-current]){display:none}}
+
+.xl .w{display:inline-block;white-space:nowrap}
+.xl .ch{display:inline-block;animation:pop .9s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:calc(var(--i)*30ms)}
+@keyframes pop{from{opacity:0;transform:translateY(.4em) scaleY(.4)}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- Haut de page ---------- */
+.top{padding-top:130px;padding-bottom:10px;text-align:center}
+.top h1{font-size:clamp(2.6rem,7.6vw,6.6rem);margin-top:18px}
+.top .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:46ch;margin:16px auto 0}
+
+/* Frise de la phase en cours */
+.phase{max-width:880px;margin:30px auto 0;padding:16px 20px;border-radius:999px;display:flex;align-items:center;gap:16px}
+.phase ol{list-style:none;display:flex;flex:1;justify-content:space-between;position:relative}
+.phase ol::before{content:"";position:absolute;left:10px;right:10px;top:10px;height:3px;background:rgba(20,13,138,.15);border-radius:2px}
+.phase ol::after{content:"";position:absolute;left:10px;top:10px;height:3px;background:var(--green);border-radius:2px;width:calc((100% - 20px)*var(--done,.25));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.phase li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.78rem;font-weight:600;flex:1;text-align:center}
+.phase li::before{content:"";width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid rgba(20,13,138,.2)}
+.phase li.done::before{background:var(--green);border-color:var(--green)}
+.phase li.now::before{background:var(--ink);border-color:var(--ink);box-shadow:0 0 0 6px rgba(20,13,138,.15)}
+.phase li span{opacity:.6}.phase li.now span,.phase li.done span{opacity:1}
+@media (max-width:640px){.phase{border-radius:24px}.phase li{font-size:.66rem}}
+
+/* ---------- Choix du collège ---------- */
+.sec{padding-top:clamp(56px,8vw,100px)}
+.sec-title{font-size:clamp(2rem,5vw,4rem)}
+.sec-lead{max-width:44ch;margin:12px auto 0;font-size:1.05rem}
+.colleges{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+@media (max-width:900px){.colleges{grid-template-columns:repeat(2,1fr)}}
+.col{padding:18px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:transform .3s cubic-bezier(.2,.9,.3,1.3),background .3s,box-shadow .3s}
+.col:hover{transform:translateY(-6px)}
+.col svg{width:min(130px,70%);height:auto}
+.col b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.5rem;margin-top:4px}
+.col small{font-size:.8rem;opacity:.7;line-height:1.25;min-height:2.5em}
+.col .seats{margin-top:8px;font-size:.78rem;font-weight:600;background:#fff;border-radius:999px;padding:.3em .8em}
+.col[aria-pressed="true"]{background:rgba(255,255,255,.88);box-shadow:0 0 0 3px var(--ink),0 26px 50px -30px rgba(20,13,138,.5)}
+.col[aria-pressed="true"] .seats{background:var(--ink);color:#fff}
+.which{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;font-size:.9rem}
+.which>span{font-weight:600;opacity:.7}
+.which button{font-size:.85rem;font-weight:600;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.6);border:1.5px solid #fff}
+.which button:hover{background:#fff}
+
+/* ---------- Panneau du collège ---------- */
+.panel{margin-top:30px;padding:clamp(20px,3.5vw,40px)}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.panel-head h3{font-size:clamp(1.8rem,3.6vw,2.8rem)}
+.panel-head p{opacity:.8;margin-top:6px}
+.panel-head .full{opacity:1;color:var(--web-green);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.35rem)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:rgba(255,255,255,.75);border-radius:20px;padding:14px 16px}
+.kpi b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1}
+.kpi span{font-size:.8rem;font-weight:600;opacity:.7}
+.kpi .bar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:8px}
+.kpi .bar i:first-child{background:var(--pink)}.kpi .bar i:last-child{background:var(--green)}
+.swap{animation:swap .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes swap{from{opacity:0;transform:translateY(12px)}}
+
+/* Listes */
+.lists-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:34px}
+.lists-head h4{font-size:1.35rem}
+.neutral{font-size:.82rem;font-weight:600;opacity:.75;display:flex;align-items:center;gap:6px}
+.lists{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:16px}
+.lst{background:rgba(255,255,255,.82);border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.lst-top{display:flex;align-items:center;gap:12px}
+.lst-logo{width:52px;height:52px;border-radius:50%;background:repeating-linear-gradient(45deg,#ececf7 0 6px,#f7f7fc 6px 12px);display:grid;place-items:center;font-size:.6rem;font-weight:600;opacity:.8;flex:none;text-align:center;line-height:1.1}
+.lst-top b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.15rem;line-height:1}
+.lst-top small{display:block;font-size:.8rem;opacity:.7;margin-top:4px}
+.lst .row{display:flex;gap:8px;flex-wrap:wrap}
+.lst details summary{list-style:none;cursor:pointer;font-weight:600;font-size:.9rem;display:flex;justify-content:space-between;align-items:center;padding:.6em .9em;border-radius:14px;background:rgba(20,13,138,.05)}
+.lst details summary::-webkit-details-marker{display:none}
+.lst details summary::after{content:"+";font-size:1.2rem;transition:transform .3s}
+.lst details[open] summary::after{transform:rotate(45deg)}
+.cands{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cands h5{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin-bottom:6px}
+.cands ol{list-style:none;display:grid;gap:6px}
+.cands li{display:flex;align-items:center;gap:8px;font-size:.86rem}
+.cands li i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.72rem;font-weight:600;background:rgba(20,13,138,.08)}
+.cands li small{opacity:.6}
+.locked{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:rgba(255,255,255,.7);border-radius:24px;padding:22px;margin-top:16px}
+@media (max-width:600px){.locked{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.locked .win{width:96px;aspect-ratio:3/4;border-radius:46% / 38%;padding:9px;background:linear-gradient(145deg,#fff,#e2e1f3);box-shadow:inset 0 -6px 14px rgba(20,13,138,.12),0 16px 30px -18px rgba(20,13,138,.5)}
+.locked .win span{display:block;width:100%;height:100%;border-radius:44% / 36%;background:repeating-linear-gradient(180deg,#f6f6fc 0 10px,#e4e4f2 10px 11px)}
+.locked b{font-size:1.15rem}
+.demo{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* ---------- Se présenter ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{padding:22px;display:flex;flex-direction:column;gap:10px}
+.step .d{align-self:flex-start;font-weight:600;font-size:.78rem;background:var(--ink);color:#fff;border-radius:999px;padding:.3em .8em}
+.step h3{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.35rem;line-height:1}
+.step p{font-size:.95rem}
+.step .ref{margin-top:auto;font-size:.75rem;font-weight:600;opacity:.65}
+
+/* Calculateur de parité */
+.parity{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,48px);padding:clamp(22px,4vw,40px);margin-top:20px;align-items:center}
+@media (max-width:900px){.parity{grid-template-columns:1fr}}
+.parity h3{font-size:clamp(1.6rem,3vw,2.3rem)}
+.field{margin-top:18px}
+.field label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
+.field output{font-family:var(--f-head);font-weight:900;font-stretch:115%}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:5px;background:rgba(20,13,138,.14);outline:none}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--ink);border:4px solid #fff;box-shadow:0 4px 10px rgba(20,13,138,.35);cursor:grab}
+.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid #fff;cursor:grab}
+.p-out{background:rgba(255,255,255,.8);border-radius:24px;padding:22px}
+.p-out .big{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1}
+.p-out .big .f{color:#b23cc4}.p-out .big .m{color:var(--web-green)}
+.seq{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.seq i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:.8rem;animation:pop .35s both}
+.seq i.f{background:var(--pink)}.seq i.m{background:var(--green)}
+.p-out p{font-size:.88rem;opacity:.85}
+.p-out .warn{margin-top:8px;background:rgba(255,136,103,.2);border-radius:14px;padding:10px 12px;font-weight:600;font-size:.85rem}
+
+.cta-band{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:clamp(22px,4vw,40px);margin:24px 0 80px}
+.cta-band h3{font-size:clamp(1.5rem,3vw,2.2rem)}
+
+footer{padding:0 0 36px}
+footer .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 28px;border-radius:999px}
+footer img{height:24px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
+@media (max-width:760px){footer .bar{border-radius:24px}}
+
+/* ---------- Personnages ---------- */
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.char{overflow:visible}
+.char .eyes ellipse{transform-box:fill-box;transform-origin:center;animation:blink var(--blink,4.6s) infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.char .m-happy,.char .m-sad{display:none}
+.char.happy .m-smile{display:none}.char.happy .m-happy{display:inline}
+.char .arm{transform-origin:146px 148px;transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+.char.wave .arm{animation:wave 1.4s ease-in-out}
+@keyframes wave{0%,100%{transform:rotate(0)}18%,52%,86%{transform:rotate(-145deg)}35%,69%{transform:rotate(-115deg)}}
+.char.happy{animation:jump .55s cubic-bezier(.3,1.6,.5,1) 2}
+@keyframes jump{50%{transform:translateY(-16px)}}
+
+/* ---------- Annotations + toast ---------- */
+.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
+:where([data-note]){position:relative}
+body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:280px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%;text-transform:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="notes">
+
+<div class="sky" aria-hidden="true"></div>
+<div class="cloud c1" aria-hidden="true"></div>
+<div class="cloud c2" aria-hidden="true"></div>
+
+<nav class="nav glass" aria-label="Navigation principale">
+  <a href="index.html" aria-label="Accueil TO VOTE"><img src="../assets/img/tovote-icon.png" alt=""></a>
+  <a class="l" href="index.html">Accueil</a>
+  <a class="l" href="faq.html">FAQ</a>
+  <a class="l" href="candidatures.html" aria-current="page">Candidatures</a>
+  <a class="l soon-link" href="#">Documents<span class="soon">bientôt</span></a>
+  <a class="btn btn-ruby" href="#">Je vote</a>
+</nav>
+
+<main>
+<!-- ================= HAUT DE PAGE ================= -->
+<header class="top wrap">
+  <span class="chip"><i></i>Candidatures · Élections CSE 2027</span>
+  <h1 class="h xl" aria-label="Les listes, collège par collège."><span data-split>Les listes,</span><br><span data-split class="g">collège par collège.</span></h1>
+  <p class="lead">Découvre qui se présente dans ton collège, lis les professions de foi, ou prépare ta propre candidature.</p>
+  <div class="phase glass" id="phase" data-note="Frise de la phase en cours : elle avance automatiquement selon le calendrier (dates fictives)">
+    <ol>
+      <li class="done"><span>PAP signé</span></li>
+      <li class="now"><span>Dépôt des listes</span></li>
+      <li><span>Publication 02.03</span></li>
+      <li><span>Vote 16→19.03</span></li>
+      <li><span>Résultats</span></li>
+    </ol>
+  </div>
+</header>
+
+<!-- ================= COLLÈGES ================= -->
+<section class="sec" id="colleges">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">Choisis <span class="g">ton collège.</span></h2><p class="sec-lead rv">Tu votes uniquement pour les listes de ton collège. Le nombre de sièges est fixé par le protocole d'accord préélectoral.</p></div>
+    <div class="colleges" id="colleges-grid" role="group" aria-label="Collèges" data-note="4 collèges illustrés ; le choix est mémorisé sur l'appareil et partageable par lien (ex. candidatures.html#pnt)"></div>
+    <div class="which" id="which" data-note="Aide : « Quel est mon collège ? » à partir du métier (répartition définie par le PAP)"><span>Quel est mon collège ?</span></div>
+
+    <div class="panel glass" id="panel" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= SE PRÉSENTER ================= -->
+<section class="sec" id="se-presenter">
+  <div class="wrap">
+    <div class="center"><span class="chip"><i></i>Pour les candidat·es</span><h2 class="h sec-title rv" style="margin-top:14px">Et toi, tu <span class="g">te lances ?</span></h2><p class="sec-lead rv">Les règles du jeu pour te présenter, en quatre escales.</p></div>
+    <div class="steps">
+      <article class="step glass rv"><span class="d">Conditions</span><h3>18 ans, 1 an</h3><p>Tu dois être électeur·rice, avoir 18 ans et 1 an d'ancienneté. Les proches de l'employeur et les personnes qui le représentent ne peuvent pas se présenter.</p><span class="ref">Art. L.2314-19 C. trav.</span></article>
+      <article class="step glass rv"><span class="d">1er tour</span><h3>Via un syndicat</h3><p>Au 1er tour, seules les organisations syndicales déposent des listes. Rapproche-toi de celle de ton choix avant la date limite de dépôt : [date du PAP].</p><span class="ref">Art. L.2314-29 C. trav.</span></article>
+      <article class="step glass rv"><span class="d">2nd tour</span><h3>Candidature libre</h3><p>S'il y a un 2nd tour, toute personne éligible peut se présenter, seule ou en liste, syndiquée ou non.</p><span class="ref">Art. L.2314-29 C. trav.</span></article>
+      <article class="step glass rv"><span class="d">Protection</span><h3>Tu es protégé·e</h3><p>Ta candidature te protège contre le licenciement pendant 6 mois à compter de l'envoi des listes à l'employeur.</p><span class="ref">Art. L.2411-7 C. trav.</span></article>
+    </div>
+
+    <div class="parity glass" id="parite" data-note="Calculateur de parité : nombre de femmes et d'hommes sur une liste, arrondi arithmétique, alternance. Outil neutre, utile aux organisations syndicales">
+      <div>
+        <span class="chip"><i></i>Outil</span>
+        <h3 class="h" style="margin-top:12px">Calcule la <span class="g">parité</span> de ta liste.</h3>
+        <p style="margin-top:10px;font-size:.95rem">Chaque liste doit refléter la part de femmes et d'hommes inscrit·es dans le collège, avec une alternance jusqu'à épuisement de l'un des sexes.</p>
+        <div class="field"><label for="pSeats">Candidat·es sur la liste <output id="oSeats">8</output></label><input class="range" id="pSeats" type="range" min="1" max="20" value="8"></div>
+        <div class="field"><label for="pF">Part de femmes dans le collège <output id="oF">68 %</output></label><input class="range" id="pF" type="range" min="0" max="100" value="68"></div>
+        <p style="font-size:.8rem;opacity:.7;margin-top:12px">Les valeurs se préremplissent avec le collège choisi plus haut (chiffres fictifs). Art. L.2314-30 C. trav.</p>
+      </div>
+      <div class="p-out" id="pOut" aria-live="polite"></div>
+    </div>
+
+    <div class="cta-band glass">
+      <div><h3 class="h">Une question sur ta candidature&nbsp;?</h3><p style="margin-top:8px">Conditions, délais, documents : tout est dans la FAQ et le protocole d'accord préélectoral.</p></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="faq.html#qui-candidat">Voir la FAQ candidatures</a><a class="btn btn-glass soon-link" href="#">📄 Lire le PAP</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="bar glass">
+      <img src="../assets/img/transavia-wordmark-green.svg" alt="transavia">
+      <nav><a href="#">Mentions légales</a><a href="#">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
+document.addEventListener('click',e=>{const a=e.target.closest('.soon-link');if(a){e.preventDefault();toast('📄 Page en préparation')}});
+let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* ---------- Personnages (PNC, PNT, Cadres, ETAM) ---------- */
+const CHARS={
+  pnc:{skin:'#8D5524',hair:'#1d1350',outfit:'#140D8A'},
+  pnt:{skin:'#F1C27D',hair:'#7a5a2a',outfit:'#140D8A'},
+  cadre:{skin:'#E0AC69',hair:'#2b1a0e',outfit:'#0053FF'},
+  etam:{skin:'#C68642',hair:'#3b2314',outfit:'#140D8A'},
+};
+function charSVG(k){const c=CHARS[k];
+  const back=k==='pnc'?`<circle cx="140" cy="62" r="14" fill="${c.hair}"/>`:'';
+  const det={
+    pnc:`<path d="M80 132l20 34 20-34z" fill="#fff"/><path d="M84 134c10 10 22 10 32 0l-6 18c-6 6-14 6-20 0z" fill="#05CE78"/><rect x="62" y="160" width="20" height="12" rx="4" fill="#05CE78"/>`,
+    pnt:`<path d="M82 132l18 30 18-30z" fill="#fff"/><path d="M96 136h8l3 34-7 8-7-8z" fill="#140D8A"/><rect x="52" y="186" width="30" height="5" rx="2" fill="#F9C74F"/><rect x="52" y="194" width="30" height="5" rx="2" fill="#F9C74F"/>`,
+    cadre:`<path d="M80 132l20 36 20-36z" fill="#fff"/><path d="M97 138h6l3 26-6 8-6-8z" fill="#FF8867"/><path d="M80 132l20 36-12-2-14-26zM120 132l-20 36 12-2 14-26z" fill="#0b3fbf"/><rect x="58" y="176" width="34" height="24" rx="3" fill="#dfe6f5" stroke="#140D8A" stroke-width="2.5"/>`,
+    etam:`<path d="M62 150c10-12 24-20 38-20s28 8 38 20v60H62z" fill="#05CE78"/><rect x="62" y="170" width="76" height="6" fill="#fff" opacity=".9"/><rect x="62" y="190" width="76" height="6" fill="#fff" opacity=".9"/>`}[k];
+  const top={
+    pnc:`<path d="M62 80c0-28 17-44 38-44s38 16 38 44c-6-14-21-22-38-22s-32 8-38 22z" fill="${c.hair}"/>`,
+    pnt:`<path d="M62 64c4-20 20-30 38-30s34 10 38 30z" fill="#140D8A"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M90 46h20l-3 7h-14z" fill="#F9C74F"/><path d="M84 74h12M104 74h12" stroke="${c.hair}" stroke-width="3" stroke-linecap="round"/>`,
+    cadre:`<path d="M63 78c-2-26 14-42 37-42 22 0 38 14 37 38-6-10-14-16-24-18-10 6-30 10-50 22z" fill="${c.hair}"/>`,
+    etam:`<path d="M64 76c0-26 16-40 36-40s36 14 36 40c-10-10-22-14-36-14s-26 4-36 14z" fill="${c.hair}"/><path d="M60 82a40 40 0 0 1 80 0" stroke="#140D8A" stroke-width="6" fill="none"/><rect x="54" y="74" width="13" height="22" rx="6" fill="#140D8A"/><rect x="133" y="74" width="13" height="22" rx="6" fill="#140D8A"/><path d="M60 94c4 10 14 14 24 12" stroke="#140D8A" stroke-width="3" fill="none"/><circle cx="86" cy="106" r="4" fill="#140D8A"/>`}[k];
+  const over=k==='cadre'?`<circle cx="87" cy="86" r="10" fill="none" stroke="#140D8A" stroke-width="3"/><circle cx="113" cy="86" r="10" fill="none" stroke="#140D8A" stroke-width="3"/><path d="M97 86h6" stroke="#140D8A" stroke-width="3"/>`:'';
+  return `<svg class="char" viewBox="0 0 200 220" aria-hidden="true" style="--blink:${(3.6+Math.random()*2.4).toFixed(2)}s"><ellipse cx="100" cy="212" rx="60" ry="7" fill="#140D8A" opacity=".12"/><path d="M45 210c0-50 22-82 55-82s55 32 55 82z" fill="${c.outfit}"/>${det}<g class="arm"><path d="M146 148q14 24 10 52" stroke="${c.outfit}" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="156" cy="204" r="9.5" fill="${c.skin}"/></g><rect x="88" y="104" width="24" height="30" rx="10" fill="${c.skin}"/><g class="head">${back}<circle cx="100" cy="82" r="37" fill="${c.skin}"/>${top}<g class="eyes"><ellipse cx="87" cy="86" rx="4.5" ry="5" fill="#140D8A"/><ellipse cx="113" cy="86" rx="4.5" ry="5" fill="#140D8A"/></g>${over}<circle cx="77" cy="98" r="5" fill="#FF8867" opacity=".55"/><circle cx="123" cy="98" r="5" fill="#FF8867" opacity=".55"/><path class="m-smile" d="M89 102c7 6 15 6 22 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/><path class="m-happy" d="M86 100h28c0 10-6 16-14 16s-14-6-14-16z" fill="#140D8A"/></g></svg>`}
+function wave(s){if(!s||reduce)return;s.classList.remove('wave');void s.getBoundingClientRect();s.classList.add('wave');setTimeout(()=>s.classList.remove('wave'),1450)}
+
+/* ---------- Données (fictives : sièges, effectifs, listes, noms) ---------- */
+const COL={
+  pnc:{name:'PNC',full:'Personnel navigant commercial',jobs:'Hôtesses, stewards, chef·fes de cabine',tit:8,sup:8,ins:1240,f:68,lists:['A','B','C']},
+  pnt:{name:'PNT',full:'Personnel navigant technique',jobs:'Commandant·es de bord, officier·es pilotes',tit:4,sup:4,ins:410,f:9,lists:['A','B']},
+  cadre:{name:'Cadres',full:'Ingénieurs et cadres',jobs:'Cadres des services au sol',tit:3,sup:3,ins:260,f:44,lists:['A','C']},
+  etam:{name:'ETAM',full:'Employés, techniciens et agents de maîtrise',jobs:'Agents d\'escale, techniciens, employé·es, agents de maîtrise',tit:5,sup:5,ins:520,f:51,lists:['A','B','C']},
+};
+const FIRST={f:['Camille','Inès','Léa','Sarah','Manon','Chloé','Nora','Julie','Emma','Lina','Zoé','Anaïs'],m:['Thomas','Karim','Lucas','Hugo','Yanis','Nathan','Mehdi','Julien','Paul','Théo','Adam','Louis']};
+const BASES=['ORY','NTE','LYS','MPL'];
+const LETTERS='BCDFGHJKLMNPRSTV';
+
+/* Ordre alterné conforme à la parité, utilisé aussi pour générer des listes d'exemple cohérentes */
+function parity(n,fPct){
+  const fx=n*fPct/100,mx=n-fx,round=x=>{const d=x-Math.floor(x);return d>=.5-1e-9?Math.ceil(x):Math.floor(x)};
+  let F=round(fx),M=round(mx),either=false;
+  if(F+M>n){either=true;M=n-F}            /* deux décimales à ,5 : l'un ou l'autre */
+  if(F+M<n){F=n-M}
+  const zero=(F===0&&fPct>0)||(M===0&&fPct<100);
+  return {F,M,either,zero,fx,mx};
+}
+function sequence(F,M,startF){const s=[];let f=F,m=M,turnF=startF;while(f||m){if((turnF&&f)||!m){s.push('f');f--}else{s.push('m');m--}turnF=!turnF}return s}
+function makeList(colKey,L,n){
+  let seed=[...colKey+L+n].reduce((a,c)=>a*31+c.charCodeAt(0)>>>0,11);const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  const p=parity(n,COL[colKey].f),seq=sequence(p.F,p.M,rnd()>.5);
+  return seq.map((sx,i)=>({n:i+1,name:`${FIRST[sx==='f'?'f':'m'][rnd()*12|0]} ${LETTERS[rnd()*LETTERS.length|0]}.`,base:BASES[rnd()*4|0]}));
+}
+
+/* ---------- Collèges ---------- */
+let cur=(location.hash.slice(1) in COL)?location.hash.slice(1):store.get('tv_col','pnc');
+let published=store.get('tv_pub',false);
+$('#colleges-grid').innerHTML=Object.entries(COL).map(([k,c])=>`<button class="col glass" data-k="${k}" aria-pressed="false"><div class="bob">${charSVG(k)}</div><b>${c.name}</b><small>${c.full}</small><span class="seats">${c.tit} sièges titulaires</span></button>`).join('');
+$('#which').innerHTML+=Object.entries(COL).map(([k,c])=>`<button data-k="${k}">${c.jobs.split(',')[0]}</button>`).join('');
+$$('#colleges-grid .col,#which button').forEach(b=>b.onclick=()=>{select(b.dataset.k);if(b.closest('#which')){toast(`👉 ${COL[b.dataset.k].jobs} : collège ${COL[b.dataset.k].name}`);$('#panel').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}});
+
+function select(k){
+  cur=k;store.set('tv_col',k);history.replaceState(null,'','#'+k);
+  $$('#colleges-grid .col').forEach(b=>{const on=b.dataset.k===k;b.setAttribute('aria-pressed',on);if(on)wave($('.char',b))});
+  renderPanel();
+  $('#pSeats').value=COL[k].tit;$('#pF').value=COL[k].f;calc();
+}
+function renderPanel(){
+  const c=COL[cur],order=[...c.lists].sort(()=>Math.random()-.5);
+  const kpis=`<div class="kpis">
+    <div class="kpi"><b>${c.tit}</b><span>sièges titulaires</span></div>
+    <div class="kpi"><b>${c.sup}</b><span>sièges suppléant·es</span></div>
+    <div class="kpi"><b>${c.ins.toLocaleString('fr-FR')}</b><span>électeur·rices inscrit·es</span></div>
+    <div class="kpi"><b>${c.f} % · ${100-c.f} %</b><span>femmes · hommes</span><div class="bar"><i style="width:${c.f}%"></i><i style="width:${100-c.f}%"></i></div></div></div>`;
+  const lists=published?`<div class="lists">${order.map(L=>{const tit=makeList(cur,L,c.tit),sup=makeList(cur,L+'s',c.sup);
+      return `<article class="lst"><div class="lst-top"><span class="lst-logo">logo<br>liste</span><div><b>Liste exemple ${L}</b><small>Présentée par l'organisation syndicale ${L}</small></div></div>
+      <div class="row"><button class="btn btn-ink btn-sm" data-pdf="${L}">📄 Profession de foi</button><span class="chip">${c.tit} + ${c.sup} candidat·es</span></div>
+      <details><summary>Voir les candidat·es</summary><div class="cands"><div><h5>Titulaires</h5><ol>${tit.map(x=>`<li><i>${x.n}</i>${x.name} <small>${x.base}</small></li>`).join('')}</ol></div><div><h5>Suppléant·es</h5><ol>${sup.map(x=>`<li><i>${x.n}</i>${x.name} <small>${x.base}</small></li>`).join('')}</ol></div></div></details></article>`}).join('')}</div>`
+    :`<div class="locked"><div class="win"><span></span></div><div><b>Les listes du collège ${c.name} seront publiées le 2 mars.</b><p style="margin-top:6px;font-size:.95rem">Elles apparaîtront ici, toutes au même format, dans un ordre tiré au sort à chaque visite.</p><div style="margin-top:12px"><button class="btn btn-glass btn-sm" id="notify">🔔 Préviens-moi à la publication</button></div></div></div>`;
+  $('#panel').innerHTML=`<div class="swap"><div class="panel-head"><div><span class="chip"><i></i>Collège</span><h3 class="h" style="margin-top:10px">${c.name}</h3><p class="full">${c.full}</p><p>${c.jobs}.</p></div></div>${kpis}
+    <div class="lists-head"><h4 class="h">${published?`${c.lists.length} listes en lice`:'Listes en lice'}</h4><span class="neutral">⚖️ Même format pour toutes · ordre tiré au sort · noms fictifs</span></div>${lists}
+    <div class="demo"><button class="btn btn-glass btn-sm" id="demo">${published?'↺ Revenir avant le 2 mars':'🧪 Démo : simuler la publication du 2 mars'}</button></div></div>`;
+  $('#notify')?.addEventListener('click',e=>{e.currentTarget.textContent='✅ C\'est noté';toast('🔔 Tu seras prévenu·e à la publication')});
+  $('#demo').onclick=()=>{published=!published;store.set('tv_pub',published);renderPanel();setPhase()};
+  $$('[data-pdf]').forEach(b=>b.onclick=()=>toast(`📄 Profession de foi de la liste ${b.dataset.pdf} (PDF à venir)`));
+}
+function setPhase(){const li=$$('#phase li');li.forEach((l,i)=>{l.className=i<(published?2:1)?'done':i===(published?2:1)?'now':''});$('#phase ol').style.setProperty('--done',published?.5:.25)}
+
+/* ---------- Calculateur de parité (art. L.2314-30) ---------- */
+function calc(){
+  const n=+$('#pSeats').value,f=+$('#pF').value;$('#oSeats').textContent=n;$('#oF').textContent=f+' %';
+  const p=parity(n,f),seq=sequence(p.F,p.M,p.F>=p.M);
+  $('#pOut').innerHTML=`<div class="big"><span class="f">${p.F} femme${p.F>1?'s':''}</span> + <span class="m">${p.M} homme${p.M>1?'s':''}</span></div>
+    <div class="seq">${seq.map((s,i)=>`<i class="${s}" style="animation-delay:${i*30}ms">${s==='f'?'F':'H'}</i>`).join('')}</div>
+    <p>Calcul : ${n} × ${f} % = ${p.fx.toFixed(2).replace('.',',')} femmes et ${p.mx.toFixed(2).replace('.',',')} hommes, arrondis à l'entier le plus proche (une décimale de 5 ou plus arrondit au-dessus). Alternance femme/homme jusqu'à épuisement de l'un des sexes ; la liste peut aussi commencer par un homme.</p>
+    ${p.either?'<p class="warn">Les deux résultats tombent sur ,5 : la liste peut comporter l\'une ou l\'autre répartition.</p>':''}
+    ${p.zero?'<p class="warn">L\'arrondi exclut totalement un sexe : la liste peut néanmoins comporter un·e candidat·e du sexe non représenté (sans être en première position).</p>':''}`;
+}
+$('#pSeats').oninput=calc;$('#pF').oninput=calc;
+
+/* ---------- Démarrage ---------- */
+select(cur);setPhase();
+if(!reduce)setInterval(()=>{const v=$$('.col .char').filter(s=>{const r=s.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0});if(v.length)wave(v[Math.random()*v.length|0])},3600);
+const root=document.documentElement;
+addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
+</script>
+</body>
+</html>
