@@ -8,7 +8,7 @@ Site d'information sur les élections professionnelles (CSE). Six pistes de land
 - `proposition-c/` : **Sticker**, claire et pop, inspirée du logo TO VOTE (simulateur de vote, mur participatif)
 - `proposition-d/` : **Parcours**, 8 écrans plein format, XP et badge personnalisé à partager
 - `proposition-e/` : **TO VOTE OS**, faux bureau d'ordinateur (fenêtres, terminal, corbeille des idées reçues) ; à garder pour un escape game à l'ouverture du vote
-- `proposition-f/` : **Envol**, ciel en dégradés doux, verre dépoli, titres XXL, personnages illustrés
+- `proposition-f/` : **Envol**, ciel en dégradés doux, verre dépoli, titres XXL, personnages illustrés ; page FAQ : `proposition-f/faq.html`
 - `assets/` : logos, polices Söhne (Buch, Halbfett)
 
 Bouton « 💡 annotations » (en bas à droite) : affiche ou masque les explications de chaque fonctionnalité pour la présentation.

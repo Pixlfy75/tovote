@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ · TO VOTE 2027</title>
+<meta name="description" content="Toutes les réponses à tes questions sur les élections CSE 2027 : voter, vote en ligne, candidatures, rôle du CSE, calendrier, résultats.">
+<meta name="theme-color" content="#FFE3D8">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black la remplace provisoirement. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --glass:rgba(255,255,255,.55); --glass-b:rgba(255,255,255,.75);
+  --r:28px; --gutter:clamp(16px,5vw,72px); --maxw:1240px; --p:0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:100px;overflow-x:clip}
+body{font-family:var(--f-body);color:var(--ink);line-height:1.55;overflow-x:hidden;background:#FFE3D8}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:10px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.92;letter-spacing:-.01em}
+.g{color:var(--web-green)}
+
+/* ---------- Ciel (identique à l'accueil) ---------- */
+.sky{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(60vmax 50vmax at calc(15% + var(--p)*30%) calc(10% + var(--p)*20%),rgba(243,133,255,calc(.5 - var(--p)*.3)),transparent 70%),
+    radial-gradient(55vmax 45vmax at calc(90% - var(--p)*20%) 20%,rgba(255,136,103,calc(.5 - var(--p)*.35)),transparent 70%),
+    radial-gradient(70vmax 60vmax at 50% calc(110% - var(--p)*40%),rgba(5,206,120,calc(.25 + var(--p)*.35)),transparent 70%),
+    radial-gradient(60vmax 50vmax at calc(80% - var(--p)*10%) calc(70% - var(--p)*30%),rgba(0,83,255,calc(.16 + var(--p)*.24)),transparent 70%),
+    linear-gradient(180deg,#FFE9E0,#F3ECFF 50%,#E6F7FF)}
+.cloud{position:fixed;z-index:-1;border-radius:50%;background:#fff;filter:blur(30px);opacity:.7;pointer-events:none}
+.c1{width:420px;height:150px;left:-80px;top:30%}.c2{width:520px;height:170px;right:-120px;top:65%}
+
+.glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1.5px solid var(--glass-b);border-radius:var(--r);box-shadow:0 26px 50px -30px rgba(20,13,138,.35)}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:.9em 1.4em;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn-ruby{background:var(--ruby);color:#fff;box-shadow:0 12px 30px -10px rgba(226,0,118,.7)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-glass{background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.chip{display:inline-flex;align-items:center;gap:.5em;padding:.4em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff;font-weight:600;font-size:.82rem}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(5,206,120,.25)}
+
+/* ---------- Navigation ---------- */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;width:max-content;max-width:calc(100% - 24px)}
+.nav img{width:40px;height:40px}
+.nav a.l{text-decoration:none;font-weight:600;font-size:.9rem;padding:.6em 1em;border-radius:999px}
+.nav a.l:hover{background:rgba(255,255,255,.7)}
+.nav a.l[aria-current="page"]{background:var(--ink);color:#fff}
+.nav a.l .soon{font-size:.65rem;opacity:.6;margin-left:4px}
+.nav .btn{padding:.7em 1.2em;font-size:.9rem}
+@media (max-width:860px){.nav a.l:not([aria-current]){display:none}}
+
+/* ---------- Titre animé (une seule fois, aucun effet au survol) ---------- */
+.xl .w{display:inline-block;white-space:nowrap}
+.xl .ch{display:inline-block;animation:pop .9s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:calc(var(--i)*30ms)}
+@keyframes pop{from{opacity:0;transform:translateY(.4em) scaleY(.4)}}
+
+/* ---------- Haut de page + recherche ---------- */
+.top{padding-top:130px;padding-bottom:20px;text-align:center}
+@media (max-width:560px){.popular button:nth-of-type(n+4){display:none}}
+.top h1{font-size:clamp(2.6rem,7.6vw,6.6rem);margin-top:18px}
+.top .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:44ch;margin:16px auto 0}
+.search{max-width:740px;margin:30px auto 0;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 24px;border-radius:999px;transition:box-shadow .3s}
+.search:focus-within{box-shadow:0 0 0 4px rgba(5,206,120,.35),0 26px 50px -30px rgba(20,13,138,.35)}
+.search svg{flex:none;width:24px;height:24px}
+.search input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:clamp(1rem,1.6vw,1.2rem);font-weight:600;color:var(--ink);padding:.6em 0}
+.search input:focus{outline:none}
+.search input::placeholder{color:rgba(20,13,138,.5);font-weight:400}
+.search kbd{font:600 .8rem var(--f-body);border:1.5px solid rgba(20,13,138,.25);border-radius:8px;padding:.2em .55em;opacity:.7}
+.search .clear{width:40px;height:40px;border-radius:50%;background:#fff;display:none}
+.search.has .clear{display:block}.search.has kbd{display:none}
+.popular{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.popular span{font-size:.85rem;font-weight:600;opacity:.65;align-self:center}
+.popular button{font-size:.85rem;font-weight:600;padding:.45em .95em;border-radius:999px;background:rgba(255,255,255,.6);border:1.5px solid #fff;transition:background .2s}
+.popular button:hover{background:#fff}
+.count{margin-top:14px;font-size:.88rem;font-weight:600;opacity:.7;min-height:1.4em}
+
+/* ---------- Catégories ---------- */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:40px}
+.cat{padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;text-decoration:none;border-radius:24px;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.cat:hover{transform:translateY(-5px)}
+.cat svg{width:72px;height:54px}
+.cat b{font-size:.95rem;line-height:1.15}
+.cat small{font-size:.75rem;font-weight:600;opacity:.6}
+@media (max-width:980px){.cats{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.cats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);scrollbar-width:none}.cat{flex:none;width:136px;scroll-snap-align:start}}
+
+/* ---------- Questions ---------- */
+.layout{display:grid;grid-template-columns:230px 1fr;gap:clamp(24px,4vw,48px);margin-top:60px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.side{display:none}}
+.side{position:sticky;top:96px;padding:14px;display:grid;gap:4px}
+.side a{display:flex;justify-content:space-between;gap:8px;padding:.6em .9em;border-radius:14px;text-decoration:none;font-weight:600;font-size:.9rem;transition:background .2s}
+.side a small{opacity:.55}
+.side a:hover{background:rgba(255,255,255,.6)}
+.side a.on{background:var(--ink);color:#fff}
+.side a.off{opacity:.35;pointer-events:none}
+.side .ask-link{margin-top:10px;background:var(--green);justify-content:center}
+.group{margin-bottom:56px}
+.group[hidden]{display:none}
+.g-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.g-head svg{width:64px;height:48px;flex:none}
+.g-head h2{font-size:clamp(1.6rem,3vw,2.4rem)}
+.qa{border-radius:24px;margin-bottom:10px;overflow:hidden;transition:background .3s}
+.qa[hidden]{display:none}
+.qa summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:18px 20px;font-weight:600;font-size:clamp(1rem,1.4vw,1.1rem)}
+.qa summary::-webkit-details-marker{display:none}
+.gate{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:.72rem;background:#fff;border-radius:8px;padding:.35em .55em;white-space:nowrap}
+.qa summary::after{content:"+";width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.3rem;transition:transform .3s,background .3s}
+.qa[open]{background:rgba(255,255,255,.78)}
+.qa[open] summary::after{transform:rotate(45deg);background:var(--green)}
+.ans{padding:0 20px 20px 20px;display:grid;gap:12px;animation:pop .35s ease}
+.ans .short{font-weight:600;font-size:1.05rem}
+.ans .long{opacity:.9}
+.ans .long ul{margin:6px 0 0 1.1em}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border-top:1.5px dashed rgba(20,13,138,.15);padding-top:12px}
+.ref{font-size:.78rem;font-weight:600;background:rgba(20,13,138,.07);border-radius:999px;padding:.35em .8em}
+.tools{display:flex;gap:6px;align-items:center;font-size:.82rem;font-weight:600}
+.tools button{padding:.35em .7em;border-radius:999px;background:#fff;font-size:.85rem;transition:transform .15s}
+.tools button:hover{transform:scale(1.08)}
+.tools .thanks{color:var(--web-green)}
+mark{background:rgba(5,206,120,.38);color:inherit;border-radius:4px;padding:0 2px}
+.empty{padding:36px 24px;text-align:center;display:none;justify-items:center;gap:10px}
+.empty.show{display:grid}
+.empty svg{width:140px;height:auto}
+
+/* ---------- Pas trouvé ? ---------- */
+.ask{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,48px);align-items:center;padding:clamp(22px,4vw,44px);margin:20px 0 80px}
+@media (max-width:760px){.ask{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.ask .who{display:flex;flex-direction:column;align-items:center}
+.ask .who svg{width:170px;height:auto}
+.ask h2{font-size:clamp(1.8rem,3.6vw,2.8rem)}
+.ask form{display:grid;gap:10px;margin-top:16px;text-align:left;width:100%}
+.ask textarea,.ask select{width:100%;font:inherit;color:var(--ink);border:1.5px solid #fff;background:rgba(255,255,255,.85);border-radius:20px;padding:.9em 1.1em}
+.ask textarea{min-height:110px;resize:vertical}
+.ask .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ask .note{font-size:.8rem;opacity:.7}
+
+footer{padding:0 0 36px}
+footer .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 28px;border-radius:999px}
+footer img{height:24px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
+@media (max-width:760px){footer .bar{border-radius:24px}}
+
+/* ---------- Personnages (mêmes que l'accueil) ---------- */
+.char{overflow:visible}
+.char .eyes ellipse{transform-box:fill-box;transform-origin:center;animation:blink var(--blink,4.6s) infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.char .m-happy,.char .m-sad{display:none}
+.char.happy .m-smile,.char.sad .m-smile{display:none}
+.char.happy .m-happy,.char.sad .m-sad{display:inline}
+.char .arm{transform-origin:146px 148px;transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+.char.wave .arm{animation:wave 1.4s ease-in-out}
+@keyframes wave{0%,100%{transform:rotate(0)}18%,52%,86%{transform:rotate(-145deg)}35%,69%{transform:rotate(-115deg)}}
+.char.happy{animation:jump .55s cubic-bezier(.3,1.6,.5,1) 2}
+.char.happy .arm{transform:rotate(-150deg)}
+@keyframes jump{50%{transform:translateY(-16px)}}
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* ---------- Annotations + toast ---------- */
+.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
+:where([data-note]){position:relative}
+body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:270px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body class="notes">
+
+<div class="sky" aria-hidden="true"></div>
+<div class="cloud c1" aria-hidden="true"></div>
+<div class="cloud c2" aria-hidden="true"></div>
+
+<nav class="nav glass" aria-label="Navigation principale">
+  <a href="index.html" aria-label="Accueil TO VOTE"><img src="../assets/img/tovote-icon.png" alt=""></a>
+  <a class="l" href="index.html">Accueil</a>
+  <a class="l" href="faq.html" aria-current="page">FAQ</a>
+  <a class="l soon-link" href="#">Candidatures<span class="soon">bientôt</span></a>
+  <a class="l soon-link" href="#">Documents<span class="soon">bientôt</span></a>
+  <a class="btn btn-ruby" href="#">Je vote</a>
+</nav>
+
+<main>
+<!-- ================= HAUT DE PAGE ================= -->
+<header class="top wrap">
+  <span class="chip"><i></i>Centre d'aide · Élections CSE 2027</span>
+  <h1 class="h xl" aria-label="Tes questions, nos réponses."><span data-split>Tes questions,</span><br><span data-split class="g">nos réponses.</span></h1>
+  <p class="lead">Voter, le vote en ligne, les candidatures, le rôle du CSE : tout est ici. Tape ta question, on filtre pour toi.</p>
+  <label class="search glass" id="searchBox" data-note="Recherche instantanée, insensible aux accents, avec synonymes (ex. « procuration », « arrêt maladie ») et surlignage">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Ex. : rotation, anonymat, codes perdus, CDD…" aria-label="Rechercher dans la FAQ" autocomplete="off">
+    <kbd aria-hidden="true">/</kbd>
+    <button type="button" class="clear" id="clear" aria-label="Effacer la recherche">✕</button>
+  </label>
+  <div class="popular" id="popular"><span>Les plus posées :</span></div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <nav class="cats" id="cats" aria-label="Catégories" data-note="Catégories illustrées (style carte de sécurité), avec le nombre de questions"></nav>
+</header>
+
+<!-- ================= QUESTIONS ================= -->
+<div class="wrap layout">
+  <aside class="side glass" id="side" aria-label="Sommaire" data-note="Sommaire collant qui suit la lecture"></aside>
+  <div>
+    <div id="groups"></div>
+    <div class="empty glass" id="empty">
+      <div class="bob" data-char="pnt" id="emptyChar"></div>
+      <b class="h" style="font-size:1.5rem">Pas de réponse pour l'instant…</b>
+      <p id="emptyTxt">Essaie d'autres mots, ou pose-nous directement ta question.</p>
+      <a class="btn btn-ink" href="#ask">Poser ma question</a>
+    </div>
+
+    <!-- ================= PAS TROUVÉ ? ================= -->
+    <section class="ask glass" id="ask" data-note="Formulaire vers l'équipe RH (réponse sous 48h) ; les questions récurrentes viennent enrichir la FAQ">
+      <div class="who"><div class="bob" data-char="sol" id="askChar"></div></div>
+      <div>
+        <h2 class="h">Pas trouvé&nbsp;? <span class="g">Demande.</span></h2>
+        <p style="margin-top:10px">L'équipe RH te répond sous 48 h. Les questions qui reviennent souvent rejoignent cette FAQ.</p>
+        <form id="askForm">
+          <select id="askCat" aria-label="Thème de ta question"><option value="">Thème (facultatif)</option></select>
+          <textarea id="askTxt" required placeholder="Ta question…" aria-label="Ta question"></textarea>
+          <div class="row"><button class="btn btn-ink" type="submit">Envoyer ma question</button><span class="note">Pour une question sur le programme d'une liste, adresse-toi directement à la liste concernée.</span></div>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="bar glass">
+      <img src="../assets/img/transavia-wordmark-green.svg" alt="transavia">
+      <nav><a href="#">Mentions légales</a><a href="#">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
+$$('.soon-link').forEach(a=>a.onclick=e=>{e.preventDefault();toast('📄 Page en préparation')});
+
+/* ---------- Titre : lettres qui montent une fois ---------- */
+let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
+
+/* ---------- Pictogrammes (style carte de sécurité) ---------- */
+const S='stroke="#140D8A" stroke-width="3"';
+const ICO={
+  voter:`<circle cx="44" cy="24" r="13" fill="#FF8867" ${S}/><path d="M20 84c0-22 11-34 24-34s24 12 24 34z" fill="#fff" ${S}/><rect x="72" y="32" width="40" height="26" rx="13" fill="#05CE78" ${S}/><text x="92" y="50" text-anchor="middle" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="14" fill="#140D8A">16+</text>`,
+  enligne:`<rect x="40" y="8" width="40" height="74" rx="8" fill="#fff" ${S}/><rect x="46" y="18" width="28" height="48" rx="3" fill="#05CE78"/><path d="M53 42l5 5 10-11" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 22l22-9-7 21-5-7z" fill="#fff" stroke="#140D8A" stroke-width="2.5" stroke-linejoin="round"/>`,
+  candidater:`<circle cx="48" cy="28" r="13" fill="#F1C27D" ${S}/><path d="M24 86c0-22 11-34 24-34s24 12 24 34z" fill="#140D8A"/><path d="M66 60l14-34" stroke="#140D8A" stroke-width="9" stroke-linecap="round"/><circle cx="82" cy="20" r="8" fill="#F1C27D" ${S}/><rect x="88" y="50" width="30" height="22" rx="11" fill="#F385FF" ${S}/><text x="103" y="65" text-anchor="middle" font-family="Archivo,Arial Black,sans-serif" font-weight="900" font-size="11" fill="#140D8A">18+</text>`,
+  cse:`<circle cx="34" cy="30" r="11" fill="#F385FF" ${S}/><circle cx="60" cy="24" r="12" fill="#05CE78" ${S}/><circle cx="86" cy="30" r="11" fill="#FF8867" ${S}/><path d="M14 80c0-18 9-28 20-28s20 10 20 28zM40 80c0-20 9-32 20-32s20 12 20 32zM66 80c0-18 9-28 20-28s20 10 20 28z" fill="#fff" ${S} stroke-linejoin="round"/>`,
+  calendrier:`<rect x="22" y="16" width="76" height="64" rx="10" fill="#fff" ${S}/><path d="M22 34h76" ${S}/><path d="M40 8v16M80 8v16" ${S} stroke-linecap="round"/><rect x="34" y="44" width="14" height="12" rx="3" fill="#05CE78"/><rect x="53" y="44" width="14" height="12" rx="3" fill="#05CE78"/><rect x="72" y="44" width="14" height="12" rx="3" fill="#05CE78"/><rect x="34" y="60" width="14" height="12" rx="3" fill="#F385FF"/>`,
+  resultats:`<path d="M60 14v62" ${S}/><path d="M36 80h48" ${S} stroke-linecap="round"/><path d="M24 30h72" ${S} stroke-linecap="round"/><path d="M24 30l-12 26h24z" fill="#05CE78" ${S} stroke-linejoin="round"/><path d="M96 30l-12 26h24z" fill="#FF8867" ${S} stroke-linejoin="round"/><circle cx="60" cy="14" r="6" fill="#F385FF" ${S}/>`,
+};
+const svg=(k,vb='0 0 120 90')=>`<svg viewBox="${vb}" aria-hidden="true">${ICO[k]}</svg>`;
+
+/* ---------- Contenu de la FAQ (dates et lieux fictifs ; références à valider par la DRH) ---------- */
+const FAQ=[
+ {id:'voter',name:'Voter',gate:'A',items:[
+  {id:'qui-vote',q:'Qui peut voter ?',s:'Toute personne salariée d\'au moins 16 ans, avec au moins 3 mois d\'ancienneté.',l:'Il faut aussi ne faire l\'objet d\'aucune interdiction, déchéance ou incapacité relative à tes droits civiques. Syndiqué·e ou non, peu importe.',r:'Art. L.2314-18 C. trav.',k:'electeur electrice droit de vote age anciennete conditions syndique'},
+  {id:'cdd',q:'Je suis en CDD, en alternance ou à temps partiel : je vote ?',s:'Oui, si tu remplis les conditions d\'âge et d\'ancienneté.',l:'Ton type de contrat ne change rien : CDD, apprentissage, contrat de professionnalisation ou temps partiel, tu es salarié·e de l\'entreprise.',r:'Art. L.2314-18 C. trav.',k:'cdd alternant apprenti apprentissage contrat pro temps partiel stagiaire'},
+  {id:'interim',q:'Je suis intérimaire ou mis·e à disposition : je vote ici ?',s:'Intérimaire : tu votes dans ton entreprise de travail temporaire. Mis·e à disposition : ça dépend de ta durée de présence.',l:'Les salarié·es mis·es à disposition, présent·es dans nos locaux depuis au moins 12 mois continus, peuvent choisir de voter ici ou dans leur entreprise d\'origine. Ils ne peuvent pas se présenter ici.',r:'Art. L.2314-23 C. trav.',k:'interim interimaire mis a disposition prestataire sous-traitant'},
+  {id:'liste-electorale',q:'Comment savoir si je suis sur la liste électorale ?',s:'La liste est publiée sur l\'intranet et affichée [lieux à compléter] à partir du [date].',l:'Si tu n\'y figures pas ou si une info est fausse, signale-le tout de suite aux RH. Une contestation devant le tribunal judiciaire n\'est recevable que dans les 3 jours suivant la publication de la liste.',r:'Art. R.2314-24 C. trav.',k:'liste electorale inscrit inscription erreur contestation'},
+  {id:'pour-qui',q:'Pour qui je vote exactement ?',s:'Pour des listes de candidat·es de ton collège, une fois pour les titulaires, une fois pour les suppléant·es.',l:'Le scrutin est un scrutin de liste à deux tours, avec représentation proportionnelle à la plus forte moyenne. Ton collège dépend de ta catégorie professionnelle, telle que définie par le protocole d\'accord préélectoral.',r:'Art. L.2314-29 C. trav.',k:'liste titulaire suppleant college proportionnelle bulletin'},
+  {id:'ratures',q:'Je peux rayer des noms ou mélanger des listes ?',s:'Mélanger des listes, non. Rayer des noms, oui si la plateforme le permet.',l:'Le panachage est interdit. Les ratures ne sont prises en compte que si elles concernent au moins 10 % des suffrages exprimés en faveur de la liste.',r:'Art. L.2314-29 C. trav.',k:'rature rayer nom panachage melanger'},
+  {id:'blanc',q:'Je peux voter blanc ?',s:'Oui.',l:'Le vote blanc est possible, mais il n\'est pas compté dans les suffrages exprimés.',r:'',k:'vote blanc nul abstention'},
+ ]},
+ {id:'enligne',name:'Le vote en ligne',gate:'B',items:[
+  {id:'comment',q:'Comment se passe le vote électronique ?',s:'Tu te connectes à une plateforme sécurisée avec tes identifiants, tu votes, tu reçois un accusé de réception.',l:'<ul><li>9 mars : réception des identifiants (mail pro + SMS)</li><li>16 → 19 mars : vote ouvert 24h/24</li><li>Environ 3 minutes, depuis ton téléphone ou ton ordinateur</li></ul>',r:'Art. L.2314-26 C. trav.',k:'vote electronique en ligne plateforme internet comment voter'},
+  {id:'rotation',q:'Je suis en rotation, en congé ou en arrêt maladie : je peux voter ?',s:'Oui, depuis n\'importe où.',l:'Ton absence ne te prive pas de ton droit de vote. Il te suffit d\'une connexion internet pendant la période de vote.',r:'',k:'rotation escale vol conge vacances arret maladie absent etranger decalage horaire'},
+  {id:'anonymat',q:'Mon vote est-il vraiment anonyme ?',s:'Oui. Personne, ni l\'entreprise ni les listes, ne peut savoir pour qui tu as voté.',l:'La plateforme est gérée par un prestataire externe. Ton identité et ton bulletin sont stockés séparément et chiffrés, et le système fait l\'objet d\'une expertise indépendante.',r:'',k:'anonyme anonymat secret confidentiel savoir tracer'},
+  {id:'codes',q:'Je n\'ai pas reçu mes codes, ou je les ai perdus.',s:'Vérifie tes spams, puis utilise la procédure de récupération de la plateforme.',l:'Si ça bloque encore, contacte les RH : [adresse à compléter]. Pense à vérifier que ton numéro de téléphone est à jour dans ton espace RH avant le 9 mars.',r:'',k:'codes identifiants mot de passe perdu recu sms mail spam'},
+  {id:'procuration',q:'Je peux voter pour un·e collègue, ou donner procuration ?',s:'Non. Le vote est strictement personnel.',l:'Le vote par procuration n\'est pas admis. Ne communique jamais tes identifiants, même à une personne de confiance.',r:'',k:'procuration collegue a la place de quelqu un pour quelqu un mandat delegation'},
+  {id:'materiel',q:'Je n\'ai ni ordinateur ni smartphone.',s:'Des postes sont mis à ta disposition pendant toute la période de vote.',l:'[Lieux et horaires à compléter], dans un espace garantissant la confidentialité du vote.',r:'',k:'ordinateur smartphone telephone poste borne materiel'},
+ ]},
+ {id:'candidater',name:'Candidater',gate:'C',items:[
+  {id:'qui-candidat',q:'Qui peut se présenter ?',s:'Toute personne électrice d\'au moins 18 ans, avec au moins 1 an d\'ancienneté.',l:'Ne peuvent pas se présenter : le conjoint, partenaire de PACS, concubin, ascendants, descendants, frères, sœurs et alliés au même degré de l\'employeur, ainsi que les personnes qui représentent l\'employeur.',r:'Art. L.2314-19 C. trav.',k:'eligible eligibilite candidat candidature se presenter conditions'},
+  {id:'premier-tour',q:'Comment me présenter au 1er tour ?',s:'Au 1er tour, seules les organisations syndicales présentent des listes.',l:'Si tu veux être candidat·e, rapproche-toi de l\'organisation syndicale de ton choix.',r:'Art. L.2314-29 C. trav.',k:'premier tour 1er tour syndicat organisation syndicale liste'},
+  {id:'second-tour',q:'Et au 2nd tour ?',s:'Les candidatures sont libres : n\'importe quelle personne éligible peut se présenter.',l:'Tu peux te présenter seul·e ou sur une liste, syndiquée ou non.',r:'Art. L.2314-29 C. trav.',k:'second tour 2e tour 2nd tour candidature libre independant'},
+  {id:'parite',q:'Il y a une règle de parité sur les listes ?',s:'Oui : chaque liste reflète la proportion de femmes et d\'hommes du collège.',l:'Les candidat·es sont présenté·es en alternance femme/homme jusqu\'à épuisement des candidatures d\'un des sexes.',r:'Art. L.2314-30 C. trav.',k:'parite femmes hommes representation equilibree alternance'},
+  {id:'protection',q:'Suis-je protégé·e si je me présente ?',s:'Oui, tu bénéficies d\'une protection contre le licenciement.',l:'Elle s\'applique pendant 6 mois à compter de l\'envoi des listes de candidatures à l\'employeur.',r:'Art. L.2411-7 C. trav.',k:'protection protege licenciement salarie protege candidat'},
+ ]},
+ {id:'cse',name:'Le CSE',gate:'D',items:[
+  {id:'role',q:'À quoi sert le CSE ?',s:'Il représente les salarié·es auprès de la direction.',l:'<ul><li>Il est informé et consulté sur l\'organisation, la gestion et la marche de l\'entreprise</li><li>Il porte les réclamations individuelles et collectives</li><li>Il agit en matière de santé, sécurité et conditions de travail</li><li>Il gère les activités sociales et culturelles</li></ul>',r:'Art. L.2312-8 C. trav.',k:'role cse utilite sert a quoi missions attributions comite social economique'},
+  {id:'mandat',q:'Les élu·es sont élu·es pour combien de temps ?',s:'4 ans.',l:'Un accord peut prévoir une durée comprise entre 2 et 4 ans.',r:'Art. L.2314-33 C. trav.',k:'duree mandat 4 ans combien de temps'},
+  {id:'sieges',q:'Combien de personnes vont être élues ?',s:'Le nombre de sièges dépend de l\'effectif et du protocole d\'accord préélectoral.',l:'Il est précisé dans le PAP, consultable dans la rubrique Documents.',r:'Art. R.2314-1 C. trav.',k:'sieges nombre elus combien'},
+  {id:'asc',q:'C\'est quoi les ASC ?',s:'Les activités sociales et culturelles : billetterie, vacances, sport, culture…',l:'Le CSE les gère au bénéfice des salarié·es et de leur famille.',r:'Art. L.2312-78 C. trav.',k:'asc activites sociales culturelles billetterie cheques vacances avantages'},
+ ]},
+ {id:'calendrier',name:'Calendrier',gate:'E',items:[
+  {id:'dates',q:'Quelles sont les dates clés ?',s:'Vote en ligne du 16 au 19 mars, résultats le 19 mars à 18 h.',l:'<ul><li>12 janvier : signature du protocole d\'accord préélectoral</li><li>2 mars : publication des listes</li><li>9 mars : envoi des identifiants</li><li>16 → 19 mars : 1er tour</li><li>2 avril : 2nd tour, si nécessaire</li></ul>(Dates fictives.)',r:'',k:'dates calendrier quand jour periode'},
+  {id:'second-tour-pourquoi',q:'Pourquoi peut-il y avoir un 2nd tour ?',s:'Si moins de la moitié des inscrit·es vote au 1er tour, ou si des sièges restent à pourvoir.',l:'Dans ce cas, un 2nd tour est organisé, ouvert à toutes les candidatures.',r:'Art. L.2314-29 C. trav.',k:'second tour 2e tour quorum participation moitie'},
+ ]},
+ {id:'resultats',name:'Résultats & recours',gate:'F',items:[
+  {id:'publication',q:'Où et quand sont publiés les résultats ?',s:'Ici même, le 19 mars à 18 h, puis par affichage.',l:'Le procès-verbal des élections est transmis à l\'administration dans les conditions prévues par la loi.',r:'',k:'resultats publication proces verbal pv'},
+  {id:'contester',q:'Comment contester l\'élection ?',s:'Devant le tribunal judiciaire, dans des délais très courts.',l:'<ul><li>Sur l\'électorat : dans les 3 jours suivant la publication de la liste électorale</li><li>Sur la régularité de l\'élection : dans les 15 jours suivant l\'élection</li></ul>',r:'Art. R.2314-24 C. trav.',k:'contester contestation recours tribunal annulation delai'},
+  {id:'neutralite',q:'L\'entreprise peut-elle me conseiller un vote ?',s:'Non. L\'employeur est tenu à une stricte neutralité.',l:'C\'est pour cela que ce site présente toutes les listes au même format, dans un ordre tiré au sort.',r:'',k:'neutralite employeur influence conseil pression direction'},
+ ]},
+];
+const POPULAR=['rotation','anonymat','codes','procuration','qui-candidat'];
+
+/* ---------- Rendu ---------- */
+const all=FAQ.flatMap(g=>g.items.map((it,i)=>({...it,g,gate:g.gate+(i+1)})));
+$('#cats').innerHTML=FAQ.map(g=>`<a class="cat glass" href="#${g.id}">${svg(g.id)}<b>${g.name}</b><small>${g.items.length} questions</small></a>`).join('');
+$('#side').innerHTML=FAQ.map(g=>`<a href="#${g.id}" data-g="${g.id}">${g.name}<small>${g.items.length}</small></a>`).join('')+`<a class="ask-link" href="#ask">Poser ma question</a>`;
+$('#askCat').innerHTML+=FAQ.map(g=>`<option>${g.name}</option>`).join('');
+$('#groups').innerHTML=FAQ.map(g=>`<section class="group" id="${g.id}"><div class="g-head">${svg(g.id)}<h2 class="h">${g.name}</h2></div>${
+  all.filter(it=>it.g===g).map(it=>`<details class="qa glass" id="${it.id}"><summary><span class="gate">PORTE ${it.gate}</span><span class="qt">${it.q}</span></summary>
+  <div class="ans"><p class="short">${it.s}</p><div class="long">${it.l}</div>
+  <div class="meta">${it.r?`<span class="ref">📘 ${it.r}</span>`:'<span></span>'}<span class="tools"><span>Utile ?</span><button data-fb="1" aria-label="Oui, utile">👍</button><button data-fb="0" aria-label="Non, pas utile">👎</button><button data-link aria-label="Copier le lien de la question">🔗</button></span></div></div></details>`).join('')}</section>`).join('');
+$('#popular').innerHTML+=POPULAR.map(id=>{const it=all.find(x=>x.id===id);return `<button data-open="${id}">${it.q.replace(/ \?$/,' ?')}</button>`}).join('');
+
+/* ---------- Recherche (insensible aux accents) ---------- */
+const norm=t=>t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function hl(text,words){if(!words.length)return esc(text);const n=norm(text),marks=[];
+  words.forEach(w=>{let i=0;while((i=n.indexOf(w,i))>-1){marks.push([i,i+w.length]);i+=w.length}});
+  if(!marks.length)return esc(text);marks.sort((a,b)=>a[0]-b[0]);let out='',pos=0;
+  for(const [a,b] of marks){if(a<pos)continue;out+=esc(text.slice(pos,a))+'<mark>'+esc(text.slice(a,b))+'</mark>';pos=b}return out+esc(text.slice(pos))}
+function search(){
+  const raw=$('#q').value.trim(),words=norm(raw).split(/\s+/).filter(w=>w.length>1);
+  $('#searchBox').classList.toggle('has',!!raw);let n=0;
+  all.forEach(it=>{const el=$('#'+it.id),hay=norm([it.q,it.s,it.l.replace(/<[^>]+>/g,' '),it.k,it.r].join(' '));
+    const ok=words.every(w=>hay.includes(w));el.hidden=!ok;if(ok)n++;
+    $('.qt',el).innerHTML=hl(it.q,words);$('.short',el).innerHTML=hl(it.s,words);
+    if(words.length&&ok&&n<=3)el.open=true;if(!words.length)el.open=false});
+  FAQ.forEach(g=>{const vis=g.items.some(it=>!$('#'+it.id).hidden);$('#'+g.id).hidden=!vis;$(`.side a[data-g="${g.id}"]`).classList.toggle('off',!vis)});
+  $('#count').textContent=raw?(n?`${n} réponse${n>1?'s':''} pour « ${raw} »`:''):`${all.length} réponses dans 6 catégories`;
+  $('#empty').classList.toggle('show',!!raw&&!n);
+  if(raw&&!n){$('#emptyTxt').textContent=`Rien pour « ${raw} ». Essaie d'autres mots, ou pose-nous directement ta question.`;const c=$('#emptyChar .char');c&&c.classList.add('sad')}
+}
+let t;$('#q').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(search,120)});
+$('#clear').onclick=()=>{$('#q').value='';search();$('#q').focus()};
+addEventListener('keydown',e=>{if(e.key==='/'&&!e.target.matches('input,textarea,select')){e.preventDefault();$('#q').focus()}});
+
+/* Ouvrir une question (populaires, lien direct) */
+function openQ(id){const el=$('#'+id);if(!el)return;$('#q').value='';search();el.open=true;el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}
+$$('[data-open]').forEach(b=>b.onclick=()=>openQ(b.dataset.open));
+const fromHash=()=>{if(location.hash&&all.some(it=>'#'+it.id===location.hash))setTimeout(()=>openQ(location.hash.slice(1)),300)};
+fromHash();addEventListener('hashchange',fromHash);
+
+/* Retours et liens */
+document.addEventListener('click',e=>{
+  const fb=e.target.closest('[data-fb]');
+  if(fb){const tools=fb.parentElement;tools.innerHTML=fb.dataset.fb==='1'?'<span class="thanks">Merci ! ✈️</span>':'<span>Merci. <a href="#ask">Dis-nous ce qui manque</a></span>'}
+  const lk=e.target.closest('[data-link]');
+  if(lk){const id=lk.closest('details').id;navigator.clipboard?.writeText(location.href.split('#')[0]+'#'+id);history.replaceState(null,'','#'+id);toast('🔗 Lien de la question copié')}
+});
+
+/* Sommaire qui suit la lecture */
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.side a[data-g]').forEach(a=>a.classList.toggle('on',a.dataset.g===e.target.id))}),{rootMargin:'-30% 0px -60% 0px'});
+$$('.group').forEach(g=>so.observe(g));
+
+/* ---------- Personnages ---------- */
+const CHARS={pnc:{skin:'#8D5524',hair:'#1d1350',outfit:'#140D8A'},pnt:{skin:'#F1C27D',hair:'#7a5a2a',outfit:'#140D8A'},sol:{skin:'#C68642',hair:'#3b2314',outfit:'#0053FF'}};
+function charSVG(k){const c=CHARS[k];
+  const back=k==='pnc'?`<circle cx="140" cy="62" r="14" fill="${c.hair}"/>`:'';
+  const det={pnc:`<path d="M80 132l20 34 20-34z" fill="#fff"/><path d="M84 134c10 10 22 10 32 0l-6 18c-6 6-14 6-20 0z" fill="#05CE78"/>`,
+    pnt:`<path d="M82 132l18 30 18-30z" fill="#fff"/><path d="M96 136h8l3 34-7 8-7-8z" fill="#140D8A"/><rect x="52" y="186" width="30" height="5" rx="2" fill="#F9C74F"/><rect x="52" y="194" width="30" height="5" rx="2" fill="#F9C74F"/>`,
+    sol:`<path d="M62 150c10-12 24-20 38-20s28 8 38 20v60H62z" fill="#05CE78"/><rect x="62" y="170" width="76" height="6" fill="#fff" opacity=".9"/><rect x="62" y="190" width="76" height="6" fill="#fff" opacity=".9"/>`}[k];
+  const top={pnc:`<path d="M62 80c0-28 17-44 38-44s38 16 38 44c-6-14-21-22-38-22s-32 8-38 22z" fill="${c.hair}"/>`,
+    pnt:`<path d="M62 64c4-20 20-30 38-30s34 10 38 30z" fill="#140D8A"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M90 46h20l-3 7h-14z" fill="#F9C74F"/>`,
+    sol:`<path d="M64 76c0-26 16-40 36-40s36 14 36 40c-10-10-22-14-36-14s-26 4-36 14z" fill="${c.hair}"/><path d="M60 82a40 40 0 0 1 80 0" stroke="#140D8A" stroke-width="6" fill="none"/><rect x="54" y="74" width="13" height="22" rx="6" fill="#140D8A"/><rect x="133" y="74" width="13" height="22" rx="6" fill="#140D8A"/><path d="M60 94c4 10 14 14 24 12" stroke="#140D8A" stroke-width="3" fill="none"/><circle cx="86" cy="106" r="4" fill="#140D8A"/>`}[k];
+  return `<svg class="char" viewBox="0 0 200 220" aria-hidden="true" style="--blink:${(3.6+Math.random()*2.4).toFixed(2)}s"><ellipse cx="100" cy="212" rx="60" ry="7" fill="#140D8A" opacity=".12"/><path d="M45 210c0-50 22-82 55-82s55 32 55 82z" fill="${c.outfit}"/>${det}<g class="arm"><path d="M146 148q14 24 10 52" stroke="${c.outfit}" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="156" cy="204" r="9.5" fill="${c.skin}"/></g><rect x="88" y="104" width="24" height="30" rx="10" fill="${c.skin}"/><g class="head">${back}<circle cx="100" cy="82" r="37" fill="${c.skin}"/>${top}<g class="eyes"><ellipse cx="87" cy="86" rx="4.5" ry="5" fill="#140D8A"/><ellipse cx="113" cy="86" rx="4.5" ry="5" fill="#140D8A"/></g><circle cx="77" cy="96" r="5" fill="#FF8867" opacity=".55"/><circle cx="123" cy="96" r="5" fill="#FF8867" opacity=".55"/><path class="m-smile" d="M89 100c7 6 15 6 22 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/><path class="m-happy" d="M86 98h28c0 10-6 16-14 16s-14-6-14-16z" fill="#140D8A"/><path class="m-sad" d="M90 106c7-6 13-6 20 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/></g></svg>`}
+$$('[data-char]').forEach(el=>el.innerHTML=charSVG(el.dataset.char));
+function wave(s){if(!s||reduce)return;s.classList.remove('wave');void s.getBoundingClientRect();s.classList.add('wave');setTimeout(()=>s.classList.remove('wave'),1450)}
+if(!reduce)setInterval(()=>wave($('#askChar .char')),4200);
+
+/* Formulaire (maquette : rien n'est envoyé) */
+$('#askForm').onsubmit=e=>{e.preventDefault();const c=$('#askChar .char');c.classList.add('happy');setTimeout(()=>c.classList.remove('happy'),1200);e.target.reset();toast('📨 Question envoyée à l\'équipe RH')};
+
+/* Ciel qui évolue au défilement */
+const root=document.documentElement;
+addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
+search();
+</script>
+</body>
+</html>
