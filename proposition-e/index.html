@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TO VOTE 2027 · Proposition E « TO VOTE OS »</title>
+<meta name="description" content="TO VOTE OS : les élections CSE 2027, version système d'exploitation.">
+<meta name="theme-color" content="#140D8A">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black sert de substitut provisoire. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --f-mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  --bar:34px; --dock:78px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--f-body);color:var(--ink);overflow:hidden;line-height:1.45;user-select:none;background:var(--green)}
+img{display:block;max-width:100%;-webkit-user-drag:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.92;text-transform:uppercase}
+
+/* ---------- Fond d'écran : le « t » relie la zone verte et la zone bleu foncé (règle connecteur) ---------- */
+.wall{position:fixed;inset:0;background:linear-gradient(var(--green) 0 66%,var(--ink) 66% 100%);overflow:hidden}
+.wall .t{position:absolute;left:62%;top:66%;width:clamp(150px,16vw,250px);transform:translate(-50%,-50%)}
+.wall .logo{position:absolute;left:62%;top:34%;width:clamp(260px,30vw,460px);transform:translate(-50%,-50%);opacity:.95}
+.wall .wm{position:absolute;right:28px;bottom:calc(var(--dock) + 24px);height:22px}
+.wall .grid{position:absolute;inset:0;background:radial-gradient(rgba(20,13,138,.12) 1px,transparent 1.2px) 0 0/26px 26px}
+
+/* ---------- Barre de menus ---------- */
+.menubar{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:900;display:flex;align-items:center;gap:4px;padding:0 10px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid rgba(20,13,138,.12);font-size:.85rem}
+.menubar img{width:20px;height:20px}
+.menubar .os{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:.8rem;margin:0 10px 0 6px}
+.menubar .m{padding:.25em .65em;border-radius:6px;font-weight:600}
+.menubar .m:hover{background:rgba(20,13,138,.08)}
+.menubar .right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.menubar .cd{font-variant-numeric:tabular-nums;font-weight:600;background:var(--ink);color:#fff;border-radius:6px;padding:.2em .6em}
+.menubar .notes-btn{background:var(--pink);border-radius:6px;padding:.2em .6em;font-weight:600}
+.menubar .vote{background:var(--ruby);color:#fff;border-radius:6px;padding:.2em .7em;font-weight:600;text-decoration:none}
+.menubar .right>*{white-space:nowrap}
+@media (max-width:760px){.menubar .m,.menubar .clock,.menubar .os{display:none}.menubar .notes-btn span{display:none}}
+
+/* ---------- Icônes du bureau ---------- */
+.icons{position:fixed;top:calc(var(--bar) + 18px);left:18px;bottom:calc(var(--dock) + 20px);display:grid;grid-auto-flow:column;grid-template-rows:repeat(auto-fill,96px);grid-auto-columns:96px;gap:6px;z-index:5}
+.ico{width:96px;height:96px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px;border-radius:12px;touch-action:none;position:relative}
+.ico:hover,.ico.sel{background:rgba(255,255,255,.28)}
+.ico .pic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.7rem;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);background:#fff}
+.ico span{font-size:.76rem;font-weight:600;text-align:center;line-height:1.15;background:rgba(255,255,255,.75);padding:.1em .4em;border-radius:5px}
+.ico.dragging{opacity:.85;z-index:999;transition:none}
+.ico.gone{animation:poof .4s forwards}
+@keyframes poof{to{transform:scale(0) rotate(30deg);opacity:0}}
+.trash{position:fixed;right:22px;bottom:calc(var(--dock) + 64px);z-index:5}
+.trash.hot .pic{background:var(--peach);transform:scale(1.15)}
+
+/* ---------- Fenêtres ---------- */
+.win{position:fixed;z-index:10;min-width:280px;max-width:calc(100vw - 20px);background:#fff;border:2px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--ink),0 30px 60px -30px rgba(20,13,138,.6);display:flex;flex-direction:column;overflow:hidden;animation:open .28s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes open{from{transform:scale(.85);opacity:0}}
+.win.closing{animation:close .2s forwards}
+@keyframes close{to{transform:scale(.85);opacity:0}}
+.win.min{animation:mini .3s forwards}
+@keyframes mini{to{transform:translateY(60vh) scale(.2);opacity:0}}
+.titlebar{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--ink);color:#fff;cursor:grab;touch-action:none}
+.titlebar:active{cursor:grabbing}
+.win:not(.focus) .titlebar{background:#5a54b0}
+.lights{display:flex;gap:7px}
+.lights button{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,.25);display:grid;place-items:center;font-size:9px;line-height:1;color:transparent}
+.lights:hover button{color:var(--ink)}
+.lights .c{background:var(--peach)}.lights .n{background:var(--pink)}.lights .x{background:var(--green)}
+.titlebar .tt{flex:1;text-align:center;font-weight:600;font-size:.85rem;margin-right:50px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.body{padding:18px 20px;overflow:auto;flex:1;user-select:text}
+.win.max{left:8px!important;top:calc(var(--bar) + 8px)!important;width:calc(100vw - 16px)!important;height:calc(100vh - var(--bar) - var(--dock) - 24px)!important}
+@media (max-width:760px){
+  .win{left:6px!important;right:6px;top:calc(var(--bar) + 6px)!important;width:auto!important;height:auto!important;max-height:calc(100svh - var(--bar) - var(--dock) - 20px);box-shadow:4px 4px 0 var(--ink)}
+  .titlebar{cursor:default}
+}
+
+/* ---------- Dock ---------- */
+.dock{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:900;display:flex;gap:8px;padding:8px;border-radius:22px;background:rgba(255,255,255,.55);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border:1.5px solid rgba(255,255,255,.8);max-width:calc(100vw - 20px);overflow-x:auto;scrollbar-width:none}
+.dock button{width:52px;height:52px;flex:none;border-radius:14px;border:2px solid var(--ink);background:#fff;display:grid;place-items:center;font-size:1.6rem;position:relative;transition:transform .18s cubic-bezier(.2,.9,.3,1.3)}
+.dock button:hover{transform:translateY(-8px) scale(1.12)}
+.dock button.run::after{content:"";position:absolute;bottom:-7px;left:50%;width:5px;height:5px;border-radius:50%;background:var(--ink);transform:translateX(-50%)}
+.dock button.bounce{animation:bounce .6s}
+@keyframes bounce{30%{transform:translateY(-16px)}60%{transform:translateY(0)}80%{transform:translateY(-6px)}}
+.dock .sep{width:1.5px;background:rgba(20,13,138,.25);margin:4px 2px}
+.dock img{width:34px}
+
+/* ---------- Notifications ---------- */
+.notifs{position:fixed;top:calc(var(--bar) + 10px);right:10px;z-index:950;display:grid;gap:8px;width:min(340px,calc(100vw - 20px))}
+.notif{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border:1.5px solid rgba(20,13,138,.15);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 14px 30px -14px rgba(20,13,138,.5);animation:slidein .4s cubic-bezier(.2,.9,.3,1.1);cursor:pointer}
+.notif.out{animation:slideout .3s forwards}
+@keyframes slidein{from{transform:translateX(110%)}}
+@keyframes slideout{to{transform:translateX(110%);opacity:0}}
+.notif .ni{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:1.2rem;background:var(--green);flex:none}
+.notif b{display:block;font-size:.85rem}
+.notif p{font-size:.85rem;line-height:1.3}
+.notif small{opacity:.6;font-size:.72rem}
+
+/* ---------- Contenus des applis ---------- */
+.big{font-family:var(--f-head);font-weight:900;font-stretch:125%;text-transform:uppercase;line-height:.92}
+.lead{margin-top:10px}
+.pill{display:inline-block;background:var(--green);border:1.5px solid var(--ink);border-radius:999px;padding:.15em .7em;font-weight:600;font-size:.8rem}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:.65em 1.1em;border-radius:10px;border:2px solid var(--ink);font-weight:600;background:#fff;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s;text-decoration:none}
+.btn:active{transform:translate(3px,3px);box-shadow:none}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ruby{background:var(--ruby);color:#fff}
+.btn-green{background:var(--green)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.txt{font-family:var(--f-mono);font-size:.92rem;line-height:1.6;white-space:pre-wrap}
+.txt .caret{display:inline-block;width:.55em;height:1.1em;background:var(--ink);vertical-align:text-bottom;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.term{background:#0b0657;color:#d7ffe9;font-family:var(--f-mono);font-size:.88rem;padding:14px 16px;height:100%;min-height:260px;overflow:auto;cursor:text}
+.term .l{white-space:pre-wrap}
+.term .p{color:var(--green)}
+.term .k{color:var(--pink)}
+.term form{display:flex;gap:8px}
+.term input{flex:1;background:none;border:0;color:#fff;font:inherit;outline:none;caret-color:var(--green)}
+.term .hints{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.term .hints button{border:1px solid rgba(255,255,255,.35);border-radius:6px;padding:.15em .6em;font-family:var(--f-mono);font-size:.78rem;color:#fff}
+.term .hints button:hover{background:rgba(255,255,255,.12)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
+.cal .d{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-weight:600;font-size:.85rem;background:#f2f2fb}
+.cal .hd{background:none;font-size:.72rem;opacity:.6}
+.cal .v{background:var(--green);border:2px solid var(--ink)}
+.cal .x{background:var(--pink)}
+.cal .e{background:none}
+.agenda{list-style:none;margin-top:14px;display:grid;gap:6px}
+.agenda li{display:flex;gap:10px;align-items:center;font-size:.9rem}
+.agenda i{width:12px;height:12px;border-radius:3px;border:1.5px solid var(--ink);flex:none}
+.prog{height:22px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff;margin:6px 0 14px}
+.prog i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,var(--green) 0 10px,#2fe08f 10px 20px);transition:width .5s;animation:stripes 1s linear infinite;background-size:28px 28px}
+@keyframes stripes{to{background-position:28px 0}}
+.qopt{display:block;width:100%;text-align:left;border:2px solid var(--ink);border-radius:10px;padding:.7em 1em;margin-top:8px;font-weight:600;background:#fff}
+.qopt:hover{background:#f2f2fb}
+.qopt.ok{background:var(--green)}.qopt.ko{background:var(--peach)}
+.dialog{display:flex;gap:16px;align-items:flex-start}
+.dialog .warn{font-size:2.6rem;line-height:1}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.file{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border-radius:10px;text-align:center;font-size:.8rem;font-weight:600}
+.file:hover{background:#f2f2fb}
+.file .fi{font-size:2rem}
+.lock-in{width:100%;font:inherit;border:2px solid var(--ink);border-radius:10px;padding:.6em .9em;margin-top:10px;letter-spacing:.3em;color:var(--ink)}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pdf{background:#e9e9f3;padding:14px;display:grid;gap:12px}
+.page{background:#fff;border-radius:4px;padding:18px;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.page .n{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:2.4rem;color:var(--green);line-height:1;-webkit-text-stroke:1.5px var(--ink)}
+.small{font-size:.8rem;opacity:.75}
+
+[hidden]{display:none!important}
+/* ---------- Écran d'accueil mobile ---------- */
+@media (max-width:760px){
+  .notifs{top:auto;bottom:calc(var(--dock) + 14px)}
+  .wall .logo{left:50%;top:auto;bottom:calc(var(--dock) + 60px);width:56vw;transform:translateX(-50%)}
+  .wall .t{display:none}
+  .wall{background:linear-gradient(var(--green) 0 70%,var(--ink) 70% 100%)}
+  .icons{right:12px;left:12px;bottom:auto;grid-auto-flow:row;grid-template-columns:repeat(4,1fr);grid-template-rows:none;grid-auto-columns:auto;justify-items:center}
+  .ico{width:80px;height:90px}
+  .trash{display:none}
+  .dock button{width:46px;height:46px;font-size:1.4rem}
+}
+
+/* ---------- Annotations ---------- */
+:where([data-note]){position:relative}
+body.notes [data-note]::after{content:"💡 " attr(data-note);position:absolute;left:0;top:100%;margin-top:6px;z-index:60;background:var(--pink);color:var(--ink);font:600 .7rem/1.3 var(--f-body);padding:.4em .7em;border-radius:8px;width:max-content;max-width:230px;box-shadow:0 6px 16px -6px rgba(0,0,0,.4);pointer-events:none;text-align:left;text-transform:none;letter-spacing:0}
+body.notes .dock[data-note]::after{top:auto;bottom:100%;margin:0 0 8px;left:50%;transform:translateX(-50%)}
+body.notes .menubar[data-note]::after{left:auto;right:10px}
+body.notes .trash[data-note]::after{left:auto;right:0;top:auto;bottom:100%;margin:0 0 6px}
+body.notes .dock{overflow:visible}
+@media (max-width:760px){body.notes [data-note]::after{display:none}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="notes">
+
+<div class="wall" aria-hidden="true">
+  <div class="grid"></div>
+  <img class="logo" src="../assets/img/tovote-logo.png" alt="">
+  <img class="t" src="../assets/img/transavia-t-white.svg" alt="">
+  <img class="wm" src="../assets/img/transavia-wordmark-white.svg" alt="">
+</div>
+
+<header class="menubar" data-note="Barre de menus : compte à rebours live + CTA unique « Je vote »">
+  <img src="../assets/img/tovote-icon.png" alt="">
+  <span class="os">TO VOTE OS</span>
+  <button class="m" data-open="readme">Le CSE</button>
+  <button class="m" data-open="cal">Dates</button>
+  <button class="m" data-open="howto">Voter</button>
+  <button class="m" data-open="term">Aide</button>
+  <div class="right">
+    <button class="notes-btn" id="notesToggle" aria-pressed="true" aria-label="Annotations">💡<span> Notes</span></button>
+    <span class="cd" id="cd" title="Ouverture du vote">J-000 · 00:00:00</span>
+    <span class="clock" id="clock"></span>
+    <a class="vote" href="#">Je vote</a>
+  </div>
+</header>
+
+<nav class="icons" id="icons" aria-label="Bureau"></nav>
+<button class="ico trash" id="trash" data-open="trash" data-note="Glisse une idée reçue dans la corbeille pour la « supprimer »"><span class="pic">🗑️</span><span>Corbeille</span></button>
+
+<div id="wins"></div>
+<div class="notifs" id="notifs" aria-live="polite"></div>
+
+<nav class="dock" id="dock" aria-label="Applications" data-note="Dock : toutes les rubriques à portée de clic, l'appli ouverte rebondit"></nav>
+
+<!-- ================= CONTENU DES APPLIS ================= -->
+<template id="tpl-welcome">
+  <div class="body">
+    <span class="pill">Version 2027</span>
+    <h1 class="big" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-top:12px">Bienvenue sur<br>TO VOTE OS.</h1>
+    <p class="lead">Tout ce qu'il faut savoir sur les élections CSE est rangé dans ce bureau. Ouvre les fichiers, déplace les fenêtres, fouille. Il y a même un terminal.</p>
+    <div class="row">
+      <button class="btn btn-ink" data-open="readme">📄 Lis-moi d'abord</button>
+      <button class="btn" data-open="howto">📘 Comment voter</button>
+      <button class="btn" data-open="quiz">🧪 Quiz.exe</button>
+    </div>
+    <p class="small" style="margin-top:14px">Astuce : glisse « Le CSE ça sert à rien.txt » dans la corbeille.</p>
+  </div>
+</template>
+
+<template id="tpl-readme">
+  <div class="body"><div class="txt" data-type></div></div>
+</template>
+
+<template id="tpl-cal">
+  <div class="body">
+    <div style="display:flex;justify-content:space-between;align-items:center"><b class="big" style="font-size:1.4rem">Mars 2027</b><span class="pill" style="background:var(--pink)">dates fictives</span></div>
+    <div class="cal" id="calGrid"></div>
+    <ul class="agenda">
+      <li><i style="background:var(--pink)"></i>2 mars · publication des listes</li>
+      <li><i style="background:#fff"></i>9 mars · réception des identifiants</li>
+      <li><i style="background:var(--green)"></i>16 → 19 mars · vote en ligne 24h/24</li>
+      <li><i style="background:var(--ink)"></i>19 mars, 18h · résultats</li>
+    </ul>
+    <div class="row"><button class="btn btn-green" data-act="ics">📅 Ajouter à mon agenda</button></div>
+  </div>
+</template>
+
+<template id="tpl-howto">
+  <div class="pdf">
+    <div class="page"><div class="n">01</div><b>Tu reçois tes codes</b><p class="small">Par mail pro et SMS, le 9 mars.</p></div>
+    <div class="page"><div class="n">02</div><b>Tu te connectes</b><p class="small">Sur ton téléphone ou ton ordi, en escale ou chez toi.</p></div>
+    <div class="page"><div class="n">03</div><b>Tu votes deux fois</b><p class="small">Titulaires, puis suppléant·es. 100 % anonyme.</p></div>
+    <div class="page"><div class="n">04</div><b>C'est fini</b><p class="small">Environ 3 minutes. Résultats le 19 mars à 18h.</p></div>
+  </div>
+</template>
+
+<template id="tpl-quiz">
+  <div class="body" id="quizBody"></div>
+</template>
+
+<template id="tpl-term">
+  <div class="term" id="term">
+    <div id="termOut"></div>
+    <form id="termForm"><span class="p">toi@tovote:~$</span><input id="termIn" autocomplete="off" spellcheck="false" aria-label="Commande"></form>
+    <div class="hints" id="termHints"></div>
+  </div>
+</template>
+
+<template id="tpl-lists">
+  <div class="body">
+    <div class="dialog"><div class="warn">🔒</div><div>
+      <b>Ce dossier est verrouillé.</b>
+      <p class="small" style="margin-top:4px">Les listes et professions de foi seront publiées le 2 mars. Ordre d'affichage tiré au sort, même format pour toutes.</p>
+      <input class="lock-in" id="lockIn" type="password" placeholder="Mot de passe" aria-label="Mot de passe">
+      <div class="row"><button class="btn btn-ink" id="lockGo">Déverrouiller</button><button class="btn" data-act="notify">🔔 Préviens-moi</button></div>
+    </div></div>
+  </div>
+</template>
+
+<template id="tpl-excuses">
+  <div class="body">
+    <div class="dialog"><div class="warn">⚠️</div><div>
+      <b>Excuses.exe a rencontré un problème.</b>
+      <p style="margin-top:6px">Aucune excuse valable trouvée.</p>
+      <p class="small" style="margin-top:6px">« Pas le temps » → le vote prend 3 minutes.<br>« Je suis en rotation » → tu votes depuis ton téléphone.<br>« Ça ne change rien » → tes élu·es siègent 4 ans.</p>
+      <div class="row"><button class="btn" data-act="close">OK</button><button class="btn btn-green" data-act="close">Voter quand même 😌</button></div>
+    </div></div>
+  </div>
+</template>
+
+<template id="tpl-trash">
+  <div class="body">
+    <p class="small">Idées reçues supprimées : <b id="trashCount">0</b> / 3</p>
+    <div class="files" id="trashFiles" style="margin-top:10px"></div>
+    <p class="small" style="margin-top:12px" id="trashHint">Glisse les fichiers « idée reçue » du bureau jusqu'ici.</p>
+  </div>
+</template>
+
+<template id="tpl-myth">
+  <div class="body"><div class="dialog"><div class="warn">🗑️</div><div><b data-title></b><p style="margin-top:6px" data-text></p><div class="row"><button class="btn btn-ink" data-bin hidden>🗑️ Jeter à la corbeille</button><button class="btn btn-green" data-act="close">Compris</button></div></div></div></div>
+</template>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile=()=>innerWidth<=760;
+
+/* ---------- Applis ---------- */
+const APPS={
+  welcome:{t:'Bienvenue',e:'👋',w:460},
+  readme:{t:'Lis-moi.txt',e:'📄',w:460,ico:'Lis-moi.txt'},
+  cal:{t:'Calendrier',e:'📅',w:360,ico:'Calendrier'},
+  howto:{t:'Comment voter.pdf',e:'📘',w:340,h:440,ico:'Comment voter.pdf'},
+  quiz:{t:'Quiz.exe',e:'🧪',w:420,ico:'Quiz.exe'},
+  term:{t:'Terminal',e:'⌨️',w:520,h:340,ico:'Terminal'},
+  lists:{t:'Listes',e:'📁',w:420,ico:'Listes 🔒'},
+  excuses:{t:'Excuses.exe',e:'⚠️',w:420,ico:'Excuses.exe'},
+  trash:{t:'Corbeille',e:'🗑️',w:380},
+};
+const MYTHS={
+  m1:{f:'Le CSE ça sert à rien.txt',t:'« Le CSE ça sert à rien » : supprimé.',x:'Il est consulté sur l\'organisation, les plannings et les conditions de travail, et gère les activités sociales et culturelles.'},
+  m2:{f:'Faut être syndiqué.txt',t:'« Faut être syndiqué pour voter » : supprimé.',x:'Tout·e salarié·e de 16 ans avec 3 mois d\'ancienneté vote, syndiqué·e ou non.'},
+  m3:{f:'Mon vote se verra.txt',t:'« Mon vote se verra » : supprimé.',x:'Le vote est 100 % anonyme : la plateforme sépare ton identité de ton bulletin.'},
+};
+
+/* Icônes du bureau et dock */
+const DESK=['readme','cal','howto','quiz','term','lists','excuses','m1','m2','m3'];
+$('#icons').innerHTML=DESK.map(k=>{
+  if(MYTHS[k])return `<button class="ico" data-myth="${k}" ${k==='m1'?'data-note="Fichiers « idées reçues » : à glisser dans la corbeille"':''}><span class="pic" style="background:var(--peach)">📝</span><span>${MYTHS[k].f}</span></button>`;
+  const a=APPS[k];return `<button class="ico" data-open="${k}" ${k==='term'?'data-note="Un vrai terminal : tape « aide »"':''}><span class="pic">${a.e}</span><span>${a.ico}</span></button>`}).join('');
+$('#dock').innerHTML=`<button data-open="welcome" aria-label="Bienvenue"><img src="../assets/img/tovote-icon.png" alt=""></button><span class="sep"></span>`+['readme','cal','howto','quiz','term','lists'].map(k=>`<button data-open="${k}" aria-label="${APPS[k].t}" title="${APPS[k].t}">${APPS[k].e}</button>`).join('')+`<span class="sep"></span><button data-open="trash" aria-label="Corbeille">🗑️</button>`;
+
+/* ---------- Gestionnaire de fenêtres ---------- */
+let Z=20,cascade=0;const open={};
+function focusWin(w){$$('.win').forEach(x=>x.classList.remove('focus'));w.classList.add('focus');w.style.zIndex=++Z}
+function markDock(){$$('#dock button[data-open]').forEach(b=>b.classList.toggle('run',!!open[b.dataset.open]))}
+function openApp(k,opts={}){
+  if(open[k]){const w=open[k];w.classList.remove('min');w.style.display='';focusWin(w);return w}
+  const a=APPS[k],w=document.createElement('section');w.className='win';w.setAttribute('role','dialog');w.setAttribute('aria-label',a.t);w.dataset.app=k;
+  w.innerHTML=`<div class="titlebar"><div class="lights"><button class="c" aria-label="Fermer">×</button><button class="n" aria-label="Réduire">–</button><button class="x" aria-label="Agrandir">+</button></div><span class="tt">${a.t}</span></div>`;
+  w.append($('#tpl-'+k).content.cloneNode(true));
+  const W=Math.min(a.w,innerWidth-20);w.style.width=W+'px';if(a.h)w.style.height=Math.min(a.h,innerHeight-160)+'px';
+  const x=opts.x??Math.max(10,Math.min(innerWidth-W-10,innerWidth*.28+cascade*28)),y=opts.y??(60+cascade*28);cascade=(cascade+1)%6;
+  w.style.left=x+'px';w.style.top=y+'px';
+  $('#wins').append(w);open[k]=w;focusWin(w);markDock();
+  const db=$(`#dock [data-open="${k}"]`);if(db&&!reduce){db.classList.remove('bounce');void db.offsetWidth;db.classList.add('bounce')}
+  w.addEventListener('pointerdown',()=>focusWin(w));
+  $('.c',w).onclick=()=>closeApp(k);
+  $('.n',w).onclick=()=>{w.classList.add('min');setTimeout(()=>w.style.display='none',300)};
+  $('.x',w).onclick=()=>w.classList.toggle('max');
+  dragWin(w,$('.titlebar',w));
+  INIT[k]?.(w);
+  return w;
+}
+function closeApp(k){const w=open[k];if(!w)return;w.classList.add('closing');delete open[k];markDock();setTimeout(()=>w.remove(),200)}
+function dragWin(w,h){let sx,sy,ox,oy;
+  h.addEventListener('pointerdown',e=>{if(mobile()||e.target.closest('button'))return;h.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=w.offsetLeft;oy=w.offsetTop});
+  h.addEventListener('pointermove',e=>{if(!h.hasPointerCapture(e.pointerId))return;w.style.left=Math.max(-w.offsetWidth+80,Math.min(innerWidth-80,ox+e.clientX-sx))+'px';w.style.top=Math.max(34,Math.min(innerHeight-60,oy+e.clientY-sy))+'px'});
+  h.addEventListener('dblclick',()=>w.classList.toggle('max'));
+}
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-open]');if(o&&!o.classList.contains('ico'))openApp(o.dataset.open);
+  const a=e.target.closest('[data-act]');if(!a)return;const w=a.closest('.win');
+  if(a.dataset.act==='close'&&w)closeApp(w.dataset.app);
+  if(a.dataset.act==='ics')ics();
+  if(a.dataset.act==='notify'){a.textContent='✅ C\'est noté';notify('🔔','Alerte activée','Tu seras prévenu·e à la publication des listes.')}
+});
+addEventListener('keydown',e=>{if(e.key==='Escape'){const top=$$('.win').filter(w=>open[w.dataset.app]).sort((a,b)=>b.style.zIndex-a.style.zIndex)[0];if(top)closeApp(top.dataset.app)}});
+
+/* ---------- Icônes : clic = ouvrir, glisser = déplacer (et jeter les idées reçues) ---------- */
+$$('.ico').forEach(ic=>{
+  let sx,sy,moved=false;
+  ic.addEventListener('pointerdown',e=>{sx=e.clientX;sy=e.clientY;moved=false;ic.setPointerCapture(e.pointerId);$$('.ico').forEach(x=>x.classList.remove('sel'));ic.classList.add('sel')});
+  ic.addEventListener('pointermove',e=>{if(!ic.hasPointerCapture(e.pointerId))return;const dx=e.clientX-sx,dy=e.clientY-sy;if(!moved&&Math.hypot(dx,dy)<6)return;moved=true;
+    if(mobile()&&!ic.dataset.myth)return;ic.classList.add('dragging');ic.style.transform=`translate(${dx}px,${dy}px)`;
+    if(ic.dataset.myth)$('#trash').classList.toggle('hot',overTrash(e))});
+  ic.addEventListener('pointerup',e=>{ic.classList.remove('dragging');$('#trash').classList.remove('hot');
+    if(!moved){ if(ic.dataset.myth)openMyth(ic.dataset.myth);else if(ic.dataset.open)openApp(ic.dataset.open);return}
+    if(ic.dataset.myth&&overTrash(e)){trashMyth(ic);return}
+    if(ic.id!=='trash'&&!mobile()){/* reste où on l'a posée */}else ic.style.transform='';
+  });
+  ic.addEventListener('keydown',e=>{if(e.key==='Delete'&&ic.dataset.myth)trashMyth(ic)});
+});
+function overTrash(e){const r=$('#trash').getBoundingClientRect();return e.clientX>r.left-20&&e.clientX<r.right+20&&e.clientY>r.top-20&&e.clientY<r.bottom+20}
+const trashed=[];
+function trashMyth(ic){const k=ic.dataset.myth;ic.classList.add('gone');setTimeout(()=>ic.remove(),400);trashed.push(k);
+  openMyth(k);notify('🗑️','Idée reçue supprimée',`${trashed.length} / 3. ${trashed.length===3?'Bureau nettoyé, bravo !':'Encore '+(3-trashed.length)+'.'}`);refreshTrash()}
+function openMyth(k){
+  APPS['myth']={t:MYTHS[k].f,e:'📝',w:400};if(open.myth)closeApp('myth');
+  setTimeout(()=>{const w=openApp('myth');$('[data-title]',w).textContent=trashed.includes(k)?MYTHS[k].t:'Idée reçue détectée';$('[data-text]',w).textContent=trashed.includes(k)?MYTHS[k].x:'Ce fichier contient une idée reçue. Glisse-le dans la corbeille, ou utilise le bouton ci-dessous, pour découvrir la réalité.';const bin=$('[data-bin]',w);if(!trashed.includes(k)){bin.hidden=false;bin.onclick=()=>{const ic=$(`.ico[data-myth="${k}"]`);if(ic)trashMyth(ic)}}},open.myth?220:0);
+}
+function refreshTrash(){const w=open.trash;if(!w)return;$('#trashCount',w).textContent=trashed.length;$('#trashFiles',w).innerHTML=trashed.map(k=>`<button class="file" data-m="${k}"><span class="fi">📝</span>${MYTHS[k].f}</button>`).join('');
+  $$('.file',w).forEach(f=>f.onclick=()=>openMyth(f.dataset.m));$('#trashHint',w).textContent=trashed.length===3?'Corbeille pleine. Il ne reste que la réalité 😌':'Glisse les fichiers « idée reçue » du bureau jusqu\'ici.'}
+
+/* ---------- Initialisation de chaque appli ---------- */
+const INIT={
+  readme(w){const el=$('[data-type]',w),txt=`LIS-MOI.TXT
+============
+
+Le CSE, c'est le Comité social et économique.
+Il représente les salarié·es auprès de la direction.
+
+Concrètement, il :
+  → est consulté sur l'organisation, les plannings,
+    les conditions de travail ;
+  → porte tes réclamations (paie, droits, sécurité) ;
+  → gère les activités sociales et culturelles.
+
+Tes élu·es siègent pendant 4 ans.
+Pour les choisir, tu votes du 16 au 19 mars.
+
+> Prochaine étape : ouvre Calendrier.`;
+    if(reduce){el.textContent=txt;return}let i=0;el.innerHTML='<span></span><span class="caret"></span>';const sp=el.firstChild;
+    const iv=setInterval(()=>{i+=3;sp.textContent=txt.slice(0,i);if(i>=txt.length)clearInterval(iv)},16)},
+  cal(w){const g=$('#calGrid',w);const days=['L','M','M','J','V','S','D'];let h=days.map(d=>`<div class="d hd">${d}</div>`).join('');
+    h+='<div class="d e"></div>';for(let d=1;d<=31;d++){const c=d>=16&&d<=19?'v':d===2?'x':'';h+=`<div class="d ${c}">${d}</div>`}g.innerHTML=h},
+  quiz(w){quizRun($('#quizBody',w))},
+  term(w){termInit(w)},
+  lists(w){const go=()=>{const i=$('#lockIn',w);i.classList.remove('shake');void i.offsetWidth;i.classList.add('shake');i.value='';i.placeholder='Patience : ouverture le 2 mars 😉'};$('#lockGo',w).onclick=go;$('#lockIn',w).onkeydown=e=>{if(e.key==='Enter')go()}},
+  trash(){refreshTrash()},
+};
+
+/* Quiz.exe : barre « d'installation » */
+function quizRun(b){
+  const Q=[['Il faut combien d\'ancienneté pour voter ?',['1 mois','3 mois','1 an'],1],['Le mandat des élu·es dure, par défaut…',['2 ans','4 ans','6 ans'],1],['Au 1er tour, qui présente les listes ?',['N\'importe qui','La direction','Les syndicats'],2]];
+  let i=0,s=0;
+  const draw=()=>{const pct=Math.round(i/Q.length*100);
+    if(i>=Q.length){b.innerHTML=`<b>Installation terminée ✅</b><div class="prog"><i style="width:100%"></i></div><p class="big" style="font-size:2.4rem">${s}/${Q.length}</p><p style="margin-top:6px">Connaissances CSE installées avec succès.</p><div class="row"><button class="btn" id="qa">Réinstaller</button><button class="btn btn-green" data-open="cal">Voir les dates</button></div>`;$('#qa',b).onclick=()=>{i=0;s=0;draw()};return}
+    b.innerHTML=`<b>Installation de tes connaissances… ${pct} %</b><div class="prog"><i style="width:${pct}%"></i></div><p style="font-weight:600">${Q[i][0]}</p>${Q[i][1].map((o,k)=>`<button class="qopt" data-k="${k}">${o}</button>`).join('')}`;
+    $$('.qopt',b).forEach(o=>o.onclick=()=>{const k=+o.dataset.k;$$('.qopt',b).forEach(x=>x.disabled=true);$$('.qopt',b)[Q[i][2]].classList.add('ok');if(k!==Q[i][2])o.classList.add('ko');else s++;setTimeout(()=>{i++;draw()},800)})};
+  draw();
+}
+
+/* Terminal */
+function termInit(w){
+  const out=$('#termOut',w),inp=$('#termIn',w),say=(t,cls='')=>{const d=document.createElement('div');d.className='l '+cls;d.textContent=t;out.append(d);$('#term',w).scrollTop=1e6};
+  const CMDS={
+    aide:()=>'Commandes : cse · dates · voter · eligible <âge> <mois> · listes · excuses · clear',
+    cse:()=>'Le CSE représente les salarié·es, est consulté sur l\'organisation du travail et gère les ASC. Mandat : 4 ans.',
+    dates:()=>{openApp('cal');return '02/03 listes · 09/03 codes · 16→19/03 vote · 19/03 18h résultats (dates fictives)'},
+    voter:()=>{openApp('howto');return 'Ouverture de « Comment voter.pdf »… Environ 3 minutes, 100 % anonyme.'},
+    listes:()=>{openApp('lists');return 'Accès refusé : dossier verrouillé jusqu\'au 2 mars.'},
+    excuses:()=>{openApp('excuses');return 'Exécution de Excuses.exe…'},
+    eligible:(a)=>{const age=+a[0],m=+a[1];if(!age||isNaN(m))return 'Usage : eligible <âge> <ancienneté en mois>   ex. eligible 24 8';
+      return `Voter : ${age>=16&&m>=3?'OUI ✅':'NON ❌ (16 ans et 3 mois requis)'}\nTe présenter : ${age>=18&&m>=12?'OUI ✅':'NON ❌ (18 ans et 1 an requis)'}`},
+    sudo:()=>'Bien essayé 😏 Même en root, le vote ouvre le 16 mars.',
+    clear:()=>{out.innerHTML='';return null},
+  };
+  say('TO VOTE OS 2027 · Terminal','k');say('Tape « aide » pour la liste des commandes.');
+  $('#termForm',w).onsubmit=e=>{e.preventDefault();const raw=inp.value.trim();inp.value='';if(!raw)return;say('toi@tovote:~$ '+raw,'p');
+    const [c,...args]=raw.toLowerCase().split(/\s+/);const r=CMDS[c]?CMDS[c](args):`commande introuvable : ${c}. Tape « aide ».`;if(r)say(r)};
+  $('#termHints',w).innerHTML=['aide','cse','dates','eligible 24 8','sudo voter'].map(h=>`<button type="button">${h}</button>`).join('');
+  $$('#termHints button',w).forEach(b=>b.onclick=()=>{inp.value=b.textContent;$('#termForm',w).requestSubmit()});
+  $('#term',w).onclick=e=>{if(!e.target.closest('button'))inp.focus()};setTimeout(()=>inp.focus(),300);
+}
+
+/* ---------- Notifications ---------- */
+function notify(ic,t,p,app){const n=document.createElement('div');n.className='notif';n.innerHTML=`<span class="ni">${ic}</span><div><b>${t}</b><p>${p}</p><small>maintenant</small></div>`;
+  n.onclick=()=>{if(app)openApp(app);n.classList.add('out');setTimeout(()=>n.remove(),300)};$('#notifs').prepend(n);
+  setTimeout(()=>{n.classList.add('out');setTimeout(()=>n.remove(),300)},6000)}
+
+/* ---------- Horloge et compte à rebours ---------- */
+const TARGET=new Date('2027-03-16T09:00:00+01:00');
+function tick(){let s=Math.max(0,Math.floor((TARGET-Date.now())/1000));const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),se=s%60,p=n=>String(n).padStart(2,'0');
+  $('#cd').textContent=`J-${d} · ${p(h)}:${p(m)}:${p(se)}`;$('#clock').textContent=new Date().toLocaleString('fr-FR',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+tick();setInterval(tick,1000);
+
+/* Agenda */
+function ics(){const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270316T080000Z','DTEND:20270319T170000Z','SUMMARY:🗳️ Élections CSE : vote en ligne','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();notify('📅','Agenda','Rappel ajouté : vote du 16 au 19 mars.')}
+
+/* Annotations */
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on)};
+
+/* ---------- Démarrage ---------- */
+openApp('welcome',mobile()?{}:{x:Math.round(innerWidth*.5-230),y:Math.round(innerHeight*.18)});
+setTimeout(()=>notify('🗳️','Élections CSE 2027','Le vote en ligne ouvre le 16 mars. Ouvre Calendrier.','cal'),1800);
+setTimeout(()=>notify('🔒','Listes','Les listes seront publiées le 2 mars.','lists'),5200);
+</script>
+</body>
+</html>
