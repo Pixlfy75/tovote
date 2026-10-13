@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le CSE · TO VOTE 2027</title>
+<meta name="description" content="Le Comité social et économique expliqué simplement : qui y siège, à quoi il sert, ses moyens, et ce qu'il change pour toi.">
+<meta name="theme-color" content="#FFE3D8">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black la remplace provisoirement. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --glass:rgba(255,255,255,.55); --glass-b:rgba(255,255,255,.75);
+  --r:28px; --gutter:clamp(16px,5vw,72px); --maxw:1240px; --p:0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:100px;overflow-x:clip}
+body{font-family:var(--f-body);color:var(--ink);line-height:1.55;overflow-x:hidden;background:#FFE3D8}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:10px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.92;letter-spacing:-.01em}
+.g{color:var(--web-green)}
+.center{text-align:center}
+.ref{font-size:.76rem;font-weight:600;opacity:.65}
+
+/* ---------- Ciel ---------- */
+.sky{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(60vmax 50vmax at calc(15% + var(--p)*30%) calc(10% + var(--p)*20%),rgba(243,133,255,calc(.5 - var(--p)*.3)),transparent 70%),
+    radial-gradient(55vmax 45vmax at calc(90% - var(--p)*20%) 20%,rgba(255,136,103,calc(.5 - var(--p)*.35)),transparent 70%),
+    radial-gradient(70vmax 60vmax at 50% calc(110% - var(--p)*40%),rgba(5,206,120,calc(.25 + var(--p)*.35)),transparent 70%),
+    radial-gradient(60vmax 50vmax at calc(80% - var(--p)*10%) calc(70% - var(--p)*30%),rgba(0,83,255,calc(.16 + var(--p)*.24)),transparent 70%),
+    linear-gradient(180deg,#FFE9E0,#F3ECFF 50%,#E6F7FF)}
+.cloud{position:fixed;z-index:-1;border-radius:50%;background:#fff;filter:blur(30px);opacity:.7;pointer-events:none}
+.c1{width:420px;height:150px;left:-80px;top:30%}.c2{width:520px;height:170px;right:-120px;top:65%}
+
+.glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1.5px solid var(--glass-b);border-radius:var(--r);box-shadow:0 26px 50px -30px rgba(20,13,138,.35)}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:.9em 1.4em;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn-ruby{background:var(--ruby);color:#fff;box-shadow:0 12px 30px -10px rgba(226,0,118,.7)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-glass{background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.chip{display:inline-flex;align-items:center;gap:.5em;padding:.4em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff;font-weight:600;font-size:.82rem}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(5,206,120,.25)}
+
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;width:max-content;max-width:calc(100% - 24px)}
+.nav img{width:40px;height:40px}
+.nav a.l{text-decoration:none;font-weight:600;font-size:.9rem;padding:.6em 1em;border-radius:999px}
+.nav a.l:hover{background:rgba(255,255,255,.7)}
+.nav a.l[aria-current="page"]{background:var(--ink);color:#fff}
+.nav a.l .soon{font-size:.65rem;opacity:.6;margin-left:4px}
+.nav .btn{padding:.7em 1.2em;font-size:.9rem}
+@media (max-width:900px){.nav a.l:not([aria-current]){display:none}}
+
+.xl .w{display:inline-block;white-space:nowrap}
+.xl .ch{display:inline-block;animation:pop .9s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:calc(var(--i)*30ms)}
+@keyframes pop{from{opacity:0;transform:translateY(.4em) scaleY(.4)}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.sec{padding-top:clamp(64px,9vw,120px)}
+.sec-title{font-size:clamp(2rem,5vw,4rem)}
+.sec-lead{max-width:46ch;margin:12px auto 0;font-size:1.05rem}
+
+/* ---------- Haut de page ---------- */
+.top{padding-top:120px;text-align:center}
+.crew-row{display:flex;justify-content:center;gap:clamp(0px,1vw,12px);margin-bottom:-10px}
+.crew-row svg{width:clamp(70px,9vw,120px);height:auto}
+.crew-row .bob:nth-child(2){animation-delay:-1s}.crew-row .bob:nth-child(3){animation-delay:-2s}.crew-row .bob:nth-child(4){animation-delay:-3s}
+.top h1{font-size:clamp(2.6rem,8vw,7rem);margin-top:14px}
+.top .lead{font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:40ch;margin:16px auto 0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+.toc a{text-decoration:none;font-weight:600;font-size:.88rem;padding:.5em 1em;border-radius:999px;background:rgba(255,255,255,.65);border:1.5px solid #fff}
+.toc a:hover{background:#fff}
+
+/* En 30 secondes */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+@media (max-width:900px){.facts{grid-template-columns:1fr 1fr}}
+.fact{padding:22px;display:flex;flex-direction:column;gap:8px}
+.fact b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(2rem,3.6vw,3rem);line-height:.9;color:var(--web-green)}
+.fact h3{font-size:1.05rem}
+.fact p{font-size:.92rem;opacity:.85}
+
+/* ---------- Plan de cabine ---------- */
+.cabin-wrap{margin-top:36px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+@media (max-width:1000px){.cabin-wrap{grid-template-columns:1fr}}
+.cabin{padding:clamp(18px,3vw,30px);overflow-x:auto}
+.fuselage{position:relative;margin:0 auto;width:max-content;padding:26px 40px 26px 110px;background:linear-gradient(180deg,#fff,#f1f0fb);border-radius:200px 46px 46px 200px;box-shadow:inset 0 -8px 20px rgba(20,13,138,.08),0 20px 40px -24px rgba(20,13,138,.4)}
+.fuselage::before{content:"";position:absolute;left:34px;top:50%;width:50px;height:34px;transform:translateY(-50%);border-radius:30px 6px 6px 30px;background:linear-gradient(90deg,#9fd6ff,#d9f2ff)}
+.seats{display:grid;grid-template-rows:42px 42px 26px 42px 42px;grid-auto-flow:column;grid-auto-columns:42px;column-gap:8px;row-gap:6px}
+.seat{width:42px;height:42px;border-radius:10px 10px 7px 7px;position:relative;transition:transform .2s,opacity .3s,box-shadow .2s;box-shadow:inset 0 -9px 0 rgba(0,0,0,.12)}
+.seat:hover{transform:scale(1.12)}
+.seat .b{position:absolute;inset:auto 0 -4px 0;margin:auto;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--ink);font:900 .62rem/20px var(--f-head);text-align:center;box-shadow:0 2px 6px rgba(20,13,138,.25);display:none}
+.seat[data-badge] .b{display:block;bottom:auto;top:-8px;right:-8px;left:auto;margin:0}
+.aisle{display:grid;place-items:center;font-size:.6rem;font-weight:600;opacity:.4;letter-spacing:.08em}
+.r-pres{background:var(--ink)}.r-collab{background:#7b76c4}.r-tit{background:var(--green)}.r-sup{background:#fff;box-shadow:inset 0 0 0 2.5px var(--pink),inset 0 -9px 0 rgba(243,133,255,.25)}.r-rs{background:var(--peach)}
+.cabin.focus .seat{opacity:.25}
+.cabin.focus .seat.hl{opacity:1;transform:scale(1.1)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center}
+.legend button{display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:600;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.legend button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.legend i{width:16px;height:16px;border-radius:5px}
+.info{padding:24px;position:sticky;top:100px}
+.info .role{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.5rem;line-height:1;margin:10px 0}
+.info .vote{display:inline-block;font-size:.78rem;font-weight:600;border-radius:999px;padding:.3em .8em;background:#fff}
+.info .vote.d{background:var(--green)}
+.info p{margin-top:10px;font-size:.95rem}
+.swap{animation:swap .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes swap{from{opacity:0;transform:translateY(10px)}}
+@media (max-width:700px){
+  .fuselage{padding:90px 18px 30px;border-radius:160px 160px 40px 40px}
+  .fuselage::before{left:50%;top:26px;width:40px;height:44px;transform:translateX(-50%);border-radius:24px 24px 6px 6px}
+  .seats{grid-template-rows:none;grid-template-columns:38px 38px 22px 38px 38px;grid-auto-flow:row;grid-auto-rows:38px;grid-auto-columns:auto;row-gap:8px;column-gap:6px}
+  .seat{width:38px;height:38px}
+  .aisle span{display:none}
+}
+
+/* ---------- Missions ---------- */
+.missions{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:36px}
+@media (max-width:820px){.missions{grid-template-columns:1fr}}
+.mission{padding:24px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;text-align:left;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.mission:hover{transform:translateY(-4px)}
+.mission svg{width:88px;height:66px}
+.mission h3{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.35rem;line-height:1}
+.mission p{margin-top:8px;font-size:.95rem}
+.mission .ex{margin-top:12px;background:rgba(255,255,255,.75);border-radius:16px;padding:12px 14px;font-size:.9rem}
+.mission .ex b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin-bottom:4px}
+.mission .more{display:none;margin-top:10px;font-size:.9rem}
+.mission .more ul{margin-left:1.1em;display:grid;gap:4px}
+.mission.open .more{display:block;animation:swap .35s}
+.mission .tog{margin-top:12px;font-size:.82rem;font-weight:600;opacity:.65}
+.notice{margin-top:16px;padding:18px 22px;display:flex;gap:14px;align-items:center}
+.notice b{font-size:1.6rem}
+
+/* ---------- Pour toi (profils) ---------- */
+.prof{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,48px);align-items:center;padding:clamp(22px,4vw,40px);margin-top:28px}
+@media (max-width:760px){.prof{grid-template-columns:1fr;justify-items:center}}
+.prof .who svg{width:180px;height:auto}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.tabs button{padding:.6em 1.2em;border-radius:999px;font-weight:600;background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.prof ul{list-style:none;display:grid;gap:10px;margin-top:14px}
+.prof li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.8);border-radius:18px;padding:14px 16px}
+.prof li span{flex:none;font-size:1.3rem}
+.prof h3{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1}
+
+/* ---------- Moyens (étiquettes bagages) ---------- */
+.tags{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:36px}
+.tag{position:relative;padding:22px 20px 20px 34px;background:#fff;border-radius:18px 28px 28px 18px;box-shadow:0 20px 36px -24px rgba(20,13,138,.45);transform:rotate(var(--rot,0deg));transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.tag:hover{transform:rotate(0) translateY(-4px)}
+.tag::before{content:"";position:absolute;left:12px;top:22px;width:12px;height:12px;border-radius:50%;background:transparent;box-shadow:0 0 0 3px rgba(20,13,138,.25)}
+.tag::after{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:18px 0 0 18px;background:var(--c,var(--green))}
+.tag small{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.6}
+.tag b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(1.15rem,1.5vw,1.4rem);line-height:1.05;margin:8px 0}
+.tag p{font-size:.9rem}
+.tag .ref{display:block;margin-top:10px}
+
+/* ---------- Qui fait quoi ---------- */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:30px;overflow:hidden;border-radius:24px}
+.cmp-wrap{overflow-x:auto;padding:8px}
+.cmp th,.cmp td{padding:14px 16px;text-align:center;border-bottom:1px solid rgba(20,13,138,.08)}
+.cmp th{font-family:var(--f-head);font-weight:900;font-stretch:120%;font-size:1rem}
+.cmp thead th:nth-child(2){background:rgba(5,206,120,.3)}
+.cmp td:first-child,.cmp th:first-child{text-align:left;font-weight:600}
+.cmp td:nth-child(2){background:rgba(5,206,120,.12)}
+.y{font-weight:600;color:var(--web-green)}.n{opacity:.5}
+
+/* ---------- Lexique ---------- */
+.lex{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:30px}
+.word{perspective:900px;height:150px}
+.word{display:block;width:100%;padding:0;text-align:left}
+.word .in{display:block;position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.word.on .in{transform:rotateY(180deg)}
+.word .f,.word .bk{position:absolute;inset:0;backface-visibility:hidden;border-radius:22px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.word .f{background:rgba(255,255,255,.78);border:1.5px solid #fff;box-shadow:0 20px 36px -26px rgba(20,13,138,.45);align-items:center;text-align:center}
+.word .f b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.25rem;line-height:1}
+.word .f small{margin-top:6px;font-size:.75rem;opacity:.6;font-weight:600}
+.word .bk{transform:rotateY(180deg);background:var(--ink);color:#fff;font-size:.86rem;text-align:left}
+
+.final{padding:clamp(24px,4vw,48px);margin:clamp(64px,9vw,110px) 0 80px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media (max-width:760px){.final{grid-template-columns:1fr}}
+.final h2{font-size:clamp(1.8rem,4vw,3rem)}
+
+footer{padding:0 0 36px}
+footer .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 28px;border-radius:999px}
+footer img{height:24px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
+@media (max-width:760px){footer .bar{border-radius:24px}}
+
+/* ---------- Personnages ---------- */
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.char{overflow:visible}
+.char .eyes ellipse{transform-box:fill-box;transform-origin:center;animation:blink var(--blink,4.6s) infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.char .m-happy{display:none}
+.char .arm{transform-origin:146px 148px}
+.char.wave .arm{animation:wave 1.4s ease-in-out}
+@keyframes wave{0%,100%{transform:rotate(0)}18%,52%,86%{transform:rotate(-145deg)}35%,69%{transform:rotate(-115deg)}}
+
+/* ---------- Annotations + toast ---------- */
+.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
+:where([data-note]){position:relative}
+body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:280px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%;text-transform:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="notes">
+
+<div class="sky" aria-hidden="true"></div>
+<div class="cloud c1" aria-hidden="true"></div>
+<div class="cloud c2" aria-hidden="true"></div>
+
+<nav class="nav glass" aria-label="Navigation principale">
+  <a href="index.html" aria-label="Accueil TO VOTE"><img src="../assets/img/tovote-icon.png" alt=""></a>
+  <a class="l" href="index.html">Accueil</a>
+  <a class="l" href="cse.html" aria-current="page">Le CSE</a>
+  <a class="l" href="candidatures.html">Candidatures</a>
+  <a class="l" href="faq.html">FAQ</a>
+  <a class="l soon-link" href="#">Documents<span class="soon">bientôt</span></a>
+  <a class="btn btn-ruby" href="#">Je vote</a>
+</nav>
+
+<main>
+<!-- ================= HAUT DE PAGE ================= -->
+<header class="top wrap">
+  <div class="crew-row" id="crewRow" aria-hidden="true"></div>
+  <h1 class="h xl" aria-label="Le CSE, en clair."><span data-split>Le CSE,</span><br><span data-split class="g">en clair.</span></h1>
+  <p class="lead">Le Comité social et économique, c'est l'équipage qui porte la voix des salarié·es auprès de la direction. Voici comment il fonctionne.</p>
+  <nav class="toc" aria-label="Sommaire">
+    <a href="#bord">Qui est à bord ?</a><a href="#missions">Ses missions</a><a href="#pour-toi">Pour toi</a><a href="#moyens">Ses moyens</a><a href="#qui-fait-quoi">Qui fait quoi ?</a><a href="#lexique">Lexique</a>
+  </nav>
+</header>
+
+<!-- ================= EN 30 SECONDES ================= -->
+<section class="wrap" style="padding-top:40px">
+  <div class="facts">
+    <article class="fact glass rv"><b>1</b><h3>instance unique</h3><p>Le CSE représente l'ensemble du personnel, au sol comme en vol.</p></article>
+    <article class="fact glass rv"><b>4 ans</b><h3>de mandat</h3><p>Tes élu·es siègent 4 ans, sauf accord fixant une durée de 2 à 4 ans.</p><span class="ref">Art. L.2314-33 C. trav.</span></article>
+    <article class="fact glass rv"><b>Avis</b><h3>avant les décisions</h3><p>La direction le consulte sur les projets importants avant de décider.</p><span class="ref">Art. L.2312-8 C. trav.</span></article>
+    <article class="fact glass rv"><b>ASC</b><h3>pour tout le monde</h3><p>Il gère les activités sociales et culturelles des salarié·es.</p><span class="ref">Art. L.2312-78 C. trav.</span></article>
+  </div>
+</section>
+
+<!-- ================= QUI EST À BORD ? (PLAN DE CABINE) ================= -->
+<section class="sec" id="bord">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">Qui est <span class="g">à bord ?</span></h2><p class="sec-lead rv">La composition du CSE, version plan de cabine. Touche un siège ou une légende.</p></div>
+    <div class="cabin-wrap">
+      <div>
+        <div class="cabin glass" id="cabin" data-note="Plan de cabine interactif : chaque siège = un membre du CSE (nombres fictifs, à caler sur le PAP)">
+          <div class="fuselage"><div class="seats" id="seats"></div></div>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <aside class="info glass" id="info" aria-live="polite"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MISSIONS ================= -->
+<section class="sec" id="missions">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">À quoi <span class="g">ça sert ?</span></h2><p class="sec-lead rv">Quatre grandes missions. Touche une carte pour aller plus loin.</p></div>
+    <div class="missions" id="missionList" data-note="Missions avec un exemple concret « chez nous » et la référence légale ; détail au toucher"></div>
+    <div class="notice glass rv"><b>💬</b><p><strong>Consulter, ce n'est pas décider.</strong> Pour la plupart des projets, la direction doit consulter le CSE et recueillir son avis avant de décider. L'avis n'oblige pas la direction, mais elle doit y répondre de manière motivée.</p></div>
+  </div>
+</section>
+
+<!-- ================= POUR TOI ================= -->
+<section class="sec" id="pour-toi">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">Et pour <span class="g">toi ?</span></h2><p class="sec-lead rv">Ce que le CSE peut changer, selon ton collège.</p></div>
+    <div class="tabs" role="tablist" id="tabs" data-note="Exemples concrets par collège, portés par les personnages"></div>
+    <div class="prof glass" id="prof"></div>
+  </div>
+</section>
+
+<!-- ================= MOYENS ================= -->
+<section class="sec" id="moyens">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">Ses <span class="g">moyens.</span></h2><p class="sec-lead rv">Pour remplir ses missions, le CSE a du temps, des budgets et des appuis.</p></div>
+    <div class="tags" data-note="Moyens en étiquettes bagages ; montants et volumes à compléter avec les chiffres réels">
+      <article class="tag rv" style="--rot:-1.5deg;--c:var(--green)"><small>Budget</small><b>Fonctionnement</b><p>0,20 % de la masse salariale brute (0,22 % au-delà de 2 000 salarié·es), pour la formation des élu·es, les expertises, l'administratif.</p><span class="ref">Art. L.2315-61 C. trav.</span></article>
+      <article class="tag rv" style="--rot:1deg;--c:var(--pink)"><small>Budget</small><b>Activités sociales</b><p>Un budget dédié aux ASC, dont le montant est fixé par accord d'entreprise.</p><span class="ref">Art. L.2312-81 C. trav.</span></article>
+      <article class="tag rv" style="--rot:-.8deg;--c:var(--peach)"><small>Temps</small><b>Heures de délégation</b><p>Chaque titulaire dispose d'un crédit d'heures par mois, rémunéré comme du temps de travail : [x heures, à compléter].</p><span class="ref">Art. L.2315-7 C. trav.</span></article>
+      <article class="tag rv" style="--rot:1.4deg;--c:var(--blue)"><small>Appui</small><b>Expertises</b><p>Le CSE peut se faire assister par des expert·es, par exemple sur la situation économique ou un projet important.</p><span class="ref">Art. L.2315-78 C. trav.</span></article>
+      <article class="tag rv" style="--rot:-1deg;--c:var(--ink)"><small>Rythme</small><b>Réunions</b><p>Au moins une réunion par mois dans les entreprises d'au moins 300 salarié·es.</p><span class="ref">Art. L.2315-28 C. trav.</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUI FAIT QUOI ================= -->
+<section class="sec" id="qui-fait-quoi">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">CSE, syndicats, direction&nbsp;: <span class="g">qui fait quoi ?</span></h2><p class="sec-lead rv">Trois acteurs, trois rôles différents. On les confond souvent.</p></div>
+    <div class="cmp-wrap glass rv" style="margin-top:30px" data-note="Tableau comparatif pour lever les confusions fréquentes">
+      <table class="cmp" style="margin-top:0">
+        <thead><tr><th></th><th>CSE</th><th>Organisations syndicales</th><th>Direction</th></tr></thead>
+        <tbody>
+          <tr><td>Élu·es par les salarié·es</td><td class="y">Oui</td><td class="n">Non, délégué·es désigné·es</td><td class="n">Non</td></tr>
+          <tr><td>Négocie les accords d'entreprise</td><td class="n">Non, en principe*</td><td class="y">Oui</td><td class="y">Oui</td></tr>
+          <tr><td>Donne des avis sur les projets</td><td class="y">Oui</td><td class="n">Non</td><td class="n">—</td></tr>
+          <tr><td>Décide</td><td class="n">Non</td><td class="n">Non</td><td class="y">Oui, après consultation</td></tr>
+          <tr><td>Gère les activités sociales</td><td class="y">Oui</td><td class="n">Non</td><td class="n">Non</td></tr>
+          <tr><td>Présente les listes au 1er tour</td><td class="n">Non</td><td class="y">Oui</td><td class="n">Non</td></tr>
+        </tbody>
+      </table>
+      <p class="ref" style="padding:10px 16px 6px">* Sauf cas particuliers prévus par la loi, notamment en l'absence de délégué·e syndical·e.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEXIQUE ================= -->
+<section class="sec" id="lexique">
+  <div class="wrap">
+    <div class="center"><h2 class="h sec-title rv">Le <span class="g">lexique.</span></h2><p class="sec-lead rv">Les mots qu'on entend partout. Touche une carte pour la retourner.</p></div>
+    <div class="lex" id="lex" data-note="Lexique en cartes à retourner"></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="final glass rv">
+    <div><h2 class="h">Maintenant, <span class="g">choisis qui siège.</span></h2><p style="margin-top:10px">Découvre les listes de ton collège, puis vote du 16 au 19 mars.</p></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-ink" href="candidatures.html">Voir les listes</a><a class="btn btn-glass" href="faq.html">Une question ?</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="bar glass">
+      <img src="../assets/img/transavia-wordmark-green.svg" alt="transavia">
+      <nav><a href="#">Mentions légales</a><a href="#">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
+document.addEventListener('click',e=>{const a=e.target.closest('.soon-link');if(a){e.preventDefault();toast('📄 Page en préparation')}});
+let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* ---------- Personnages ---------- */
+const CHARS={pnc:{skin:'#8D5524',hair:'#1d1350',outfit:'#140D8A'},pnt:{skin:'#F1C27D',hair:'#7a5a2a',outfit:'#140D8A'},cadre:{skin:'#E0AC69',hair:'#2b1a0e',outfit:'#0053FF'},etam:{skin:'#C68642',hair:'#3b2314',outfit:'#140D8A'}};
+function charSVG(k){const c=CHARS[k];
+  const back=k==='pnc'?`<circle cx="140" cy="62" r="14" fill="${c.hair}"/>`:'';
+  const det={pnc:`<path d="M80 132l20 34 20-34z" fill="#fff"/><path d="M84 134c10 10 22 10 32 0l-6 18c-6 6-14 6-20 0z" fill="#05CE78"/>`,
+    pnt:`<path d="M82 132l18 30 18-30z" fill="#fff"/><path d="M96 136h8l3 34-7 8-7-8z" fill="#140D8A"/><rect x="52" y="186" width="30" height="5" rx="2" fill="#F9C74F"/><rect x="52" y="194" width="30" height="5" rx="2" fill="#F9C74F"/>`,
+    cadre:`<path d="M80 132l20 36 20-36z" fill="#fff"/><path d="M97 138h6l3 26-6 8-6-8z" fill="#FF8867"/><path d="M80 132l20 36-12-2-14-26zM120 132l-20 36 12-2 14-26z" fill="#0b3fbf"/>`,
+    etam:`<path d="M62 150c10-12 24-20 38-20s28 8 38 20v60H62z" fill="#05CE78"/><rect x="62" y="170" width="76" height="6" fill="#fff" opacity=".9"/><rect x="62" y="190" width="76" height="6" fill="#fff" opacity=".9"/>`}[k];
+  const top={pnc:`<path d="M62 80c0-28 17-44 38-44s38 16 38 44c-6-14-21-22-38-22s-32 8-38 22z" fill="${c.hair}"/>`,
+    pnt:`<path d="M62 64c4-20 20-30 38-30s34 10 38 30z" fill="#140D8A"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M90 46h20l-3 7h-14z" fill="#F9C74F"/>`,
+    cadre:`<path d="M63 78c-2-26 14-42 37-42 22 0 38 14 37 38-6-10-14-16-24-18-10 6-30 10-50 22z" fill="${c.hair}"/>`,
+    etam:`<path d="M64 76c0-26 16-40 36-40s36 14 36 40c-10-10-22-14-36-14s-26 4-36 14z" fill="${c.hair}"/><path d="M60 82a40 40 0 0 1 80 0" stroke="#140D8A" stroke-width="6" fill="none"/><rect x="54" y="74" width="13" height="22" rx="6" fill="#140D8A"/><rect x="133" y="74" width="13" height="22" rx="6" fill="#140D8A"/>`}[k];
+  const over=k==='cadre'?`<circle cx="87" cy="86" r="10" fill="none" stroke="#140D8A" stroke-width="3"/><circle cx="113" cy="86" r="10" fill="none" stroke="#140D8A" stroke-width="3"/><path d="M97 86h6" stroke="#140D8A" stroke-width="3"/>`:'';
+  return `<svg class="char" viewBox="0 0 200 220" aria-hidden="true" style="--blink:${(3.6+Math.random()*2.4).toFixed(2)}s"><ellipse cx="100" cy="212" rx="60" ry="7" fill="#140D8A" opacity=".12"/><path d="M45 210c0-50 22-82 55-82s55 32 55 82z" fill="${c.outfit}"/>${det}<g class="arm"><path d="M146 148q14 24 10 52" stroke="${c.outfit}" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="156" cy="204" r="9.5" fill="${c.skin}"/></g><rect x="88" y="104" width="24" height="30" rx="10" fill="${c.skin}"/><g class="head">${back}<circle cx="100" cy="82" r="37" fill="${c.skin}"/>${top}<g class="eyes"><ellipse cx="87" cy="86" rx="4.5" ry="5" fill="#140D8A"/><ellipse cx="113" cy="86" rx="4.5" ry="5" fill="#140D8A"/></g>${over}<circle cx="77" cy="98" r="5" fill="#FF8867" opacity=".55"/><circle cx="123" cy="98" r="5" fill="#FF8867" opacity=".55"/><path class="m-smile" d="M89 102c7 6 15 6 22 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/></g></svg>`}
+function wave(s){if(!s||reduce)return;s.classList.remove('wave');void s.getBoundingClientRect();s.classList.add('wave');setTimeout(()=>s.classList.remove('wave'),1450)}
+$('#crewRow').innerHTML=['pnc','pnt','cadre','etam'].map(k=>`<div class="bob">${charSVG(k)}</div>`).join('');
+if(!reduce)setInterval(()=>{const v=$$('.char').filter(s=>{const r=s.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0});if(v.length)wave(v[Math.random()*v.length|0])},3400);
+
+/* ---------- Plan de cabine (nombres fictifs : 20 titulaires = 8 PNC + 4 PNT + 3 Cadres + 5 ETAM) ---------- */
+const ROLES={
+  pres:{n:'Président·e',c:'r-pres',v:'Ne vote pas sur les avis',vd:false,t:'L\'employeur, ou son représentant, préside le CSE. Il fixe l\'ordre du jour avec le ou la secrétaire, informe et consulte les élu·es. Il ne participe pas au vote quand il consulte les élu·es.',r:'Art. L.2315-23 et L.2315-32 C. trav.'},
+  collab:{n:'Collaborateur·rices',c:'r-collab',v:'Voix consultative',vd:false,t:'Le ou la président·e peut être assisté·e d\'au plus trois collaborateur·rices, qui participent aux échanges sans voter.',r:'Art. L.2315-23 C. trav.'},
+  tit:{n:'Élu·es titulaires',c:'r-tit',v:'Voix délibérative',vd:true,t:'Ce sont les personnes que tu élis. Elles siègent, votent les avis et résolutions du CSE et disposent d\'heures de délégation.',r:'Art. L.2314-1 et L.2315-7 C. trav.'},
+  sec:{n:'Secrétaire',c:'r-tit',v:'Voix délibérative',vd:true,t:'Élu·e titulaire désigné·e par le CSE. Il ou elle établit l\'ordre du jour avec le ou la président·e et rédige les procès-verbaux des réunions.',r:'Art. L.2315-23 C. trav.'},
+  tre:{n:'Trésorier·e',c:'r-tit',v:'Voix délibérative',vd:true,t:'Élu·e titulaire désigné·e par le CSE. Il ou elle suit les budgets et les comptes du comité.',r:'Art. L.2315-23 C. trav.'},
+  sup:{n:'Élu·es suppléant·es',c:'r-sup',v:'Siègent en remplacement',vd:false,t:'Tu les élis aussi. Ils et elles remplacent un·e titulaire absent·e et assistent alors aux réunions à sa place.',r:'Art. L.2314-1 C. trav.'},
+  rs:{n:'Représentant·es syndicaux',c:'r-rs',v:'Voix consultative',vd:false,t:'Chaque organisation syndicale représentative peut désigner un·e représentant·e au CSE, qui assiste aux réunions sans voter.',r:'Art. L.2314-2 C. trav.'},
+};
+const LIST=[['pres'],['collab'],['collab'],['collab'],...Array(20).fill(['tit']),['rs'],['rs'],['rs'],null,...Array(20).fill(['sup'])];
+LIST[4]=['sec'];LIST[5]=['tre'];
+let html='',i=0;
+for(let col=0;i<LIST.length;col++){for(let r=0;r<5;r++){if(r===2){html+=`<div class="aisle" aria-hidden="true"><span>${col===0?'AVANT':''}</span></div>`;continue}
+  const it=LIST[i++];if(!it){html+='<div></div>';continue}const k=it[0],R=ROLES[k];
+  html+=`<button class="seat ${R.c}" data-r="${k}" ${k==='sec'?'data-badge="S"':k==='tre'?'data-badge="T"':''} aria-label="${R.n}"><span class="b">${k==='sec'?'S':'T'}</span></button>`}}
+$('#seats').innerHTML=html;
+const LEG=[['tit','r-tit'],['sup','r-sup'],['pres','r-pres'],['collab','r-collab'],['rs','r-rs']];
+$('#legend').innerHTML=LEG.map(([k,c])=>`<button data-r="${k}" aria-pressed="false"><i class="${c}"></i>${ROLES[k].n}</button>`).join('');
+function showRole(k){const R=ROLES[k],group=k==='sec'||k==='tre'?[k]:k==='tit'?['tit','sec','tre']:[k];
+  $('#cabin').classList.add('focus');$$('.seat').forEach(s=>s.classList.toggle('hl',group.includes(s.dataset.r)));
+  $$('#legend button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===k||(k!=='tit'&&group.includes(b.dataset.r))));
+  const count=$$('.seat').filter(s=>group.includes(s.dataset.r)).length;
+  $('#info').innerHTML=`<div class="swap"><span class="chip"><i></i>${count} siège${count>1?'s':''}</span><div class="role">${R.n}</div><span class="vote ${R.vd?'d':''}">${R.v}</span><p>${R.t}</p><p class="ref">${R.r}</p></div>`}
+$$('.seat,#legend button').forEach(b=>b.onclick=()=>showRole(b.dataset.r));
+$('#info').innerHTML=`<span class="chip"><i></i>Plan de cabine</span><div class="role">Touche un siège</div><p>Chaque siège représente une personne qui participe au CSE. Les couleurs indiquent son rôle et si elle vote ou non.</p><p class="ref">Nombre de sièges fictif, fixé en réalité par le protocole d'accord préélectoral.</p>`;
+
+/* ---------- Missions ---------- */
+const S='stroke="#140D8A" stroke-width="3"';
+const MISSIONS=[
+  {t:'Être consulté',p:'La direction informe le CSE et recueille son avis avant de décider sur la marche de l\'entreprise.',ex:'Une nouvelle organisation des plannings ou un nouvel outil de travail : le CSE est consulté avant la mise en place.',m:['Organisation, gestion et marche générale de l\'entreprise','Introduction de nouvelles technologies','Trois consultations récurrentes : orientations stratégiques, situation économique et financière, politique sociale'],r:'Art. L.2312-8 et L.2312-17 C. trav.',
+   ico:`<rect x="18" y="14" width="70" height="52" rx="8" fill="#fff" ${S}/><path d="M30 30h46M30 42h34" ${S} stroke-linecap="round"/><path d="M76 50h26l8 8-8 8H76z" fill="#05CE78" ${S} stroke-linejoin="round"/><path d="M84 58l4 4 8-8" stroke="#140D8A" stroke-width="3" fill="none" stroke-linecap="round"/>`},
+  {t:'Porter tes réclamations',p:'Les élu·es présentent à la direction les réclamations individuelles et collectives des salarié·es.',ex:'Une question sur ta paie, une prime, l\'application d\'un accord : tu peux passer par un·e élu·e.',m:['Salaires et rémunération','Application du Code du travail et des accords','Les élu·es peuvent saisir l\'inspection du travail'],r:'Art. L.2312-5 C. trav.',
+   ico:`<path d="M18 30h44l14-14v50L62 52H18z" fill="#F385FF" ${S} stroke-linejoin="round"/><path d="M84 28c8 4 8 20 0 24M92 20c14 8 14 32 0 40" ${S} fill="none" stroke-linecap="round"/><path d="M30 52l6 18h10l-4-18" fill="#fff" ${S} stroke-linejoin="round"/>`},
+  {t:'Veiller à ta santé et ta sécurité',p:'Le CSE agit pour la santé, la sécurité et les conditions de travail, avec une commission dédiée (CSSCT).',ex:'Fatigue, temps de repos, équipements, risques en escale : le CSE analyse, inspecte et propose.',m:['Analyse des risques professionnels et inspections','Enquêtes après accident du travail','Droit d\'alerte en cas de danger grave et imminent','Commission santé, sécurité et conditions de travail (CSSCT) dans les entreprises d\'au moins 300 salarié·es'],r:'Art. L.2312-9, L.2312-60 et L.2315-36 C. trav.',
+   ico:`<path d="M60 10l36 14v20c0 22-16 34-36 40-20-6-36-18-36-40V24z" fill="#fff" ${S} stroke-linejoin="round"/><path d="M60 30v30M45 45h30" stroke="#05CE78" stroke-width="9" stroke-linecap="round"/>`},
+  {t:'Gérer les activités sociales',p:'Le CSE gère les activités sociales et culturelles au bénéfice des salarié·es et de leur famille.',ex:'Billetterie, chèques vacances, sport, culture, événements : ce sont tes élu·es qui décident de l\'offre.',m:['Budget ASC fixé par accord','Activités pour les salarié·es et leur famille','Choix et gestion par les élu·es'],r:'Art. L.2312-78 C. trav.',
+   ico:`<rect x="14" y="24" width="76" height="40" rx="8" fill="#FF8867" ${S}/><path d="M66 24v40" ${S} stroke-dasharray="5 5"/><path d="M30 38h22M30 50h14" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="98" cy="22" r="12" fill="#05CE78" ${S}/><path d="M93 22l4 4 6-7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>`},
+];
+$('#missionList').innerHTML=MISSIONS.map((m,i)=>`<button class="mission glass rv" aria-expanded="false"><svg viewBox="0 0 120 84" aria-hidden="true">${m.ico}</svg><div><h3>${m.t}</h3><p>${m.p}</p><div class="ex"><b>Chez nous, par exemple</b>${m.ex}</div><div class="more"><ul>${m.m.map(x=>`<li>${x}</li>`).join('')}</ul><p class="ref" style="margin-top:8px">${m.r}</p></div><div class="tog">En savoir plus ↓</div></div></button>`).join('');
+$$('.mission').forEach(b=>{io.observe(b);b.onclick=()=>{const o=b.classList.toggle('open');b.setAttribute('aria-expanded',o);$('.tog',b).textContent=o?'Réduire ↑':'En savoir plus ↓'}});
+
+/* ---------- Pour toi (exemples par collège, illustratifs) ---------- */
+const PROF={
+  pnc:{n:'PNC',items:[['🗓️','Organisation des rotations et des plannings : le CSE est consulté avant tout changement important.'],['😴','Fatigue, repos, conditions à bord : sujets suivis par la commission santé, sécurité et conditions de travail.'],['🎟️','Activités sociales : billetterie, vacances, sport, accessibles même avec des horaires décalés.']]},
+  pnt:{n:'PNT',items:[['🧭','Organisation des bases et des programmes de vol : le CSE donne son avis sur les projets.'],['🎓','Formation et introduction de nouveaux outils : le CSE est consulté.'],['🛡️','Santé et sécurité au travail : analyse des risques, droit d\'alerte.']]},
+  cadre:{n:'Cadres',items:[['💻','Télétravail, outils numériques, charge de travail : le CSE est consulté sur les conditions de travail.'],['🏗️','Réorganisation d\'un service : la direction doit consulter le CSE avant de décider.'],['💬','Une réclamation sur ta rémunération ou l\'application d\'un accord : un·e élu·e peut la porter.']]},
+  etam:{n:'ETAM',items:[['⏰','Horaires et organisation en escale ou au sol : le CSE est consulté sur les changements importants.'],['🦺','Équipements de protection, risques physiques : la CSSCT inspecte et propose des mesures.'],['🎟️','Activités sociales et culturelles, pour toi et ta famille.']]},
+};
+$('#tabs').innerHTML=Object.entries(PROF).map(([k,p],i)=>`<button role="tab" aria-selected="${!i}" data-k="${k}">${p.n}</button>`).join('');
+function prof(k){const p=PROF[k];$$('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
+  $('#prof').innerHTML=`<div class="who bob">${charSVG(k)}</div><div class="swap"><h3>Collège ${p.n}</h3><ul>${p.items.map(([e,t])=>`<li><span>${e}</span><p>${t}</p></li>`).join('')}</ul><p class="ref" style="margin-top:12px">Exemples illustratifs : le périmètre exact dépend des projets présentés au CSE.</p></div>`;
+  wave($('#prof .char'))}
+$$('#tabs button').forEach(b=>b.onclick=()=>prof(b.dataset.k));prof('pnc');
+
+/* ---------- Lexique ---------- */
+const LEX=[
+  ['Titulaire','Élu·e qui siège au CSE et vote. Tu en élis dans ton collège.'],
+  ['Suppléant·e','Élu·e qui remplace un·e titulaire absent·e. Tu votes aussi pour les suppléant·es.'],
+  ['Collège','Groupe d\'électeur·rices selon la catégorie professionnelle. Chez nous : PNC, PNT, Cadres, ETAM (selon le PAP).'],
+  ['PAP','Protocole d\'accord préélectoral : il fixe les règles de l\'élection (collèges, sièges, calendrier, vote).'],
+  ['CSSCT','Commission santé, sécurité et conditions de travail, créée au sein du CSE.'],
+  ['BDESE','Base de données économiques, sociales et environnementales : les informations que la direction met à disposition du CSE.'],
+  ['ASC','Activités sociales et culturelles gérées par le CSE.'],
+  ['Heures de délégation','Temps rémunéré dont disposent les élu·es pour exercer leur mandat.'],
+  ['Droit d\'alerte','Possibilité pour les élu·es d\'alerter la direction, par exemple en cas de danger grave et imminent.'],
+  ['Avis consultatif','Position du CSE sur un projet. La direction décide ensuite, en répondant de manière motivée.'],
+];
+$('#lex').innerHTML=LEX.map(([w,d])=>`<button class="word" aria-label="${w} : ${d}"><span class="in"><span class="f"><b>${w}</b><small>Touche pour retourner ↻</small></span><span class="bk">${d}</span></span></button>`).join('');
+$$('.word').forEach(w=>w.onclick=()=>w.classList.toggle('on'));
+
+/* Ciel */
+const root=document.documentElement;
+addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
+</script>
+</body>
+</html>
