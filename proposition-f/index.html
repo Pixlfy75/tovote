@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TO VOTE 2027 · Proposition F « Grille »</title>
+<meta name="description" content="TO VOTE : tout savoir sur les élections CSE 2027 chez Transavia.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black sert de substitut provisoire. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --line:rgba(20,13,138,.18);
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --g:clamp(16px,3vw,40px);
+  --maxw:1440px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--ink);background:#fff;line-height:1.5;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;text-align:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.9;letter-spacing:-.01em}
+.mono{font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--g)}
+.label{font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}
+.muted{opacity:.62}
+
+/* ---------- Grille : 12 colonnes, filets fins, angles droits ---------- */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);border-left:1px solid var(--line)}
+.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(16px,2vw,28px);position:relative}
+.span-2{grid-column:span 2}.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-9{grid-column:span 9}.span-12{grid-column:span 12}
+@media (max-width:900px){.grid{grid-template-columns:repeat(4,1fr)}.grid>*{grid-column:span 4!important}.m-2{grid-column:span 2!important}}
+
+/* Filets qui se tracent à l'apparition */
+.rule{height:1px;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.in .rule,.rule.in{transform:scaleX(1)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- En-tête ---------- */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;height:60px;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600}
+.brand img{width:30px}
+.brand b{font-family:var(--f-head);font-weight:900;font-stretch:125%}
+.top nav{display:flex;margin-left:auto;height:100%}
+.top nav a{display:flex;align-items:center;gap:6px;padding:0 16px;height:100%;text-decoration:none;font-size:.88rem;font-weight:600;border-left:1px solid var(--line);position:relative}
+.top nav a small{font-size:.7rem;opacity:.5}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--green);transform:scaleX(0);transition:transform .3s}
+.top nav a:hover::after,.top nav a.on::after{transform:scaleX(1)}
+.top .idx{font-weight:600;font-size:.85rem;border-left:1px solid var(--line);padding-left:16px;height:100%;display:flex;align-items:center;min-width:72px}
+.cta{display:inline-flex;align-items:center;gap:.5em;background:var(--ruby);color:#fff;text-decoration:none;font-weight:600;padding:.7em 1.2em;transition:background .2s}
+.cta:hover{background:#c00066}
+@media (max-width:1000px){.top nav,.top .idx{display:none}.top .cta{margin-left:auto}}
+
+/* ---------- Haut de page ---------- */
+.hero .title{font-size:clamp(3rem,10.4vw,10.6rem);padding-block:clamp(28px,4vw,56px) clamp(16px,2vw,24px)}
+.hero .title span{display:block;overflow:hidden}
+.hero .title span i{display:block;font-style:normal;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero .title span:nth-child(2) i{animation-delay:.1s}.hero .title span:nth-child(3) i{animation-delay:.2s}
+@keyframes rise{to{transform:none}}
+.hero .title .g{color:var(--web-green)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:0}
+.kv dt,.kv dd{padding:12px 0;border-bottom:1px solid var(--line)}
+.kv dt{font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;padding-right:24px;opacity:.65}
+.kv dd{font-weight:600}
+.lead{font-size:clamp(1.05rem,1.5vw,1.3rem);max-width:36ch}
+.logo-cell{display:grid;place-items:center;background:#fff}
+.logo-cell img{width:min(280px,90%)}
+.green{background:var(--green)}
+.inkbg{background:var(--ink);color:#fff}
+.t-cell{overflow:visible;padding:0;min-height:120px}
+.t-cell img{position:absolute;left:50%;top:0;width:clamp(90px,8vw,130px);transform:translate(-50%,-50%);z-index:3}
+.cd{display:grid;grid-template-columns:repeat(4,1fr)}
+.cd div{padding:clamp(14px,2vw,24px);border-right:1px solid rgba(20,13,138,.25)}
+.cd div:last-child{border-right:0}
+.cd b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:110%;font-size:clamp(2.4rem,6vw,5.6rem);line-height:.9}
+.cd small{font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.arrow-link{display:flex;justify-content:space-between;align-items:center;gap:16px;text-decoration:none;font-weight:600;font-size:1.1rem;padding:18px 0;border-bottom:1px solid var(--ink);transition:padding .3s}
+.arrow-link:hover{padding-left:12px}
+.arrow-link svg{width:22px;height:22px;transition:transform .3s}
+.arrow-link:hover svg{transform:translateX(6px)}
+@media (max-width:900px){.t-desk{display:none}.cd{grid-template-columns:repeat(2,1fr)}.cd div:nth-child(2){border-right:0}.cd div:nth-child(-n+2){border-bottom:1px solid rgba(20,13,138,.25)}}
+
+/* ---------- Sections numérotées ---------- */
+.sec{padding-top:clamp(64px,8vw,120px)}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);align-items:end;gap:0 var(--g);padding-bottom:24px}
+.sec-head .num{grid-column:span 2;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(3rem,7vw,6.4rem);line-height:.8;color:var(--green);-webkit-text-stroke:1.5px var(--ink)}
+.sec-head h2{grid-column:span 6;font-size:clamp(2rem,4.6vw,4.2rem)}
+.sec-head p{grid-column:span 4;max-width:38ch}
+@media (max-width:900px){.sec-head{grid-template-columns:1fr;gap:12px}.sec-head>*{grid-column:auto!important}}
+
+/* 01 · CSE */
+.role .n{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1rem;color:var(--web-green)}
+.role h3{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:600;line-height:1.1;margin:28px 0 10px}
+.role{transition:background .3s}
+.role:hover{background:#f4fff9}
+.stat b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(3rem,6vw,5rem);line-height:.9}
+
+/* 02 · Calendrier */
+.cal{width:100%;border-collapse:collapse;border-top:1px solid var(--ink)}
+.cal tr{border-bottom:1px solid var(--line);transition:background .2s}
+.cal tr:hover{background:var(--green)}
+.cal td{padding:clamp(14px,2vw,22px) 12px;vertical-align:middle}
+.cal td:first-child{font-family:var(--f-head);font-weight:900;font-stretch:110%;font-size:clamp(1.4rem,3vw,2.4rem);width:22%;white-space:nowrap}
+.cal td:nth-child(2){font-weight:600;font-size:clamp(1rem,1.5vw,1.25rem)}
+.cal td:last-child{text-align:right;width:18%}
+.st{display:inline-block;font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;padding:.35em .7em;border:1px solid var(--ink)}
+.st.now{background:var(--ink);color:#fff}
+@media (max-width:700px){.cal td:last-child,.cal td:nth-child(3){display:none}.cal td:first-child{width:auto}}
+
+/* 03 · Voter */
+.step{min-height:260px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s,color .3s}
+.step:hover{background:var(--ink);color:#fff}
+.step b.k{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(3.4rem,6vw,5.6rem);line-height:.85}
+.step h3{font-size:1.25rem;font-weight:600;margin-bottom:6px}
+
+/* 04 · Qui peut voter */
+.cmp{width:100%;border-collapse:collapse;border-top:1px solid var(--ink)}
+.cmp th,.cmp td{padding:16px 12px;border-bottom:1px solid var(--line);text-align:left}
+.cmp th{font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.cmp td:first-child{font-weight:600;width:34%}
+.cmp td b{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:1.4rem}
+.check{display:grid;gap:14px}
+.check .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{padding:.6em 1em;font-weight:600;font-size:.9rem;border-right:1px solid var(--ink)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.res{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);margin-top:8px}
+.res div{padding:16px 0;border-bottom:1px solid var(--line)}
+.res div+div{padding-left:16px;border-left:1px solid var(--line)}
+.res b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.6rem,3vw,2.4rem)}
+.res .y{color:var(--web-green)}.res .no{color:var(--ruby)}
+
+/* 05 · Listes */
+.list-ph{min-height:220px;display:flex;flex-direction:column;justify-content:space-between;background:repeating-linear-gradient(-45deg,#fff 0 12px,#f3f3fb 12px 13px)}
+.list-ph b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.6rem}
+.btn-line{display:inline-flex;align-items:center;gap:.5em;border:1px solid var(--ink);padding:.7em 1.1em;font-weight:600;transition:background .2s,color .2s}
+.btn-line:hover{background:var(--ink);color:#fff}
+
+/* 06 · FAQ */
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--ink)}
+.faq summary{list-style:none;display:grid;grid-template-columns:60px 1fr 40px;align-items:center;gap:12px;padding:20px 0;cursor:pointer;font-weight:600;font-size:clamp(1rem,1.5vw,1.2rem)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary span{font-size:.8rem;opacity:.5}
+.faq summary i{width:28px;height:28px;position:relative;justify-self:end}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .3s}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
+.faq details p{padding:0 40px 22px 72px;max-width:80ch}
+.faq details[open]{background:#f4fff9}
+@media (max-width:700px){.faq summary{grid-template-columns:36px 1fr 30px}.faq details p{padding-left:48px;padding-right:0}}
+
+/* ---------- Pied de page ---------- */
+.foot{margin-top:clamp(64px,8vw,120px);background:var(--green);border-top:1px solid var(--ink)}
+.foot .big{font-size:clamp(3rem,12vw,12rem);padding-block:clamp(32px,5vw,64px) 16px}
+.foot .bar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--ink);padding-block:22px}
+.foot .bar img{height:24px}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap;font-weight:600;font-size:.88rem}
+
+/* ---------- Annotations ---------- */
+.notes-toggle{position:fixed;right:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;font-weight:600;font-size:.82rem;border:1px solid var(--ink)}
+:where([data-note]){position:relative}
+body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.4em .7em;max-width:250px;border:1px solid var(--ink);pointer-events:none;text-align:left;text-transform:none;letter-spacing:0;-webkit-text-stroke:0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:var(--ink);color:#fff;padding:12px 20px;font-weight:600;z-index:90;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.rule{transform:none}.hero .title span i{transform:none}}
+</style>
+</head>
+<body class="notes">
+
+<header class="top" data-note="En-tête : index de section (03/06) + soulignement vert de la section en cours">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="../assets/img/tovote-icon.png" alt=""><b>TO VOTE</b><span class="muted">2027</span></a>
+    <nav aria-label="Sections">
+      <a href="#cse"><small>01</small>Le CSE</a>
+      <a href="#calendrier"><small>02</small>Calendrier</a>
+      <a href="#voter"><small>03</small>Voter</a>
+      <a href="#qui"><small>04</small>Qui</a>
+      <a href="#listes"><small>05</small>Listes</a>
+      <a href="#faq"><small>06</small>FAQ</a>
+    </nav>
+    <span class="idx mono" id="idx">00 / 06</span>
+    <a class="cta" href="#">Je vote →</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HAUT DE PAGE ================= -->
+<section class="hero">
+  <div class="wrap">
+    <h1 class="h title" data-note="Titre XXL qui monte ligne par ligne au chargement"><span><i>Élections</i></span><span><i>CSE</i></span><span><i class="g">2027.</i></span></h1>
+  </div>
+  <div class="wrap">
+    <div class="grid" style="border-top:1px solid var(--ink)">
+      <div class="cell span-5 rv">
+        <p class="label muted">À propos</p>
+        <p class="lead" style="margin-top:14px">Tu élis les personnes qui te représentent pendant 4 ans. Ici, tout ce qu'il faut savoir pour voter : les dates, le mode d'emploi, le rôle du CSE, et bientôt les listes.</p>
+      </div>
+      <div class="cell span-4 rv" data-note="Infos clés en lecture rapide, façon fiche technique">
+        <dl class="kv">
+          <dt>Vote</dt><dd>16 → 19 mars</dd>
+          <dt>Où</dt><dd>En ligne, 24h/24</dd>
+          <dt>Durée</dt><dd>≈ 3 minutes</dd>
+          <dt>Résultats</dt><dd>19 mars, 18h</dd>
+        </dl>
+        <p class="small muted" style="font-size:.78rem;margin-top:10px">Dates fictives.</p>
+      </div>
+      <div class="cell span-3 logo-cell rv"><img src="../assets/img/tovote-logo.png" alt="TO VOTE 2027"></div>
+
+      <div class="cell span-9 green" style="padding:0;position:relative" data-note="Compte à rebours en grands chiffres ; le « t » fait le lien entre les zones (règle connecteur)">
+        <img src="../assets/img/transavia-t-white.svg" alt="" style="position:absolute;right:-1px;top:50%;width:clamp(70px,7vw,110px);transform:translate(50%,-50%);z-index:3" class="t-desk">
+        <div style="padding:clamp(14px,2vw,24px) clamp(14px,2vw,24px) 0" class="label">Ouverture du vote dans</div>
+        <div class="cd mono" id="cd"><div><b data-u="d">000</b><small>jours</small></div><div><b data-u="h">00</b><small>heures</small></div><div><b data-u="m">00</b><small>minutes</small></div><div><b data-u="s">00</b><small>secondes</small></div></div>
+      </div>
+      <div class="cell span-3 inkbg" style="padding-left:clamp(20px,5vw,76px);display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+        <p class="label" style="color:var(--green)">Raccourcis</p>
+        <div>
+          <a class="arrow-link" href="#voter" style="border-color:rgba(255,255,255,.5)">Comment voter<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+          <button class="arrow-link" id="addCal" style="width:100%;border-color:rgba(255,255,255,.5)">Ajouter à l'agenda<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 · LE CSE ================= -->
+<section class="sec" id="cse">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">01</span><h2 class="h">Le CSE, à quoi ça sert&nbsp;?</h2><p>Le Comité social et économique représente les salarié·es auprès de la direction. Concrètement, trois missions.</p></div>
+    <div class="rule"></div>
+    <div class="grid" data-note="Colonnes égales, numérotées, fond qui s'éclaire au survol">
+      <article class="cell span-4 role rv"><span class="n">A</span><h3>Être consulté</h3><p>Organisation du travail, plannings, conditions de travail, projets importants : le CSE donne son avis.</p></article>
+      <article class="cell span-4 role rv"><span class="n">B</span><h3>Porter tes réclamations</h3><p>Paie, droits, santé, sécurité : tes élu·es portent tes questions auprès de la direction.</p></article>
+      <article class="cell span-4 role rv"><span class="n">C</span><h3>Gérer les activités sociales</h3><p>Billetterie, vacances, sport, culture : les activités sociales et culturelles, c'est le CSE.</p></article>
+      <div class="cell span-4 stat rv"><b class="mono" data-count="4">0</b><p>ans de mandat</p></div>
+      <div class="cell span-4 stat rv"><b class="mono">2</b><p>votes : titulaires et suppléant·es</p></div>
+      <div class="cell span-4 stat rv"><b class="mono">100 %</b><p>anonyme</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 · CALENDRIER ================= -->
+<section class="sec" id="calendrier">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">02</span><h2 class="h">Le calendrier.</h2><p>Les dates clés, de l'accord préélectoral aux résultats. Dates fictives, à remplacer par celles du PAP.</p></div>
+    <table class="cal" data-note="Tableau sobre ; la ligne survolée passe en vert, l'étape en cours est marquée">
+      <tbody>
+        <tr class="rv"><td class="mono">12.01</td><td>Signature du protocole d'accord préélectoral</td><td class="muted">Règles du jeu, collèges, sièges</td><td><span class="st">Fait</span></td></tr>
+        <tr class="rv"><td class="mono">02.03</td><td>Publication des listes</td><td class="muted">Ici même</td><td><span class="st now">En cours</span></td></tr>
+        <tr class="rv"><td class="mono">09.03</td><td>Envoi des identifiants</td><td class="muted">Mail pro + SMS</td><td><span class="st">À venir</span></td></tr>
+        <tr class="rv"><td class="mono">16 → 19.03</td><td>1er tour : vote en ligne</td><td class="muted">24h/24</td><td><span class="st">À venir</span></td></tr>
+        <tr class="rv"><td class="mono">19.03</td><td>Résultats du 1er tour</td><td class="muted">18h</td><td><span class="st">À venir</span></td></tr>
+        <tr class="rv"><td class="mono">02.04</td><td>2nd tour, si nécessaire</td><td class="muted">En ligne</td><td><span class="st">À venir</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 03 · VOTER ================= -->
+<section class="sec" id="voter">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">03</span><h2 class="h">Voter en 4 étapes.</h2><p>Depuis ton téléphone ou ton ordinateur, où que tu sois. Environ 3 minutes.</p></div>
+    <div class="rule"></div>
+    <div class="grid" data-note="Étapes en cellules ; la cellule survolée s'inverse en bleu foncé">
+      <article class="cell span-3 m-2 step rv"><b class="k mono">01</b><div><h3>Tes codes</h3><p>Reçus par mail pro et SMS le 9 mars.</p></div></article>
+      <article class="cell span-3 m-2 step rv"><b class="k mono">02</b><div><h3>Connexion</h3><p>Sur la plateforme sécurisée, depuis n'importe où.</p></div></article>
+      <article class="cell span-3 m-2 step rv"><b class="k mono">03</b><div><h3>Deux votes</h3><p>Une liste pour les titulaires, une pour les suppléant·es.</p></div></article>
+      <article class="cell span-3 m-2 step rv"><b class="k mono">04</b><div><h3>C'est fait</h3><p>Accusé de réception. Résultats le 19 mars.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 · QUI ================= -->
+<section class="sec" id="qui">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">04</span><h2 class="h">Qui peut voter, qui peut se présenter.</h2><p>Les conditions générales prévues par le Code du travail.</p></div>
+    <div class="grid" style="border-top:1px solid var(--ink)">
+      <div class="cell span-7 rv">
+        <table class="cmp" style="border-top:0">
+          <thead><tr><th></th><th>Voter</th><th>Se présenter</th></tr></thead>
+          <tbody>
+            <tr><td>Âge minimum</td><td><b>16 ans</b></td><td><b>18 ans</b></td></tr>
+            <tr><td>Ancienneté</td><td><b>3 mois</b></td><td><b>1 an</b></td></tr>
+            <tr><td>Syndiqué·e ?</td><td>Non requis</td><td>Non requis</td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="font-size:.8rem;margin-top:12px">Cas particuliers (mise à disposition, représentant·es de l'employeur, liens familiaux…) : voir avec les RH.</p>
+      </div>
+      <div class="cell span-5 rv" data-note="Vérification express : 2 choix, réponse immédiate">
+        <p class="label muted">Vérifie en 2 clics</p>
+        <div class="check" style="margin-top:16px">
+          <div class="row"><span style="min-width:90px;font-weight:600">Âge</span><div class="seg" data-k="age"><button data-v="15">&lt; 16</button><button data-v="17">16–17</button><button data-v="18" aria-pressed="true">18 +</button></div></div>
+          <div class="row"><span style="min-width:90px;font-weight:600">Ancienneté</span><div class="seg" data-k="anc"><button data-v="1">&lt; 3 mois</button><button data-v="6">3–11 mois</button><button data-v="12" aria-pressed="true">1 an +</button></div></div>
+        </div>
+        <div class="res" aria-live="polite"><div><span class="label muted">Voter</span><b id="rV"></b></div><div><span class="label muted">Se présenter</span><b id="rC"></b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · LISTES ================= -->
+<section class="sec" id="listes">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">05</span><h2 class="h">Les listes.</h2><p>Publication le 2 mars. Chaque liste aura la même place et le même format ; l'ordre d'affichage sera tiré au sort.</p></div>
+    <div class="grid" style="border-top:1px solid var(--ink)" data-note="Emplacements identiques et neutres, en attente de publication">
+      <div class="cell span-4 list-ph rv"><span class="label muted">Liste</span><b>À venir</b><span class="mono">02.03.2027</span></div>
+      <div class="cell span-4 list-ph rv"><span class="label muted">Liste</span><b>À venir</b><span class="mono">02.03.2027</span></div>
+      <div class="cell span-4 list-ph rv"><span class="label muted">Liste</span><b>À venir</b><span class="mono">02.03.2027</span></div>
+    </div>
+    <div style="margin-top:20px"><button class="btn-line" id="notify">Me prévenir à la publication →</button></div>
+  </div>
+</section>
+
+<!-- ================= 06 · FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">06</span><h2 class="h">Questions fréquentes.</h2><p>Une autre question ? Écris aux RH, réponse sous 48h.</p></div>
+    <div class="faq">
+      <details><summary><span>06.1</span>Je suis en rotation pendant le vote, je fais comment&nbsp;?<i></i></summary><p>Le vote est électronique : tu peux voter depuis n'importe où, sur ton téléphone, pendant toute la durée du scrutin.</p></details>
+      <details><summary><span>06.2</span>Mon vote est-il vraiment anonyme&nbsp;?<i></i></summary><p>Oui. La plateforme est gérée par un prestataire externe et sépare ton identité de ton bulletin. Personne ne peut savoir pour qui tu as voté.</p></details>
+      <details><summary><span>06.3</span>Titulaire, suppléant·e : quelle différence&nbsp;?<i></i></summary><p>Les titulaires siègent et votent au CSE. Les suppléant·es les remplacent en cas d'absence. Tu votes pour les deux.</p></details>
+      <details><summary><span>06.4</span>Pourquoi un 2nd tour&nbsp;?<i></i></summary><p>Si moins de la moitié des électeur·rices vote au 1er tour, ou s'il manque des candidat·es, un 2nd tour est organisé. Les candidatures y sont libres.</p></details>
+      <details><summary><span>06.5</span>Je n'ai pas reçu mes identifiants.<i></i></summary><p>Vérifie tes spams, puis utilise la procédure de récupération de la plateforme. Si ça bloque encore, contacte les RH.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="h big">Ta voix<br>compte.</p>
+    <div class="bar">
+      <img src="../assets/img/transavia-wordmark-white.svg" alt="transavia">
+      <nav><a href="#">Mentions légales</a><a href="#">Protocole d'accord préélectoral</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
+
+/* Apparitions */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv,.rule').forEach(el=>io.observe(el));
+
+/* Section en cours dans l'en-tête */
+const secs=$$('main .sec'),links=$$('.top nav a');
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=secs.indexOf(e.target);$('#idx').textContent=`0${i+1} / 06`;links.forEach((l,k)=>l.classList.toggle('on',k===i))}}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>so.observe(s));
+addEventListener('scroll',()=>{if(scrollY<200){$('#idx').textContent='00 / 06';links.forEach(l=>l.classList.remove('on'))}},{passive:true});
+
+/* Compte à rebours (date fictive) */
+const TARGET=new Date('2027-03-16T09:00:00+01:00');
+function cd(){let s=Math.max(0,Math.floor((TARGET-Date.now())/1000));const v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};for(const u in v)$(`#cd [data-u="${u}"]`).textContent=String(v[u]).padStart(u==='d'?3:2,'0')}
+cd();setInterval(cd,1000);
+
+/* Compteur */
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,to=+el.dataset.count;let v=0;const iv=setInterval(()=>{el.textContent=++v;if(v>=to)clearInterval(iv)},reduce?0:160);o.unobserve(el)}),{threshold:.6}).observe($('[data-count]'));
+
+/* Vérification express (art. L.2314-18 et L.2314-19 C. trav.) */
+const st={age:18,anc:12};
+function elig(){const v=st.age>=16&&st.anc>=3,c=st.age>=18&&st.anc>=12;
+  $('#rV').textContent=v?'Oui':'Pas encore';$('#rV').className=v?'y':'no';
+  $('#rC').textContent=c?'Oui':'Pas encore';$('#rC').className=c?'y':'no'}
+$$('.seg').forEach(g=>$$('button',g).forEach(b=>b.onclick=()=>{$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b));st[g.dataset.k]=+b.dataset.v;elig()}));
+elig();
+
+/* Agenda + alerte */
+$('#addCal').onclick=()=>{const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270316T080000Z','DTEND:20270319T170000Z','SUMMARY:Élections CSE : vote en ligne','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();toast('Rappel ajouté à ton agenda')};
+$('#notify').onclick=e=>{e.currentTarget.textContent='C\'est noté ✓';toast('Tu seras prévenu·e à la publication des listes')};
+</script>
+</body>
+</html>
