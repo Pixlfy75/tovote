@@ -1,0 +1,14 @@
+# TO VOTE 2027 : propositions de page d'accueil
+
+Site d'information sur les élections professionnelles (CSE). Deux pistes de landing page conformes à la charte Transavia 2026.
+
+- `index.html` : page de comparaison des deux pistes
+- `proposition-a/` : **Embarquement**, claire, métaphore aérienne
+- `proposition-b/` : **Feed**, sombre, codes des réseaux sociaux, pensée mobile
+- `assets/` : logos, polices Söhne (Buch, Halbfett)
+
+Bouton « 💡 annotations » (en bas à droite) : affiche ou masque les explications de chaque fonctionnalité pour la présentation.
+
+Pour voir les pages : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
+
+À noter : les contenus et dates sont fictifs. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.

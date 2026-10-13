@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TO VOTE 2027 · Propositions de landing page</title>
+<link rel="icon" href="assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"Soehne";src:url(assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Soehne",Arial,sans-serif;background:#F9F0E9;color:#140D8A;padding:clamp(24px,5vw,72px) clamp(16px,5vw,72px)}
+.h{font-family:"Archivo","Soehne",sans-serif;font-weight:900;font-stretch:125%;line-height:.95}
+header{display:flex;align-items:center;gap:24px;flex-wrap:wrap;max-width:1200px;margin:0 auto 48px}
+header img{width:180px}
+h1{font-size:clamp(2rem,5vw,3.6rem)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1200px;margin:auto}
+a.card{display:flex;flex-direction:column;gap:16px;border-radius:28px;padding:32px;text-decoration:none;min-height:420px;transition:transform .3s}
+a.card:hover{transform:translateY(-6px)}
+.a{background:#fff;color:#140D8A;border:2px solid rgba(20,13,138,.1)}
+.b{background:#0B0657;color:#fff}
+.card .h{font-size:2.4rem}
+.tag{align-self:flex-start;border-radius:999px;padding:.35em .9em;font-weight:600;font-size:.8rem}
+.a .tag{background:#05CE78;color:#140D8A}.b .tag{background:#F385FF;color:#140D8A}
+ul{padding-left:1.1em;display:grid;gap:6px}
+.go{margin-top:auto;font-weight:600}
+table{max-width:1200px;margin:48px auto 0;width:100%;border-collapse:collapse;background:#fff;border-radius:20px;overflow:hidden}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid #eee;vertical-align:top}
+th{background:#140D8A;color:#fff;font-weight:600}
+.wrap-t{overflow-x:auto}
+</style>
+</head>
+<body>
+<header><img src="assets/img/tovote-logo.png" alt="TO VOTE 2027"><h1 class="h">Deux pistes<br>de page d'accueil.</h1></header>
+<div class="grid">
+  <a class="card a" href="proposition-a/">
+    <span class="tag">Proposition A</span>
+    <div class="h">Embarquement</div>
+    <p>Claire, éditoriale, 100 % « maison » : on reprend les codes du voyage aérien pour expliquer l'élection.</p>
+    <ul><li>Hero champagne / vert avec le « t » connecteur (règle de la charte)</li><li>Compte à rebours en tableau à palettes</li><li>Carte d'embarquement électeur</li><li>Calendrier = tableau des départs</li><li>Contenu selon le profil PNC / PNT / Sol</li><li>Bento CSE, trajet d'avion piloté par le scroll, quiz, FAQ avec recherche</li></ul>
+    <span class="go">Ouvrir la proposition A →</span>
+  </a>
+  <a class="card b" href="proposition-b/">
+    <span class="tag">Proposition B</span>
+    <div class="h">Feed</div>
+    <p>Sombre, immersive, pensée mobile : les codes des réseaux sociaux et des applis que la population utilise déjà.</p>
+    <ul><li>Typo XXL qui bouge, stickers déplaçables, bandeaux défilants</li><li>Stories façon Instagram</li><li>Cartes Vrai/Faux à swiper + sondage</li><li>Étapes en défilement horizontal</li><li>Assistant conversationnel</li><li>Checklist électeur sauvegardée + confettis</li></ul>
+    <span class="go">Ouvrir la proposition B →</span>
+  </a>
+</div>
+<div class="wrap-t">
+<table>
+  <tr><th></th><th>A · Embarquement</th><th>B · Feed</th></tr>
+  <tr><td><b>Ambiance</b></td><td>Lumineuse, rassurante, institutionnelle mais fun</td><td>Nuit, énergique, culture « app »</td></tr>
+  <tr><td><b>Lien à la marque</b></td><td>Très fort (métaphore aérienne, « t » connecteur)</td><td>Fort par les couleurs ; plus libre dans le ton</td></tr>
+  <tr><td><b>Cible prioritaire</b></td><td>Tout le monde, y compris les moins à l'aise avec le numérique</td><td>Les moins de 35 ans, usage 100 % téléphone</td></tr>
+  <tr><td><b>Durée de vie</b></td><td>Facile à faire vivre jusqu'aux résultats</td><td>Plus de contenus à produire (stories, cartes)</td></tr>
+  <tr><td><b>Effort de développement</b></td><td>Moyen</td><td>Moyen à élevé (assistant, sondage en base)</td></tr>
+</table>
+</div>
+</body>
+</html>
