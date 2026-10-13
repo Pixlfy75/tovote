@@ -1,10 +1,11 @@
 # TO VOTE 2027 : propositions de page d'accueil
 
-Site d'information sur les élections professionnelles (CSE). Deux pistes de landing page conformes à la charte Transavia 2026.
+Site d'information sur les élections professionnelles (CSE). Trois pistes de landing page conformes à la charte Transavia 2026.
 
-- `index.html` : page de comparaison des deux pistes
+- `index.html` : page de comparaison des trois pistes
 - `proposition-a/` : **Embarquement**, claire, métaphore aérienne
 - `proposition-b/` : **Feed**, sombre, codes des réseaux sociaux, pensée mobile
+- `proposition-c/` : **Sticker**, claire et pop, inspirée du logo TO VOTE (simulateur de vote, mur participatif)
 - `assets/` : logos, polices Söhne (Buch, Halbfett)
 
 Bouton « 💡 annotations » (en bas à droite) : affiche ou masque les explications de chaque fonctionnalité pour la présentation.

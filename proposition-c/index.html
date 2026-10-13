@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TO VOTE 2027 · Proposition C « Sticker »</title>
+<meta name="description" content="TO VOTE : les élections CSE 2027, en mode interactif.">
+<meta name="theme-color" content="#05CE78">
+<link rel="icon" href="../assets/img/tovote-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black sert de substitut provisoire. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-buch.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Soehne";src:url(../assets/fonts/soehne-halbfett.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --green:#05CE78; --web-green:#01AB61; --white:#fff;
+  --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --bw:3px; --sh:6px;
+  --border:var(--bw) solid var(--ink);
+  --shadow:var(--sh) var(--sh) 0 var(--ink);
+  --r:28px;
+  --gutter:clamp(16px,4vw,56px);
+  --maxw:1320px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:var(--f-body);color:var(--ink);line-height:1.5;overflow-x:hidden;
+  background:#fff radial-gradient(rgba(20,13,138,.13) 1.2px,transparent 1.4px) 0 0/22px 22px}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:4px;border-radius:8px}
+.h{font-family:var(--f-head);font-weight:900;font-stretch:125%;line-height:.92;text-transform:uppercase}
+.sub{font-weight:600;letter-spacing:-.01em;line-height:1.15}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+section{position:relative}
+.sec{padding-block:clamp(64px,9vw,120px)}
+.sec-title{font-size:clamp(2.2rem,6vw,4.8rem)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head p{max-width:40ch;font-size:1.05rem}
+
+/* Texte « sticker » : lettres blanches cerclées, comme le logo TO VOTE */
+.stk{color:#fff;-webkit-text-stroke:.07em var(--ink);paint-order:stroke fill;text-shadow:.06em .06em 0 var(--ink)}
+.stk-g{color:var(--green);-webkit-text-stroke:.07em var(--ink);paint-order:stroke fill;text-shadow:.06em .06em 0 var(--ink)}
+
+/* Blocs et boutons « pop » : contour + ombre portée franche, effet d'appui au clic */
+.box{background:#fff;border:var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
+.tag{display:inline-flex;align-items:center;gap:.45em;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:.3em .85em;font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:.9em 1.4em;border:var(--border);border-radius:999px;font-weight:600;text-decoration:none;background:#fff;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn-ruby{background:var(--ruby);color:#fff}
+.btn-green{background:var(--green)}
+.btn-ink{background:var(--ink);color:#fff}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:12px;z-index:60;margin:12px var(--gutter) 0;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 12px;background:#fff;border:var(--border);border-radius:999px;box-shadow:4px 4px 0 var(--ink);max-width:var(--maxw)}
+@media (min-width:1432px){.nav{margin-inline:auto}}
+.nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-head);font-weight:900;font-stretch:125%}
+.nav .brand img{width:38px;height:38px}
+.nav .links{display:flex;gap:2px;margin-left:auto}
+.nav .links a{text-decoration:none;font-weight:600;font-size:.92rem;padding:.55em .95em;border-radius:999px;border:2px solid transparent}
+.nav .links a:hover{border-color:var(--ink);background:var(--green)}
+.nav .btn{padding:.6em 1.2em;font-size:.92rem;margin-left:8px}
+.nav .bar{position:absolute;left:28px;right:28px;bottom:-3px;height:3px;border-radius:2px;overflow:hidden}
+.nav .bar i{display:block;height:100%;width:100%;background:var(--ruby);transform-origin:0 50%;transform:scaleX(0)}
+@media (max-width:860px){.nav .links{display:none}.nav .btn{margin-left:auto}}
+
+/* ---------- HERO ---------- */
+.hero{padding-block:28px 40px}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:20px}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
+.hero-main{background:var(--green);padding:clamp(24px,4.4vw,60px);position:relative;overflow:hidden;min-height:clamp(440px,48vw,640px);display:flex;flex-direction:column;justify-content:space-between;cursor:crosshair}
+.hero-main h1{font-size:clamp(2.6rem,7.2vw,7rem);position:relative;z-index:2}
+.rotator{display:inline-grid;vertical-align:bottom;overflow:hidden;height:1.02em;padding-right:.1em}
+.rotator span{grid-area:1/1;transform:translateY(115%);transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.rotator span.on{transform:none}
+.rotator span.out{transform:translateY(-115%)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;position:relative;z-index:2}
+.hero-bottom p{max-width:34ch;font-size:clamp(1.02rem,1.5vw,1.2rem);font-weight:600}
+.hero-main .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.throw-hint{position:absolute;top:22px;right:22px;z-index:3;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:.35em .85em;font-weight:600;font-size:.8rem;transform:rotate(4deg)}
+.paper{position:absolute;width:56px;height:56px;z-index:4;pointer-events:none;offset-rotate:auto}
+.hero-side{display:grid;grid-template-rows:auto 1fr;gap:20px}
+.logo-card{padding:22px;display:grid;place-items:center;position:relative;background:#fff}
+.logo-card img{width:min(300px,90%);transition:transform .3s}
+.logo-card:hover img{transform:rotate(-4deg) scale(1.04)}
+.cd-card{background:var(--ink);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd div{text-align:center;background:#fff;color:var(--ink);border-radius:16px;padding:12px 4px;border:2px solid #fff}
+.cd b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.cd small{font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+.cd-card .when{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--green)}
+
+.sticker{position:absolute;z-index:5;user-select:none;cursor:grab;touch-action:none;border:var(--border);box-shadow:4px 4px 0 var(--ink);font-weight:600}
+.sticker:active{cursor:grabbing}
+.s1{left:-14px;top:-16px;background:var(--pink);border-radius:999px;padding:.5em 1em;transform:rotate(-7deg)}
+.s2{right:-12px;top:-22px;width:96px;height:96px;border-radius:50%;background:var(--peach);display:grid;place-items:center;text-align:center;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:.78rem;line-height:1.05;transform:rotate(10deg)}
+
+/* ---------- Marquee ---------- */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;border-block:var(--border);transform:rotate(-1.5deg);margin-block:30px}
+.marquee .track{display:flex;width:max-content;animation:marq 28s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee span{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.1rem,2.4vw,1.8rem);padding:.55em 0;white-space:nowrap;text-transform:uppercase}
+.marquee span:nth-child(3n+2){color:var(--green)}
+.marquee span::after{content:"✳";margin-inline:.8em;color:var(--pink)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- Stories façon polaroïds ---------- */
+.stories{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 10px 22px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story{flex:none;scroll-snap-align:start;width:170px;text-align:left;padding:10px 10px 14px;background:#fff;border:var(--border);border-radius:20px;box-shadow:4px 4px 0 var(--ink);transition:transform .2s}
+.story:nth-child(odd){transform:rotate(-2deg)}.story:nth-child(even){transform:rotate(2deg)}
+.story:hover{transform:rotate(0) translateY(-6px)}
+.story .pic{aspect-ratio:4/5;border-radius:12px;border:2px solid var(--ink);display:grid;place-items:center;font-size:3.2rem;position:relative}
+.story .pic::after{content:"";position:absolute;top:8px;right:8px;width:12px;height:12px;border-radius:50%;background:var(--ruby);border:2px solid var(--ink)}
+.story.seen .pic::after{display:none}
+.story b{display:block;margin-top:10px;font-size:.95rem}
+.story small{opacity:.7;font-size:.8rem}
+
+.viewer{position:fixed;inset:0;z-index:200;background:rgba(20,13,138,.55);display:none;place-items:center;backdrop-filter:blur(6px)}
+.viewer.open{display:grid}
+.vcard{width:min(400px,94vw);aspect-ratio:9/16;max-height:92svh;border-radius:26px;border:var(--border);box-shadow:8px 8px 0 var(--ink);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.vbars{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:4px}
+.vbars i{flex:1;height:5px;border-radius:3px;background:rgba(20,13,138,.2);overflow:hidden;border:1px solid var(--ink)}
+.vbars i b{display:block;height:100%;width:0;background:var(--ink)}
+.vclose{position:absolute;top:30px;right:16px;width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid var(--ink);font-size:1.1rem;z-index:2}
+.vcard .h{font-size:clamp(2rem,9vw,2.8rem)}
+.vcard p{margin-top:12px;font-size:1.1rem;font-weight:600}
+.vcard .emoji{font-size:5.5rem;position:absolute;top:16%;left:28px}
+.vnav{position:absolute;inset:0;display:flex}.vnav button{flex:1}
+
+/* ---------- Simulateur de vote ---------- */
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+@media (max-width:900px){.sim-grid{grid-template-columns:1fr}}
+.sim-steps{list-style:none;display:grid;gap:12px;margin-top:28px;counter-reset:s}
+.sim-steps li{display:flex;gap:14px;align-items:center;padding:14px 18px;border:2px solid var(--ink);border-radius:18px;background:#fff;font-weight:600;transition:background .3s,transform .3s;counter-increment:s}
+.sim-steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-head);font-weight:900;font-stretch:125%}
+.sim-steps li.on{background:var(--green);transform:translateX(8px);box-shadow:4px 4px 0 var(--ink)}
+.sim-steps li.ok::before{content:"✓";background:var(--ink);color:#fff}
+.phone{width:min(360px,100%);margin-inline:auto;background:#fff;border:var(--border);border-radius:44px;box-shadow:10px 10px 0 var(--ink);padding:14px;position:relative}
+.phone::before{content:"";display:block;width:90px;height:22px;border-radius:12px;background:var(--ink);margin:0 auto 10px}
+.screen{border:2px solid var(--ink);border-radius:30px;min-height:500px;padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;background:#fff}
+.screen .top{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.8rem}
+.screen .top img{width:30px}
+.screen h3{font-family:var(--f-head);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:1.35rem;line-height:1}
+.screen input{font:inherit;font-size:1.3rem;letter-spacing:.3em;text-align:center;border:var(--border);border-radius:14px;padding:12px;width:100%;color:var(--ink)}
+.screen .opt{display:flex;align-items:center;gap:12px;text-align:left;border:2px solid var(--ink);border-radius:14px;padding:12px 14px;font-weight:600;background:#fff;transition:background .2s}
+.screen .opt .dot{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--ink)}
+.screen .opt.sel{background:var(--green)}
+.screen .opt.sel .dot{background:var(--ink);box-shadow:inset 0 0 0 4px var(--green)}
+.screen .grow{flex:1}
+.screen .btn{justify-content:center;width:100%}
+.screen .small{font-size:.8rem;opacity:.75}
+.stamp{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.stamp span{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:2.6rem;color:var(--ruby);border:5px solid var(--ruby);border-radius:14px;padding:.1em .4em;transform:rotate(-14deg) scale(2.4);opacity:0;animation:stamp .5s cubic-bezier(.2,.9,.3,1.3) .15s forwards;background:rgba(255,255,255,.85)}
+@keyframes stamp{to{transform:rotate(-14deg) scale(1);opacity:1}}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateX(16px)}}
+
+/* ---------- Bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.tile{padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;justify-content:space-between;gap:14px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.tile h3{font-size:clamp(1.15rem,1.8vw,1.45rem)}
+.k1{grid-column:span 5;background:var(--pink)}
+.k2{grid-column:span 4}
+.k3{grid-column:span 3;background:var(--peach)}
+.k4{grid-column:span 4;background:var(--blue);color:#fff}
+.k5{grid-column:span 8;background:var(--green)}
+@media (max-width:980px){.bento{grid-template-columns:1fr 1fr}.bento>*{grid-column:span 2!important}.k2,.k3{grid-column:span 1!important}}
+@media (max-width:560px){.k2,.k3{grid-column:span 2!important}}
+.big{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(3.4rem,7vw,5.6rem);line-height:.9}
+.gauge{width:150px;margin:0 auto;position:relative}
+.gauge svg{transform:rotate(-90deg)}
+.gauge circle{fill:none;stroke-width:14}
+.gauge .val{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.9rem}
+.flip{perspective:1000px;cursor:pointer;min-height:200px}
+.flip .inner{position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;padding:inherit;display:flex;flex-direction:column;justify-content:space-between;border-radius:inherit}
+.flip .back{transform:rotateY(180deg);background:var(--ink);color:#fff}
+.mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.mini-cal span{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-weight:600;font-size:.85rem;border:2px solid var(--ink);background:#fff}
+.mini-cal span.v{background:var(--ink);color:#fff}
+
+/* ---------- Vrai / Faux ---------- */
+.swipe-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+@media (max-width:900px){.swipe-grid{grid-template-columns:1fr}}
+.deck{position:relative;height:400px;max-width:360px;width:calc(100% - 30px);margin-inline:auto}
+.card{position:absolute;inset:0;border:var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column;justify-content:space-between;touch-action:none;user-select:none;cursor:grab;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.card.drag{transition:none;cursor:grabbing}
+.card .h{font-size:clamp(1.5rem,3vw,2rem);line-height:1}
+.card .k{font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.card .seal{position:absolute;top:24px;padding:.2em .6em;border:4px solid;border-radius:10px;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.3rem;opacity:0;background:#fff}
+.card .seal.t{left:20px;color:var(--web-green);transform:rotate(-12deg)}.card .seal.f{right:20px;color:var(--ruby);transform:rotate(12deg)}
+.swipe-btns{display:flex;justify-content:center;gap:16px;margin-top:26px}
+.swipe-btns .btn{width:66px;height:66px;padding:0;justify-content:center;font-size:1.5rem}
+.verdict{min-height:3.2em;margin-top:16px;text-align:center;font-weight:600}
+.done-card{position:absolute;inset:0;border:3px dashed var(--ink);border-radius:var(--r);display:grid;place-items:center;text-align:center;padding:24px;background:#fff}
+.poll{padding:clamp(20px,3vw,30px);margin-top:28px}
+.poll button{display:block;width:100%;text-align:left;margin-top:10px;border:2px solid var(--ink);border-radius:14px;position:relative;overflow:hidden;padding:13px 16px;font-weight:600;background:#fff}
+.poll button .bar{position:absolute;inset:0;width:0;background:var(--green);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.poll button .lbl{position:relative;display:flex;justify-content:space-between;gap:12px}
+.poll button.me{box-shadow:4px 4px 0 var(--ink)}
+
+/* ---------- Mur des raisons ---------- */
+.wall-zone{background:var(--green);border-block:var(--border)}
+.wall{position:relative;min-height:420px;border:var(--border);border-radius:var(--r);background:#fff radial-gradient(rgba(20,13,138,.12) 1.2px,transparent 1.4px) 0 0/22px 22px;box-shadow:var(--shadow);overflow:hidden}
+.note{position:absolute;padding:.65em 1em;border:var(--border);border-radius:16px;box-shadow:4px 4px 0 var(--ink);font-weight:600;max-width:240px;cursor:grab;touch-action:none;user-select:none;animation:drop .45s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes drop{from{transform:scale(.3) rotate(0);opacity:0}}
+.reasons{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.reasons button{border:2px solid var(--ink);border-radius:999px;padding:.55em 1em;font-weight:600;background:#fff;transition:transform .15s}
+.reasons button:hover{transform:translateY(-2px) rotate(-2deg)}
+.wall-count{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(3rem,7vw,5rem);line-height:1}
+
+/* ---------- Checklist ---------- */
+.check-wrap{padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);background:var(--pink)}
+.check-wrap>*{min-width:0}
+@media (max-width:900px){.check-wrap{grid-template-columns:1fr}}
+.meter{height:22px;border:var(--border);border-radius:12px;background:#fff;margin-top:24px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--green);border-right:var(--border);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.meter i[style*="width: 0"]{border-right:0}
+.checks{list-style:none;display:grid;gap:10px}
+.checks label{display:flex;gap:14px;align-items:center;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:15px 18px;cursor:pointer;font-weight:600;transition:transform .15s}
+.checks label:hover{transform:translateX(4px)}
+.checks input{appearance:none;width:28px;height:28px;border-radius:8px;border:3px solid var(--ink);flex:none;display:grid;place-items:center;background:#fff}
+.checks input:checked{background:var(--green)}
+.checks input:checked::after{content:"✓";font-weight:900}
+.checks input:checked+span{text-decoration:line-through;opacity:.6}
+.confetti{position:fixed;top:-20px;width:12px;height:12px;z-index:300;pointer-events:none;border:2px solid var(--ink);animation:fall 2.6s cubic-bezier(.3,.6,.4,1) forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+/* ---------- Listes ---------- */
+.lists{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.lcard{padding:24px;min-height:230px;position:relative;overflow:hidden}
+.lcard .bl{filter:blur(7px)}
+.lcard .lock{position:absolute;inset:0;display:grid;place-items:center}
+.lcard .lock span{background:#fff;border:2px solid var(--ink);border-radius:999px;padding:.55em 1.05em;font-weight:600;box-shadow:3px 3px 0 var(--ink)}
+
+/* ---------- Final + footer ---------- */
+.final{text-align:center}
+.final .h{font-size:clamp(3rem,12vw,11rem)}
+footer{background:var(--green);border-top:var(--border);padding-block:36px;margin-top:40px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+footer img{height:28px}
+footer nav{display:flex;gap:20px;flex-wrap:wrap;font-weight:600;font-size:.9rem}
+
+/* ---------- Assistant flottant ---------- */
+.fab{position:fixed;right:16px;bottom:16px;z-index:120;width:64px;height:64px;border-radius:50%;background:var(--green);border:var(--border);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;transition:transform .15s}
+.fab:hover{transform:rotate(-8deg) scale(1.05)}
+.fab img{width:44px}
+.fab .bubble{position:absolute;right:72px;bottom:12px;white-space:nowrap;background:#fff;border:2px solid var(--ink);border-radius:14px 14px 4px 14px;padding:.4em .8em;font-weight:600;font-size:.85rem;animation:hello 4s ease 1.5s both}
+@keyframes hello{0%{opacity:0;transform:translateY(8px)}10%,85%{opacity:1;transform:none}100%{opacity:0}}
+.chat{position:fixed;right:16px;bottom:94px;z-index:130;width:min(360px,calc(100vw - 32px));border:var(--border);border-radius:24px;box-shadow:8px 8px 0 var(--ink);background:#fff;display:none;flex-direction:column;overflow:hidden}
+.chat.open{display:flex;animation:fade .3s}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--ink);color:#fff}
+.chat-head img{width:32px}
+.chat-head small{display:block;color:var(--green);font-weight:600;font-size:.75rem}
+.chat-head button{margin-left:auto;color:#fff;font-size:1.1rem}
+.msgs{height:280px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:84%;padding:10px 14px;border-radius:16px;font-size:.93rem;border:2px solid var(--ink);animation:fade .25s}
+.msg.bot{background:#fff;border-bottom-left-radius:4px}
+.msg.me{background:var(--green);align-self:flex-end;border-bottom-right-radius:4px;font-weight:600}
+.typing span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ink);margin-right:3px;animation:bounce 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{50%{transform:translateY(-5px);opacity:.4}}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+.chips button{flex:none;border:2px solid var(--ink);border-radius:999px;padding:.4em .85em;font-size:.8rem;font-weight:600;background:#fff}
+.chips button:hover{background:var(--green)}
+.compose{display:flex;gap:8px;padding:10px 14px 14px;border-top:2px solid var(--ink)}
+.compose input{flex:1;border:2px solid var(--ink);border-radius:999px;font:inherit;padding:.55em 1em;min-width:0;color:var(--ink)}
+.compose button{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;font-size:1rem}
+
+/* ---------- Annotations + toast ---------- */
+.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:110;background:var(--pink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem}
+:where([data-note]){position:relative}
+body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:40;background:var(--pink);color:var(--ink);border:2px solid var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.4em .75em;border-radius:10px;max-width:260px;pointer-events:none;text-align:left;text-transform:none;letter-spacing:0;-webkit-text-stroke:0;text-shadow:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:#fff;border:var(--border);box-shadow:4px 4px 0 var(--ink);padding:12px 20px;border-radius:999px;font-weight:600;z-index:250;transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+.rv{opacity:0;transform:translateY(30px) rotate(-1deg);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.rotator span{transform:none}.rotator span:not(.on){display:none}.stamp span{opacity:1;transform:rotate(-14deg)}}
+</style>
+</head>
+<body class="notes">
+
+<nav class="nav" aria-label="Navigation principale" data-note="Nav « autocollant » collante + barre de progression">
+  <a class="brand" href="#"><img src="../assets/img/tovote-icon.png" alt="">TO VOTE</a>
+  <div class="links">
+    <a href="#stories">Stories</a>
+    <a href="#simulateur">Simulateur</a>
+    <a href="#jeu">Vrai/Faux</a>
+    <a href="#mur">Le mur</a>
+  </div>
+  <a class="btn btn-ruby" href="#">Je vote</a>
+  <span class="bar"><i id="bar"></i></span>
+</nav>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="box hero-main" id="heroMain" data-note="Clique dans le bloc vert : tu lances des avions en papier (le logo du projet)">
+      <span class="throw-hint">Clique pour lancer des avions ✈️</span>
+      <span class="tag" style="align-self:flex-start;position:relative;z-index:2">🗳️ Élections CSE 2027</span>
+      <h1 class="h"><span class="stk">Ta voix</span><br><span class="stk">compte</span><br><span class="rotator" id="rotator"><span class="on">au sol.</span><span>en vol.</span><span>en escale.</span><span>partout.</span></span></h1>
+      <div class="hero-bottom">
+        <p>Les élections CSE, sans jargon et sans prise de tête. Tu cliques, tu swipes, tu sais.</p>
+        <div class="ctas">
+          <a class="btn btn-ink" href="#simulateur">Teste le vote →</a>
+          <button class="btn" id="addCal">📅 Mon agenda</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="box logo-card">
+        <img src="../assets/img/tovote-logo.png" alt="TO VOTE 2027">
+        <span class="sticker s1" data-note="Stickers à attraper et déplacer">100 % en ligne ✌️</span>
+      </div>
+      <div class="box cd-card" data-note="Compte à rebours live">
+        <div><span class="tag" style="background:var(--green);border-color:#fff">Le vote ouvre dans</span><p class="when" style="margin-top:12px">16 → 19 MARS</p></div>
+        <div class="cd" id="cd"><div><b data-u="d">0</b><small>jours</small></div><div><b data-u="h">0</b><small>h</small></div><div><b data-u="m">0</b><small>min</small></div><div><b data-u="s">0</b><small>sec</small></div></div>
+        <span class="sticker s2">3 MIN<br>CHRONO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" data-note="Bandeau défilant (pause au survol)"><div class="track">
+  <span>Vote en ligne</span><span>100 % anonyme</span><span>3 minutes chrono</span><span>Depuis ton tel</span><span>Même en escale</span><span>Ton CSE</span><span>Vote en ligne</span><span>100 % anonyme</span><span>3 minutes chrono</span><span>Depuis ton tel</span><span>Même en escale</span><span>Ton CSE</span>
+</div></div>
+
+<!-- ================= STORIES ================= -->
+<section class="sec" id="stories" style="padding-top:48px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h sec-title rv">Le CSE en <span class="stk-g">stories.</span></h2>
+      <p class="rv">Tape sur un polaroïd. 15 secondes chacun, format téléphone. La pastille rouge disparaît quand c'est vu.</p>
+    </div>
+    <div class="stories" id="storyRow" data-note="Stories en polaroïds : progression, tap gauche/droite, mémorise ce qui a été vu"></div>
+  </div>
+</section>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Story">
+  <div class="vcard" id="vcard">
+    <div class="vbars" id="vbars"></div>
+    <button class="vclose" id="vclose" aria-label="Fermer">✕</button>
+    <div class="emoji" id="vemoji"></div>
+    <div style="position:relative;z-index:1"><div class="h" id="vtitle"></div><p id="vtext"></p></div>
+    <div class="vnav"><button aria-label="Précédent" id="vprev"></button><button aria-label="Suivant" id="vnext"></button></div>
+  </div>
+</div>
+
+<!-- ================= SIMULATEUR ================= -->
+<section class="sec" id="simulateur" style="padding-top:20px">
+  <div class="wrap sim-grid">
+    <div>
+      <span class="tag">Nouveau · bac à sable</span>
+      <h2 class="h sec-title" style="margin-top:16px">Entraîne-toi<br>à <span class="stk-g">voter.</span></h2>
+      <p style="margin-top:16px;max-width:42ch;font-size:1.05rem">Un vote « à blanc », pour de faux, qui reproduit le vrai parcours. Comme ça, le jour J, zéro surprise.</p>
+      <ol class="sim-steps" id="simSteps">
+        <li>Je saisis mon code</li>
+        <li>Je vote pour les titulaires</li>
+        <li>Je vote pour les suppléant·es</li>
+        <li>Je confirme. A voté !</li>
+      </ol>
+    </div>
+    <div class="phone" data-note="Simulateur de vote : reproduit le parcours réel de la plateforme, sans rien enregistrer">
+      <div class="screen" id="screen" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BENTO ================= -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h sec-title rv">L'essentiel, <span class="stk-g">en vrac.</span></h2></div>
+    <div class="bento">
+      <article class="box tile k1 rv"><span style="font-size:2rem">🎟️</span><div><div class="big">ASC</div><h3 class="sub" style="margin-top:6px">Billetterie, vacances, sport, culture.</h3><p>Les activités sociales et culturelles, c'est le CSE.</p></div></article>
+      <article class="box tile k2 rv" data-note="Jauge animée (participation en direct pendant le scrutin)">
+        <h3 class="sub">Participation 2023</h3>
+        <div class="gauge"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="56" stroke="#EEF0FF"/><circle id="gaugeArc" cx="70" cy="70" r="56" stroke="#05CE78" stroke-linecap="round" stroke-dasharray="351.9" stroke-dashoffset="351.9" style="transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/><circle cx="70" cy="70" r="63" stroke="#140D8A" stroke-width="3"/><circle cx="70" cy="70" r="49" stroke="#140D8A" stroke-width="3"/></svg><div class="val" id="gaugeVal">0%</div></div>
+        <p style="text-align:center;font-size:.85rem">chiffre fictif · objectif : faire mieux</p>
+      </article>
+      <article class="box tile k3 rv"><div class="big">4</div><h3 class="sub">ans de mandat pour tes élu·es.</h3></article>
+      <article class="box tile k4 rv flip" tabindex="0" role="button" aria-label="Retourner la carte" data-note="Carte à retourner : idée reçue / réalité">
+        <div class="inner">
+          <div class="face"><span class="tag" style="align-self:flex-start;color:var(--ink)">Idée reçue · touche ↻</span><h3 class="sub" style="font-size:1.5rem">« Le CSE, ça ne sert à rien. »</h3></div>
+          <div class="face back"><span class="tag" style="align-self:flex-start;background:var(--green);color:var(--ink)">Réalité</span><p>Il est consulté sur l'organisation, les plannings, les conditions de travail, et peut lancer une expertise.</p></div>
+        </div>
+      </article>
+      <article class="box tile k5 rv" data-note="Mini-calendrier : jours de vote surlignés">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3 class="sub">Mars 2027 : 4 jours pour voter, 24h/24</h3><span class="tag">Dates fictives</span></div>
+        <div class="mini-cal"><span>14</span><span>15</span><span class="v">16</span><span class="v">17</span><span class="v">18</span><span class="v">19</span><span>20</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VRAI / FAUX ================= -->
+<section class="sec" id="jeu" style="padding-top:20px">
+  <div class="wrap swipe-grid">
+    <div>
+      <span class="tag">Jeu</span>
+      <h2 class="h sec-title" style="margin-top:16px">Vrai ou <span class="stk-g">faux ?</span></h2>
+      <p style="margin-top:16px;max-width:40ch;font-size:1.05rem">Swipe à droite si c'est vrai, à gauche si c'est faux. Ou utilise les flèches du clavier.</p>
+      <div class="box poll" data-note="Mini-sondage, résultats instantanés">
+        <p class="sub" style="font-size:1.12rem">Ce qui compte le plus pour toi au CSE ?</p>
+        <div id="pollOpts"></div>
+      </div>
+    </div>
+    <div data-note="Cartes à swiper (souris, doigt, clavier ou boutons)">
+      <div class="deck" id="deck"></div>
+      <div class="swipe-btns"><button class="btn" id="btnF" aria-label="Faux" style="background:var(--peach)">✕</button><button class="btn btn-green" id="btnT" aria-label="Vrai">✓</button></div>
+      <p class="verdict" id="verdict" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MUR DES RAISONS ================= -->
+<section class="sec wall-zone" id="mur">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2 class="h sec-title"><span class="stk">Je vote</span><br>parce que…</h2>
+        <div class="reasons" id="reasons" data-note="Mur participatif : chacun colle sa raison de voter (modération à prévoir)"></div>
+      </div>
+      <div style="text-align:right"><div class="wall-count" id="wallCount">0</div><p class="sub">raisons collées</p></div>
+    </div>
+    <div class="wall" id="wall" aria-label="Mur des raisons de voter"></div>
+  </div>
+</section>
+
+<!-- ================= CHECKLIST ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="box check-wrap" data-note="Checklist perso sauvegardée sur l'appareil + confettis à 100 %">
+      <div>
+        <h2 class="h" style="font-size:clamp(1.6rem,4.6vw,3.6rem)">Ta checklist<br><span class="stk">électeur·rice.</span></h2>
+        <p style="margin-top:16px;max-width:38ch;font-weight:600">Coche au fur et à mesure. On garde ta progression.</p>
+        <div class="meter"><i id="meter"></i></div>
+        <p class="sub" id="meterTxt" style="margin-top:10px">0 / 4</p>
+      </div>
+      <ul class="checks" id="checks">
+        <li><label><input type="checkbox"><span>Je vérifie que je suis sur la liste électorale</span></label></li>
+        <li><label><input type="checkbox"><span>Je lis les professions de foi</span></label></li>
+        <li><label><input type="checkbox"><span>J'ai reçu mes identifiants</span></label></li>
+        <li><label><input type="checkbox"><span>J'ai voté 🗳️</span></label></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LISTES ================= -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h sec-title rv">Les listes. <span class="stk-g">Bientôt.</span></h2><button class="btn" id="notify">🔔 Préviens-moi</button></div>
+    <div class="lists" id="lists" data-note="Listes floutées jusqu'au jour J, ordre tiré au sort (neutralité)">
+      <div class="box lcard"><div class="bl"><b>Liste ███████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
+      <div class="box lcard"><div class="bl"><b>Liste █████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
+      <div class="box lcard"><div class="bl"><b>Liste █████████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
+    </div>
+    <p style="margin-top:16px;font-size:.88rem;font-weight:600">⚖️ Ordre aléatoire à chaque visite, même format pour toutes les listes.</p>
+  </div>
+</section>
+
+<!-- ================= FINAL ================= -->
+<section class="sec final" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="h rv"><span class="stk-g">Vas-y.</span><br>Vote.</h2>
+    <div class="rv" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px">
+      <button class="btn btn-green" id="share">↗ Partager à mon équipage</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="../assets/img/transavia-wordmark-white.svg" alt="transavia">
+    <nav><a href="#">Mentions légales</a><a href="#">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+  </div>
+</footer>
+
+<!-- Assistant flottant -->
+<button class="fab" id="fab" aria-label="Ouvrir l'assistant" aria-expanded="false"><img src="../assets/img/tovote-icon.png" alt=""><span class="bubble">Une question ? 👋</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Assistant TO VOTE">
+  <div class="chat-head"><img src="../assets/img/tovote-icon.png" alt=""><div><b>Assistant TO VOTE</b><small>● en ligne</small></div><button id="chatClose" aria-label="Fermer">✕</button></div>
+  <div class="msgs" id="msgs"></div>
+  <div class="chips" id="chips"></div>
+  <form class="compose" id="compose"><input id="ask" placeholder="Écris ta question…" aria-label="Ta question"><button aria-label="Envoyer">➤</button></form>
+</div>
+
+<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600)};
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const COLORS=['var(--pink)','var(--peach)','var(--green)','#fff','var(--blue)'];
+
+$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
+addEventListener('scroll',()=>{const d=document.documentElement;$('#bar').style.transform=`scaleX(${d.scrollTop/(d.scrollHeight-d.clientHeight)})`},{passive:true});
+
+/* Mots qui tournent */
+(()=>{if(reduce)return;const s=$$('#rotator span');let i=0;setInterval(()=>{s[i].classList.remove('on');s[i].classList.add('out');const o=s[i];setTimeout(()=>o.classList.remove('out'),600);i=(i+1)%s.length;s[i].classList.add('on')},2200)})();
+
+/* Éléments déplaçables (stickers, notes du mur) */
+function draggable(el){let sx,sy,ox=0,oy=0;const base=el.style.transform||getComputedStyle(el).transform.replace('none','');
+  el.addEventListener('pointerdown',e=>{e.stopPropagation();el.setPointerCapture(e.pointerId);sx=e.clientX-ox;sy=e.clientY-oy;el.style.zIndex=50});
+  el.addEventListener('pointermove',e=>{if(!el.hasPointerCapture(e.pointerId))return;ox=e.clientX-sx;oy=e.clientY-sy;el.style.transform=`translate(${ox}px,${oy}px) ${base}`});
+}
+$$('.sticker').forEach(draggable);
+
+/* Avions en papier lancés au clic */
+$('#heroMain').addEventListener('click',e=>{
+  if(e.target.closest('a,button')||reduce)return;
+  const box=e.currentTarget.getBoundingClientRect(),x=e.clientX-box.left,y=e.clientY-box.top;
+  const p=document.createElementNS('http://www.w3.org/2000/svg','svg');p.setAttribute('viewBox','0 0 24 24');p.setAttribute('class','paper');p.innerHTML='<path d="M22 3 2 11l7 3 2 7 3-5 5 4z" fill="#fff" stroke="#140D8A" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 14 13-11" stroke="#140D8A" stroke-width="1.6"/>';
+  const dx=(Math.random()*.6+.5)*box.width,dy=-(Math.random()*.5+.3)*box.height,cx=dx*.5,cy=dy*.1-120;
+  p.style.left=(x-28)+'px';p.style.top=(y-28)+'px';
+  e.currentTarget.append(p);
+  p.style.offsetPath=`path("M 0 0 Q ${cx} ${cy} ${dx} ${dy}")`;
+  p.animate([{offsetDistance:'0%',opacity:1},{offsetDistance:'100%',opacity:0}],{duration:1400,easing:'cubic-bezier(.3,.1,.4,1)',fill:'forwards'});
+  setTimeout(()=>p.remove(),1500);
+});
+
+/* Agenda */
+$('#addCal').onclick=()=>{const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270316T080000Z','DTEND:20270319T170000Z','SUMMARY:🗳️ Élections CSE : vote en ligne','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();toast('📅 Ajouté à ton agenda')};
+
+/* Compte à rebours (date fictive) */
+const TARGET=new Date('2027-03-16T09:00:00+01:00');
+function cd(){let s=Math.max(0,Math.floor((TARGET-Date.now())/1000));const v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};for(const u in v)$(`#cd [data-u="${u}"]`).textContent=String(v[u]).padStart(2,'0')}
+cd();setInterval(cd,1000);
+
+/* Révélations */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* Stories */
+const STORIES=[
+  {e:'🤔',l:'C\'est quoi le CSE ?',t:'3 slides',bg:'var(--green)',s:[['Le CSE','L\'instance qui représente les salarié·es auprès de la direction.'],['Concrètement','Consulté sur l\'organisation, les plannings, les conditions de travail.'],['Et aussi','Il gère les activités sociales et culturelles.']]},
+  {e:'📅',l:'Les dates',t:'3 slides',bg:'var(--pink)',s:[['2 mars','Publication des listes.'],['16 → 19 mars','Vote en ligne, 24h/24.'],['19 mars, 18h','Résultats ici même.']]},
+  {e:'📱',l:'Comment voter',t:'3 slides',bg:'var(--peach)',s:[['Tes codes','Reçus par mail pro + SMS.'],['3 minutes','Titulaires, puis suppléant·es.'],['Anonyme','Personne ne sait pour qui tu votes.']]},
+  {e:'✋',l:'Me présenter',t:'3 slides',bg:'#fff',s:[['Qui ?','18 ans et 1 an d\'ancienneté.'],['1er tour','Listes présentées par les syndicats.'],['2nd tour','Candidatures libres, si nécessaire.']]},
+  {e:'❓',l:'Les questions',t:'2 slides',bg:'var(--blue)',s:[['En rotation ?','Tu votes depuis l\'escale, sur ton tel.'],['Un souci ?','L\'assistant ou les RH te répondent.']]},
+];
+const seen=new Set(store.get('tvc_seen',[]));
+$('#storyRow').innerHTML=STORIES.map((s,i)=>`<button class="story ${seen.has(i)?'seen':''}" data-i="${i}"><div class="pic" style="background:${s.bg}">${s.e}</div><b>${s.l}</b><small>${s.t}</small></button>`).join('');
+let si=0,sj=0,timer;
+function showStory(){
+  const s=STORIES[si],slide=s.s[sj];
+  $('#vcard').style.background=s.bg;$('#vcard').style.color=s.bg==='var(--blue)'?'#fff':'var(--ink)';
+  $('#vemoji').textContent=s.e;$('#vtitle').textContent=slide[0];$('#vtext').textContent=slide[1];
+  $('#vbars').innerHTML=s.s.map((_,k)=>`<i><b style="width:${k<sj?100:0}%"></b></i>`).join('');
+  const b=$$('#vbars b')[sj];requestAnimationFrame(()=>{b.style.transition=reduce?'none':'width 5s linear';b.style.width='100%'});
+  clearTimeout(timer);timer=setTimeout(nextSlide,5000);
+  seen.add(si);store.set('tvc_seen',[...seen]);$(`.story[data-i="${si}"]`).classList.add('seen');
+}
+function nextSlide(){sj++;if(sj>=STORIES[si].s.length){si++;sj=0}if(si>=STORIES.length)return closeStory();showStory()}
+function prevSlide(){if(sj>0)sj--;else if(si>0){si--;sj=0}showStory()}
+function closeStory(){clearTimeout(timer);$('#viewer').classList.remove('open')}
+$$('.story').forEach(b=>b.onclick=()=>{si=+b.dataset.i;sj=0;$('#viewer').classList.add('open');showStory();$('#vclose').focus()});
+$('#vnext').onclick=nextSlide;$('#vprev').onclick=prevSlide;$('#vclose').onclick=closeStory;
+$('#viewer').onclick=e=>{if(e.target.id==='viewer')closeStory()};
+
+/* Simulateur de vote (aucune donnée enregistrée) */
+const LISTS=['Liste exemple A','Liste exemple B','Liste exemple C','Vote blanc'];
+let step=0,choice={};
+function simStep(i){$$('#simSteps li').forEach((li,k)=>{li.classList.toggle('on',k===i);li.classList.toggle('ok',k<i)})}
+function renderSim(){
+  const s=$('#screen');simStep(step);
+  const head=`<div class="top"><img src="../assets/img/tovote-icon.png" alt=""><span>Simulation · ${Math.min(step+1,4)}/4</span></div>`;
+  if(step===0){
+    s.innerHTML=`<div class="fade" style="display:contents">${head}<h3>Ton code de vote</h3><p class="small">Reçu par mail pro et SMS. Pour la démo, tape n'importe quels 6 chiffres.</p><input id="code" inputmode="numeric" maxlength="6" placeholder="••••••" aria-label="Code de vote"><div class="grow"></div><button class="btn btn-ink" id="go" disabled style="opacity:.5">Continuer</button></div>`;
+    const inp=$('#code'),go=$('#go');inp.oninput=()=>{inp.value=inp.value.replace(/\D/g,'');const ok=inp.value.length===6;go.disabled=!ok;go.style.opacity=ok?1:.5};
+    go.onclick=()=>{step=1;renderSim()};
+  } else if(step===1||step===2){
+    const key=step===1?'tit':'sup',lists=[...LISTS.slice(0,3)].sort(()=>Math.random()-.5).concat(LISTS[3]);
+    s.innerHTML=`<div class="fade" style="display:contents">${head}<h3>${step===1?'Titulaires':'Suppléant·es'}</h3><p class="small">Choisis une liste (ordre aléatoire).</p>${lists.map(l=>`<button class="opt" data-l="${l}"><span class="dot"></span>${l}</button>`).join('')}<div class="grow"></div><button class="btn btn-ink" id="go" disabled style="opacity:.5">Valider</button></div>`;
+    $$('.opt',s).forEach(b=>b.onclick=()=>{$$('.opt',s).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');choice[key]=b.dataset.l;$('#go').disabled=false;$('#go').style.opacity=1});
+    $('#go').onclick=()=>{step++;renderSim()};
+  } else if(step===3){
+    s.innerHTML=`<div class="fade" style="display:contents">${head}<h3>Récap</h3><div class="opt" style="cursor:default"><span>Titulaires</span><b style="margin-left:auto">${choice.tit}</b></div><div class="opt" style="cursor:default"><span>Suppléant·es</span><b style="margin-left:auto">${choice.sup}</b></div><p class="small">Une fois confirmé, ton vote ne peut plus être modifié.</p><div class="grow"></div><button class="btn btn-ruby" id="go">Je confirme mon vote</button></div>`;
+    $('#go').onclick=()=>{step=4;renderSim();confetti()};
+  } else {
+    $$('#simSteps li').forEach(li=>{li.classList.remove('on');li.classList.add('ok')});
+    s.innerHTML=`${head}<h3>Merci !</h3><p class="small">Dans la vraie vie, tu reçois un accusé de réception. Ici, rien n'a été enregistré : c'était pour de faux 😉</p><div class="grow"></div><button class="btn" id="again">Recommencer</button><div class="stamp"><span>A VOTÉ</span></div>`;
+    $('#again').onclick=()=>{step=0;choice={};renderSim()};
+  }
+}
+renderSim();
+
+/* Jauge */
+new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;const pct=58;$('#gaugeArc').style.strokeDashoffset=351.9*(1-pct/100);let v=0;const iv=setInterval(()=>{$('#gaugeVal').textContent=(++v)+'%';if(v>=pct)clearInterval(iv)},reduce?0:24);o.disconnect()},{threshold:.5}).observe($('.gauge'));
+
+/* Carte à retourner */
+$$('.flip').forEach(c=>{const t=()=>c.classList.toggle('on');c.onclick=t;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+
+/* Vrai / Faux */
+const CARDS=[
+  {q:'Il faut être syndiqué·e pour voter.',a:false,e:'Faux. Tout·e salarié·e de 16 ans avec 3 mois d\'ancienneté vote.',c:'var(--pink)'},
+  {q:'Le vote reste anonyme, même en ligne.',a:true,e:'Vrai. La plateforme sépare ton identité de ton bulletin.',c:'#fff'},
+  {q:'En rotation, je ne pourrai pas voter.',a:false,e:'Faux. Tu votes depuis ton téléphone, où que tu sois.',c:'var(--peach)'},
+  {q:'Au 2nd tour, tout·e salarié·e éligible peut se présenter.',a:true,e:'Vrai. Au 2nd tour, les candidatures sont libres.',c:'var(--green)'},
+];
+let ci=0,good=0;
+function renderDeck(){
+  const d=$('#deck');d.innerHTML='';
+  if(ci>=CARDS.length){d.innerHTML=`<div class="done-card"><div><div class="big stk-g">${good}/${CARDS.length}</div><p class="sub" style="margin-top:8px">${good===CARDS.length?'Sans faute 🔥':'Pas mal du tout 👀'}</p><button class="btn" style="margin-top:16px" id="replay">Rejouer</button></div></div>`;$('#replay').onclick=()=>{ci=0;good=0;$('#verdict').textContent='';renderDeck()};return}
+  CARDS.slice(ci,ci+3).reverse().forEach((c,k,arr)=>{const depth=arr.length-1-k;const el=document.createElement('div');el.className='card';el.style.background=c.c;el.style.transform=`translate(${depth*10}px,${depth*10}px) rotate(${depth*3}deg)`;el.style.zIndex=10-depth;
+    el.innerHTML=`<span class="seal t">VRAI</span><span class="seal f">FAUX</span><span class="k">Carte ${ci+depth+1}/${CARDS.length}</span><div class="h">${c.q}</div><span class="k">← faux · vrai →</span>`;d.append(el);if(depth===0)drag(el)});
+}
+function answer(v){
+  const c=CARDS[ci],top=$('#deck .card:last-child');if(!top)return;
+  const ok=v===c.a;if(ok)good++;$('#verdict').textContent=(ok?'✅ ':'❌ ')+c.e;
+  top.style.transform=`translate(${v?600:-600}px,-40px) rotate(${v?30:-30}deg)`;top.style.opacity=0;
+  ci++;setTimeout(renderDeck,300);
+}
+function drag(el){let sx=0,dx=0;
+  el.onpointerdown=e=>{sx=e.clientX;el.setPointerCapture(e.pointerId);el.classList.add('drag')};
+  el.onpointermove=e=>{if(!el.hasPointerCapture(e.pointerId))return;dx=e.clientX-sx;el.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`;$('.seal.t',el).style.opacity=Math.max(0,dx/120);$('.seal.f',el).style.opacity=Math.max(0,-dx/120)};
+  el.onpointerup=()=>{el.classList.remove('drag');if(Math.abs(dx)>110)answer(dx>0);else{el.style.transform='';$$('.seal',el).forEach(s=>s.style.opacity=0)}dx=0};
+}
+$('#btnT').onclick=()=>answer(true);$('#btnF').onclick=()=>answer(false);
+addEventListener('keydown',e=>{
+  if($('#viewer').classList.contains('open')){if(e.key==='Escape')closeStory();if(e.key==='ArrowRight')nextSlide();if(e.key==='ArrowLeft')prevSlide();return}
+  if(e.target.matches('input'))return;
+  const r=$('#deck').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){if(e.key==='ArrowRight')answer(true);if(e.key==='ArrowLeft')answer(false)}
+});
+renderDeck();
+
+/* Sondage (résultats simulés) */
+const POLL=[['Plannings & repos',41],['Salaires & primes',33],['Activités sociales',14],['Santé & sécurité',12]];
+function renderPoll(){const mine=store.get('tvc_poll',null);
+  $('#pollOpts').innerHTML=POLL.map(([l,v],i)=>`<button data-i="${i}" class="${mine===i?'me':''}"><span class="bar" style="width:${mine===null?0:v}%"></span><span class="lbl"><span>${l}</span><span>${mine===null?'':v+'%'}</span></span></button>`).join('');
+  $$('#pollOpts button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(store.get('tvc_poll',null)===null)POLL[i][1]++;store.set('tvc_poll',i);renderPoll();toast('Merci pour ta réponse 🙌')});
+}
+renderPoll();
+
+/* Mur des raisons */
+const REASONS=['Mes plannings, c\'est ma vie 🗓️','Je veux être écouté·e 📣','Pour les ASC 🎟️','Parce que 3 min, c\'est rien ⏱️','Pour mes collègues 🤝','Ma santé au travail 💚','Parce que c\'est mon droit ✊'];
+const SEED=[[0,8,12,-6],[1,58,8,4],[4,30,46,-3],[2,70,52,7],[5,6,70,5]];
+let wallN=0;
+function stick(text,xPct,yPct,rot,color,mine){
+  const w=$('#wall'),n=document.createElement('div');n.className='note';n.textContent=text;
+  n.style.left=xPct+'%';n.style.top=yPct+'%';n.style.background=color;n.style.transform=`rotate(${rot}deg)`;
+  if(color==='var(--blue)')n.style.color='#fff';
+  if(mine){n.style.outline='3px dashed var(--ruby)';n.style.outlineOffset='4px'}
+  w.append(n);draggable(n);wallN++;$('#wallCount').textContent=wallN;
+}
+$('#reasons').innerHTML=REASONS.map(r=>`<button>${r}</button>`).join('');
+SEED.forEach(([i,x,y,r],k)=>stick(REASONS[i],x,y,r,COLORS[k%COLORS.length]));
+wallN+=37;$('#wallCount').textContent=wallN; /* compteur fictif */
+$$('#reasons button').forEach(b=>b.onclick=()=>{stick(b.textContent,Math.random()*62+4,Math.random()*70+6,Math.random()*16-8,COLORS[Math.random()*COLORS.length|0],true);toast('📌 Ta raison est collée au mur')});
+
+/* Checklist */
+const boxes=$$('#checks input'),saved=store.get('tvc_checks',[]);
+boxes.forEach((b,i)=>{b.checked=!!saved[i];b.onchange=updateChecks});
+function updateChecks(e){const st=boxes.map(b=>b.checked),n=st.filter(Boolean).length;store.set('tvc_checks',st);$('#meter').style.width=n/boxes.length*100+'%';$('#meterTxt').textContent=`${n} / ${boxes.length}${n===boxes.length?' · bravo 🎉':''}`;if(e&&n===boxes.length)confetti()}
+function confetti(){if(reduce)return;const cols=['#05CE78','#F385FF','#FF8867','#0053FF','#fff'];for(let i=0;i<80;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%cols.length];c.style.animationDelay=Math.random()*.6+'s';c.style.borderRadius=i%3?'3px':'50%';document.body.append(c);setTimeout(()=>c.remove(),3400)}}
+updateChecks();
+
+/* Listes : ordre aléatoire + alerte */
+(()=>{const g=$('#lists');[...g.children].sort(()=>Math.random()-.5).forEach(x=>g.append(x))})();
+$('#notify').onclick=e=>{e.currentTarget.textContent='✅ C\'est noté';toast('🔔 Tu seras prévenu·e à la publication')};
+
+/* Assistant (réponses simulées) */
+const KB=[
+  [/procur|absent|cong/i,'Pas besoin de procuration : le vote est en ligne, tu peux voter même en congé ou en rotation, du 16 au 19 mars.'],
+  [/anonym|secret|savoir/i,'Ton vote est 100 % anonyme : la plateforme externe sépare ton identité de ton bulletin. L\'entreprise n\'y a pas accès.'],
+  [/code|identifiant|perdu|reçu/i,'Tes codes arrivent le 9 mars par mail pro + SMS. Perdus ? Tu pourras les régénérer depuis la plateforme.'],
+  [/candid|présent/i,'Tu peux être candidat·e dès 18 ans et 1 an d\'ancienneté. Au 1er tour, via une liste syndicale ; au 2nd tour, candidature libre.'],
+  [/cse|sert|quoi/i,'Le CSE représente les salarié·es : il est consulté sur l\'organisation du travail, gère les activités sociales, et porte tes réclamations.'],
+];
+const CHIPS=['Je suis en congé, je fais comment ?','Mon vote est anonyme ?','J\'ai pas reçu mes codes','Je veux me présenter'];
+function addMsg(t,who){const m=document.createElement('div');m.className='msg '+who;m.textContent=t;$('#msgs').append(m);$('#msgs').scrollTop=1e6;return m}
+function ask(q){addMsg(q,'me');const typing=addMsg('','bot');typing.innerHTML='<span class="typing"><span></span><span></span><span></span></span>';
+  setTimeout(()=>{typing.remove();const hit=KB.find(([r])=>r.test(q));addMsg(hit?hit[1]:'Bonne question ! Je transmets à l\'équipe RH, tu auras une réponse sous 48h. 📨','bot')},reduce?100:900)}
+addMsg('Salut 👋 Je réponds à tes questions sur les élections CSE.','bot');
+$('#chips').innerHTML=CHIPS.map(c=>`<button type="button">${c}</button>`).join('');
+$$('#chips button').forEach(b=>b.onclick=()=>ask(b.textContent));
+$('#compose').onsubmit=e=>{e.preventDefault();const v=$('#ask').value.trim();if(v){ask(v);$('#ask').value=''}};
+const setChat=o=>{$('#chat').classList.toggle('open',o);$('#fab').setAttribute('aria-expanded',o);if(o)$('#ask').focus()};
+$('#fab').onclick=()=>setChat(!$('#chat').classList.contains('open'));$('#chatClose').onclick=()=>setChat(false);
+
+/* Partage */
+$('#share').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'TO VOTE 2027',text:'Élections CSE : tout est là 👇',url:location.href})}catch{}}else{await navigator.clipboard?.writeText(location.href);toast('🔗 Lien copié')}};
+</script>
+</body>
+</html>
