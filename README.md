@@ -9,6 +9,7 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `faq.html` : FAQ avec recherche
 - `documents.html` : Documents officiels (PAP, listes, guide du vote, résultats), publiés à leur date
 - `crew.js` : l'équipage illustré, commun à toutes les pages (une variante femme ou homme par métier, tirée au hasard à chaque ouverture, puis qui change toute seule toutes les 6 secondes)
+- `assets/vendor/pdfjs/` : PDF.js 3.11.174 (Mozilla, licence Apache 2.0), pour afficher les documents dans la visionneuse de la page Documents
 - `pictos.js` : les pictogrammes « carte de sécurité », communs à l'accueil, la FAQ et les documents
 - `assets/` : logos Transavia et TO VOTE, polices Söhne (Buch, Halbfett)
 

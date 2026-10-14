@@ -106,8 +106,27 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .doc p{font-size:.93rem;opacity:.9}
 .doc .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:12px;border-top:1.5px dashed rgba(20,13,138,.15)}
 .doc .when{font-size:.8rem;font-weight:600}
-.doc .acts{display:flex;gap:6px}
-.doc .dl{background:rgba(20,13,138,.08)}
+/* ---------- Visionneuse (modale) ---------- */
+.viewer{border:0;padding:0;margin:auto;width:min(1100px,calc(100vw - 32px));height:min(92vh,1000px);max-height:none;border-radius:28px;background:#fff;color:var(--ink);box-shadow:0 40px 80px -30px rgba(20,13,138,.6);overflow:hidden}
+.viewer[open]{display:flex;flex-direction:column;animation:vin .35s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes vin{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.viewer::backdrop{background:rgba(20,13,138,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.v-head{display:flex;align-items:center;gap:14px;padding:14px 16px 14px 22px;border-bottom:1.5px dashed rgba(20,13,138,.15);flex-wrap:wrap}
+.v-head .pic svg{width:56px;height:42px;display:block}
+.v-title{flex:1;min-width:200px}
+.v-title b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:1.1rem;line-height:1.1}
+.v-title small{font-size:.8rem;font-weight:600;opacity:.65}
+.v-acts{display:flex;gap:8px;align-items:center}
+.v-x{width:42px;height:42px;border-radius:50%;background:rgba(20,13,138,.08);font-size:1.2rem;display:grid;place-items:center}
+.v-body{flex:1;min-height:0;background:#eceaf6;overflow:auto;overscroll-behavior:contain;position:relative}
+.v-pages{display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 16px 28px}
+.v-page{background:#fff;border-radius:6px;box-shadow:0 10px 24px -14px rgba(20,13,138,.45);max-width:100%;overflow:hidden}
+.v-page canvas{display:block;width:100%;height:auto}
+.v-state{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:24px;font-weight:600}
+.v-state[hidden]{display:none}
+.v-spin{width:38px;height:38px;border-radius:50%;border:4px solid rgba(20,13,138,.15);border-top-color:var(--ink);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:700px){.viewer{width:100vw;height:100dvh;border-radius:0;max-width:none}.v-head{padding:10px 12px;flex-wrap:nowrap}.v-head .pic{display:none}.v-title{min-width:0}.v-title b{font-size:.95rem}.v-title small{font-size:.72rem}.v-acts .lbl{display:none}.v-pages{padding:12px 8px 20px;gap:10px}}
 .doc.locked{background:rgba(255,255,255,.72)}
 .doc.locked .pic{filter:grayscale(.6);opacity:.75}
 .doc.locked h3,.doc.locked p{opacity:.7}
@@ -180,6 +199,22 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   </div>
 </footer>
 
+<dialog class="viewer" id="viewer" aria-labelledby="vTitle">
+  <div class="v-head">
+    <span class="pic" id="vPic" aria-hidden="true"></span>
+    <div class="v-title"><b id="vTitle"></b><small id="vMeta"></small></div>
+    <div class="v-acts">
+      <a class="btn btn-ink btn-sm" id="vDl" download>⬇<span class="lbl"> Télécharger</span></a>
+      <button class="v-x" id="vX" aria-label="Fermer">✕</button>
+    </div>
+  </div>
+  <div class="v-body" id="vBody">
+    <div class="v-pages" id="vPages" aria-label="Pages du document"></div>
+    <div class="v-state" id="vLoad"><span class="v-spin" aria-hidden="true"></span><span>Chargement du document…</span></div>
+    <div class="v-state" id="vErr" hidden><p>L'aperçu n'a pas pu s'afficher.</p><a class="btn btn-ink" id="vOpen" target="_blank" rel="noopener">📄 Ouvrir le document</a></div>
+  </div>
+</dialog>
+
 <div class="toast" id="toast" role="status"></div>
 
 <script src="pictos.js"></script>
@@ -214,7 +249,7 @@ $('#filters').innerHTML=CATS.map(([k,n])=>`<button data-cat="${k}" aria-pressed=
 function render(){
   $('#docs').innerHTML=DOCS.map((d,i)=>{const out=isOut(d),rot=[-1.2,.8,-.4,1,-.8,.5][i%6];
     const when=out?(d.size||(d.pub?`Publié le ${day(d.pub)}`:'Publié')):(d.pub?`🔒 Le ${day(d.pub)}`:'🔒 Bientôt en ligne');
-    const act=out?(d.page?`<a class="btn btn-ink btn-sm" href="${d.page}">Voir →</a>`:d.file?`<span class="acts"><a class="btn btn-ink btn-sm" href="${d.file}" target="_blank" rel="noopener">📄 Consulter</a><a class="btn btn-sm dl" href="${d.file}" download aria-label="Télécharger le PDF">⬇</a></span>`:`<button class="btn btn-ink btn-sm" data-open="${d.id}">📄 Consulter</button>`)
+    const act=out?(d.page?`<a class="btn btn-ink btn-sm" href="${d.page}">Voir →</a>`:`<button class="btn btn-ink btn-sm" data-open="${d.id}">📄 Consulter</button>`)
                  :`<button class="btn btn-glass btn-sm" data-alert="${d.id}">🔔 Préviens-moi</button>`;
     return `<article class="doc${out?'':' locked'}" id="${d.id}" data-cat="${d.cat}" style="--rot:${rot}deg"${cat!=='all'&&d.cat!==cat?' hidden':''}>
       <div class="pic">${picto(d.picto)}</div>
@@ -228,9 +263,39 @@ function render(){
 $('#filters').onclick=e=>{const b=e.target.closest('[data-cat]');if(!b)return;cat=b.dataset.cat;$$('#filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};
 $('#demo').onchange=e=>{demo=e.target.checked;render()};
 $('#docs').onclick=e=>{
-  const o=e.target.closest('[data-open]');if(o){toast('📄 Le fichier sera déposé ici à sa publication');return}
+  const o=e.target.closest('[data-open]');if(o){const d=DOCS.find(x=>x.id===o.dataset.open);d.file?openDoc(d):toast('📄 Le fichier sera déposé ici à sa publication');return}
   const a=e.target.closest('[data-alert]');if(a){a.textContent='✅ C\'est noté';a.disabled=true;toast('🔔 Tu seras prévenu·e à la publication')}};
+/* ---------- Visionneuse : le PDF s'ouvre dans une modale, téléchargeable depuis l'en-tête ----------
+   Rendu page par page avec PDF.js (assets/vendor/pdfjs, Mozilla, licence Apache 2.0), chargé à la première ouverture :
+   même affichage sur ordinateur et sur téléphone. Les pages se dessinent quand elles approchent de l'écran. */
+const viewer=$('#viewer');let pdfjsP=null,task=null,obs=null;
+const loadPdfjs=()=>pdfjsP||(pdfjsP=new Promise((ok,ko)=>{const sc=document.createElement('script');sc.src='assets/vendor/pdfjs/pdf.min.js';
+  sc.onload=()=>{pdfjsLib.GlobalWorkerOptions.workerSrc='assets/vendor/pdfjs/pdf.worker.min.js';ok(pdfjsLib)};sc.onerror=()=>{pdfjsP=null;ko()};document.head.appendChild(sc)}));
+async function drawPage(pdf,el,W){const page=await pdf.getPage(+el.dataset.n),vp=page.getViewport({scale:1}),dpr=Math.min(devicePixelRatio||1,2);
+  const v=page.getViewport({scale:W/vp.width*dpr}),c=document.createElement('canvas');c.width=Math.floor(v.width);c.height=Math.floor(v.height);
+  el.style.aspectRatio=`${vp.width}/${vp.height}`;await page.render({canvasContext:c.getContext('2d'),viewport:v}).promise;el.appendChild(c)}
+async function renderPdf(d){
+  const box=$('#vPages');box.innerHTML='';$('#vLoad').hidden=false;$('#vErr').hidden=true;
+  try{const lib=await loadPdfjs();task=lib.getDocument(d.file);const pdf=await task.promise;
+    const vp=(await pdf.getPage(1)).getViewport({scale:1}),W=Math.min($('#vBody').clientWidth-32,900);
+    obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){obs.unobserve(e.target);drawPage(pdf,e.target,W)}}),{root:$('#vBody'),rootMargin:'800px 0px'});
+    for(let n=1;n<=pdf.numPages;n++){const el=document.createElement('div');el.className='v-page';el.dataset.n=n;el.setAttribute('aria-label',`Page ${n} sur ${pdf.numPages}`);
+      el.style.width=W+'px';el.style.aspectRatio=`${vp.width}/${vp.height}`;box.appendChild(el);obs.observe(el)}
+    $('#vLoad').hidden=true;
+  }catch(err){if(!viewer.open)return;$('#vLoad').hidden=true;$('#vErr').hidden=false}
+}
+function openDoc(d){
+  $('#vPic').innerHTML=picto(d.picto);$('#vTitle').textContent=d.t;$('#vMeta').textContent=[d.size,d.pub&&`Publié le ${day(d.pub)}`].filter(Boolean).join(' · ');
+  $('#vDl').href=d.file;$('#vDl').setAttribute('download',d.file.split('/').pop());$('#vOpen').href=d.file;
+  viewer.showModal();$('#vBody').scrollTop=0;history.replaceState(null,'','#'+d.id);renderPdf(d);
+}
+function closeDoc(){viewer.close()}
+viewer.addEventListener('close',()=>{obs&&obs.disconnect();task&&task.destroy();task=obs=null;$('#vPages').innerHTML='';history.replaceState(null,'',location.pathname)});
+$('#vX').onclick=closeDoc;
+viewer.addEventListener('click',e=>{if(e.target===viewer)closeDoc()});
 render();
+/* Lien direct vers un document (ex. documents.html#pap) : il s'ouvre dans la visionneuse s'il est publié */
+{const d=DOCS.find(x=>'#'+x.id===location.hash);if(d&&d.file&&isOut(d))openDoc(d)}
 
 /* Apparitions + ciel */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
