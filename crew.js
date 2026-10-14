@@ -1,6 +1,7 @@
 /* TO VOTE · Envol — l'équipage illustré, commun à toutes les pages.
    charSVG(k[, g]) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam | sol), en variante femme ou homme
-   tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer) ; wave(svg) lui fait faire coucou.
+   tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer), puis qui change toute seule de temps en temps ;
+   wave(svg) lui fait faire coucou.
    Classes à poser sur le SVG : .happy (saut de joie), .sad (non de la tête), .wave (coucou), .boop (petit rebond).
    Le SVG reste lisible sans CSS (export en image de la carte d'embarquement). */
 (function () {
@@ -13,9 +14,18 @@
     etam: { outfit: INK, f: { skin: '#8D5524', hair: '#24160c' }, h: { skin: '#C68642', hair: '#3b2314' } }
   };
   CHARS.sol = CHARS.etam;
-  var GENDER = {};
-  ['pnc', 'pnt', 'cadre', 'etam'].forEach(function (k) { GENDER[k] = Math.random() < .5 ? 'f' : 'h'; });
+  var ROLES = ['pnc', 'pnt', 'cadre', 'etam'], GENDER = {};
+  function draw() { ROLES.forEach(function (k) { GENDER[k] = Math.random() < .5 ? 'f' : 'h'; }); }
+  function key() { return ROLES.map(function (k) { return GENDER[k]; }).join(''); }
+  /* Tirage à l'ouverture, jamais identique à celui de la visite précédente */
+  draw();
+  try {
+    var last = localStorage.getItem('tv_crew');
+    if (key() === last) { var r = ROLES[Math.random() * 4 | 0]; GENDER[r] = GENDER[r] === 'f' ? 'h' : 'f'; }
+    localStorage.setItem('tv_crew', key());
+  } catch (e) {}
   GENDER.sol = GENDER.etam;
+  var other = function (g) { return g === 'f' ? 'h' : 'f'; };
 
   function shade(hex, k) {
     var n = parseInt(hex.slice(1), 16), r = n >> 16, g = n >> 8 & 255, b = n & 255;
@@ -76,7 +86,7 @@
       return '<g class="' + cls + '"><path d="' + d + '" stroke="' + c.outfit + '" stroke-width="17" stroke-linecap="round" fill="none"/>' + cuff +
         '<circle cx="' + hx + '" cy="203" r="9.5" fill="' + c.skin + '"/><circle cx="' + (hx + (cls === 'cr-arm' ? -6 : 6)) + '" cy="199" r="4" fill="' + c.skin + '"/></g>';
     };
-    return '<svg class="char" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:' + blink + 's;--d:' + delay + 's">' +
+    return '<svg class="char" data-k="' + (k === 'sol' ? 'etam' : k) + '" data-g="' + v + '" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:' + blink + 's;--d:' + delay + 's">' +
       '<ellipse class="cr-shadow" cx="100" cy="213" rx="58" ry="7" fill="' + INK + '" opacity=".13"/>' +
       '<g class="cr-rig">' +
         arm('cr-arm-l', 'M60 151q-14 25-10 51', 50, cuffL) +
@@ -149,6 +159,9 @@
     /* Petit rebond au toucher */
     '.char.boop .cr-rig{animation:cr-boop .45s cubic-bezier(.3,1.5,.5,1)}',
     '@keyframes cr-boop{0%{transform:scale(1.1,.88)}45%{transform:scale(.95,1.06)}100%{transform:none}}',
+    /* Changement de variante : volte-face */
+    '.char.cr-out{animation:cr-out .22s ease-in forwards}@keyframes cr-out{to{transform:scaleX(0) translateY(4px)}}',
+    '.char.cr-in{animation:cr-in .5s cubic-bezier(.3,1.5,.5,1)}@keyframes cr-in{from{transform:scaleX(0) translateY(4px)}}',
     '@media (prefers-reduced-motion:reduce){.char *{animation:none!important;transition:none!important}}'
   ].join('\n');
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -200,7 +213,27 @@
     });
   }
 
+  /* Le personnage d'un métier change de variante (femme / homme), partout sur la page */
+  var BUSY = ['happy', 'sad', 'wave', 'boop', 'cr-out', 'cr-in'];
+  function swap(k) {
+    var g = other(GENDER[k]); GENDER[k] = g; if (k === 'etam') GENDER.sol = g;
+    [].forEach.call(document.querySelectorAll('.char[data-k="' + k + '"]'), function (s) {
+      var t = document.createElement('template'); t.innerHTML = charSVG(k, g);
+      var n = t.content.firstElementChild, r = s.getBoundingClientRect();
+      if (reduce || !r.width || r.bottom < 0 || r.top > innerHeight) { s.replaceWith(n); return; }
+      s.classList.add('cr-out');
+      setTimeout(function () { n.classList.add('cr-in'); s.replaceWith(n); setTimeout(function () { n.classList.remove('cr-in'); }, 520); }, 220);
+    });
+  }
+  /* Toutes les 6 secondes, un métier visible à l'écran change de variante */
+  setInterval(function () {
+    if (document.hidden) return;
+    var v = visible().filter(function (s) { return s.dataset.k && !BUSY.some(function (c) { return s.classList.contains(c); }); });
+    if (v.length) swap(v[Math.random() * v.length | 0].dataset.k);
+  }, 6000);
+
   window.charSVG = charSVG;
+  window.crewSwap = swap;
   window.crewGender = GENDER;
   window.wave = wave;
 })();
