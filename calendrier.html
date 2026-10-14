@@ -153,7 +153,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l" href="documents.html">Documents</a>
-  <a class="btn btn-ruby" href="#">Je vote</a>
+  <a class="btn btn-ruby" href="https://www.transavia.webvote.fr/" target="_blank" rel="noopener">Je vote</a>
 </nav>
 
 <main>
@@ -202,15 +202,15 @@ const PHASES=[
  {id:'preparation',n:'01',name:'Préparation',c:'var(--pink)',items:[
   {t:'Lancement officiel des élections',s:'2026-12-21T00:00:00+01:00',e:'2026-12-21T23:59:59+01:00',p:'Le top départ : le personnel est informé de l\'organisation des élections.'},
   {t:'Publication des listes électorales provisoires',s:'2027-02-22T00:00:00+01:00',e:'2027-02-22T23:59:59+01:00',p:'La liste des électeur·rices est publiée. Vérifie que tu y figures, dans le bon collège.',link:['faq.html#liste-electorale','Comment vérifier ?']},
-  {t:'Vérification des listes par les électeur·rices',s:'2027-02-22T00:00:00+01:00',e:'2027-02-25T23:59:59+01:00',range:true,p:'Une erreur sur ton nom, ton collège ou ton inscription ? Signale-la aux RH pendant ces quatre jours.'},
+  {t:'Vérification des listes par les électeur·rices',s:'2027-02-22T00:00:00+01:00',e:'2027-02-25T23:59:59+01:00',range:true,p:'Une erreur sur ton nom, ton collège ou ton inscription ? Signale-la aux RH au plus tard le 25 février à minuit.',ref:'PAP, art. 7.3'},
   {t:'Publication des listes électorales définitives',s:'2027-02-26T00:00:00+01:00',e:'2027-02-26T23:59:59+01:00',p:'La liste est arrêtée. Une contestation sur l\'électorat se fait devant le tribunal judiciaire, dans les 3 jours suivant la publication.',ref:'Art. R.2314-24 C. trav.'},
   {t:'Date limite de dépôt des candidatures et des professions de foi',s:'2027-03-01T12:00:00+01:00',e:'2027-03-01T12:00:00+01:00',time:'12h00',p:'Les listes de candidat·es et leurs professions de foi doivent être déposées avant midi.',link:['candidatures.html#se-presenter','Se présenter']},
-  {t:'Date limite de dépôt des délégué·es de liste',s:'2027-03-03T00:00:00+01:00',e:'2027-03-03T23:59:59+01:00',p:'Chaque liste désigne les personnes qui la représenteront pendant les opérations électorales.'},
+  {t:'Date limite de dépôt des délégué·es de liste',s:'2027-03-01T12:00:00+01:00',e:'2027-03-01T12:00:00+01:00',time:'12h00',p:'Chaque liste désigne, au plus tard avec son dépôt, la personne qui la représentera pendant les opérations électorales.',ref:'PAP, art. 8.3.1 et annexe 1'},
  ]},
  {id:'campagne',n:'02',name:'Campagne',c:'var(--peach)',items:[
-  {t:'Affichage des listes de candidat·es',s:'2027-03-05T00:00:00+01:00',e:'2027-03-05T23:59:59+01:00',p:'Les listes sont publiées ici et affichées, toutes au même format, dans un ordre tiré au sort.',link:['candidatures.html','Voir les listes']},
+  {t:'Affichage des listes de candidat·es',s:'2027-03-05T00:00:00+01:00',e:'2027-03-05T23:59:59+01:00',p:'Les listes sont publiées ici et affichées, toutes au même format, par ordre alphabétique des organisations syndicales.',link:['candidatures.html','Voir les listes']},
   {t:'Ouverture de la campagne électorale',s:'2027-03-05T00:00:00+01:00',e:'2027-03-05T23:59:59+01:00',p:'Les listes présentent leurs programmes. Lis les professions de foi de ton collège.'},
-  {t:'Envoi postal des identifiants',s:'2027-03-10T00:00:00+01:00',e:'2027-03-17T23:59:59+01:00',from:true,p:'Tes codes de vote arrivent par courrier à ton adresse personnelle. Vérifie dès maintenant qu\'elle est à jour dans ton espace RH.',link:['faq.html#codes','Pas reçu tes codes ?']},
+  {t:'Envoi postal des identifiants',s:'2027-03-10T00:00:00+01:00',e:'2027-03-17T23:59:59+01:00',from:true,p:'Ton identifiant arrive par courrier chez toi, avec la notice de vote. Ton mot de passe, lui, arrive sur ta messagerie pro au moment de te connecter. Vérifie dès maintenant que ton adresse est à jour dans ton espace RH.',link:['faq.html#codes','Pas reçu tes codes ?']},
   {t:'Fin de la campagne électorale',s:'2027-03-17T00:00:00+01:00',e:'2027-03-17T23:59:59+01:00',p:'Dernier jour de campagne, la veille de l\'ouverture du vote.'},
  ]},
  {id:'scrutin',n:'03',name:'Scrutin',c:'var(--green)',items:[
@@ -237,7 +237,7 @@ $('#phases').innerHTML=PHASES.map(ph=>{
     return `<li class="item glass" id="${it.id}"><div class="date">${dateHtml}</div>
       <div class="it-body"><h3>${it.t}</h3><p>${it.p}</p>${it.ref?`<p class="ref" style="margin-top:6px">${it.ref}</p>`:''}
       <div class="it-meta"><span class="st" data-st></span>${it.link?`<a class="lk" href="${it.link[0]}">${it.link[1]} →</a>`:''}</div></div></li>`}).join('')}
-    ${ph.id==='scrutin'?`<li class="item glass ghost" data-ghost><div class="date"><b>?</b><span>avril 2027</span></div><div class="it-body"><h3>2nd tour, si nécessaire</h3><p>Ses dates seront communiquées après la proclamation des résultats du 1er tour.</p></div></li>`:''}
+    ${ph.id==='scrutin'?`<li class="item glass ghost" data-ghost><div class="date"><b class="rng mono">9→16</b><span>avr 2027</span></div><div class="it-body"><h3>2nd tour, si nécessaire</h3><p>Seulement dans les collèges où le quorum n'est pas atteint ou où des sièges restent à pourvoir. Appel à candidatures le 1er avril, dépôt jusqu'au 5 avril à 12h00, listes affichées le 7 avril. Vote du 9 avril 9h00 au 16 avril 16h00, résultats le 16 avril.</p><p class="ref" style="margin-top:6px">PAP, art. 1 et annexe 1</p></div></li>`:''}
   </ol></section>`}).join('');
 
 /* ---------- Statuts selon la date (réelle ou simulée) ---------- */

@@ -106,6 +106,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .doc p{font-size:.93rem;opacity:.9}
 .doc .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding-top:12px;border-top:1.5px dashed rgba(20,13,138,.15)}
 .doc .when{font-size:.8rem;font-weight:600}
+.doc .acts{display:flex;gap:6px}
+.doc .dl{background:rgba(20,13,138,.08)}
 .doc.locked{background:rgba(255,255,255,.72)}
 .doc.locked .pic{filter:grayscale(.6);opacity:.75}
 .doc.locked h3,.doc.locked p{opacity:.7}
@@ -142,7 +144,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l" href="documents.html" aria-current="page">Documents</a>
-  <a class="btn btn-ruby" href="#">Je vote</a>
+  <a class="btn btn-ruby" href="https://www.transavia.webvote.fr/" target="_blank" rel="noopener">Je vote</a>
 </nav>
 
 <main>
@@ -186,20 +188,21 @@ const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelecto
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
 let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
 
-/* ---------- Documents (dates du calendrier électoral ; fichiers à déposer à la publication ; références à valider par la DRH) ----------
-   pub : date de publication (null = dès la signature, date encore inconnue). page : lien vers une page du site au lieu d'un PDF. */
+/* ---------- Documents (dates du PAP du 13 octobre 2026 ; fichiers à déposer à la publication ; références à valider par la DRH) ----------
+   pub : date de publication (null = date encore inconnue). file : PDF disponible sur le site. page : lien vers une page du site au lieu d'un PDF. */
 const CATS=[['all','Tous'],['orga','Organisation'],['listes','Listes'],['vote','Vote en ligne'],['resultats','Résultats']];
 const DOCS=[
- {id:'lancement',cat:'orga',picto:'info',t:'Note de lancement des élections',p:'L\'annonce officielle de l\'organisation des élections au personnel.',pub:'2026-12-21',ref:'Art. L.2314-4 C. trav.'},
- {id:'pap',cat:'orga',picto:'pap',t:'Protocole d\'accord préélectoral (PAP)',p:'Les règles du jeu négociées avec les syndicats : collèges, nombre de sièges, modalités du vote.',pub:null,ref:'Art. L.2314-5 et L.2314-6 C. trav.'},
- {id:'vote-electronique',cat:'orga',picto:'accord',t:'Accord sur le vote électronique',p:'Le cadre du vote en ligne : plateforme, sécurité, confidentialité de ton bulletin.',pub:null,ref:'Art. L.2314-26 C. trav.'},
- {id:'calendrier',cat:'orga',picto:'calendrier',t:'Calendrier électoral',p:'Toutes les étapes, du lancement à la proclamation des résultats.',pub:'2026-12-21',page:'calendrier.html'},
- {id:'listes-provisoires',cat:'listes',picto:'listes',t:'Listes électorales provisoires',p:'Vérifie que tu y figures, dans le bon collège. Une erreur ? Signale-la aux RH jusqu\'au 25 février.',pub:'2027-02-22'},
- {id:'listes-definitives',cat:'listes',picto:'listes',t:'Listes électorales définitives',p:'La liste arrêtée des électeur·rices, après les vérifications.',pub:'2027-02-26',ref:'Art. R.2314-24 C. trav.'},
- {id:'candidats',cat:'listes',picto:'candidats',t:'Listes de candidat·es et professions de foi',p:'Toutes les listes, au même format, dans un ordre tiré au sort.',pub:'2027-03-05',page:'candidatures.html'},
- {id:'guide',cat:'vote',picto:'guide',t:'Guide du vote en ligne',p:'Pas à pas : te connecter, voter pour les titulaires puis les suppléant·es, récupérer tes codes.',pub:'2027-03-05'},
- {id:'expertise',cat:'vote',picto:'expertise',t:'Rapport d\'expertise du système de vote',p:'Le contrôle indépendant de la plateforme : sécurité et anonymat du vote.',pub:'2027-03-10',ref:'Art. R.2314-9 C. trav.'},
- {id:'pv',cat:'resultats',picto:'pv',t:'Procès-verbaux des résultats',p:'Les résultats officiels du 1er tour, collège par collège.',pub:'2027-03-31'},
+ {id:'pap',cat:'orga',picto:'pap',t:'Protocole d\'accord préélectoral (PAP)',p:'Signé le 13 octobre 2026. Les règles de l\'élection : 4 collèges, 30 titulaires et 30 suppléant·es, calendrier des deux tours, vote électronique.',pub:'2026-10-13',file:'assets/docs/protocole-accord-preelectoral-2027.pdf',size:'PDF · 50 pages · 1,2 Mo',ref:'Art. L.2314-5 et L.2314-6 C. trav.'},
+ {id:'lancement',cat:'orga',picto:'info',t:'Note de lancement des élections',p:'L\'information officielle de l\'ensemble du personnel sur l\'organisation des élections.',pub:'2026-12-21',ref:'Art. L.2314-4 C. trav.'},
+ {id:'vote-electronique',cat:'orga',picto:'accord',t:'Accord sur le vote électronique',p:'L\'accord d\'entreprise du 6 juin 2017 et ses avenants : il autorise le vote en ligne et en fixe le cadre.',pub:null,ref:'Art. L.2314-26 C. trav. · PAP, art. 8.6'},
+ {id:'calendrier',cat:'orga',picto:'calendrier',t:'Calendrier électoral',p:'Toutes les étapes, du lancement à la proclamation des résultats, 2nd tour compris.',pub:'2026-10-13',page:'calendrier.html'},
+ {id:'listes-provisoires',cat:'listes',picto:'listes',t:'Listes électorales',p:'Vérifie que tu y figures, dans le bon collège. Une erreur ? Signale-la aux RH avant le 25 février 2027 à minuit.',pub:'2027-02-22',ref:'PAP, art. 7.3'},
+ {id:'listes-definitives',cat:'listes',picto:'listes',t:'Listes électorales définitives',p:'La liste arrêtée des électeur·rices, valable pour les deux tours.',pub:'2027-02-26',ref:'Art. R.2314-24 C. trav.'},
+ {id:'candidats',cat:'listes',picto:'candidats',t:'Listes de candidat·es et professions de foi',p:'Toutes les listes, au même format, par ordre alphabétique des organisations syndicales.',pub:'2027-03-05',page:'candidatures.html'},
+ {id:'notice',cat:'vote',picto:'guide',t:'Notice d\'information du vote',p:'Envoyée par courrier avec ton identifiant : te connecter, voter pour les titulaires puis les suppléant·es, obtenir de l\'aide.',pub:'2027-03-10',ref:'PAP, art. 8.7'},
+ {id:'expertise',cat:'vote',picto:'expertise',t:'Synthèse de l\'expertise du système de vote',p:'Le contrôle indépendant de la plateforme de vote : sécurité et anonymat du vote.',pub:null,ref:'PAP, art. 8.6.1 et annexe 4'},
+ {id:'pv',cat:'resultats',picto:'pv',t:'Procès-verbaux des résultats',p:'Les résultats officiels du 1er tour, collège par collège, signés par le bureau de vote.',pub:'2027-03-31',ref:'PAP, art. 8.8'},
+ {id:'appel-2nd-tour',cat:'resultats',picto:'info',t:'Appel à candidatures du 2nd tour',p:'Seulement si un 2nd tour est nécessaire : les collèges et sièges restant à pourvoir.',pub:'2027-04-01',ref:'PAP, annexe 1'},
 ];
 const MOIS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
 const day=iso=>{const [y,m,d]=iso.split('-').map(Number);return `${d===1?'1er':d} ${MOIS[m-1]} ${y}`};
@@ -210,8 +213,8 @@ const isOut=d=>demo||(d.pub&&new Date()>=at(d.pub));
 $('#filters').innerHTML=CATS.map(([k,n])=>`<button data-cat="${k}" aria-pressed="${k==='all'}">${n}<small>${k==='all'?DOCS.length:DOCS.filter(d=>d.cat===k).length}</small></button>`).join('');
 function render(){
   $('#docs').innerHTML=DOCS.map((d,i)=>{const out=isOut(d),rot=[-1.2,.8,-.4,1,-.8,.5][i%6];
-    const when=out?(d.pub?`Publié le ${day(d.pub)}`:'Publié'):(d.pub?`🔒 Le ${day(d.pub)}`:'🔒 Dès sa signature');
-    const act=out?(d.page?`<a class="btn btn-ink btn-sm" href="${d.page}">Voir →</a>`:`<button class="btn btn-ink btn-sm" data-open="${d.id}">📄 Consulter</button>`)
+    const when=out?(d.size||(d.pub?`Publié le ${day(d.pub)}`:'Publié')):(d.pub?`🔒 Le ${day(d.pub)}`:'🔒 Bientôt en ligne');
+    const act=out?(d.page?`<a class="btn btn-ink btn-sm" href="${d.page}">Voir →</a>`:d.file?`<span class="acts"><a class="btn btn-ink btn-sm" href="${d.file}" target="_blank" rel="noopener">📄 Consulter</a><a class="btn btn-sm dl" href="${d.file}" download aria-label="Télécharger le PDF">⬇</a></span>`:`<button class="btn btn-ink btn-sm" data-open="${d.id}">📄 Consulter</button>`)
                  :`<button class="btn btn-glass btn-sm" data-alert="${d.id}">🔔 Préviens-moi</button>`;
     return `<article class="doc${out?'':' locked'}" id="${d.id}" data-cat="${d.cat}" style="--rot:${rot}deg"${cat!=='all'&&d.cat!==cat?' hidden':''}>
       <div class="pic">${picto(d.picto)}</div>

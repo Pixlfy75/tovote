@@ -93,13 +93,14 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .fact p{font-size:.92rem;opacity:.85}
 
 /* ---------- Plan de cabine ---------- */
-.cabin-wrap{margin-top:36px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
-@media (max-width:1000px){.cabin-wrap{grid-template-columns:1fr}}
+.cabin-wrap{margin-top:36px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+.cabin-wrap>.cabin{grid-column:1/-1}
+@media (max-width:900px){.cabin-wrap{grid-template-columns:1fr}}
 .cabin{padding:clamp(18px,3vw,30px);overflow-x:auto}
 .fuselage{position:relative;margin:0 auto;width:max-content;padding:26px 40px 26px 110px;background:linear-gradient(180deg,#fff,#f1f0fb);border-radius:200px 46px 46px 200px;box-shadow:inset 0 -8px 20px rgba(20,13,138,.08),0 20px 40px -24px rgba(20,13,138,.4)}
 .fuselage::before{content:"";position:absolute;left:34px;top:50%;width:50px;height:34px;transform:translateY(-50%);border-radius:30px 6px 6px 30px;background:linear-gradient(90deg,#9fd6ff,#d9f2ff)}
-.seats{display:grid;grid-template-rows:42px 42px 26px 42px 42px;grid-auto-flow:column;grid-auto-columns:42px;column-gap:8px;row-gap:6px}
-.seat{width:42px;height:42px;border-radius:10px 10px 7px 7px;position:relative;transition:transform .2s,opacity .3s,box-shadow .2s;box-shadow:inset 0 -9px 0 rgba(0,0,0,.12)}
+.seats{display:grid;grid-template-rows:36px 36px 24px 36px 36px;grid-auto-flow:column;grid-auto-columns:36px;column-gap:6px;row-gap:6px}
+.seat{width:36px;height:36px;border-radius:9px 9px 6px 6px;position:relative;transition:transform .2s,opacity .3s,box-shadow .2s;box-shadow:inset 0 -9px 0 rgba(0,0,0,.12)}
 .seat:hover{transform:scale(1.12)}
 .seat .b{position:absolute;inset:auto 0 -4px 0;margin:auto;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--ink);font:900 .62rem/20px var(--f-head);text-align:center;box-shadow:0 2px 6px rgba(20,13,138,.25);display:none}
 .seat[data-badge] .b{display:block;bottom:auto;top:-8px;right:-8px;left:auto;margin:0}
@@ -111,7 +112,12 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .legend button{display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:600;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff}
 .legend button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .legend i{width:16px;height:16px;border-radius:5px}
-.info{padding:24px;position:sticky;top:100px}
+.info{padding:24px}
+.cabin.bycol .seat .b{display:none}
+.colbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:12px;font-size:.84rem;font-weight:600}
+.colbar button{padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff;font-weight:600}
+.colbar button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.colbar small{opacity:.6;margin-left:4px}
 .info .role{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:1.5rem;line-height:1;margin:10px 0}
 .info .vote{display:inline-block;font-size:.78rem;font-weight:600;border-radius:999px;padding:.3em .8em;background:#fff}
 .info .vote.d{background:var(--green)}
@@ -121,8 +127,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 @media (max-width:700px){
   .fuselage{padding:90px 18px 30px;border-radius:160px 160px 40px 40px}
   .fuselage::before{left:50%;top:26px;width:40px;height:44px;transform:translateX(-50%);border-radius:24px 24px 6px 6px}
-  .seats{grid-template-rows:none;grid-template-columns:38px 38px 22px 38px 38px;grid-auto-flow:row;grid-auto-rows:38px;grid-auto-columns:auto;row-gap:8px;column-gap:6px}
-  .seat{width:38px;height:38px}
+  .seats{grid-template-rows:none;grid-template-columns:34px 34px 20px 34px 34px;grid-auto-flow:row;grid-auto-rows:34px;grid-auto-columns:auto;row-gap:7px;column-gap:6px}
+  .seat{width:34px;height:34px}
   .aisle span{display:none}
 }
 
@@ -223,7 +229,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l" href="documents.html">Documents</a>
-  <a class="btn btn-ruby" href="#">Je vote</a>
+  <a class="btn btn-ruby" href="https://www.transavia.webvote.fr/" target="_blank" rel="noopener">Je vote</a>
 </nav>
 
 <main>
@@ -252,11 +258,12 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <div class="wrap">
     <div class="center"><h2 class="h sec-title rv">Qui est <span class="g">à bord ?</span></h2><p class="sec-lead rv">La composition du CSE, version plan de cabine. Touche un siège ou une légende.</p></div>
     <div class="cabin-wrap">
+      <div class="cabin glass" id="cabin">
+        <div class="fuselage"><div class="seats" id="seats"></div></div>
+      </div>
       <div>
-        <div class="cabin glass" id="cabin">
-          <div class="fuselage"><div class="seats" id="seats"></div></div>
-        </div>
         <div class="legend" id="legend"></div>
+        <div class="colbar" id="colbar"><span>Par collège :</span></div>
       </div>
       <aside class="info glass" id="info" aria-live="polite"></aside>
     </div>
@@ -356,7 +363,10 @@ $$('.rv').forEach(el=>io.observe(el));
 $('#crewRow').innerHTML=['pnc','pnt','cadre','etam'].map(k=>`<div class="bob">${charSVG(k)}</div>`).join('');
 if(!reduce)setInterval(()=>{const v=$$('.char').filter(s=>{const r=s.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0});if(v.length)wave(v[Math.random()*v.length|0])},3400);
 
-/* ---------- Plan de cabine (nombres fictifs : 20 titulaires = 8 PNC + 4 PNT + 3 Cadres + 5 ETAM) ---------- */
+/* ---------- Plan de cabine : 30 titulaires et 30 suppléant·es (PAP du 13 octobre 2026, art. 5) ----------
+   Répartition par collège : PNC 15, PNT 10, Cadres 3, ETAM 2. Représentant·es syndicaux : nombre d'exemple. */
+const COLS=[['pnc','PNC',15,'4e collège'],['pnt','PNT',10,'3e collège'],['cadre','Cadres',3,'2e collège'],['etam','ETAM',2,'1er collège']];
+const byCol=[];COLS.forEach(([k,,n])=>{for(let j=0;j<n;j++)byCol.push(k)});
 const ROLES={
   pres:{n:'Président·e',c:'r-pres',v:'Ne vote pas sur les avis',vd:false,t:'L\'employeur, ou son représentant, préside le CSE. Il fixe l\'ordre du jour avec le ou la secrétaire, informe et consulte les élu·es. Il ne participe pas au vote quand il consulte les élu·es.',r:'Art. L.2315-23 et L.2315-32 C. trav.'},
   collab:{n:'Collaborateur·rices',c:'r-collab',v:'Voix consultative',vd:false,t:'Le ou la président·e peut être assisté·e d\'au plus trois collaborateur·rices, qui participent aux échanges sans voter.',r:'Art. L.2315-23 C. trav.'},
@@ -366,22 +376,27 @@ const ROLES={
   sup:{n:'Élu·es suppléant·es',c:'r-sup',v:'Siègent en remplacement',vd:false,t:'Tu les élis aussi. Ils et elles remplacent un·e titulaire absent·e et assistent alors aux réunions à sa place.',r:'Art. L.2314-1 C. trav.'},
   rs:{n:'Représentant·es syndicaux',c:'r-rs',v:'Voix consultative',vd:false,t:'Chaque organisation syndicale représentative peut désigner un·e représentant·e au CSE, qui assiste aux réunions sans voter.',r:'Art. L.2314-2 C. trav.'},
 };
-const LIST=[['pres'],['collab'],['collab'],['collab'],...Array(20).fill(['tit']),['rs'],['rs'],['rs'],null,...Array(20).fill(['sup'])];
-LIST[4]=['sec'];LIST[5]=['tre'];
+const LIST=[['pres'],['collab'],['collab'],['collab'],...byCol.map(c=>['tit',c]),['rs'],['rs'],['rs'],null,...byCol.map(c=>['sup',c])];
+LIST[4]=['sec',byCol[0]];LIST[5]=['tre',byCol[1]];
 let html='',i=0;
 for(let col=0;i<LIST.length;col++){for(let r=0;r<5;r++){if(r===2){html+=`<div class="aisle" aria-hidden="true"><span>${col===0?'AVANT':''}</span></div>`;continue}
   const it=LIST[i++];if(!it){html+='<div></div>';continue}const k=it[0],R=ROLES[k];
-  html+=`<button class="seat ${R.c}" data-r="${k}" ${k==='sec'?'data-badge="S"':k==='tre'?'data-badge="T"':''} aria-label="${R.n}"><span class="b">${k==='sec'?'S':'T'}</span></button>`}}
+  html+=`<button class="seat ${R.c}" data-r="${k}"${it[1]?` data-c="${it[1]}"`:''} ${k==='sec'?'data-badge="S"':k==='tre'?'data-badge="T"':''} aria-label="${R.n}"><span class="b">${k==='sec'?'S':'T'}</span></button>`}}
 $('#seats').innerHTML=html;
 const LEG=[['tit','r-tit'],['sup','r-sup'],['pres','r-pres'],['collab','r-collab'],['rs','r-rs']];
 $('#legend').innerHTML=LEG.map(([k,c])=>`<button data-r="${k}" aria-pressed="false"><i class="${c}"></i>${ROLES[k].n}</button>`).join('');
 function showRole(k){const R=ROLES[k],group=k==='sec'||k==='tre'?[k]:k==='tit'?['tit','sec','tre']:[k];
-  $('#cabin').classList.add('focus');$$('.seat').forEach(s=>s.classList.toggle('hl',group.includes(s.dataset.r)));
+  $('#cabin').classList.add('focus');$('#cabin').classList.remove('bycol');$$('#colbar button').forEach(b=>b.setAttribute('aria-pressed',false));$$('.seat').forEach(s=>s.classList.toggle('hl',group.includes(s.dataset.r)));
   $$('#legend button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===k||(k!=='tit'&&group.includes(b.dataset.r))));
   const count=$$('.seat').filter(s=>group.includes(s.dataset.r)).length;
   $('#info').innerHTML=`<div class="swap"><span class="chip"><i></i>${count} siège${count>1?'s':''}</span><div class="role">${R.n}</div><span class="vote ${R.vd?'d':''}">${R.v}</span><p>${R.t}</p><p class="ref">${R.r}</p></div>`}
 $$('.seat,#legend button').forEach(b=>b.onclick=()=>showRole(b.dataset.r));
-$('#info').innerHTML=`<span class="chip"><i></i>Plan de cabine</span><div class="role">Touche un siège</div><p>Chaque siège représente une personne qui participe au CSE. Les couleurs indiquent son rôle et si elle vote ou non.</p><p class="ref">Nombre de sièges fictif, fixé en réalité par le protocole d'accord préélectoral.</p>`;
+$('#colbar').innerHTML+=COLS.map(([k,n,c])=>`<button data-col="${k}" aria-pressed="false">${n}<small>${c}</small></button>`).join('');
+$$('#colbar button').forEach(b=>b.onclick=()=>{const [k,n,c,no]=COLS.find(x=>x[0]===b.dataset.col);
+  $('#cabin').classList.add('focus','bycol');$$('.seat').forEach(s=>s.classList.toggle('hl',s.dataset.c===k));
+  $$('#legend button').forEach(x=>x.setAttribute('aria-pressed',false));$$('#colbar button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  $('#info').innerHTML=`<div class="swap"><span class="chip"><i></i>${no}</span><div class="role">${n}</div><span class="vote d">${c} titulaires + ${c} suppléant·es</span><p>Les salarié·es du collège ${n} élisent ${c} titulaire${c>1?'s':''} et autant de suppléant·es. Le ou la secrétaire et le ou la trésorier·e sont désigné·es ensuite parmi les titulaires, quel que soit leur collège.</p><p class="ref">PAP du 13 octobre 2026, art. 5.2</p></div>`});
+$('#info').innerHTML=`<span class="chip"><i></i>Plan de cabine</span><div class="role">Touche un siège</div><p>Chaque siège représente une personne qui participe au CSE. Les couleurs indiquent son rôle et si elle vote ou non.</p><p><strong>30 titulaires et 30 suppléant·es</strong> : 26 sièges légaux, plus 4 sièges supplémentaires accordés par le protocole d'accord préélectoral.</p><p class="ref">PAP du 13 octobre 2026, art. 5 · Art. R.2314-1 C. trav. · représentant·es syndicaux : nombre d'exemple</p>`;
 
 /* ---------- Missions ---------- */
 const S='stroke="#140D8A" stroke-width="3"';

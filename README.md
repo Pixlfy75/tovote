@@ -14,4 +14,4 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 
 Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
 
-À noter : les dates suivent le calendrier électoral communiqué ; sièges, effectifs, listes et noms sont fictifs. Les références juridiques sont à faire valider. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.
+À noter : dates, collèges, sièges et proportions femmes/hommes suivent le protocole d'accord préélectoral du 13 octobre 2026 (`assets/docs/`) ; les listes et noms de candidat·es sont fictifs. Les références juridiques sont à faire valider. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.

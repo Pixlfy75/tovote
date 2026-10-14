@@ -101,7 +101,7 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 .hero{min-height:100svh;display:grid;align-items:center;padding-top:110px;padding-bottom:60px}
 .hero .grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,4vw,56px);align-items:center}
 @media (max-width:900px){.hero .grid{grid-template-columns:1fr}}
-.hero h1{font-size:clamp(2rem,4.6vw,4.6rem)}
+.hero h1{font-size:clamp(2rem,4.5vw,4.1rem)}
 .hero h1 .g{color:var(--web-green)}
 .hero p.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:30ch;margin-top:22px}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
@@ -327,7 +327,7 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l" href="documents.html">Documents</a>
-  <a class="btn btn-ruby" href="#">Je vote</a>
+  <a class="btn btn-ruby" href="https://www.transavia.webvote.fr/" target="_blank" rel="noopener">Je vote</a>
 </nav>
 
 <aside class="alti" aria-hidden="true">
@@ -448,7 +448,7 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
 <section class="sec" id="listes" style="padding-top:0">
   <div class="wrap center">
     <h2 class="h sec-title rv">Les listes, <span class="g">côté hublot.</span></h2>
-    <p class="sec-lead rv" id="hubLead">Les volets s'ouvrent le 5 mars. Même hublot pour chaque liste, ordre tiré au sort à chaque visite.</p>
+    <p class="sec-lead rv" id="hubLead">Les volets s'ouvrent le 5 mars. Même hublot pour chaque liste, par ordre alphabétique des organisations syndicales.</p>
     <div class="hublots" id="hublots">
       <button class="hub" disabled data-list="A"><span class="frame"><span class="win"><span class="sky-in"></span><span class="txt"><b>Liste exemple A</b><small>Lire la profession de foi</small></span><span class="shade"><i></i></span></span></span><span class="cap">🔒 5 mars</span></button>
       <button class="hub" disabled data-list="B"><span class="frame"><span class="win"><span class="sky-in"></span><span class="txt"><b>Liste exemple B</b><small>Lire la profession de foi</small></span><span class="shade"><i></i></span></span></span><span class="cap">🔒 5 mars</span></button>
@@ -478,7 +478,7 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
       <div class="safety-grid">
       <button class="panel"><span class="no">1</span><span class="pic" data-picto="enligne"></span><span class="q">En rotation pendant le vote ?</span><span class="a">Tu votes en ligne, depuis ton téléphone, où que tu sois, 24h/24 du 18 au 31 mars.</span><span class="more">Touche pour la réponse</span></button>
       <button class="panel"><span class="no">2</span><span class="pic" data-picto="anonymat"></span><span class="q">Mon vote est-il anonyme ?</span><span class="a">Oui. La plateforme sépare ton identité de ton bulletin : personne ne sait pour qui tu votes.</span><span class="more">Touche pour la réponse</span></button>
-      <button class="panel"><span class="no">3</span><span class="pic" data-picto="codes"></span><span class="q">Pas reçu mes codes ?</span><span class="a">Ils arrivent par courrier dès le 10 mars. Rien reçu ? Utilise la procédure de récupération de la plateforme ; si ça bloque, contacte les RH.</span><span class="more">Touche pour la réponse</span></button>
+      <button class="panel"><span class="no">3</span><span class="pic" data-picto="codes"></span><span class="q">Pas reçu mes codes ?</span><span class="a">Ton identifiant arrive par courrier dès le 10 mars, ton mot de passe sur ta messagerie pro. Perdu ? Demande-le sur le site de vote, il arrive par SMS.</span><span class="more">Touche pour la réponse</span></button>
       <button class="panel"><span class="no">4</span><span class="pic" data-picto="voter"></span><span class="q">Qui peut voter ?</span><span class="a">Toute personne salariée d'au moins 16 ans, avec 3 mois d'ancienneté. Syndiqué·e ou non.</span><span class="more">Touche pour la réponse</span></button>
       <button class="panel"><span class="no">5</span><span class="pic" data-picto="candidater"></span><span class="q">Et me présenter ?</span><span class="a">Dès 18 ans et 1 an d'ancienneté. Au 1er tour, sur une liste syndicale ; au 2nd tour, candidature libre.</span><span class="more">Touche pour la réponse</span></button>
       <button class="panel"><span class="no">6</span><span class="pic" data-picto="tour2"></span><span class="q">Pourquoi un 2nd tour ?</span><span class="a">Si moins de la moitié des inscrit·es vote au 1er tour, ou si des sièges restent à pourvoir, un 2nd tour est organisé.</span><span class="more">Touche pour la réponse</span></button>
@@ -631,8 +631,7 @@ $('#ciShare').onclick=async()=>{try{const blob=await new Promise(r=>$('#pass').t
   if(navigator.canShare?.({files:[file]}))await navigator.share({files:[file],title:'TO VOTE 2027',text:'Mon check-in est fait 🗳️'});else{await navigator.clipboard?.writeText(location.href);toast('🔗 Lien copié')}}catch{}};
 
 /* ---------- Hublots ---------- */
-(()=>{const g=$('#hublots');[...g.children].sort(()=>Math.random()-.5).forEach(x=>g.append(x))})();
-function openHublots(){$('#hublots').classList.add('open');$$('.hub').forEach(h=>{h.disabled=false;$('.cap',h).textContent='Liste exemple '+h.dataset.list});$('#hubLead').textContent='Les volets sont ouverts. Touche un hublot pour lire la profession de foi. Ordre tiré au sort.'}
+function openHublots(){$('#hublots').classList.add('open');$$('.hub').forEach(h=>{h.disabled=false;$('.cap',h).textContent='Liste exemple '+h.dataset.list});$('#hubLead').textContent='Les volets sont ouverts. Touche un hublot pour lire la profession de foi. Ordre alphabétique des organisations syndicales.'}
 $('#demoOpen').onclick=e=>{const g=$('#hublots');if(g.classList.contains('open')){g.classList.remove('open');$$('.hub').forEach(h=>{h.disabled=true;$('.cap',h).textContent='🔒 5 mars'});e.currentTarget.textContent='🧪 Démo : simuler le 5 mars'}else{openHublots();e.currentTarget.textContent='↺ Refermer les volets'}};
 $$('.hub').forEach(h=>h.onclick=()=>{$('#pfT').textContent='Liste exemple '+h.dataset.list;$('#pf').showModal()});
 $('#pfX').onclick=()=>$('#pf').close();$('#pf').onclick=e=>{if(e.target.id==='pf')$('#pf').close()};
