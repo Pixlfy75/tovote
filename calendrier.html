@@ -63,7 +63,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .nav a.l{text-decoration:none;font-weight:600;font-size:.9rem;padding:.6em 1em;border-radius:999px}
 .nav a.l:hover{background:rgba(255,255,255,.7)}
 .nav a.l[aria-current="page"]{background:var(--ink);color:#fff}
-.nav a.l .soon{font-size:.65rem;opacity:.6;margin-left:4px}
 .nav .btn{padding:.7em 1.2em;font-size:.9rem}
 @media (max-width:1000px){.nav a.l:not([aria-current]){display:none}}
 
@@ -153,7 +152,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <a class="l" href="calendrier.html" aria-current="page">Calendrier</a>
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
-  <a class="l soon-link" href="#">Documents<span class="soon">bientôt</span></a>
+  <a class="l" href="documents.html">Documents</a>
   <a class="btn btn-ruby" href="#">Je vote</a>
 </nav>
 
@@ -183,7 +182,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <div class="wrap">
     <div class="bar glass">
       <img src="assets/img/transavia-wordmark-green.svg" alt="transavia">
-      <nav><a href="#">Mentions légales</a><a href="#">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
+      <nav><a href="#">Mentions légales</a><a href="documents.html#pap">PAP</a><a href="#">Accessibilité</a><a href="#">Contact RH</a></nav>
     </div>
   </div>
 </footer>
@@ -193,7 +192,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 <script>
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-$$('.soon-link').forEach(a=>a.onclick=e=>{e.preventDefault();toast('📄 Page en préparation')});
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
 let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
 

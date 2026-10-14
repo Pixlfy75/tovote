@@ -7,7 +7,9 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `calendrier.html` : Calendrier en plan de vol (préparation, campagne, scrutin)
 - `candidatures.html` : Candidatures par collège (PNC, PNT, Cadres, ETAM) et calculateur de parité
 - `faq.html` : FAQ avec recherche
+- `documents.html` : Documents officiels (PAP, listes, guide du vote, résultats), publiés à leur date
 - `crew.js` : l'équipage illustré, commun à toutes les pages (une variante femme ou homme par métier, tirée au hasard à chaque ouverture, puis qui change toute seule toutes les 6 secondes)
+- `pictos.js` : les pictogrammes « carte de sécurité », communs à l'accueil, la FAQ et les documents
 - `assets/` : logos Transavia et TO VOTE, polices Söhne (Buch, Halbfett)
 
 Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
