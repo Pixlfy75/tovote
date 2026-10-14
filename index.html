@@ -76,8 +76,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .nav img{width:40px;height:40px}
 .nav a.l{text-decoration:none;font-weight:600;font-size:.9rem;padding:.6em 1em;border-radius:999px}
 .nav a.l:hover{background:rgba(255,255,255,.7)}
+.nav a.l[aria-current="page"]{background:var(--ink);color:#fff}
 .nav .btn{padding:.7em 1.2em;font-size:.9rem}
-@media (max-width:760px){.nav a.l{display:none}}
+@media (max-width:1000px){.nav a.l:not([aria-current]){display:none}}
 
 /* ---------- Altimètre (progression) ---------- */
 .alti{position:fixed;right:clamp(10px,2vw,26px);top:50%;transform:translateY(-50%);z-index:50;height:52vh;width:46px;display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -320,10 +321,10 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
 <svg class="giant giant-plane" viewBox="0 0 24 24" aria-hidden="true" data-speed=".5" data-rot="12"><path d="M22 3 2 11l7 3 2 7 3-5 5 4z" fill="#fff" stroke="#140D8A" stroke-width=".9" stroke-linejoin="round"/><path d="m9 14 13-11" stroke="#140D8A" stroke-width=".9"/></svg>
 
 <nav class="nav glass" aria-label="Navigation principale">
-  <img src="assets/img/tovote-icon.png" alt="TO VOTE">
+  <a href="index.html" aria-label="Accueil TO VOTE"><img src="assets/img/tovote-icon.png" alt=""></a>
+  <a class="l" href="index.html" aria-current="page">Accueil</a>
   <a class="l" href="cse.html">Le CSE</a>
   <a class="l" href="calendrier.html">Calendrier</a>
-  <a class="l" href="#checkin">Check-in</a>
   <a class="l" href="candidatures.html">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l" href="documents.html">Documents</a>

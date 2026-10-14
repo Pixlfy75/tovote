@@ -1,5 +1,5 @@
 /* TO VOTE · Envol — l'équipage illustré, commun à toutes les pages.
-   charSVG(k[, g]) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam | sol), en variante femme ou homme
+   charSVG(k[, g]) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam, ou sol = Cadres ou ETAM au hasard), en variante femme ou homme
    tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer), puis qui change toute seule de temps en temps ;
    wave(svg) lui fait faire coucou.
    Classes à poser sur le SVG : .happy (saut de joie), .sad (non de la tête), .wave (coucou), .boop (petit rebond).
@@ -13,7 +13,6 @@
     cadre: { outfit: '#0053FF', f: { skin: '#F1C27D', hair: '#9a4a24' }, h: { skin: '#E0AC69', hair: '#2b1a0e' } },
     etam: { outfit: INK, f: { skin: '#8D5524', hair: '#24160c' }, h: { skin: '#C68642', hair: '#3b2314' } }
   };
-  CHARS.sol = CHARS.etam;
   var ROLES = ['pnc', 'pnt', 'cadre', 'etam'], GENDER = {};
   function draw() { ROLES.forEach(function (k) { GENDER[k] = Math.random() < .5 ? 'f' : 'h'; }); }
   function key() { return ROLES.map(function (k) { return GENDER[k]; }).join(''); }
@@ -24,7 +23,8 @@
     if (key() === last) { var r = ROLES[Math.random() * 4 | 0]; GENDER[r] = GENDER[r] === 'f' ? 'h' : 'f'; }
     localStorage.setItem('tv_crew', key());
   } catch (e) {}
-  GENDER.sol = GENDER.etam;
+  /* « Sol » regroupe Cadres et ETAM : son personnage est tiré au hasard parmi les deux métiers et les deux variantes */
+  var SOL = { k: Math.random() < .5 ? 'cadre' : 'etam' }; SOL.g = GENDER[SOL.k];
   var other = function (g) { return g === 'f' ? 'h' : 'f'; };
 
   function shade(hex, k) {
@@ -75,7 +75,8 @@
 
   /* g : 'f' ou 'h' pour forcer une variante ; sinon celle tirée pour ce métier à l'ouverture de la page */
   function charSVG(kind, g) {
-    var k = CHARS[kind] ? kind : 'pnc', v = g === 'f' || g === 'h' ? g : GENDER[k];
+    var isSol = kind === 'sol', k = isSol ? SOL.k : (CHARS[kind] ? kind : 'pnc');
+    var v = g === 'f' || g === 'h' ? g : (isSol ? SOL.g : GENDER[k]);
     var c = { outfit: CHARS[k].outfit, skin: CHARS[k][v].skin, hair: CHARS[k][v].hair }, p = parts(k, v, c), dk = shade(c.skin, .28);
     var lashL = v === 'f' ? '<path d="M82.6 82.4l-3.4-2.6" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>' : '';
     var lashR = v === 'f' ? '<path d="M117.4 82.4l3.4-2.6" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>' : '';
@@ -86,7 +87,7 @@
       return '<g class="' + cls + '"><path d="' + d + '" stroke="' + c.outfit + '" stroke-width="17" stroke-linecap="round" fill="none"/>' + cuff +
         '<circle cx="' + hx + '" cy="203" r="9.5" fill="' + c.skin + '"/><circle cx="' + (hx + (cls === 'cr-arm' ? -6 : 6)) + '" cy="199" r="4" fill="' + c.skin + '"/></g>';
     };
-    return '<svg class="char" data-k="' + (k === 'sol' ? 'etam' : k) + '" data-g="' + v + '" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:' + blink + 's;--d:' + delay + 's">' +
+    return '<svg class="char" data-k="' + (isSol ? 'sol' : k) + '" data-g="' + v + '" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:' + blink + 's;--d:' + delay + 's">' +
       '<ellipse class="cr-shadow" cx="100" cy="213" rx="58" ry="7" fill="' + INK + '" opacity=".13"/>' +
       '<g class="cr-rig">' +
         arm('cr-arm-l', 'M60 151q-14 25-10 51', 50, cuffL) +
@@ -216,9 +217,13 @@
   /* Le personnage d'un métier change de variante (femme / homme), partout sur la page */
   var BUSY = ['happy', 'sad', 'wave', 'boop', 'cr-out', 'cr-in'];
   function swap(k) {
-    var g = other(GENDER[k]); GENDER[k] = g; if (k === 'etam') GENDER.sol = g;
+    var html;
+    if (k === 'sol') { /* une autre combinaison métier × variante que l'actuelle */
+      var combos = [['cadre', 'f'], ['cadre', 'h'], ['etam', 'f'], ['etam', 'h']].filter(function (c) { return c[0] !== SOL.k || c[1] !== SOL.g; });
+      var c = combos[Math.random() * combos.length | 0]; SOL.k = c[0]; SOL.g = c[1]; html = charSVG('sol');
+    } else { var g = other(GENDER[k]); GENDER[k] = g; html = charSVG(k, g); }
     [].forEach.call(document.querySelectorAll('.char[data-k="' + k + '"]'), function (s) {
-      var t = document.createElement('template'); t.innerHTML = charSVG(k, g);
+      var t = document.createElement('template'); t.innerHTML = html;
       var n = t.content.firstElementChild, r = s.getBoundingClientRect();
       if (reduce || !r.width || r.bottom < 0 || r.top > innerHeight) { s.replaceWith(n); return; }
       s.classList.add('cr-out');
@@ -235,5 +240,6 @@
   window.charSVG = charSVG;
   window.crewSwap = swap;
   window.crewGender = GENDER;
+  window.crewSol = SOL;
   window.wave = wave;
 })();
