@@ -1,16 +1,21 @@
 /* TO VOTE · Envol — l'équipage illustré, commun à toutes les pages.
-   charSVG(k) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam | sol) ; wave(svg) lui fait faire coucou.
+   charSVG(k[, g]) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam | sol), en variante femme ou homme
+   tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer) ; wave(svg) lui fait faire coucou.
    Classes à poser sur le SVG : .happy (saut de joie), .sad (non de la tête), .wave (coucou), .boop (petit rebond).
    Le SVG reste lisible sans CSS (export en image de la carte d'embarquement). */
 (function () {
   var INK = '#140D8A', GOLD = '#F9C74F', GREEN = '#05CE78', PEACH = '#FF8867';
+  /* Chaque métier existe en variante femme (f) et homme (h), tirée au hasard à chaque ouverture de page */
   var CHARS = {
-    pnc: { skin: '#8D5524', hair: '#1d1350', outfit: INK },
-    pnt: { skin: '#F1C27D', hair: '#7a5a2a', outfit: INK },
-    cadre: { skin: '#E0AC69', hair: '#2b1a0e', outfit: '#0053FF' },
-    etam: { skin: '#C68642', hair: '#3b2314', outfit: INK }
+    pnc: { outfit: INK, f: { skin: '#8D5524', hair: '#1d1350' }, h: { skin: '#E0AC69', hair: '#3b2314' } },
+    pnt: { outfit: INK, f: { skin: '#C68642', hair: '#2b1a0e' }, h: { skin: '#F1C27D', hair: '#7a5a2a' } },
+    cadre: { outfit: '#0053FF', f: { skin: '#F1C27D', hair: '#9a4a24' }, h: { skin: '#E0AC69', hair: '#2b1a0e' } },
+    etam: { outfit: INK, f: { skin: '#8D5524', hair: '#24160c' }, h: { skin: '#C68642', hair: '#3b2314' } }
   };
   CHARS.sol = CHARS.etam;
+  var GENDER = {};
+  ['pnc', 'pnt', 'cadre', 'etam'].forEach(function (k) { GENDER[k] = Math.random() < .5 ? 'f' : 'h'; });
+  GENDER.sol = GENDER.etam;
 
   function shade(hex, k) {
     var n = parseInt(hex.slice(1), 16), r = n >> 16, g = n >> 8 & 255, b = n & 255;
@@ -18,38 +23,52 @@
     return '#' + f(r) + f(g) + f(b);
   }
 
-  /* Détails par métier : derrière la tête, coiffure, col et tenue, accessoires du visage, bras */
-  function parts(k, c) {
+  /* Détails par métier et variante : derrière la tête, coiffure, col et tenue, accessoires du visage, galons */
+  function parts(k, g, c) {
+    var F = g === 'f', hl = function (d) { return '<path d="' + d + '" stroke="#fff" stroke-opacity=".22" stroke-width="3" fill="none" stroke-linecap="round"/>'; };
+    var wings = '<path d="M58 174q9-7 22-3q-10 3-14 7z" fill="' + GOLD + '"/>';
+    var shortHair = '<path d="M63 82c-3-28 14-46 37-46 23 0 39 16 37 42-5-9-12-15-21-17-14 5-34 9-53 21z" fill="' + c.hair + '"/>' + hl('M84 44c10-4 22-3 32 3');
     if (k === 'pnc') return {
-      back: '<circle cx="137" cy="54" r="15" fill="' + c.hair + '"/><rect x="124" y="60" width="12" height="6" rx="3" fill="' + GREEN + '" transform="rotate(-35 130 63)"/>',
-      top: '<path d="M62 86c-2-30 15-48 38-48s40 17 38 46c-6-14-18-23-34-25-12 8-26 14-42 27z" fill="' + c.hair + '"/><path d="M80 47c10-5 24-5 34 1" stroke="#fff" stroke-opacity=".22" stroke-width="3" fill="none" stroke-linecap="round"/>',
-      outfit: '<path d="M83 138l17 24 17-24z" fill="#fff"/><path d="M81 140c11 10 27 10 38 0l-5 13c-8 7-20 7-28 0z" fill="' + GREEN + '"/><path d="M100 151l-11 19 8-2 3 8 3-8 8 2z" fill="' + GREEN + '"/><path d="M58 174q9-7 22-3q-10 3-14 7z" fill="' + GOLD + '"/><rect x="120" y="170" width="16" height="7" rx="2" fill="#fff"/>',
-      face: '', cuff: ''
+      back: F ? '<circle cx="137" cy="54" r="15" fill="' + c.hair + '"/><rect x="124" y="60" width="12" height="6" rx="3" fill="' + GREEN + '" transform="rotate(-35 130 63)"/>' : '',
+      top: F ? '<path d="M62 86c-2-30 15-48 38-48s40 17 38 46c-6-14-18-23-34-25-12 8-26 14-42 27z" fill="' + c.hair + '"/>' + hl('M80 47c10-5 24-5 34 1') : shortHair,
+      outfit: (F
+        ? '<path d="M83 138l17 24 17-24z" fill="#fff"/><path d="M81 140c11 10 27 10 38 0l-5 13c-8 7-20 7-28 0z" fill="' + GREEN + '"/><path d="M100 151l-11 19 8-2 3 8 3-8 8 2z" fill="' + GREEN + '"/>'
+        : '<path d="M83 138l17 26 17-26z" fill="#fff"/><path d="M96 141h8l3 31-7 8-7-8z" fill="' + GREEN + '"/>') +
+        wings + '<rect x="120" y="170" width="16" height="7" rx="2" fill="#fff"/>',
+      face: '', cuff: false, earrings: F
     };
     if (k === 'pnt') return {
-      back: '',
-      top: '<path d="M64 66c0 12 2 20 5 25V66zM136 66c0 12-2 20-5 25V66z" fill="' + c.hair + '"/><g transform="translate(0 -6)"><path d="M60 66c2-22 20-33 40-33s38 11 40 33z" fill="' + INK + '"/><path d="M70 44c8-6 18-8 28-8" stroke="#fff" stroke-opacity=".18" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M62 69q38 14 76 0l-1 6q-37 13-74 0z" fill="#0b0657"/><path d="M86 49q14-6 28 0l-3 5q-11-4-22 0z" fill="' + GOLD + '"/><circle cx="100" cy="46" r="4.5" fill="' + GOLD + '"/></g>',
-      outfit: '<path d="M82 138l18 28 18-28z" fill="#fff"/><path d="M96 141h8l3 31-7 8-7-8z" fill="#0b0657"/><path d="M58 174q9-7 22-3q-10 3-14 7z" fill="' + GOLD + '"/><path d="M52 154l20-6M128 148l20 6" stroke="' + GOLD + '" stroke-width="4" stroke-linecap="round"/>',
-      face: '', cuff: true
+      back: F ? '<path d="M57 72c-7 24-5 42 4 52h18c-9-13-12-31-10-52zM143 72c7 24 5 42-4 52h-18c9-13 12-31 10-52z" fill="' + c.hair + '"/>' : '',
+      top: '<path d="M64 66c0 12 2 20 5 25V66zM136 66c0 12-2 20-5 25V66z" fill="' + c.hair + '"/><g transform="translate(0 -6)"><path d="M60 66c2-22 20-33 40-33s38 11 40 33z" fill="' + INK + '"/>' + hl('M70 44c8-6 18-8 28-8') + '<rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M62 69q38 14 76 0l-1 6q-37 13-74 0z" fill="#0b0657"/><path d="M86 49q14-6 28 0l-3 5q-11-4-22 0z" fill="' + GOLD + '"/><circle cx="100" cy="46" r="4.5" fill="' + GOLD + '"/></g>',
+      outfit: '<path d="M82 138l18 28 18-28z" fill="#fff"/><path d="M96 141h8l3 31-7 8-7-8z" fill="#0b0657"/>' + wings + '<path d="M52 154l20-6M128 148l20 6" stroke="' + GOLD + '" stroke-width="4" stroke-linecap="round"/>',
+      face: '', cuff: true, earrings: F
     };
     if (k === 'cadre') return {
-      back: '',
-      top: '<path d="M63 82c-4-28 13-46 37-46 23 0 39 15 38 40-6-10-14-17-25-19-10 7-30 12-50 25z" fill="' + c.hair + '"/><path d="M84 44c10-4 22-3 32 3" stroke="#fff" stroke-opacity=".2" stroke-width="3" fill="none" stroke-linecap="round"/>',
-      outfit: '<path d="M80 138l20 34 20-34z" fill="#fff"/><path d="M97 143h6l3 25-6 8-6-8z" fill="' + PEACH + '"/><path d="M80 138l20 34-12-2-14-26zM120 138l-20 34 12-2 14-26z" fill="#0b3fbf"/><path d="M84 141l-14 31" stroke="' + GREEN + '" stroke-width="2.5"/><rect x="62" y="171" width="17" height="22" rx="3" fill="#fff"/><rect x="65" y="175" width="11" height="5" rx="1.5" fill="' + GREEN + '"/>',
+      back: F ? '<path d="M58 86c0-32 18-52 42-52s42 20 42 52v30c0 6-5 9-11 9H69c-6 0-11-3-11-9z" fill="' + c.hair + '"/>' : '',
+      top: F ? '<path d="M62 86c-2-31 16-50 38-50s40 19 38 48c-12-3-23-9-31-19-9 11-27 19-45 21z" fill="' + c.hair + '"/>' + hl('M82 44c10-5 24-4 34 2')
+        : '<path d="M63 82c-4-28 13-46 37-46 23 0 39 15 38 40-6-10-14-17-25-19-10 7-30 12-50 25z" fill="' + c.hair + '"/>' + hl('M84 44c10-4 22-3 32 3'),
+      outfit: (F
+        ? '<path d="M82 138l18 28 18-28z" fill="#fff"/><path d="M90 146q10 10 20 0" stroke="' + PEACH + '" stroke-width="2" fill="none"/><circle cx="100" cy="152" r="3.5" fill="' + PEACH + '"/>'
+        : '<path d="M80 138l20 34 20-34z" fill="#fff"/><path d="M97 143h6l3 25-6 8-6-8z" fill="' + PEACH + '"/>') +
+        '<path d="M80 138l20 34-12-2-14-26zM120 138l-20 34 12-2 14-26z" fill="#0b3fbf"/><path d="M84 141l-14 31" stroke="' + GREEN + '" stroke-width="2.5"/><rect x="62" y="171" width="17" height="22" rx="3" fill="#fff"/><rect x="65" y="175" width="11" height="5" rx="1.5" fill="' + GREEN + '"/>',
       face: '<g fill="#fff" fill-opacity=".18" stroke="' + INK + '" stroke-width="3"><rect x="76" y="77" width="22" height="18" rx="7"/><rect x="102" y="77" width="22" height="18" rx="7"/></g><path d="M98 85h4" stroke="' + INK + '" stroke-width="3"/>',
-      cuff: ''
+      cuff: false, earrings: F
     };
-    return { /* etam / sol */
-      back: '',
+    return { /* etam / sol : tresses pour la variante femme, cheveux courts bouclés sinon */
+      back: F ? '<path d="M59 84c-7 20-7 40 0 54h13c-6-15-6-34-2-52zM141 84c7 20 7 40 0 54h-13c6-15 6-34 2-52z" fill="' + c.hair + '"/><circle cx="65" cy="138" r="4" fill="' + GREEN + '"/><circle cx="135" cy="138" r="4" fill="' + GREEN + '"/>' : '',
       top: '<g fill="' + c.hair + '"><circle cx="70" cy="68" r="12"/><circle cx="82" cy="54" r="14"/><circle cx="100" cy="48" r="15"/><circle cx="118" cy="54" r="14"/><circle cx="130" cy="68" r="12"/><path d="M62 80c4-14 18-22 38-22s34 8 38 22c-10-6-22-9-38-9s-28 3-38 9z"/></g><circle cx="94" cy="44" r="4" fill="#fff" fill-opacity=".18"/>',
       outfit: '<path d="M64 152c8-8 18-12 28-13l8 20 8-20c10 1 20 5 28 13v62H64z" fill="' + GREEN + '"/><rect x="64" y="176" width="72" height="6" fill="#fff" opacity=".92"/><rect x="64" y="194" width="72" height="6" fill="#fff" opacity=".92"/><rect x="112" y="160" width="16" height="7" rx="2" fill="#fff"/>',
       face: '<path d="M60 84a40 40 0 0 1 80 0" stroke="' + INK + '" stroke-width="6" fill="none"/><rect x="53" y="75" width="13" height="23" rx="6" fill="' + INK + '"/><rect x="134" y="75" width="13" height="23" rx="6" fill="' + INK + '"/><path d="M60 96c3 8 9 12 17 12" stroke="' + INK + '" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="79" cy="107" r="4.5" fill="' + INK + '"/>',
-      cuff: ''
+      cuff: false, earrings: false
     };
   }
 
-  function charSVG(kind) {
-    var k = CHARS[kind] ? kind : 'pnc', c = CHARS[k], p = parts(k, c), dk = shade(c.skin, .28);
+  /* g : 'f' ou 'h' pour forcer une variante ; sinon celle tirée pour ce métier à l'ouverture de la page */
+  function charSVG(kind, g) {
+    var k = CHARS[kind] ? kind : 'pnc', v = g === 'f' || g === 'h' ? g : GENDER[k];
+    var c = { outfit: CHARS[k].outfit, skin: CHARS[k][v].skin, hair: CHARS[k][v].hair }, p = parts(k, v, c), dk = shade(c.skin, .28);
+    var lashL = v === 'f' ? '<path d="M82.6 82.4l-3.4-2.6" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>' : '';
+    var lashR = v === 'f' ? '<path d="M117.4 82.4l3.4-2.6" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>' : '';
     var blink = (3.4 + Math.random() * 2.6).toFixed(2), delay = (-Math.random() * 8).toFixed(2);
     var cuffR = p.cuff ? '<path d="M143 189h16M143 194h16" stroke="' + GOLD + '" stroke-width="3"/>' : '';
     var cuffL = p.cuff ? '<path d="M41 189h16M41 194h16" stroke="' + GOLD + '" stroke-width="3"/>' : '';
@@ -69,13 +88,14 @@
         '<g class="cr-head">' + p.back +
           '<circle cx="63" cy="89" r="8" fill="' + c.skin + '"/><circle cx="137" cy="89" r="8" fill="' + c.skin + '"/>' +
           '<path d="M61 86q4 3 0 7M139 86q-4 3 0 7" stroke="' + dk + '" stroke-width="2" fill="none" stroke-linecap="round"/>' +
+          (p.earrings ? '<circle cx="63" cy="99" r="3" fill="' + GOLD + '"/><circle cx="137" cy="99" r="3" fill="' + GOLD + '"/>' : '') +
           '<circle cx="100" cy="84" r="37" fill="' + c.skin + '"/>' +
           '<path d="M100 121a37 37 0 0 0 33-20c-8 12-20 17-33 17s-25-5-33-17a37 37 0 0 0 33 20z" fill="#000" opacity=".07"/>' +
           p.top +
           '<g class="cr-brows" stroke="' + c.hair + '" stroke-width="3.5" fill="none" stroke-linecap="round"><path class="cr-brow-l" d="M80 73q7-4 14-1"/><path class="cr-brow-r" d="M106 72q7-3 14 1"/></g>' +
           '<g class="cr-look"><g class="cr-eyes-open">' +
-            '<g class="cr-eye"><ellipse cx="87" cy="87" rx="5" ry="6" fill="' + INK + '"/><circle cx="88.8" cy="84.6" r="1.9" fill="#fff"/></g>' +
-            '<g class="cr-eye"><ellipse cx="113" cy="87" rx="5" ry="6" fill="' + INK + '"/><circle cx="114.8" cy="84.6" r="1.9" fill="#fff"/></g>' +
+            '<g class="cr-eye"><ellipse cx="87" cy="87" rx="5" ry="6" fill="' + INK + '"/><circle cx="88.8" cy="84.6" r="1.9" fill="#fff"/>' + lashL + '</g>' +
+            '<g class="cr-eye"><ellipse cx="113" cy="87" rx="5" ry="6" fill="' + INK + '"/><circle cx="114.8" cy="84.6" r="1.9" fill="#fff"/>' + lashR + '</g>' +
           '</g><path class="cr-eh" display="none" d="M81 89q6-7 12 0M107 89q6-7 12 0" stroke="' + INK + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>' +
           '<path d="M100 90q4 5-1 8" stroke="' + dk + '" stroke-width="2.5" fill="none" stroke-linecap="round"/>' +
           '<g class="cr-blush" fill="' + PEACH + '" opacity=".45"><ellipse cx="76" cy="99" rx="6" ry="4"/><ellipse cx="124" cy="99" rx="6" ry="4"/></g>' +
@@ -181,5 +201,6 @@
   }
 
   window.charSVG = charSVG;
+  window.crewGender = GENDER;
   window.wave = wave;
 })();

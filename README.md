@@ -1,16 +1,15 @@
-# TO VOTE 2027 : propositions de page d'accueil
+# TO VOTE 2027
 
-Site d'information sur les élections professionnelles (CSE). Six pistes de landing page conformes à la charte Transavia 2026.
+Site d'information sur les élections professionnelles (CSE) de Transavia, direction artistique **Envol** : ciel en dégradés doux, verre dépoli, titres XXL, équipage illustré.
 
-- `index.html` : page de comparaison des six pistes
-- `proposition-a/` : **Embarquement**, claire, métaphore aérienne
-- `proposition-b/` : **Feed**, sombre, codes des réseaux sociaux, pensée mobile
-- `proposition-c/` : **Sticker**, claire et pop, inspirée du logo TO VOTE (simulateur de vote, mur participatif)
-- `proposition-d/` : **Parcours**, 8 écrans plein format, XP et badge personnalisé à partager
-- `proposition-e/` : **TO VOTE OS**, faux bureau d'ordinateur (fenêtres, terminal, corbeille des idées reçues) ; à garder pour un escape game à l'ouverture du vote
-- `proposition-f/` : **Envol**, ciel en dégradés doux, verre dépoli, titres XXL, personnages illustrés ; pages Le CSE (`proposition-f/cse.html`), Calendrier (`proposition-f/calendrier.html`), Candidatures (`proposition-f/candidatures.html`) et FAQ (`proposition-f/faq.html`)
-- `assets/` : logos, polices Söhne (Buch, Halbfett)
+- `index.html` : accueil (compte à rebours, équipage, Vrai/Faux, itinéraire, check-in et carte d'embarquement, listes derrière les hublots, consignes de sécurité)
+- `cse.html` : Le CSE (composition, missions, moyens, qui fait quoi, lexique)
+- `calendrier.html` : Calendrier en plan de vol (préparation, campagne, scrutin)
+- `candidatures.html` : Candidatures par collège (PNC, PNT, Cadres, ETAM) et calculateur de parité
+- `faq.html` : FAQ avec recherche
+- `crew.js` : l'équipage illustré, commun à toutes les pages (une variante femme ou homme par métier, tirée au hasard à chaque ouverture)
+- `assets/` : logos Transavia et TO VOTE, polices Söhne (Buch, Halbfett)
 
-Pour voir les pages : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
+Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
 
-À noter : les contenus et dates sont fictifs. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.
+À noter : les dates suivent le calendrier électoral communiqué ; sièges, effectifs, listes et noms sont fictifs. Les références juridiques sont à faire valider. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.
