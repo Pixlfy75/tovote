@@ -78,30 +78,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .top h1{font-size:clamp(2.6rem,8vw,7rem);margin-top:16px}
 .top .lead{font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:42ch;margin:16px auto 0}
 
-/* ---------- Suivi de vol (progression globale) ---------- */
-.tracker{margin-top:40px;padding:clamp(20px,3.5vw,36px)}
-.tr-ends{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-.tr-ends .lab{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;opacity:.65}
-.tr-ends b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1;margin-top:4px}
-.tr-ends span{font-size:.85rem;font-weight:600}
-.tr-ends .r{text-align:right}
-.route{position:relative;height:64px;margin:22px 0 8px}
-.route .leg{position:absolute;top:30px;height:6px;border-radius:3px;opacity:.35}
-.route .leg.fill{opacity:1}
-.route .pin{position:absolute;top:22px;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid currentColor;transform:translateX(-50%)}
-.route .plane{position:absolute;top:6px;width:52px;height:52px;transform:translateX(-50%) rotate(8deg);filter:drop-shadow(0 8px 14px rgba(20,13,138,.35));transition:left .8s cubic-bezier(.2,.8,.2,1)}
-.legs-lab{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:.8rem;font-weight:600}
-.legs-lab span{display:flex;align-items:center;gap:6px}
-.legs-lab span:nth-child(2){justify-content:center}.legs-lab span:nth-child(3){justify-content:flex-end}
-.legs-lab i{width:10px;height:10px;border-radius:50%;flex:none}
-@media (max-width:560px){.legs-lab{font-size:.72rem}.legs-lab em{display:none}}
-.legs-lab em{font-style:normal}
-.next{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1.5px dashed rgba(20,13,138,.15)}
-.next .lab{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.65}
-.next b{display:block;font-size:clamp(1.05rem,1.8vw,1.3rem)}
-.next .cd{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;color:var(--web-green)}
-.next .cd small{font-family:var(--f-body);font-size:.85rem;font-weight:600;color:var(--ink);opacity:.7;margin-left:6px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:32px}
 .sim{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:14px;font-size:.85rem;font-weight:600}
 .sim input[type=range]{width:min(320px,70vw);accent-color:var(--ink)}
 .seg{display:inline-flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.6);border:1.5px solid #fff}
@@ -114,12 +91,10 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .ph-head{position:sticky;top:96px;padding:22px;display:flex;flex-direction:column;gap:10px}
 @media (max-width:900px){.ph-head{position:static}}
 .ph-code{display:flex;align-items:center;gap:12px}
-.ph-code b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:3rem;line-height:.8;-webkit-text-stroke:1.5px var(--ink);color:var(--c)}
+.ph-code b{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:3rem;line-height:.8;color:var(--c)}
 .ph-code span{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;opacity:.7}
 .ph-head h2{font-size:clamp(1.8rem,3.4vw,2.1rem)}
 .ph-head .range{font-weight:600;font-size:.92rem}
-.ph-bar{height:8px;border-radius:4px;background:rgba(20,13,138,.1);overflow:hidden}
-.ph-bar i{display:block;height:100%;background:var(--c);border-radius:4px;transition:width .6s}
 .ph-state{font-size:.82rem;font-weight:600;opacity:.75}
 .items{list-style:none;position:relative;display:grid;gap:14px;padding-left:34px}
 .items::before{content:"";position:absolute;left:11px;top:18px;bottom:18px;border-left:3px dashed rgba(20,13,138,.2)}
@@ -133,7 +108,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .item.done{opacity:.72}
 .item.now{background:rgba(255,255,255,.85);box-shadow:0 0 0 3px var(--ink),0 26px 50px -30px rgba(20,13,138,.5)}
 .item[hidden]{display:none}
-.date{text-align:center;background:#fff;border-radius:18px;padding:10px 6px;border-top:6px solid var(--c)}
+.date{text-align:center;background:#fff;border-radius:18px;padding:10px 6px}
 .date b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:2.1rem;line-height:1}
 .date .rng{font-size:1.35rem}
 .date span{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
@@ -146,7 +121,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .it-meta a.lk{font-size:.82rem;font-weight:600}
 @media (max-width:560px){.item{grid-template-columns:1fr;gap:12px}.date{display:flex;align-items:baseline;gap:8px;justify-content:flex-start;padding:8px 12px;text-align:left}.date b{font-size:1.6rem}.date span,.date small{margin:0}}
 .ghost{border:2px dashed rgba(20,13,138,.25);background:rgba(255,255,255,.35);box-shadow:none}
-.ghost .date{background:transparent;border-top-color:transparent;opacity:.7}
+.ghost .date{background:transparent;opacity:.7}
 
 .final{padding:clamp(24px,4vw,44px);margin:clamp(64px,9vw,110px) 0 80px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
 @media (max-width:760px){.final{grid-template-columns:1fr}}
@@ -162,7 +137,8 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 .notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
 :where([data-note]){position:relative}
 body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:280px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%;text-transform:none}
-body.notes .tracker[data-note]::before{top:-14px}
+body.notes .sim[data-note]::before{top:calc(100% + 6px);right:auto;left:50%;transform:translateX(-50%);width:max-content}
+@media (min-width:700px){body.notes .seg[data-note]::before{top:50%;right:auto;left:calc(100% + 10px);transform:translateY(-50%);width:max-content;max-width:240px}}
 body.notes .it-meta[data-note]::before{top:50%;right:0;transform:translateY(-50%)}
 @media (max-width:560px){body.notes .it-meta[data-note]::before{position:static;transform:none;flex-basis:100%;max-width:none}}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
@@ -194,23 +170,8 @@ body.notes .it-meta[data-note]::before{top:50%;right:0;transform:translateY(-50%
   <h1 class="h xl" aria-label="Ton plan de vol."><span data-split>Ton plan</span><br><span data-split class="g">de vol.</span></h1>
   <p class="lead">Toutes les étapes de l'élection, du lancement aux résultats, en trois phases de vol.</p>
 
-  <!-- ================= SUIVI DE VOL ================= -->
-  <section class="tracker glass" aria-label="Où en est l'élection ?" data-note="Suivi de vol : l'avion se place selon la date du jour, la prochaine étape et son compte à rebours se mettent à jour seuls">
-    <div class="tr-ends">
-      <div><span class="lab">Départ</span><b class="mono">21.12.26</b><span>Lancement officiel</span></div>
-      <div class="r"><span class="lab">Arrivée</span><b class="mono">31.03.27</b><span>Résultats</span></div>
-    </div>
-    <div class="route" id="route" aria-hidden="true"></div>
-    <div class="legs-lab" id="legsLab"></div>
-    <div class="next" aria-live="polite">
-      <div><span class="lab" id="nextLab">Prochaine étape</span><b id="nextTitle"></b></div>
-      <div class="cd mono" id="nextCd"></div>
-    </div>
-  </section>
-
   <div class="tools">
     <div class="seg" role="group" aria-label="Filtrer les étapes" data-note="Filtre : tout le plan ou seulement ce qui reste à venir"><button aria-pressed="true" data-f="all">Tout le plan</button><button aria-pressed="false" data-f="next">À venir</button></div>
-    <button class="btn btn-ink btn-sm" id="icsAll">📅 Tout ajouter à mon agenda</button>
   </div>
   <label class="sim" data-note="Démo pour la réunion : simule une autre date pour voir le plan évoluer">🧪 Démo : simuler la date du <input type="range" id="sim" min="0" max="140" value="0" aria-label="Date simulée"> <span id="simLab" class="mono"></span> <button class="btn btn-glass btn-sm" id="simReset" type="button">Aujourd'hui</button></label>
 </header>
@@ -249,7 +210,7 @@ let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').
    s / e : début et fin (une date seule couvre toute la journée). Passage à l'heure d'été le 28 mars 2027. */
 const D=(iso)=>new Date(iso);
 const PHASES=[
- {id:'preparation',n:'01',name:'Préparation',c:'var(--pink)',hex:'#F385FF',items:[
+ {id:'preparation',n:'01',name:'Préparation',c:'var(--pink)',items:[
   {t:'Lancement officiel des élections',s:'2026-12-21T00:00:00+01:00',e:'2026-12-21T23:59:59+01:00',p:'Le top départ : le personnel est informé de l\'organisation des élections.'},
   {t:'Publication des listes électorales provisoires',s:'2027-02-22T00:00:00+01:00',e:'2027-02-22T23:59:59+01:00',p:'La liste des électeur·rices est publiée. Vérifie que tu y figures, dans le bon collège.',link:['faq.html#liste-electorale','Comment vérifier ?']},
   {t:'Vérification des listes par les électeur·rices',s:'2027-02-22T00:00:00+01:00',e:'2027-02-25T23:59:59+01:00',range:true,p:'Une erreur sur ton nom, ton collège ou ton inscription ? Signale-la aux RH pendant ces quatre jours.'},
@@ -257,24 +218,21 @@ const PHASES=[
   {t:'Date limite de dépôt des candidatures et des professions de foi',s:'2027-03-01T12:00:00+01:00',e:'2027-03-01T12:00:00+01:00',time:'12h00',p:'Les listes de candidat·es et leurs professions de foi doivent être déposées avant midi.',link:['candidatures.html#se-presenter','Se présenter']},
   {t:'Date limite de dépôt des délégué·es de liste',s:'2027-03-03T00:00:00+01:00',e:'2027-03-03T23:59:59+01:00',p:'Chaque liste désigne les personnes qui la représenteront pendant les opérations électorales.'},
  ]},
- {id:'campagne',n:'02',name:'Campagne',c:'var(--peach)',hex:'#FF8867',items:[
+ {id:'campagne',n:'02',name:'Campagne',c:'var(--peach)',items:[
   {t:'Affichage des listes de candidat·es',s:'2027-03-05T00:00:00+01:00',e:'2027-03-05T23:59:59+01:00',p:'Les listes sont publiées ici et affichées, toutes au même format, dans un ordre tiré au sort.',link:['candidatures.html','Voir les listes']},
   {t:'Ouverture de la campagne électorale',s:'2027-03-05T00:00:00+01:00',e:'2027-03-05T23:59:59+01:00',p:'Les listes présentent leurs programmes. Lis les professions de foi de ton collège.'},
   {t:'Envoi postal des identifiants',s:'2027-03-10T00:00:00+01:00',e:'2027-03-17T23:59:59+01:00',from:true,p:'Tes codes de vote arrivent par courrier à ton adresse personnelle. Vérifie dès maintenant qu\'elle est à jour dans ton espace RH.',link:['faq.html#codes','Pas reçu tes codes ?']},
   {t:'Fin de la campagne électorale',s:'2027-03-17T00:00:00+01:00',e:'2027-03-17T23:59:59+01:00',p:'Dernier jour de campagne, la veille de l\'ouverture du vote.'},
  ]},
- {id:'scrutin',n:'03',name:'Scrutin',c:'var(--green)',hex:'#05CE78',items:[
+ {id:'scrutin',n:'03',name:'Scrutin',c:'var(--green)',items:[
   {t:'Ouverture du 1er tour',s:'2027-03-18T09:00:00+01:00',e:'2027-03-18T09:00:00+01:00',time:'9h00',p:'Le vote en ligne est ouvert 24h/24, depuis ton téléphone ou ton ordinateur, jusqu\'au 31 mars.',link:['faq.html#comment','Comment voter ?']},
   {t:'Fermeture du 1er tour',s:'2027-03-31T16:00:00+02:00',e:'2027-03-31T16:00:00+02:00',time:'16h00',p:'Dernière minute pour voter : le scrutin ferme à 16h00 précises.'},
   {t:'Proclamation des résultats',s:'2027-03-31T16:00:00+02:00',e:'2027-03-31T23:59:59+02:00',p:'Les résultats sont proclamés et publiés ici. Si le quorum n\'est pas atteint, ou si des sièges restent à pourvoir, un 2nd tour est organisé.',ref:'Art. L.2314-29 C. trav.'},
  ]},
 ];
-const START=D('2026-12-21T00:00:00+01:00'),END=D('2027-03-31T16:00:00+02:00');
-const BOUNDS=[START,D('2027-03-05T00:00:00+01:00'),D('2027-03-18T09:00:00+01:00'),END];
 const MOIS=['jan','fév','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'];
 const paris=d=>new Date(d.toLocaleString('en-US',{timeZone:'Europe/Paris'}));
 const fmtDay=d=>{const p=paris(d);return {d:p.getDate(),m:MOIS[p.getMonth()],y:p.getFullYear()}};
-const longDate=d=>d.toLocaleDateString('fr-FR',{timeZone:'Europe/Paris',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
 /* ---------- Rendu des phases ---------- */
 let uid=0;
@@ -284,48 +242,29 @@ $('#phases').innerHTML=PHASES.map(ph=>{
   const a=fmtDay(D(ph.items[0].s)),b=fmtDay(D(ph.items[ph.items.length-1].e));
   return `<section class="phase" id="${ph.id}" style="--c:${ph.c}">
   <aside class="ph-head glass rv"><div class="ph-code"><b>${ph.n}</b><span>Phase ${+ph.n} sur 3</span></div><h2 class="h">${ph.name}</h2>
-    <span class="range">${a.d} ${a.m}${a.y!==b.y?' '+a.y:''} → ${b.d} ${b.m} ${b.y}</span><div class="ph-bar"><i data-bar="${ph.id}"></i></div><span class="ph-state" data-state="${ph.id}"></span></aside>
+    <span class="range">${a.d} ${a.m}${a.y!==b.y?' '+a.y:''} → ${b.d} ${b.m} ${b.y}</span><span class="ph-state" data-state="${ph.id}"></span></aside>
   <ol class="items">${ph.items.map(it=>{const s=fmtDay(D(it.s)),e=fmtDay(D(it.e));
     const dateHtml=it.range?`<b class="rng mono">${s.d}→${e.d}</b><span>${s.m} ${s.y}</span>`:`${it.from?'<span>dès le</span>':''}<b class="mono">${s.d}</b><span>${s.m} ${s.y}</span>${it.time?`<small class="mono">${it.time}</small>`:''}`;
     return `<li class="item glass" id="${it.id}"><div class="date">${dateHtml}</div>
       <div class="it-body"><h3>${it.t}</h3><p>${it.p}</p>${it.ref?`<p class="ref" style="margin-top:6px">${it.ref}</p>`:''}
-      <div class="it-meta"${it.id==='e0'?' data-note="Chaque étape : date, explication, statut automatique (fait / en cours / à venir) et ajout à l\'agenda"':''}><span class="st" data-st></span><button class="btn btn-glass btn-sm" data-ics="${it.id}">📅 Agenda</button>${it.link?`<a class="lk" href="${it.link[0]}">${it.link[1]} →</a>`:''}</div></div></li>`}).join('')}
+      <div class="it-meta"${it.id==='e0'?' data-note="Chaque étape : date, explication, statut qui se met à jour seul (fait / en cours / à venir)"':''}><span class="st" data-st></span>${it.link?`<a class="lk" href="${it.link[0]}">${it.link[1]} →</a>`:''}</div></div></li>`}).join('')}
     ${ph.id==='scrutin'?`<li class="item glass ghost" data-ghost><div class="date"><b>?</b><span>avril 2027</span></div><div class="it-body"><h3>2nd tour, si nécessaire</h3><p>Ses dates seront communiquées après la proclamation des résultats du 1er tour.</p></div></li>`:''}
   </ol></section>`}).join('');
 
 /* ---------- Statuts selon la date (réelle ou simulée) ---------- */
 let NOW=new Date(),filter='all';
-function legPos(t){ /* chaque phase occupe un tiers du trajet */
-  if(t<=START)return 0;if(t>=END)return 1;
-  for(let i=0;i<3;i++){const a=BOUNDS[i],b=BOUNDS[i+1];if(t<b)return (i+(t-a)/(b-a))/3}
-  return 1}
-function dur(ms){const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return d>0?`J-${d}<small>et ${h} h</small>`:`${h} h ${String(m).padStart(2,'0')}<small>min</small>`}
 function render(){
-  const t=NOW;let next=null;
+  const t=NOW;
   all.forEach(it=>{const el=$('#'+it.id),s=D(it.s),e=D(it.e);
     const st=t>e?'done':t>=s?'now':'future';el.classList.remove('done','now');if(st!=='future')el.classList.add(st);
     const b=$('[data-st]',el);b.className='st '+(st==='future'?'':st);
-    b.textContent=st==='done'?'✓ Fait':st==='now'?'● En cours':'À venir · '+Math.ceil((s-t)/864e5)+' j';
+    b.textContent=st==='done'?'✓ Fait':st==='now'?'● En cours':'À venir';
     if(st==='now'&&it.e===it.s)b.textContent='● Maintenant';
-    if(!next&&st!=='done')next=it;
     el.hidden=filter==='next'&&st==='done'});
   $$('[data-ghost]').forEach(g=>g.hidden=false);
   PHASES.forEach(ph=>{const d=ph.items.filter(it=>t>D(it.e)).length,n=ph.items.length;
-    $(`[data-bar="${ph.id}"]`).style.width=(d/n*100)+'%';
     $(`[data-state="${ph.id}"]`).textContent=d===n?'Phase terminée ✓':d||ph.items.some(it=>t>=D(it.s))?`${d} étape${d>1?'s':''} sur ${n} terminée${d>1?'s':''}`:'Phase à venir'});
-  /* suivi de vol */
-  const pos=legPos(t)*100;
-  $('#route').innerHTML=PHASES.map((ph,i)=>{const a=i/3*100,w=100/3,f=Math.max(0,Math.min(w,pos-a));
-    return `<span class="leg" style="left:${a}%;width:${w}%;background:${ph.hex}"></span><span class="leg fill" style="left:${a}%;width:${f}%;background:${ph.hex}"></span>`}).join('')+
-    [0,1,2,3].map(i=>`<span class="pin" style="left:${i/3*100}%;color:${i<3?PHASES[i].hex:'#05CE78'}"></span>`).join('')+
-    `<svg class="plane" style="left:${pos}%" viewBox="0 0 24 24"><path d="M22 3 2 11l7 3 2 7 3-5 5 4z" fill="#fff" stroke="#140D8A" stroke-width="1.2" stroke-linejoin="round"/><path d="m9 14 13-11" stroke="#140D8A" stroke-width="1.2"/></svg>`;
-  if(next){const s=D(next.s),live=t>=s;
-    $('#nextLab').textContent=live?'En cours':(t<START?'Tu es en salle d\'embarquement · prochaine étape':'Prochaine étape');
-    $('#nextTitle').innerHTML=`${next.t}<br><span style="font-weight:400;font-size:.9rem">${longDate(s)}${next.time?' à '+next.time:''}</span>`;
-    $('#nextCd').innerHTML=live?(next.e!==next.s?'Jusqu\'au '+fmtDay(D(next.e)).d+' '+fmtDay(D(next.e)).m:'Maintenant'):dur(s-t)}
-  else{$('#nextLab').textContent='Atterrissage';$('#nextTitle').textContent='Le 1er tour est terminé. Les résultats sont publiés.';$('#nextCd').textContent='✓'}
 }
-$('#legsLab').innerHTML=PHASES.map(p=>`<span><i style="background:${p.hex}"></i><em>${p.n} · </em>${p.name}</span>`).join('');
 $$('.seg button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
 
 /* Démo : date simulée, du 1er décembre 2026 au 20 avril 2027 */
@@ -334,20 +273,6 @@ const simLabel=()=>$('#simLab').textContent=NOW.toLocaleDateString('fr-FR',{time
 $('#sim').oninput=e=>{NOW=new Date(SIM0.getTime()+e.target.value*864e5);simLabel();render()};
 $('#simReset').onclick=()=>{NOW=new Date();const v=Math.round((NOW-SIM0)/864e5);$('#sim').value=Math.max(0,Math.min(140,v));simLabel();render()};
 simLabel();render();
-
-/* ---------- Agenda (.ics) ---------- */
-const z=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-const dayOnly=d=>{const p=fmtDay(d);return `${p.y}${String(MOIS.indexOf(p.m)+1).padStart(2,'0')}${String(p.d).padStart(2,'0')}`};
-function vevent(it){const s=D(it.s),e=D(it.e),lines=['BEGIN:VEVENT',`UID:${it.id}@tovote2027`,`DTSTAMP:${z(new Date())}`];
-  if(it.time){lines.push(`DTSTART:${z(s)}`,`DTEND:${z(new Date(s.getTime()+36e5))}`)}
-  else{const end=new Date(e.getTime()+1000);lines.push(`DTSTART;VALUE=DATE:${dayOnly(s)}`,`DTEND;VALUE=DATE:${dayOnly(end)}`)}
-  lines.push(`SUMMARY:🗳️ ${it.t}`,`DESCRIPTION:${it.p.replace(/[,;]/g,'\\$&')}`);
-  if(it.time)lines.push('BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:Élections CSE','END:VALARM');
-  lines.push('END:VEVENT');return lines}
-function ics(items,name){const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR',...items.flatMap(vevent),'END:VCALENDAR'].join('\r\n');
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download=name;a.click()}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-ics]');if(!b)return;const it=all.find(x=>x.id===b.dataset.ics);ics([it],'tovote-'+it.id+'.ics');toast('📅 Ajouté à ton agenda')});
-$('#icsAll').onclick=()=>{ics(all,'calendrier-elections-cse-2027.ics');toast(`📅 ${all.length} étapes ajoutées à ton agenda`)};
 
 /* Apparitions + ciel */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
