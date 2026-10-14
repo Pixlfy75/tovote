@@ -143,8 +143,6 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 .bubble{margin-top:12px;background:#fff;border-radius:20px;padding:14px 16px;font-weight:600;font-size:.95rem;position:relative;display:none;text-align:left}
 .bubble::before{content:"";position:absolute;top:-8px;left:50%;width:16px;height:16px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:3px}
 .member.on .bubble{display:block;animation:pop .45s cubic-bezier(.2,.9,.3,1.3)}
-.member .hint{font-size:.82rem;font-weight:600;opacity:.6;margin-top:6px}
-.member.on .hint{display:none}
 
 /* Vrai / Faux */
 .vf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
@@ -371,19 +369,16 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
       <button class="member glass rv" data-k="pnc">
         <div class="bob" data-char="pnc"></div>
         <div class="name">PNC</div>
-        <div class="hint">Touche-moi 👆</div>
         <div class="bubble">« Mes rotations, mes repos, ma fatigue : le CSE est consulté sur tout ça. Et je vote depuis l'escale. »</div>
       </button>
       <button class="member glass rv" data-k="pnt">
         <div class="bob" data-char="pnt"></div>
         <div class="name">PNT</div>
-        <div class="hint">Touche-moi 👆</div>
         <div class="bubble">« Organisation des vols, formation, conditions de travail : mes élu·es portent ma voix. »</div>
       </button>
       <button class="member glass rv" data-k="sol">
         <div class="bob" data-char="sol"></div>
         <div class="name">Sol</div>
-        <div class="hint">Touche-moi 👆</div>
         <div class="bubble">« Horaires, organisation, télétravail, activités sociales : le CSE, c'est aussi pour moi. »</div>
       </button>
     </div>

@@ -75,7 +75,7 @@
 /* ---------- Accueil ---------- */
 [data-theme="dark"] .pass{background:rgba(255,255,255,.94)}
 [data-theme="dark"] .pass .cd div{background:rgba(20,13,138,.06)}
-[data-theme="dark"] .member .name,[data-theme="dark"] .member .hint{color:var(--night-text)}
+[data-theme="dark"] .member .name{color:var(--night-text)}
 [data-theme="dark"] .pills button{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--night-text)}
 [data-theme="dark"] .pills button[aria-pressed="true"]{background:#EEECFF;color:#140D8A}
 [data-theme="dark"] .fl input{background:rgba(255,255,255,.1);color:var(--night-text);border-color:rgba(255,255,255,.2)}
