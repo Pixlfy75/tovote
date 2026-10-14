@@ -147,3 +147,22 @@
 [data-theme="dark"] .doc.locked h3,[data-theme="dark"] .doc.locked p,[data-theme="dark"] .doc p,[data-theme="dark"] .doc .when{color:#140D8A}
 [data-theme="dark"] .doc .tag{color:#140D8A}
 [data-theme="dark"] .pass .chip,[data-theme="dark"] .doc .chip{background:rgba(20,13,138,.06);border-color:rgba(20,13,138,.1);color:#140D8A}
+
+/* ---------- Quiz ---------- */
+[data-theme="dark"] .facts span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+[data-theme="dark"] .track::before{border-color:rgba(255,255,255,.25)}
+[data-theme="dark"] .dots i{background:rgba(255,255,255,.2)}
+[data-theme="dark"] .dots i.cur{background:#EEECFF}
+[data-theme="dark"] .opt{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--night-text)}
+[data-theme="dark"] .opt:hover:not(:disabled){border-color:#EEECFF}
+[data-theme="dark"] .opt .k{background:rgba(255,255,255,.14)}
+[data-theme="dark"] .opts.vf .opt[data-v="true"]{background:rgba(5,206,120,.22)}
+[data-theme="dark"] .opts.vf .opt[data-v="false"]{background:rgba(255,136,103,.22)}
+[data-theme="dark"] .opt.right,[data-theme="dark"] .opt.wrong{color:#140D8A}
+[data-theme="dark"] .feedback{background:rgba(255,255,255,.1)}
+[data-theme="dark"] .feedback.ko b{color:#FF9E85}
+[data-theme="dark"] .licence .rank,[data-theme="dark"] .licence .score{color:#140D8A}
+[data-theme="dark"] .bar{background:rgba(255,255,255,.14)}
+[data-theme="dark"] .review li{background:rgba(255,255,255,.07)}
+[data-theme="dark"] .review li .m{color:#140D8A}
+[data-theme="dark"] .step-card .btn-glass{color:var(--night-text)}
