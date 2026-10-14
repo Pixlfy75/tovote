@@ -224,6 +224,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <a href="index.html" aria-label="Accueil TO VOTE"><img src="../assets/img/tovote-icon.png" alt=""></a>
   <a class="l" href="index.html">Accueil</a>
   <a class="l" href="cse.html">Le CSE</a>
+  <a class="l" href="calendrier.html">Calendrier</a>
   <a class="l" href="candidatures.html" aria-current="page">Candidatures</a>
   <a class="l" href="faq.html">FAQ</a>
   <a class="l soon-link" href="#">Documents<span class="soon">bientôt</span></a>
@@ -236,13 +237,13 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <span class="chip"><i></i>Candidatures · Élections CSE 2027</span>
   <h1 class="h xl" aria-label="Les listes, collège par collège."><span data-split>Les listes,</span><br><span data-split class="g">collège par collège.</span></h1>
   <p class="lead">Découvre qui se présente dans ton collège, lis les professions de foi, ou prépare ta propre candidature.</p>
-  <div class="phase glass" id="phase" data-note="Frise de la phase en cours : elle avance automatiquement selon le calendrier (dates fictives)">
+  <div class="phase glass" id="phase" data-note="Frise de la phase en cours, calée sur le calendrier officiel (détail sur la page Calendrier)">
     <ol>
-      <li class="done"><span>PAP signé</span></li>
-      <li class="now"><span>Dépôt des listes</span></li>
-      <li><span>Publication 02.03</span></li>
-      <li><span>Vote 16→19.03</span></li>
-      <li><span>Résultats</span></li>
+      <li class="done"><span>Lancement 21.12</span></li>
+      <li class="now"><span>Dépôt 01.03</span></li>
+      <li><span>Affichage 05.03</span></li>
+      <li><span>Vote 18→31.03</span></li>
+      <li><span>Résultats 31.03</span></li>
     </ol>
   </div>
 </header>
@@ -386,10 +387,10 @@ function renderPanel(){
       return `<article class="lst"><div class="lst-top"><span class="lst-logo">logo<br>liste</span><div><b>Liste exemple ${L}</b><small>Présentée par l'organisation syndicale ${L}</small></div></div>
       <div class="row"><button class="btn btn-ink btn-sm" data-pdf="${L}">📄 Profession de foi</button><span class="chip">${c.tit} + ${c.sup} candidat·es</span></div>
       <details><summary>Voir les candidat·es</summary><div class="cands"><div><h5>Titulaires</h5><ol>${tit.map(x=>`<li><i>${x.n}</i>${x.name} <small>${x.base}</small></li>`).join('')}</ol></div><div><h5>Suppléant·es</h5><ol>${sup.map(x=>`<li><i>${x.n}</i>${x.name} <small>${x.base}</small></li>`).join('')}</ol></div></div></details></article>`}).join('')}</div>`
-    :`<div class="locked"><div class="win"><span></span></div><div><b>Les listes du collège ${c.name} seront publiées le 2 mars.</b><p style="margin-top:6px;font-size:.95rem">Elles apparaîtront ici, toutes au même format, dans un ordre tiré au sort à chaque visite.</p><div style="margin-top:12px"><button class="btn btn-glass btn-sm" id="notify">🔔 Préviens-moi à la publication</button></div></div></div>`;
+    :`<div class="locked"><div class="win"><span></span></div><div><b>Les listes du collège ${c.name} seront affichées le 5 mars.</b><p style="margin-top:6px;font-size:.95rem">Elles apparaîtront ici, toutes au même format, dans un ordre tiré au sort à chaque visite.</p><div style="margin-top:12px"><button class="btn btn-glass btn-sm" id="notify">🔔 Préviens-moi à la publication</button></div></div></div>`;
   $('#panel').innerHTML=`<div class="swap"><div class="panel-head"><div><span class="chip"><i></i>Collège</span><h3 class="h" style="margin-top:10px">${c.name}</h3><p class="full">${c.full}</p><p>${c.jobs}.</p></div></div>${kpis}
     <div class="lists-head"><h4 class="h">${published?`${c.lists.length} listes en lice`:'Listes en lice'}</h4><span class="neutral">⚖️ Même format pour toutes · ordre tiré au sort · noms fictifs</span></div>${lists}
-    <div class="demo"><button class="btn btn-glass btn-sm" id="demo">${published?'↺ Revenir avant le 2 mars':'🧪 Démo : simuler la publication du 2 mars'}</button></div></div>`;
+    <div class="demo"><button class="btn btn-glass btn-sm" id="demo">${published?'↺ Revenir avant le 5 mars':'🧪 Démo : simuler la publication du 5 mars'}</button></div></div>`;
   $('#notify')?.addEventListener('click',e=>{e.currentTarget.textContent='✅ C\'est noté';toast('🔔 Tu seras prévenu·e à la publication')});
   $('#demo').onclick=()=>{published=!published;store.set('tv_pub',published);renderPanel();setPhase()};
   $$('[data-pdf]').forEach(b=>b.onclick=()=>toast(`📄 Profession de foi de la liste ${b.dataset.pdf} (PDF à venir)`));
