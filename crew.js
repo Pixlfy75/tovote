@@ -83,19 +83,22 @@
     var blink = (3.4 + Math.random() * 2.6).toFixed(2), delay = (-Math.random() * 8).toFixed(2);
     var cuffR = p.cuff ? '<path d="M143 189h16M143 194h16" stroke="' + GOLD + '" stroke-width="3"/>' : '';
     var cuffL = p.cuff ? '<path d="M41 189h16M41 194h16" stroke="' + GOLD + '" stroke-width="3"/>' : '';
-    var arm = function (cls, d, hx, cuff) {
-      return '<g class="' + cls + '"><path d="' + d + '" stroke="' + c.outfit + '" stroke-width="17" stroke-linecap="round" fill="none"/>' + cuff +
-        '<circle cx="' + hx + '" cy="203" r="9.5" fill="' + c.skin + '"/><circle cx="' + (hx + (cls === 'cr-arm' ? -6 : 6)) + '" cy="199" r="4" fill="' + c.skin + '"/></g>';
+    /* bras articulé : épaule (pivot du bras), coude (pivot de l'avant-bras), main ; R = bras droit à l'écran */
+    var arm = function (R, cuff) {
+      var x = function (v) { return R ? v : 200 - v; }, st = '" stroke="' + c.outfit + '" stroke-width="17" stroke-linecap="round" fill="none"/>';
+      return '<g class="' + (R ? 'cr-arm' : 'cr-arm-l') + '"><path d="M' + x(140) + ' 151L' + x(148) + ' 177' + st +
+        '<g class="' + (R ? 'cr-fore' : 'cr-fore-l') + '"><path d="M' + x(148) + ' 177L' + x(150) + ' 199' + st + cuff +
+        '<circle cx="' + x(150) + '" cy="203" r="9.5" fill="' + c.skin + '"/><circle cx="' + x(144) + '" cy="199" r="4" fill="' + c.skin + '"/></g></g>';
     };
     return '<svg class="char" data-k="' + (isSol ? 'sol' : k) + '" data-g="' + v + '" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:' + blink + 's;--d:' + delay + 's">' +
       '<ellipse class="cr-shadow" cx="100" cy="213" rx="58" ry="7" fill="' + INK + '" opacity=".13"/>' +
       '<g class="cr-rig">' +
-        arm('cr-arm-l', 'M60 151q-14 25-10 51', 50, cuffL) +
+        arm(false, cuffL) +
         '<path d="M46 214c0-42 16-72 54-76 38 4 54 34 54 76z" fill="' + c.outfit + '"/>' +
         '<path d="M124 142c18 8 30 32 30 72h-20c0-34-3-56-10-72z" fill="#000" opacity=".1"/>' +
         '<path d="M89 110h22v25c0 7-22 7-22 0z" fill="' + c.skin + '"/><path d="M89 116c6 7 16 7 22 0v-6H89z" fill="#000" opacity=".13"/>' +
         p.outfit +
-        arm('cr-arm', 'M140 151q14 25 10 51', 150, cuffR) +
+        arm(true, cuffR) +
         '<g class="cr-head">' + p.back +
           '<circle cx="63" cy="89" r="8" fill="' + c.skin + '"/><circle cx="137" cy="89" r="8" fill="' + c.skin + '"/>' +
           '<path d="M61 86q4 3 0 7M139 86q-4 3 0 7" stroke="' + dk + '" stroke-width="2" fill="none" stroke-linecap="round"/>' +
@@ -131,13 +134,19 @@
     '.char .cr-brows{transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}',
     '.char .cr-brow-l,.char .cr-brow-r{transform-box:fill-box;transform-origin:center;transition:transform .3s}',
     '.char .cr-blush{transition:opacity .3s}',
-    '.char .cr-arm{transform-origin:140px 151px;animation:cr-sway-r 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .45s cubic-bezier(.2,.9,.3,1.3)}',
-    '.char .cr-arm-l{transform-origin:60px 151px;animation:cr-sway-l 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .45s cubic-bezier(.2,.9,.3,1.3)}',
-    '@keyframes cr-sway-r{50%{transform:rotate(-4deg)}}@keyframes cr-sway-l{50%{transform:rotate(4deg)}}',
+    '.char .cr-arm{transform-origin:140px 151px;animation:cr-sway-r 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .5s cubic-bezier(.3,1.25,.5,1)}',
+    '.char .cr-arm-l{transform-origin:60px 151px;animation:cr-sway-l 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .5s cubic-bezier(.3,1.25,.5,1)}',
+    '.char .cr-fore{transform-origin:148px 177px;animation:cr-elbow-r 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .5s cubic-bezier(.3,1.25,.5,1)}',
+    '.char .cr-fore-l{transform-origin:52px 177px;animation:cr-elbow-l 4s ease-in-out infinite;animation-delay:var(--d,0s);transition:transform .5s cubic-bezier(.3,1.25,.5,1)}',
+    '@keyframes cr-sway-r{50%{transform:rotate(-3deg)}}@keyframes cr-sway-l{50%{transform:rotate(3deg)}}',
+    '@keyframes cr-elbow-r{50%{transform:rotate(-6deg)}}@keyframes cr-elbow-l{50%{transform:rotate(6deg)}}',
     /* Coucou */
-    '.char.wave .cr-arm{animation:cr-wave 1.4s ease-in-out}',
-    '@keyframes cr-wave{0%,100%{transform:none}16%{transform:rotate(-158deg)}31%,61%{transform:rotate(-126deg)}46%,76%{transform:rotate(-158deg)}90%{transform:rotate(-150deg)}}',
-    '.char.wave .cr-head{animation:cr-hi 1.4s ease-in-out}',
+    /* coucou : le bras se lève par l'épaule, la main s'agite par le coude, puis tout redescend en douceur */
+    '.char.wave .cr-arm{animation:cr-wave 1.6s cubic-bezier(.45,0,.3,1)}',
+    '@keyframes cr-wave{0%,100%{transform:none}20%,78%{transform:rotate(-125deg)}}',
+    '.char.wave .cr-fore{animation:cr-hand 1.6s ease-in-out}',
+    '@keyframes cr-hand{0%,16%{transform:none}28%{transform:rotate(-30deg)}40%{transform:rotate(14deg)}52%{transform:rotate(-30deg)}64%{transform:rotate(14deg)}76%{transform:rotate(-8deg)}90%,100%{transform:none}}',
+    '.char.wave .cr-head{animation:cr-hi 1.6s ease-in-out}',
     '@keyframes cr-hi{20%,80%{transform:rotate(-6deg)}}',
     '.char.wave .cr-brows{transform:translateY(-3px)}',
     '.char.wave .m-smile{display:none}.char.wave .m-happy{display:inline}',
@@ -146,7 +155,8 @@
     '@keyframes cr-jump{0%{transform:scale(1.08,.9)}30%{transform:translateY(-26px) scale(.94,1.07)}60%{transform:scale(1.06,.93)}80%{transform:scale(.98,1.02)}100%{transform:none}}',
     '.char.happy .cr-shadow{animation:cr-shadow .62s cubic-bezier(.3,1.4,.5,1) 2}',
     '@keyframes cr-shadow{30%{transform:scale(.62);opacity:.05}}',
-    '.char.happy .cr-arm{animation:none;transform:rotate(-155deg)}.char.happy .cr-arm-l{animation:none;transform:rotate(155deg)}',
+    '.char.happy .cr-arm{animation:none;transform:rotate(-145deg)}.char.happy .cr-arm-l{animation:none;transform:rotate(145deg)}',
+    '.char.happy .cr-fore{animation:none;transform:rotate(-18deg)}.char.happy .cr-fore-l{animation:none;transform:rotate(18deg)}',
     '.char.happy .cr-eyes-open{display:none}.char.happy .cr-eh{display:inline}',
     '.char.happy .cr-brows{transform:translateY(-4px)}.char.happy .cr-blush{opacity:.85}',
     '.char.happy .m-smile{display:none}.char.happy .m-happy{display:inline}',
@@ -171,7 +181,7 @@
   function wave(svg) {
     if (!svg || reduce) return;
     svg.classList.remove('wave'); void svg.getBoundingClientRect(); svg.classList.add('wave');
-    clearTimeout(svg._w); svg._w = setTimeout(function () { svg.classList.remove('wave'); }, 1450);
+    clearTimeout(svg._w); svg._w = setTimeout(function () { svg.classList.remove('wave'); }, 1650);
   }
   function visible() {
     return [].filter.call(document.querySelectorAll('.char'), function (s) {

@@ -7,6 +7,7 @@
 <meta name="description" content="Tous les documents officiels des élections CSE 2027 : protocole d'accord préélectoral, listes, guide du vote, résultats.">
 <meta name="theme-color" content="#FFE3D8">
 <link rel="icon" href="assets/img/tovote-icon.png">
+<script>/* thème appliqué avant l'affichage : choix mémorisé, sinon réglage de l'appareil */(function(){var t;try{t=localStorage.getItem('tv_theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black la remplace provisoirement. -->
@@ -118,6 +119,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .v-title small{font-size:.8rem;font-weight:600;opacity:.65}
 .v-acts{display:flex;gap:8px;align-items:center}
 .v-tab{background:rgba(20,13,138,.08)}
+.btn .ic{width:18px;height:18px;flex:none}
 .v-slow{font-size:.85rem;font-weight:600}
 .v-slow[hidden]{display:none}
 .v-native{position:absolute;inset:0;width:100%;height:100%;border:0;background:#eceaf6}
@@ -152,6 +154,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
+<link rel="stylesheet" href="night.css">
 </head>
 <body>
 
@@ -208,15 +211,15 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
     <span class="pic" id="vPic" aria-hidden="true"></span>
     <div class="v-title"><b id="vTitle"></b><small id="vMeta"></small></div>
     <div class="v-acts">
-      <a class="btn btn-glass btn-sm v-tab" id="vTab" target="_blank" rel="noopener">↗<span class="lbl"> Nouvel onglet</span></a>
-      <a class="btn btn-ink btn-sm" id="vDl" download>⬇<span class="lbl"> Télécharger</span></a>
+      <a class="btn btn-glass btn-sm v-tab" id="vTab" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Nouvel onglet</span></a>
+      <a class="btn btn-ink btn-sm" id="vDl" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Télécharger</span></a>
       <button class="v-x" id="vX" aria-label="Fermer">✕</button>
     </div>
   </div>
   <div class="v-body" id="vBody">
     <div class="v-pages" id="vPages" aria-label="Pages du document"></div>
-    <div class="v-state" id="vLoad"><span class="v-spin" aria-hidden="true"></span><span>Chargement du document…<span id="vPct"></span></span><a class="v-slow" id="vSlow" target="_blank" rel="noopener" hidden>Ça ne s'affiche pas ? Ouvre-le dans un nouvel onglet ↗</a></div>
-    <div class="v-state" id="vErr" hidden><p>L'aperçu ne peut pas s'afficher ici.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn-ink" id="vOpen" target="_blank" rel="noopener">📄 Ouvrir le document</a><a class="btn btn-glass" id="vDl2" download>⬇ Télécharger</a></div></div>
+    <div class="v-state" id="vLoad"><span class="v-spin" aria-hidden="true"></span><span>Chargement du document…<span id="vPct"></span></span><a class="v-slow" id="vSlow" target="_blank" rel="noopener" hidden>Ça ne s'affiche pas ? Ouvre-le dans un nouvel onglet</a></div>
+    <div class="v-state" id="vErr" hidden><p>L'aperçu ne peut pas s'afficher ici.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn-ink" id="vOpen" target="_blank" rel="noopener">📄 Ouvrir le document</a><a class="btn btn-glass" id="vDl2" download><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Télécharger</a></div></div>
   </div>
 </dialog>
 
@@ -322,5 +325,6 @@ $$('.rv').forEach(el=>io.observe(el));
 const root=document.documentElement;
 addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
 </script>
+<script src="theme.js"></script>
 </body>
 </html>

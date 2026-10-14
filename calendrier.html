@@ -7,6 +7,7 @@
 <meta name="description" content="Le plan de vol des élections CSE 2027 : préparation, campagne et scrutin, toutes les dates.">
 <meta name="theme-color" content="#FFE3D8">
 <link rel="icon" href="assets/img/tovote-icon.png">
+<script>/* thème appliqué avant l'affichage : choix mémorisé, sinon réglage de l'appareil */(function(){var t;try{t=localStorage.getItem('tv_theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Söhne Breit Fett (titres) n'a pas été fournie : Archivo Expanded Black la remplace provisoirement. -->
@@ -138,6 +139,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
+<link rel="stylesheet" href="night.css">
 </head>
 <body>
 
@@ -278,5 +280,6 @@ $$('.rv').forEach(el=>io.observe(el));
 const root=document.documentElement;
 addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
 </script>
+<script src="theme.js"></script>
 </body>
 </html>

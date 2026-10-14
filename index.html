@@ -7,6 +7,7 @@
 <meta name="description" content="TO VOTE : embarquement immédiat pour ton CSE. Tout pour voter aux élections CSE 2027.">
 <meta name="theme-color" content="#FFE3D8">
 <link rel="icon" href="assets/img/tovote-icon.png">
+<script>/* thème appliqué avant l'affichage : choix mémorisé, sinon réglage de l'appareil */(function(){var t;try{t=localStorage.getItem('tv_theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 <script>/* Ouverture en nuages : une fois par session de navigation (cookie de session, effacé à la fermeture du navigateur) */
 (function(){var seen=false;try{seen=/(^|; )tv_intro=1/.test(document.cookie)}catch(e){}try{seen=seen||sessionStorage.getItem('tv_intro')==='1'}catch(e){}
 if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.add('no-intro')})();</script>
@@ -303,6 +304,7 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
+<link rel="stylesheet" href="night.css">
 </head>
 <body>
 
@@ -655,5 +657,6 @@ $('#addCal').onclick=()=>{const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO
 $('#share').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'TO VOTE 2027',text:'Élections CSE : tout est là 👇',url:location.href})}catch{}}else{await navigator.clipboard?.writeText(location.href).catch(()=>{});toast('🔗 Lien copié')}};
 onScroll();
 </script>
+<script src="theme.js"></script>
 </body>
 </html>
