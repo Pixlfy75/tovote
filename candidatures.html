@@ -102,10 +102,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .col .seats{margin-top:8px;font-size:.78rem;font-weight:600;background:#fff;border-radius:999px;padding:.3em .8em}
 .col[aria-pressed="true"]{background:rgba(255,255,255,.88);box-shadow:0 0 0 3px var(--ink),0 26px 50px -30px rgba(20,13,138,.5)}
 .col[aria-pressed="true"] .seats{background:var(--ink);color:#fff}
-.which{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;font-size:.9rem}
-.which>span{font-weight:600;opacity:.7}
-.which button{font-size:.85rem;font-weight:600;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.6);border:1.5px solid #fff}
-.which button:hover{background:#fff}
 
 /* ---------- Panneau du collège ---------- */
 .panel{margin-top:30px;padding:clamp(20px,3.5vw,40px)}
@@ -166,25 +162,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .step p{font-size:.95rem}
 .step .ref{margin-top:auto;font-size:.75rem;font-weight:600;opacity:.65}
 
-/* Calculateur de parité */
-.parity{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,48px);padding:clamp(22px,4vw,40px);margin-top:20px;align-items:center}
-@media (max-width:900px){.parity{grid-template-columns:1fr}}
-.parity h3{font-size:clamp(1.6rem,3vw,2.3rem)}
-.field{margin-top:18px}
-.field label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px}
-.field output{font-family:var(--f-head);font-weight:900;font-stretch:115%}
-.range{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:5px;background:rgba(20,13,138,.14);outline:none}
-.range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--ink);border:4px solid #fff;box-shadow:0 4px 10px rgba(20,13,138,.35);cursor:grab}
-.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ink);border:4px solid #fff;cursor:grab}
-.p-out{background:rgba(255,255,255,.8);border-radius:24px;padding:22px}
-.p-out .big{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1}
-.p-out .big .f{color:#b23cc4}.p-out .big .m{color:var(--web-green)}
-.seq{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
-.seq i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:600;font-size:.8rem;animation:pop .35s both}
-.seq i.f{background:var(--pink)}.seq i.m{background:var(--green)}
-.p-out p{font-size:.88rem;opacity:.85}
-.p-out .warn{margin-top:8px;background:rgba(255,136,103,.2);border-radius:14px;padding:10px 12px;font-weight:600;font-size:.85rem}
-
 .cta-band{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:clamp(22px,4vw,40px);margin:24px 0 80px}
 .cta-band h3{font-size:clamp(1.5rem,3vw,2.2rem)}
 
@@ -244,7 +221,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <div class="wrap">
     <div class="center"><h2 class="h sec-title rv">Choisis <span class="g">ton collège.</span></h2><p class="sec-lead rv">Tu votes uniquement pour les listes de ton collège. Le nombre de sièges est fixé par le protocole d'accord préélectoral.</p></div>
     <div class="colleges" id="colleges-grid" role="group" aria-label="Collèges"></div>
-    <div class="which" id="which"><span>Quel est mon collège ?</span></div>
 
     <div class="panel glass" id="panel" aria-live="polite"></div>
   </div>
@@ -259,18 +235,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
       <article class="step glass rv"><span class="d">1er tour</span><h3>Via un syndicat</h3><p>Au 1er tour, seules les organisations syndicales déposent des listes. Rapproche-toi de celle de ton choix avant la date limite de dépôt : le 1er mars 2027 à 12h00.</p><span class="ref">Art. L.2314-29 C. trav.</span></article>
       <article class="step glass rv"><span class="d">2nd tour</span><h3>Candidature libre</h3><p>S'il y a un 2nd tour, toute personne éligible peut se présenter, seule ou en liste, syndiquée ou non.</p><span class="ref">Art. L.2314-29 C. trav.</span></article>
       <article class="step glass rv"><span class="d">Protection</span><h3>Tu es protégé·e</h3><p>Ta candidature te protège contre le licenciement pendant 6 mois à compter de l'envoi des listes à l'employeur.</p><span class="ref">Art. L.2411-7 C. trav.</span></article>
-    </div>
-
-    <div class="parity glass" id="parite">
-      <div>
-        <span class="chip"><i></i>Outil</span>
-        <h3 class="h" style="margin-top:12px">Calcule la <span class="g">parité</span> de ta liste.</h3>
-        <p style="margin-top:10px;font-size:.95rem">Chaque liste doit refléter la part de femmes et d'hommes inscrit·es dans le collège, avec une alternance jusqu'à épuisement de l'un des sexes.</p>
-        <div class="field"><label for="pSeats">Candidat·es sur la liste <output id="oSeats">15</output></label><input class="range" id="pSeats" type="range" min="1" max="15" value="15"></div>
-        <div class="field"><label for="pF">Part de femmes dans le collège <output id="oF">66,32 %</output></label><input class="range" id="pF" type="range" min="0" max="100" step="0.01" value="66.32"></div>
-        <p style="font-size:.8rem;opacity:.7;margin-top:12px">Les valeurs se préremplissent avec le collège choisi plus haut (sièges et proportions du PAP, art. 5 et 6). Art. L.2314-30 C. trav.</p>
-      </div>
-      <div class="p-out" id="pOut" aria-live="polite"></div>
     </div>
 
     <div class="cta-band glass">
@@ -334,14 +298,13 @@ function makeList(colKey,L,n){
 let cur=(location.hash.slice(1) in COL)?location.hash.slice(1):store.get('tv_col','pnc');
 let published=store.get('tv_pub',false);
 $('#colleges-grid').innerHTML=Object.entries(COL).map(([k,c])=>`<button class="col glass" data-k="${k}" aria-pressed="false"><div class="bob">${charSVG(k)}</div><b>${c.name}</b><small>${c.full}</small><span class="seats">${c.tit} sièges titulaires</span></button>`).join('');
-$('#which').innerHTML+=Object.entries(COL).map(([k,c])=>`<button data-k="${k}">${c.jobs.split(',')[0]}</button>`).join('');
-$$('#colleges-grid .col,#which button').forEach(b=>b.onclick=()=>{select(b.dataset.k);if(b.closest('#which')){toast(`👉 ${COL[b.dataset.k].jobs} : collège ${COL[b.dataset.k].name}`);$('#panel').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}});
+/* au clic, on montre tout de suite le panneau du collège (il est plus bas dans la page) */
+$$('#colleges-grid .col').forEach(b=>b.onclick=()=>{select(b.dataset.k);$('#panel').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});
 
 function select(k){
-  cur=k;store.set('tv_col',k);history.replaceState(null,'','#'+k);
+  cur=k;store.set('tv_col',k);try{history.replaceState(null,'','#'+k)}catch(e){}
   $$('#colleges-grid .col').forEach(b=>{const on=b.dataset.k===k;b.setAttribute('aria-pressed',on);if(on)wave($('.char',b))});
   renderPanel();
-  $('#pSeats').value=COL[k].tit;$('#pF').value=COL[k].f;calc();
 }
 const cand=x=>`<li><i>${x.n}</i><span class="who"><b>${x.last}</b> ${x.first}</span><small>${x.base}</small></li>`;
 function renderPanel(){
@@ -364,18 +327,6 @@ function renderPanel(){
   $$('[data-pdf]').forEach(b=>b.onclick=()=>toast(`📄 Profession de foi de la liste ${b.dataset.pdf} (PDF à venir)`));
 }
 function setPhase(){const li=$$('#phase li');li.forEach((l,i)=>{l.className=i<(published?2:1)?'done':i===(published?2:1)?'now':''});$('#phase ol').style.setProperty('--done',published?.5:.25)}
-
-/* ---------- Calculateur de parité (art. L.2314-30) ---------- */
-function calc(){
-  const n=+$('#pSeats').value,f=+$('#pF').value;$('#oSeats').textContent=n;$('#oF').textContent=pct(f);
-  const p=parity(n,f),seq=sequence(p.F,p.M,p.F>=p.M);
-  $('#pOut').innerHTML=`<div class="big"><span class="f">${p.F} femme${p.F>1?'s':''}</span> + <span class="m">${p.M} homme${p.M>1?'s':''}</span></div>
-    <div class="seq">${seq.map((s,i)=>`<i class="${s}" style="animation-delay:${i*30}ms">${s==='f'?'F':'H'}</i>`).join('')}</div>
-    <p>Calcul : ${n} × ${pct(f)} = ${p.fx.toFixed(2).replace('.',',')} femmes et ${p.mx.toFixed(2).replace('.',',')} hommes, arrondis à l'entier le plus proche (une décimale de 5 ou plus arrondit au-dessus). Alternance femme/homme jusqu'à épuisement de l'un des sexes ; la liste peut aussi commencer par un homme.</p>
-    ${p.either?'<p class="warn">Les deux résultats tombent sur ,5 : la liste peut comporter l\'une ou l\'autre répartition.</p>':''}
-    ${p.zero?'<p class="warn">L\'arrondi exclut totalement un sexe : la liste peut néanmoins comporter un·e candidat·e du sexe non représenté (sans être en première position).</p>':''}`;
-}
-$('#pSeats').oninput=calc;$('#pF').oninput=calc;
 
 /* ---------- Démarrage ---------- */
 select(cur);setPhase();

@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#FFE3D8">
 <link rel="icon" href="assets/img/tovote-icon.png">
 <script>/* Ouverture en nuages : une fois par session de navigation (cookie de session, effacé à la fermeture du navigateur) */
-(function(){var seen=/(^|; )tv_intro=1/.test(document.cookie);try{seen=seen||sessionStorage.getItem('tv_intro')==='1'}catch(e){}
+(function(){var seen=false;try{seen=/(^|; )tv_intro=1/.test(document.cookie)}catch(e){}try{seen=seen||sessionStorage.getItem('tv_intro')==='1'}catch(e){}
 if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.add('no-intro')})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -628,7 +628,7 @@ $$('.ci .pills').forEach(g=>$$('button',g).forEach(b=>b.onclick=()=>{$$('button'
 $('#ciName').oninput=drawPass;logoImg.onload=drawPass;loadChar();document.fonts?.ready.then(drawPass);
 $('#ciDl').onclick=()=>{const a=document.createElement('a');a.href=$('#pass').toDataURL('image/png');a.download='carte-embarquement-to-vote.png';a.click();toast('🎫 Carte téléchargée')};
 $('#ciShare').onclick=async()=>{try{const blob=await new Promise(r=>$('#pass').toBlob(r)),file=new File([blob],'carte-to-vote.png',{type:'image/png'});
-  if(navigator.canShare?.({files:[file]}))await navigator.share({files:[file],title:'TO VOTE 2027',text:'Mon check-in est fait 🗳️'});else{await navigator.clipboard?.writeText(location.href);toast('🔗 Lien copié')}}catch{}};
+  if(navigator.canShare?.({files:[file]}))await navigator.share({files:[file],title:'TO VOTE 2027',text:'Mon check-in est fait 🗳️'});else{await navigator.clipboard?.writeText(location.href).catch(()=>{});toast('🔗 Lien copié')}}catch{}};
 
 /* ---------- Hublots ---------- */
 function openHublots(){$('#hublots').classList.add('open');$$('.hub').forEach(h=>{h.disabled=false;$('.cap',h).textContent='Liste exemple '+h.dataset.list});$('#hubLead').textContent='Les volets sont ouverts. Touche un hublot pour lire la profession de foi. Ordre alphabétique des organisations syndicales.'}
@@ -643,7 +643,7 @@ $$('.panel').forEach(p=>p.onclick=()=>p.classList.toggle('on'));
 (()=>{const it=$('#cintro'),ready=()=>document.body.classList.add('ready');
   if(reduce||document.documentElement.classList.contains('no-intro')){it.remove();ready();return}
   /* première visite de la session : on la note tout de suite (cookie sans date d'expiration = effacé à la fermeture du navigateur) */
-  document.cookie='tv_intro=1; path=/; SameSite=Lax';try{sessionStorage.setItem('tv_intro','1')}catch(e){}
+  try{document.cookie='tv_intro=1; path=/; SameSite=Lax'}catch(e){}try{sessionStorage.setItem('tv_intro','1')}catch(e){}
   /* séquence automatique : logo dans les nuages, puis les nuages s'écartent, sans attendre le chargement complet */
   let done=false;const open=()=>{if(done)return;done=true;it.classList.add('open');setTimeout(ready,350);setTimeout(()=>it.remove(),1700)};
   it.onclick=open;setTimeout(open,1100)})();
@@ -651,7 +651,7 @@ $$('.panel').forEach(p=>p.onclick=()=>p.classList.toggle('on'));
 /* ---------- Divers ---------- */
 $('#notify').onclick=e=>{e.currentTarget.textContent='✅ C\'est noté';toast('🔔 Tu seras prévenu·e à la publication')};
 $('#addCal').onclick=()=>{const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270316T080000Z','DTEND:20270319T170000Z','SUMMARY:🗳️ Élections CSE : vote en ligne','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();toast('📅 Ajouté à ton agenda')};
-$('#share').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'TO VOTE 2027',text:'Élections CSE : tout est là 👇',url:location.href})}catch{}}else{await navigator.clipboard?.writeText(location.href);toast('🔗 Lien copié')}};
+$('#share').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'TO VOTE 2027',text:'Élections CSE : tout est là 👇',url:location.href})}catch{}}else{await navigator.clipboard?.writeText(location.href).catch(()=>{});toast('🔗 Lien copié')}};
 onScroll();
 </script>
 </body>

@@ -337,7 +337,7 @@ fromHash();addEventListener('hashchange',fromHash);
 /* Retours et liens */
 document.addEventListener('click',e=>{
   const lk=e.target.closest('[data-link]');
-  if(lk){const id=lk.closest('details').id;navigator.clipboard?.writeText(location.href.split('#')[0]+'#'+id);history.replaceState(null,'','#'+id);toast('🔗 Lien de la question copié')}
+  if(lk){const id=lk.closest('details').id;navigator.clipboard?.writeText(location.href.split('#')[0]+'#'+id).catch(()=>{});try{history.replaceState(null,'','#'+id)}catch(e){}toast('🔗 Lien de la question copié')}
 });
 
 /* Sommaire qui suit la lecture */
