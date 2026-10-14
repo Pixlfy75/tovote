@@ -46,10 +46,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .menubar .m:hover{background:rgba(20,13,138,.08)}
 .menubar .right{margin-left:auto;display:flex;align-items:center;gap:6px}
 .menubar .cd{font-variant-numeric:tabular-nums;font-weight:600;background:var(--ink);color:#fff;border-radius:6px;padding:.2em .6em}
-.menubar .notes-btn{background:var(--pink);border-radius:6px;padding:.2em .6em;font-weight:600}
 .menubar .vote{background:var(--ruby);color:#fff;border-radius:6px;padding:.2em .7em;font-weight:600;text-decoration:none}
 .menubar .right>*{white-space:nowrap}
-@media (max-width:760px){.menubar .m,.menubar .clock,.menubar .os{display:none}.menubar .notes-btn span{display:none}}
+@media (max-width:760px){.menubar .m,.menubar .clock,.menubar .os{display:none}}
 
 /* ---------- Icônes du bureau ---------- */
 .icons{position:fixed;top:calc(var(--bar) + 18px);left:18px;bottom:calc(var(--dock) + 20px);display:grid;grid-auto-flow:column;grid-template-rows:repeat(auto-fill,96px);grid-auto-columns:96px;gap:6px;z-index:5}
@@ -170,19 +169,11 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .dock button{width:46px;height:46px;font-size:1.4rem}
 }
 
-/* ---------- Annotations ---------- */
-:where([data-note]){position:relative}
-body.notes [data-note]::after{content:"💡 " attr(data-note);position:absolute;left:0;top:100%;margin-top:6px;z-index:60;background:var(--pink);color:var(--ink);font:600 .7rem/1.3 var(--f-body);padding:.4em .7em;border-radius:8px;width:max-content;max-width:230px;box-shadow:0 6px 16px -6px rgba(0,0,0,.4);pointer-events:none;text-align:left;text-transform:none;letter-spacing:0}
-body.notes .dock[data-note]::after{top:auto;bottom:100%;margin:0 0 8px;left:50%;transform:translateX(-50%)}
-body.notes .menubar[data-note]::after{left:auto;right:10px}
-body.notes .trash[data-note]::after{left:auto;right:0;top:auto;bottom:100%;margin:0 0 6px}
-body.notes .dock{overflow:visible}
-@media (max-width:760px){body.notes [data-note]::after{display:none}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body class="notes">
+<body>
 
 <div class="wall" aria-hidden="true">
   <div class="grid"></div>
@@ -191,7 +182,7 @@ body.notes .dock{overflow:visible}
   <img class="wm" src="../assets/img/transavia-wordmark-white.svg" alt="">
 </div>
 
-<header class="menubar" data-note="Barre de menus : compte à rebours live + CTA unique « Je vote »">
+<header class="menubar">
   <img src="../assets/img/tovote-icon.png" alt="">
   <span class="os">TO VOTE OS</span>
   <button class="m" data-open="readme">Le CSE</button>
@@ -199,7 +190,6 @@ body.notes .dock{overflow:visible}
   <button class="m" data-open="howto">Voter</button>
   <button class="m" data-open="term">Aide</button>
   <div class="right">
-    <button class="notes-btn" id="notesToggle" aria-pressed="true" aria-label="Annotations">💡<span> Notes</span></button>
     <span class="cd" id="cd" title="Ouverture du vote">J-000 · 00:00:00</span>
     <span class="clock" id="clock"></span>
     <a class="vote" href="#">Je vote</a>
@@ -207,12 +197,12 @@ body.notes .dock{overflow:visible}
 </header>
 
 <nav class="icons" id="icons" aria-label="Bureau"></nav>
-<button class="ico trash" id="trash" data-open="trash" data-note="Glisse une idée reçue dans la corbeille pour la « supprimer »"><span class="pic">🗑️</span><span>Corbeille</span></button>
+<button class="ico trash" id="trash" data-open="trash"><span class="pic">🗑️</span><span>Corbeille</span></button>
 
 <div id="wins"></div>
 <div class="notifs" id="notifs" aria-live="polite"></div>
 
-<nav class="dock" id="dock" aria-label="Applications" data-note="Dock : toutes les rubriques à portée de clic, l'appli ouverte rebondit"></nav>
+<nav class="dock" id="dock" aria-label="Applications"></nav>
 
 <!-- ================= CONTENU DES APPLIS ================= -->
 <template id="tpl-welcome">
@@ -328,8 +318,8 @@ const MYTHS={
 /* Icônes du bureau et dock */
 const DESK=['readme','cal','howto','quiz','term','lists','excuses','m1','m2','m3'];
 $('#icons').innerHTML=DESK.map(k=>{
-  if(MYTHS[k])return `<button class="ico" data-myth="${k}" ${k==='m1'?'data-note="Fichiers « idées reçues » : à glisser dans la corbeille"':''}><span class="pic" style="background:var(--peach)">📝</span><span>${MYTHS[k].f}</span></button>`;
-  const a=APPS[k];return `<button class="ico" data-open="${k}" ${k==='term'?'data-note="Un vrai terminal : tape « aide »"':''}><span class="pic">${a.e}</span><span>${a.ico}</span></button>`}).join('');
+  if(MYTHS[k])return `<button class="ico" data-myth="${k}"><span class="pic" style="background:var(--peach)">📝</span><span>${MYTHS[k].f}</span></button>`;
+  const a=APPS[k];return `<button class="ico" data-open="${k}"><span class="pic">${a.e}</span><span>${a.ico}</span></button>`}).join('');
 $('#dock').innerHTML=`<button data-open="welcome" aria-label="Bienvenue"><img src="../assets/img/tovote-icon.png" alt=""></button><span class="sep"></span>`+['readme','cal','howto','quiz','term','lists'].map(k=>`<button data-open="${k}" aria-label="${APPS[k].t}" title="${APPS[k].t}">${APPS[k].e}</button>`).join('')+`<span class="sep"></span><button data-open="trash" aria-label="Corbeille">🗑️</button>`;
 
 /* ---------- Gestionnaire de fenêtres ---------- */
@@ -471,8 +461,6 @@ tick();setInterval(tick,1000);
 function ics(){const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270316T080000Z','DTEND:20270319T170000Z','SUMMARY:🗳️ Élections CSE : vote en ligne','END:VEVENT','END:VCALENDAR'].join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();notify('📅','Agenda','Rappel ajouté : vote du 16 au 19 mars.')}
 
-/* Annotations */
-$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on)};
 
 /* ---------- Démarrage ---------- */
 openApp('welcome',mobile()?{}:{x:Math.round(innerWidth*.5-230),y:Math.round(innerHeight*.18)});

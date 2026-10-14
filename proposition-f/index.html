@@ -201,22 +201,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 @media (max-width:760px){footer .bar{border-radius:24px}}
 
 
-/* ---------- Personnages vivants : clignement, coucou, réactions ---------- */
-.char{overflow:visible}
-.char .eyes ellipse{transform-box:fill-box;transform-origin:center;animation:blink var(--blink,4.6s) infinite}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
-.char .m-happy,.char .m-sad{display:none}
-.char.happy .m-smile,.char.sad .m-smile{display:none}
-.char.happy .m-happy,.char.sad .m-sad{display:inline}
-.char .arm{transform-origin:146px 148px;transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
-.char.wave .arm{animation:wave 1.4s ease-in-out}
-@keyframes wave{0%,100%{transform:rotate(0)}18%,52%,86%{transform:rotate(-145deg)}35%,69%{transform:rotate(-115deg)}}
-.char.happy{animation:jump .55s cubic-bezier(.3,1.6,.5,1) 2}
-.char.happy .arm{transform:rotate(-150deg)}
-@keyframes jump{50%{transform:translateY(-16px)}}
-.char .head{transform-origin:100px 118px}
-.char.sad .head{animation:no .6s}
-@keyframes no{20%,60%{transform:rotate(-7deg)}40%,80%{transform:rotate(7deg)}}
 .mascot{display:flex;align-items:flex-end;gap:12px;margin-top:26px}
 .mascot svg{width:130px;height:auto}
 .m-bubble{background:#fff;border-radius:20px 20px 20px 4px;padding:12px 16px;font-weight:600;max-width:250px;margin-bottom:70px;box-shadow:0 12px 24px -14px rgba(20,13,138,.45);transition:transform .3s}
@@ -310,18 +294,14 @@ dialog.pf::backdrop{background:rgba(20,13,138,.3);backdrop-filter:blur(6px)}
 @media (max-width:480px){.panel{min-height:170px;padding:16px 10px;gap:8px}.panel .pic svg{width:86px;height:64px}.panel .q{font-size:.88rem}.panel .a{font-size:.84rem}.panel .more{display:none}}
 @media (max-width:560px){.hublots{gap:12px;flex-wrap:nowrap}.hub .frame{width:27vw;padding:9px}.hub .txt{padding:8px}.hub .txt b{font-size:.72rem}.hub .txt small{font-size:.62rem}.hub .cap{font-size:.72rem;padding:.35em .7em}}
 
-/* ---------- Annotations + toast ---------- */
-.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
-:where([data-note]){position:relative}
-body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:260px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%}
-body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
+/* ---------- Toast ---------- */
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
-<body class="notes">
+<body>
 
 <div class="cintro" id="cintro" aria-hidden="true">
   <div class="puff l1"></div><div class="puff l2"></div><div class="puff l3"></div>
@@ -338,7 +318,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
 <img class="giant giant-t" src="../assets/img/transavia-t-white.svg" alt="" aria-hidden="true" data-speed="-.35" data-rot="0">
 <svg class="giant giant-plane" viewBox="0 0 24 24" aria-hidden="true" data-speed=".5" data-rot="12"><path d="M22 3 2 11l7 3 2 7 3-5 5 4z" fill="#fff" stroke="#140D8A" stroke-width=".9" stroke-linejoin="round"/><path d="m9 14 13-11" stroke="#140D8A" stroke-width=".9"/></svg>
 
-<nav class="nav glass" aria-label="Navigation principale" data-note="Nav flottante en verre dépoli">
+<nav class="nav glass" aria-label="Navigation principale">
   <img src="../assets/img/tovote-icon.png" alt="TO VOTE">
   <a class="l" href="cse.html">Le CSE</a>
   <a class="l" href="calendrier.html">Calendrier</a>
@@ -348,7 +328,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
   <a class="btn btn-ruby" href="#">Je vote</a>
 </nav>
 
-<aside class="alti" aria-hidden="true" data-note="Altimètre : progression de lecture, façon vol">
+<aside class="alti" aria-hidden="true">
   <small id="altiVal">0 m</small>
   <div class="rail"><div class="fill"></div><img class="mk" src="../assets/img/tovote-icon.png" alt=""></div>
   <small>sol</small>
@@ -360,14 +340,14 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
   <div class="wrap grid">
     <div>
       <span class="chip"><i></i>Élections CSE 2027</span>
-      <h1 class="xl intro" style="margin-top:20px" data-note="Titre XXL : les lettres montent une à une au chargement" aria-label="Ta voix prend son envol."><span data-split>Ta voix</span><br><span data-split>prend son</span><br><span data-split class="g">envol.</span></h1>
+      <h1 class="xl intro" style="margin-top:20px" aria-label="Ta voix prend son envol."><span data-split>Ta voix</span><br><span data-split>prend son</span><br><span data-split class="g">envol.</span></h1>
       <p class="lead sub">Tout pour voter, en moins de temps qu'un embarquement.</p>
       <div class="ctas">
         <a class="btn btn-ink" href="#equipage">Décoller ↓</a>
         <button class="btn btn-glass" id="addCal">📅 Mon agenda</button>
       </div>
     </div>
-    <article class="pass glass" data-note="Carte d'embarquement en verre, compte à rebours intégré">
+    <article class="pass glass">
       <div class="top"><img src="../assets/img/tovote-logo.png" alt="TO VOTE 2027"><span class="chip">Vol TO 2027</span></div>
       <div class="route"><b>TOI</b><span class="dash"><img src="../assets/img/tovote-icon.png" alt=""></span><b>CSE</b></div>
       <div class="cd" id="cd"><div><b data-u="d">0</b><small>jours</small></div><div><b data-u="h">0</b><small>h</small></div><div><b data-u="m">0</b><small>min</small></div><div><b data-u="s">0</b><small>s</small></div></div>
@@ -381,7 +361,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
   <div class="wrap center">
     <h2 class="h sec-title rv">Le CSE, pour <span class="g">qui ?</span></h2>
     <p class="sec-lead rv">Pour tout l'équipage. Touche un personnage, ou <a href="cse.html" style="font-weight:600">découvre tout le rôle du CSE →</a></p>
-    <div class="crew" data-note="Personnages vivants : ils clignent des yeux, font coucou au hasard et quand on les touche">
+    <div class="crew">
       <button class="member glass rv" data-k="pnc">
         <div class="bob" data-char="pnc"></div>
         <div class="name">PNC</div>
@@ -411,12 +391,12 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
       <span class="chip"><i></i>Jeu</span>
       <h2 class="h sec-title" style="margin-top:16px">Vrai ou <span class="g">faux ?</span></h2>
       <p class="sec-lead">Glisse à droite si c'est vrai, à gauche si c'est faux.</p>
-      <div class="mascot" data-note="L'équipage réagit à tes réponses : saut de joie ou petit « non » de la tête">
+      <div class="mascot">
         <div class="bob" data-char="pnc" id="mascot"></div>
         <div class="m-bubble" id="mBubble">À toi de jouer ! 👉</div>
       </div>
     </div>
-    <div data-note="Cartes en verre à faire glisser (doigt, souris, flèches du clavier)">
+    <div>
       <div class="deck" id="deck"></div>
       <div class="vf-btns"><button class="f" id="bF" aria-label="Faux">✕</button><button class="t" id="bT" aria-label="Vrai">✓</button></div>
       <p class="verdict" id="verdict" aria-live="polite"></p>
@@ -428,7 +408,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
 <section class="sec" id="itineraire">
   <div class="wrap">
     <div class="center"><h2 class="h sec-title rv">Ton <span class="g">itinéraire.</span></h2><p class="sec-lead rv">4 escales, environ 3 minutes de vol.</p></div>
-    <div class="route-wrap" id="routeWrap" data-note="L'avion en papier suit le défilement d'escale en escale (dates du calendrier officiel)">
+    <div class="route-wrap" id="routeWrap">
       <svg class="route-svg" id="routeSvg"><defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F385FF"/><stop offset=".5" stop-color="#05CE78"/><stop offset="1" stop-color="#0053FF"/></linearGradient></defs><path class="base" id="rBase"/><path class="done" id="rDone"/></svg>
       <svg class="route-plane" id="rPlane" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 2 11l7 3 2 7 3-5 5 4z" fill="#fff" stroke="#140D8A" stroke-width="1.2" stroke-linejoin="round"/><path d="m9 14 13-11" stroke="#140D8A" stroke-width="1.2"/></svg>
       <ol class="stops">
@@ -445,7 +425,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
 <section class="sec" id="checkin">
   <div class="wrap">
     <div class="center"><span class="chip"><i></i>Enregistrement</span><h2 class="h sec-title rv" style="margin-top:16px">Ton <span class="g">check-in.</span></h2><p class="sec-lead rv">Trois infos, et tu sais si tu peux voter ou te présenter. Ta carte d'embarquement t'attend.</p></div>
-    <div class="ci glass" data-note="Check-in : carte d'embarquement personnalisée, générée sur l'appareil (rien n'est envoyé), téléchargeable et partageable">
+    <div class="ci glass">
       <form class="ci-form" id="ciForm" onsubmit="return false">
         <label class="fl">Ton prénom <small>(facultatif, reste sur ton appareil)</small><input id="ciName" maxlength="16" placeholder="Ex. : Camille" autocomplete="given-name"></label>
         <fieldset><legend>Ton métier</legend><div class="pills" data-k="job"><button type="button" data-v="pnc" aria-pressed="true">PNC</button><button type="button" data-v="pnt">PNT</button><button type="button" data-v="sol">Sol</button></div></fieldset>
@@ -467,7 +447,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
   <div class="wrap center">
     <h2 class="h sec-title rv">Les listes, <span class="g">côté hublot.</span></h2>
     <p class="sec-lead rv" id="hubLead">Les volets s'ouvrent le 5 mars. Même hublot pour chaque liste, ordre tiré au sort à chaque visite.</p>
-    <div class="hublots" id="hublots" data-note="Chaque liste derrière un hublot : volet fermé jusqu'au 5 mars, puis un clic ouvre la profession de foi. Format identique, ordre aléatoire (neutralité)">
+    <div class="hublots" id="hublots">
       <button class="hub" disabled data-list="A"><span class="frame"><span class="win"><span class="sky-in"></span><span class="txt"><b>Liste exemple A</b><small>Lire la profession de foi</small></span><span class="shade"><i></i></span></span></span><span class="cap">🔒 5 mars</span></button>
       <button class="hub" disabled data-list="B"><span class="frame"><span class="win"><span class="sky-in"></span><span class="txt"><b>Liste exemple B</b><small>Lire la profession de foi</small></span><span class="shade"><i></i></span></span></span><span class="cap">🔒 5 mars</span></button>
       <button class="hub" disabled data-list="C"><span class="frame"><span class="win"><span class="sky-in"></span><span class="txt"><b>Liste exemple C</b><small>Lire la profession de foi</small></span><span class="shade"><i></i></span></span></span><span class="cap">🔒 5 mars</span></button>
@@ -491,7 +471,7 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
 <section class="sec" id="consignes" style="padding-top:0">
   <div class="wrap">
     <div class="center"><h2 class="h sec-title rv">Consignes <span class="g">de sécurité.</span></h2><p class="sec-lead rv">Tes questions, version carte de la pochette du siège. Touche une case.</p></div>
-    <article class="safety rv" data-note="FAQ en carte de sécurité illustrée : chaque case révèle sa réponse au toucher">
+    <article class="safety rv">
       <header class="safety-head"><div><b>CONSIGNES DE SÉCURITÉ</b><span>Vote CSE 2027 · À lire avant le décollage</span></div><img src="../assets/img/tovote-icon.png" alt=""></header>
       <div class="safety-grid">
       <button class="panel"><span class="no">1</span><span class="pic"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="40" y="8" width="40" height="74" rx="8" fill="#fff" stroke="#140D8A" stroke-width="3"/><rect x="46" y="18" width="28" height="48" rx="3" fill="#05CE78"/><path d="M53 42l5 5 10-11" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 22l22-9-7 21-5-7z" fill="#fff" stroke="#140D8A" stroke-width="2.5" stroke-linejoin="round"/><path d="M8 70c10-9 20-9 28-5" stroke="#FF8867" stroke-width="3" fill="none" stroke-dasharray="4 5" stroke-linecap="round"/></svg></span><span class="q">En rotation pendant le vote ?</span><span class="a">Tu votes en ligne, depuis ton téléphone, où que tu sois, 24h/24 du 18 au 31 mars.</span><span class="more">Touche pour la réponse</span></button>
@@ -527,14 +507,13 @@ body.notes .alti[data-note]::before{right:56px;top:0;width:200px}
   </div>
 </footer>
 
-<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
 <div class="toast" id="toast" role="status"></div>
 
+<script src="crew.js"></script>
 <script>
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
-$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
 
 /* ---------- Grands titres : découpage en lettres pour l'animation d'entrée (une seule fois) ---------- */
 let ci=0;
@@ -542,36 +521,7 @@ $$('[data-split]').forEach(el=>{const words=el.textContent.split(' ');el.innerHT
 
 
 /* ---------- Personnages (générés pour pouvoir les animer) ---------- */
-const CHARS={
-  pnc:{skin:'#8D5524',hair:'#1d1350',outfit:'#140D8A'},
-  pnt:{skin:'#F1C27D',hair:'#7a5a2a',outfit:'#140D8A'},
-  sol:{skin:'#C68642',hair:'#3b2314',outfit:'#0053FF'},
-};
-function charSVG(k){const c=CHARS[k];
-  const back=k==='pnc'?`<circle cx="140" cy="62" r="14" fill="${c.hair}"/>`:'';
-  const det={
-    pnc:`<path d="M80 132l20 34 20-34z" fill="#fff"/><path d="M84 134c10 10 22 10 32 0l-6 18c-6 6-14 6-20 0z" fill="#05CE78"/><rect x="62" y="160" width="20" height="12" rx="4" fill="#05CE78"/>`,
-    pnt:`<path d="M82 132l18 30 18-30z" fill="#fff"/><path d="M96 136h8l3 34-7 8-7-8z" fill="#140D8A"/><rect x="52" y="186" width="30" height="5" rx="2" fill="#F9C74F"/><rect x="52" y="194" width="30" height="5" rx="2" fill="#F9C74F"/>`,
-    sol:`<path d="M62 150c10-12 24-20 38-20s28 8 38 20v60H62z" fill="#05CE78"/><rect x="62" y="170" width="76" height="6" fill="#fff" opacity=".9"/><rect x="62" y="190" width="76" height="6" fill="#fff" opacity=".9"/>`}[k];
-  const top={
-    pnc:`<path d="M62 80c0-28 17-44 38-44s38 16 38 44c-6-14-21-22-38-22s-32 8-38 22z" fill="${c.hair}"/>`,
-    pnt:`<path d="M62 64c4-20 20-30 38-30s34 10 38 30z" fill="#140D8A"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M90 46h20l-3 7h-14z" fill="#F9C74F"/><path d="M84 74h12M104 74h12" stroke="${c.hair}" stroke-width="3" stroke-linecap="round"/>`,
-    sol:`<path d="M64 76c0-26 16-40 36-40s36 14 36 40c-10-10-22-14-36-14s-26 4-36 14z" fill="${c.hair}"/><path d="M60 82a40 40 0 0 1 80 0" stroke="#140D8A" stroke-width="6" fill="none"/><rect x="54" y="74" width="13" height="22" rx="6" fill="#140D8A"/><rect x="133" y="74" width="13" height="22" rx="6" fill="#140D8A"/><path d="M60 94c4 10 14 14 24 12" stroke="#140D8A" stroke-width="3" fill="none"/><circle cx="86" cy="106" r="4" fill="#140D8A"/>`}[k];
-  const blink=(3.6+Math.random()*2.4).toFixed(2);
-  return `<svg class="char" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="--blink:${blink}s">
-  <ellipse cx="100" cy="212" rx="60" ry="7" fill="#140D8A" opacity=".12"/>
-  <path d="M45 210c0-50 22-82 55-82s55 32 55 82z" fill="${c.outfit}"/>${det}
-  <g class="arm"><path d="M146 148q14 24 10 52" stroke="${c.outfit}" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="156" cy="204" r="9.5" fill="${c.skin}"/></g>
-  <rect x="88" y="104" width="24" height="30" rx="10" fill="${c.skin}"/>
-  <g class="head">${back}<circle cx="100" cy="82" r="37" fill="${c.skin}"/>${top}
-    <g class="eyes"><ellipse cx="87" cy="86" rx="4.5" ry="5" fill="#140D8A"/><ellipse cx="113" cy="86" rx="4.5" ry="5" fill="#140D8A"/></g>
-    <circle cx="77" cy="96" r="5" fill="#FF8867" opacity=".55"/><circle cx="123" cy="96" r="5" fill="#FF8867" opacity=".55"/>
-    <path class="m-smile" d="M89 100c7 6 15 6 22 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <path class="m-happy" d="M86 98h28c0 10-6 16-14 16s-14-6-14-16z" fill="#140D8A"/>
-    <path class="m-sad" d="M90 106c7-6 13-6 20 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/>
-  </g></svg>`}
 $$('[data-char]').forEach(el=>el.innerHTML=charSVG(el.dataset.char));
-function wave(svg){if(!svg||reduce)return;svg.classList.remove('wave');void svg.getBoundingClientRect();svg.classList.add('wave');setTimeout(()=>svg.classList.remove('wave'),1450)}
 if(!reduce)setInterval(()=>{const vis=$$('.char').filter(s=>{const r=s.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0&&!s.classList.contains('happy')&&!s.classList.contains('sad')});if(vis.length)wave(vis[Math.random()*vis.length|0])},3200);
 
 /* ---------- Défilement : ciel, parallaxe, altimètre ---------- */
@@ -655,7 +605,10 @@ function drawPass(){
   cols.forEach(([l,v],i)=>{const x=40+i*210;lab(l,x,320);val(v,x,360,28)});
   const pill=(x,ok,t)=>{rr(c,x,400,390,110,24);c.fillStyle=ok?'#05CE78':'#FFD6C9';c.fill();c.fillStyle='#140D8A';if('fontStretch' in c)c.fontStretch='normal';c.font=`600 18px ${body}`;c.fillText(t,x+22,440);if('fontStretch' in c)c.fontStretch='expanded';c.font=`900 32px ${head}`;c.fillText(ok?'AUTORISÉ ✓':'PAS ENCORE',x+22,486)};
   pill(40,vote,'VOTE');pill(450,cand,'CANDIDATURE');
-  if(charImg.complete&&charImg.naturalWidth)c.drawImage(charImg,S+60,40,200,220);
+  /* hublot clair derrière le personnage, sinon sa tenue se fond dans le talon bleu */
+  c.save();c.beginPath();c.arc(S+160,148,100,0,Math.PI*2);const hg=c.createLinearGradient(0,48,0,248);hg.addColorStop(0,'#FFD9F9');hg.addColorStop(1,'#C9F5DF');c.fillStyle=hg;c.fill();c.clip();
+  if(charImg.complete&&charImg.naturalWidth)c.drawImage(charImg,S+60,46,200,220);
+  c.restore();
   c.fillStyle='#fff';c.textAlign='center';if('fontStretch' in c)c.fontStretch='expanded';c.font=`900 30px ${head}`;c.fillText('TO 2027',S+160,300);
   if('fontStretch' in c)c.fontStretch='normal';c.font=`600 20px ${body}`;c.fillText(name.slice(0,14),S+160,332);
   let seed=[...name+ck.job].reduce((a,ch)=>a*31+ch.charCodeAt(0)>>>0,7);const rnd=()=>(seed=seed*16807%2147483647)/2147483647;

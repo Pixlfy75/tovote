@@ -257,21 +257,18 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 footer .wm{height:28px}
 footer nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;opacity:.8}
 
-/* ---------- Toast & annotations (mode présentation) ---------- */
+/* ---------- Toast ---------- */
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:var(--dark);color:#fff;padding:14px 22px;border-radius:999px;font-weight:600;z-index:90;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
-.notes-toggle{position:fixed;right:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--dark);padding:.7em 1.1em;border-radius:999px;font-weight:600;font-size:.85rem;box-shadow:0 10px 30px -10px rgba(20,13,138,.5)}
-:where([data-note]){position:relative}
-body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--dark);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:10px;max-width:260px;box-shadow:0 6px 16px -6px rgba(0,0,0,.35);pointer-events:none;text-align:left;letter-spacing:0;text-transform:none}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.step{opacity:1;transform:none}}
 </style>
 </head>
-<body class="notes">
+<body>
 
 <a href="#main" class="btn btn-dark" style="position:absolute;left:-9999px" onfocus="this.style.left='16px'">Aller au contenu</a>
 
-<header class="top" data-note="Header en verre dépoli + barre de progression de lecture">
+<header class="top">
   <div class="wrap">
     <a class="brand" href="#">
       <img class="icon" src="../assets/img/tovote-icon.png" alt="">
@@ -302,19 +299,19 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
       <div class="ctas">
         <a class="btn btn-dark" href="#calendrier">Voir le calendrier
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <button class="btn btn-ghost" id="addCal" data-note="Ajout au calendrier (.ics) en 1 clic : Outlook, Google, iPhone">
+        <button class="btn btn-ghost" id="addCal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
           Ajouter à mon agenda</button>
       </div>
     </div>
-    <img class="hero-logo" src="../assets/img/tovote-logo.png" alt="TO VOTE 2027" data-note="Logo projet en flottaison légère">
+    <img class="hero-logo" src="../assets/img/tovote-logo.png" alt="TO VOTE 2027">
   </div>
 
-  <div class="hero-band" data-note="Le « t » Transavia à cheval entre 2 zones = règle « connecteur » de la charte">
+  <div class="hero-band">
     <img class="hero-t" src="../assets/img/transavia-t-white.svg" alt="">
     <div class="wrap">
       <p class="cd-title sub">Ouverture du vote en ligne dans</p>
-      <div class="countdown" id="countdown" data-note="Compte à rebours live, style tableau d'aéroport">
+      <div class="countdown" id="countdown">
         <div class="cd-unit"><div class="cd-digits" data-u="d"></div><div class="cd-label">jours</div></div>
         <div class="cd-unit"><div class="cd-digits" data-u="h"></div><div class="cd-label">heures</div></div>
         <div class="cd-unit"><div class="cd-digits" data-u="m"></div><div class="cd-label">minutes</div></div>
@@ -327,7 +324,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 <!-- ================= CARTE D'EMBARQUEMENT ================= -->
 <section class="pass-zone">
   <div class="wrap">
-    <article class="pass" data-note="Ta « carte d'embarquement » électeur : infos perso à terme (SSO), téléchargeable en Wallet">
+    <article class="pass">
       <div class="pass-main">
         <div class="pass-head">
           <img src="../assets/img/transavia-wordmark-green.svg" alt="transavia">
@@ -356,7 +353,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <div class="wrap">
     <span class="eyebrow" style="color:var(--green)">Calendrier électoral</span>
     <h2 class="h" style="margin-top:16px">Prochains <span class="hl">départs.</span></h2>
-    <div class="board" data-note="Calendrier = tableau des départs, effet palettes au chargement, statuts mis à jour automatiquement">
+    <div class="board">
       <table>
         <thead><tr><th>Heure</th><th>Vol</th><th>Destination</th><th>Porte</th><th>Statut</th></tr></thead>
         <tbody id="boardBody"></tbody>
@@ -373,7 +370,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
       <span class="eyebrow">Personnalisé</span>
       <h2 class="h" style="margin-top:16px">Et toi, tu voles où ?</h2>
       <p style="margin-top:16px;max-width:42ch">Choisis ton métier : on t'affiche ton collège, ce que tu élis et ce qui te concerne vraiment.</p>
-      <div class="seg" role="tablist" aria-label="Ton métier" data-note="Contenu adapté au profil : PNC / PNT / Sol (collèges du PAP)">
+      <div class="seg" role="tablist" aria-label="Ton métier">
         <button role="tab" aria-selected="true" data-p="pnc">PNC</button>
         <button role="tab" aria-selected="false" data-p="pnt">PNT</button>
         <button role="tab" aria-selected="false" data-p="sol">Sol</button>
@@ -389,7 +386,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
     <span class="eyebrow">Le CSE, concrètement</span>
     <h2 class="h" style="margin-top:16px">Ce que ton vote <span class="hl">change pour toi.</span></h2>
 
-    <div class="bento" data-note="Grille « bento » : tuiles de tailles variées, couleurs tertiaires de la charte">
+    <div class="bento">
       <article class="tile t-a">
         <div class="ico">🗳️</div>
         <div>
@@ -402,7 +399,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
         <div class="ico">🎟️</div>
         <div><h3 class="sub">Activités sociales &amp; culturelles</h3><p>Billetterie, chèques vacances, sport, culture : c'est le CSE qui gère.</p></div>
       </article>
-      <article class="tile t-c flipcard" tabindex="0" role="button" aria-label="Retourner la carte" data-note="Carte qui se retourne au clic : idée reçue / réalité">
+      <article class="tile t-c flipcard" tabindex="0" role="button" aria-label="Retourner la carte">
         <div class="inner">
           <div class="face front"><span class="hint">Idée reçue · touche pour retourner ↻</span><h3 class="sub">« Le CSE, ça ne sert à rien. »</h3></div>
           <div class="face back"><span class="hint" style="color:var(--green)">Réalité</span><p>Il est consulté sur l'organisation, les plannings, les conditions de travail, et peut déclencher une expertise.</p></div>
@@ -431,7 +428,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <div class="wrap">
     <span class="eyebrow" style="display:flex;justify-content:center">Comment voter</span>
     <h2 class="h" style="margin-top:16px">Ton plan de vol<br>en 4 étapes.</h2>
-    <div class="flight-wrap" id="flightWrap" data-note="L'avion suit le scroll le long du trajet (animation pilotée au défilement)">
+    <div class="flight-wrap" id="flightWrap">
       <svg class="flight-svg" id="flightSvg" preserveAspectRatio="none"><path id="routeBase"/><path id="routeDone" class="done"/></svg>
       <svg class="plane" id="plane" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#05CE78"/><path transform="translate(4 4) scale(.67)" fill="#fff" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
       <ol class="steps">
@@ -447,7 +444,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 <!-- ================= QUIZ ================= -->
 <section class="quiz" id="quiz">
   <div class="wrap">
-    <div class="quiz-box" data-note="Quiz interactif avec score : gamification + pédagogie (contenus fondés sur le Code du travail)">
+    <div class="quiz-box">
       <div class="side">
         <span class="eyebrow" style="color:var(--green)">Contrôle de sûreté</span>
         <h2 class="h" style="margin-top:16px">Prêt·e pour le <span class="hl">décollage ?</span></h2>
@@ -466,9 +463,9 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
         <span class="eyebrow">Bientôt</span>
         <h2 class="h" style="margin-top:16px">Les listes arrivent.</h2>
       </div>
-      <button class="btn btn-dark" id="notify" data-note="Alerte (mail / notif Teams) à la publication des listes">🔔 Préviens-moi</button>
+      <button class="btn btn-dark" id="notify">🔔 Préviens-moi</button>
     </div>
-    <div class="lists-grid" data-note="Cartes floutées jusqu'à la date de publication, puis professions de foi + candidat·es">
+    <div class="lists-grid">
       <div class="list-card"><div class="blur"><b class="sub">Liste ████████</b><p>Profession de foi, priorités, candidat·es par collège…</p><div class="avatars"><i></i><i></i><i></i><i></i></div></div><div class="lock"><span>🔒 Publication le 2 mars</span></div></div>
       <div class="list-card"><div class="blur"><b class="sub">Liste ██████</b><p>Profession de foi, priorités, candidat·es par collège…</p><div class="avatars"><i></i><i></i><i></i></div></div><div class="lock"><span>🔒 Publication le 2 mars</span></div></div>
       <div class="list-card"><div class="blur"><b class="sub">Liste ██████████</b><p>Profession de foi, priorités, candidat·es par collège…</p><div class="avatars"><i></i><i></i><i></i><i></i></div></div><div class="lock"><span>🔒 Publication le 2 mars</span></div></div>
@@ -483,7 +480,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
     <div>
       <span class="eyebrow">Consignes de sécurité</span>
       <h2 class="h" style="margin-top:16px">Tes questions, nos réponses.</h2>
-      <label class="search" data-note="Recherche instantanée dans la FAQ">
+      <label class="search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input id="faqSearch" type="search" placeholder="Ex. : procuration, rotation, anonymat…" aria-label="Rechercher dans la FAQ">
       </label>
@@ -505,7 +502,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
       <h2 class="h">Ta voix.<br><span class="w">Ton CSE.</span><br>Ton vote.</h2>
       <div class="ctas">
         <a class="btn btn-dark" href="#calendrier">Voir les dates</a>
-        <button class="btn btn-ghost" id="share" style="color:var(--dark)" data-note="Partage natif (Teams, WhatsApp…) via le menu du téléphone">↗ Partager à un·e collègue</button>
+        <button class="btn btn-ghost" id="share" style="color:var(--dark)">↗ Partager à un·e collègue</button>
       </div>
     </div>
     <img class="big-t" src="../assets/img/transavia-t-white.svg" alt="">
@@ -520,7 +517,6 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   </div>
 </footer>
 
-<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -528,8 +524,6 @@ const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelect
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=msg=>{const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600)};
 
-/* Annotations */
-$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
 
 /* Barre de progression */
 addEventListener('scroll',()=>{const h=document.documentElement;$('#progress').style.transform=`scaleX(${h.scrollTop/(h.scrollHeight-h.clientHeight)})`},{passive:true});

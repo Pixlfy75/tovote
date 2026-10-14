@@ -155,33 +155,18 @@ footer img{height:24px}
 footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
 @media (max-width:760px){footer .bar{border-radius:24px}}
 
-/* ---------- Personnages (mêmes que l'accueil) ---------- */
-.char{overflow:visible}
-.char .eyes ellipse{transform-box:fill-box;transform-origin:center;animation:blink var(--blink,4.6s) infinite}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
-.char .m-happy,.char .m-sad{display:none}
-.char.happy .m-smile,.char.sad .m-smile{display:none}
-.char.happy .m-happy,.char.sad .m-sad{display:inline}
-.char .arm{transform-origin:146px 148px;transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
-.char.wave .arm{animation:wave 1.4s ease-in-out}
-@keyframes wave{0%,100%{transform:rotate(0)}18%,52%,86%{transform:rotate(-145deg)}35%,69%{transform:rotate(-115deg)}}
-.char.happy{animation:jump .55s cubic-bezier(.3,1.6,.5,1) 2}
-.char.happy .arm{transform:rotate(-150deg)}
-@keyframes jump{50%{transform:translateY(-16px)}}
+/* ---------- Personnages (dessin et animations : crew.js) ---------- */
 .bob{animation:bob 4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
-/* ---------- Annotations + toast ---------- */
-.notes-toggle{position:fixed;left:16px;bottom:16px;z-index:80;background:var(--pink);color:var(--ink);padding:.6em 1em;border-radius:999px;font-weight:600;font-size:.82rem;box-shadow:0 8px 24px -8px rgba(20,13,138,.5)}
-:where([data-note]){position:relative}
-body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:30;background:var(--pink);color:var(--ink);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:12px;max-width:270px;box-shadow:0 6px 16px -6px rgba(20,13,138,.4);pointer-events:none;text-align:left;letter-spacing:0;font-stretch:100%}
+/* ---------- Toast ---------- */
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body class="notes">
+<body>
 
 <div class="sky" aria-hidden="true"></div>
 <div class="cloud c1" aria-hidden="true"></div>
@@ -204,7 +189,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <span class="chip"><i></i>Centre d'aide · Élections CSE 2027</span>
   <h1 class="h xl" aria-label="Tes questions, nos réponses."><span data-split>Tes questions,</span><br><span data-split class="g">nos réponses.</span></h1>
   <p class="lead">Voter, le vote en ligne, les candidatures, le rôle du CSE : tout est ici. Tape ta question, on filtre pour toi.</p>
-  <label class="search glass" id="searchBox" data-note="Recherche instantanée, insensible aux accents, avec synonymes (ex. « procuration », « arrêt maladie ») et surlignage">
+  <label class="search glass" id="searchBox">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Ex. : rotation, anonymat, codes perdus, CDD…" aria-label="Rechercher dans la FAQ" autocomplete="off">
     <kbd aria-hidden="true">/</kbd>
@@ -212,12 +197,12 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   </label>
   <div class="popular" id="popular"><span>Les plus posées :</span></div>
   <p class="count" id="count" aria-live="polite"></p>
-  <nav class="cats" id="cats" aria-label="Catégories" data-note="Catégories illustrées (style carte de sécurité), avec le nombre de questions"></nav>
+  <nav class="cats" id="cats" aria-label="Catégories"></nav>
 </header>
 
 <!-- ================= QUESTIONS ================= -->
 <div class="wrap layout">
-  <aside class="side glass" id="side" aria-label="Sommaire" data-note="Sommaire collant qui suit la lecture"></aside>
+  <aside class="side glass" id="side" aria-label="Sommaire"></aside>
   <div>
     <div id="groups"></div>
     <div class="empty glass" id="empty">
@@ -228,7 +213,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
     </div>
 
     <!-- ================= PAS TROUVÉ ? ================= -->
-    <section class="ask glass" id="ask" data-note="Formulaire vers l'équipe RH (réponse sous 48h) ; les questions récurrentes viennent enrichir la FAQ">
+    <section class="ask glass" id="ask">
       <div class="who"><div class="bob" data-char="sol" id="askChar"></div></div>
       <div>
         <h2 class="h">Pas trouvé&nbsp;? <span class="g">Demande.</span></h2>
@@ -253,14 +238,13 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   </div>
 </footer>
 
-<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
 <div class="toast" id="toast" role="status"></div>
 
+<script src="crew.js"></script>
 <script>
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
-$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
 $$('.soon-link').forEach(a=>a.onclick=e=>{e.preventDefault();toast('📄 Page en préparation')});
 
 /* ---------- Titre : lettres qui montent une fois ---------- */
@@ -375,18 +359,7 @@ const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.si
 $$('.group').forEach(g=>so.observe(g));
 
 /* ---------- Personnages ---------- */
-const CHARS={pnc:{skin:'#8D5524',hair:'#1d1350',outfit:'#140D8A'},pnt:{skin:'#F1C27D',hair:'#7a5a2a',outfit:'#140D8A'},sol:{skin:'#C68642',hair:'#3b2314',outfit:'#0053FF'}};
-function charSVG(k){const c=CHARS[k];
-  const back=k==='pnc'?`<circle cx="140" cy="62" r="14" fill="${c.hair}"/>`:'';
-  const det={pnc:`<path d="M80 132l20 34 20-34z" fill="#fff"/><path d="M84 134c10 10 22 10 32 0l-6 18c-6 6-14 6-20 0z" fill="#05CE78"/>`,
-    pnt:`<path d="M82 132l18 30 18-30z" fill="#fff"/><path d="M96 136h8l3 34-7 8-7-8z" fill="#140D8A"/><rect x="52" y="186" width="30" height="5" rx="2" fill="#F9C74F"/><rect x="52" y="194" width="30" height="5" rx="2" fill="#F9C74F"/>`,
-    sol:`<path d="M62 150c10-12 24-20 38-20s28 8 38 20v60H62z" fill="#05CE78"/><rect x="62" y="170" width="76" height="6" fill="#fff" opacity=".9"/><rect x="62" y="190" width="76" height="6" fill="#fff" opacity=".9"/>`}[k];
-  const top={pnc:`<path d="M62 80c0-28 17-44 38-44s38 16 38 44c-6-14-21-22-38-22s-32 8-38 22z" fill="${c.hair}"/>`,
-    pnt:`<path d="M62 64c4-20 20-30 38-30s34 10 38 30z" fill="#140D8A"/><rect x="58" y="60" width="84" height="10" rx="5" fill="#0b0657"/><path d="M90 46h20l-3 7h-14z" fill="#F9C74F"/>`,
-    sol:`<path d="M64 76c0-26 16-40 36-40s36 14 36 40c-10-10-22-14-36-14s-26 4-36 14z" fill="${c.hair}"/><path d="M60 82a40 40 0 0 1 80 0" stroke="#140D8A" stroke-width="6" fill="none"/><rect x="54" y="74" width="13" height="22" rx="6" fill="#140D8A"/><rect x="133" y="74" width="13" height="22" rx="6" fill="#140D8A"/><path d="M60 94c4 10 14 14 24 12" stroke="#140D8A" stroke-width="3" fill="none"/><circle cx="86" cy="106" r="4" fill="#140D8A"/>`}[k];
-  return `<svg class="char" viewBox="0 0 200 220" aria-hidden="true" style="--blink:${(3.6+Math.random()*2.4).toFixed(2)}s"><ellipse cx="100" cy="212" rx="60" ry="7" fill="#140D8A" opacity=".12"/><path d="M45 210c0-50 22-82 55-82s55 32 55 82z" fill="${c.outfit}"/>${det}<g class="arm"><path d="M146 148q14 24 10 52" stroke="${c.outfit}" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="156" cy="204" r="9.5" fill="${c.skin}"/></g><rect x="88" y="104" width="24" height="30" rx="10" fill="${c.skin}"/><g class="head">${back}<circle cx="100" cy="82" r="37" fill="${c.skin}"/>${top}<g class="eyes"><ellipse cx="87" cy="86" rx="4.5" ry="5" fill="#140D8A"/><ellipse cx="113" cy="86" rx="4.5" ry="5" fill="#140D8A"/></g><circle cx="77" cy="96" r="5" fill="#FF8867" opacity=".55"/><circle cx="123" cy="96" r="5" fill="#FF8867" opacity=".55"/><path class="m-smile" d="M89 100c7 6 15 6 22 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/><path class="m-happy" d="M86 98h28c0 10-6 16-14 16s-14-6-14-16z" fill="#140D8A"/><path class="m-sad" d="M90 106c7-6 13-6 20 0" stroke="#140D8A" stroke-width="4" fill="none" stroke-linecap="round"/></g></svg>`}
 $$('[data-char]').forEach(el=>el.innerHTML=charSVG(el.dataset.char));
-function wave(s){if(!s||reduce)return;s.classList.remove('wave');void s.getBoundingClientRect();s.classList.add('wave');setTimeout(()=>s.classList.remove('wave'),1450)}
 if(!reduce)setInterval(()=>wave($('#askChar .char')),4200);
 
 /* Formulaire (maquette : rien n'est envoyé) */

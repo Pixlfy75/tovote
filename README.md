@@ -11,8 +11,6 @@ Site d'information sur les élections professionnelles (CSE). Six pistes de land
 - `proposition-f/` : **Envol**, ciel en dégradés doux, verre dépoli, titres XXL, personnages illustrés ; pages Le CSE (`proposition-f/cse.html`), Calendrier (`proposition-f/calendrier.html`), Candidatures (`proposition-f/candidatures.html`) et FAQ (`proposition-f/faq.html`)
 - `assets/` : logos, polices Söhne (Buch, Halbfett)
 
-Bouton « 💡 annotations » (en bas à droite) : affiche ou masque les explications de chaque fonctionnalité pour la présentation.
-
 Pour voir les pages : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
 
 À noter : les contenus et dates sont fictifs. La police de titre Söhne Breit Fett n'a pas été fournie ; Archivo Expanded (Google Fonts) la remplace provisoirement.

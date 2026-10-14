@@ -237,20 +237,16 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;opacity:.75}
 .rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 
-/* ---------- Annotations ---------- */
-.notes-toggle{position:fixed;right:16px;bottom:16px;z-index:150;background:var(--pink);color:var(--dark);padding:.7em 1.1em;border-radius:999px;font-weight:600;font-size:.85rem;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
-:where([data-note]){position:relative}
-body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute;top:8px;right:8px;z-index:40;background:var(--pink);color:var(--dark);font:600 .72rem/1.3 var(--f-body);padding:.45em .8em;border-radius:10px;max-width:260px;box-shadow:0 6px 16px -6px rgba(0,0,0,.5);pointer-events:none;text-align:left;text-transform:none;letter-spacing:0}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:var(--green);color:var(--dark);padding:14px 22px;border-radius:999px;font-weight:600;z-index:250;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.rotator span{transform:none}.rotator span:not(.on){display:none}}
 </style>
 </head>
-<body class="notes">
+<body>
 <div class="halo" id="halo" aria-hidden="true"></div>
 
-<nav class="nav" aria-label="Navigation principale" data-note="Nav « pilule » flottante + anneau de progression de lecture">
+<nav class="nav" aria-label="Navigation principale">
   <img src="../assets/img/tovote-icon.png" alt="TO VOTE">
   <a class="l" href="#stories">Stories</a>
   <a class="l" href="#infos">Infos</a>
@@ -265,7 +261,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 <section class="hero">
   <img class="plane-fly" src="../assets/img/tovote-icon.png" alt="" aria-hidden="true">
   <div class="wrap">
-    <img class="sticker st-logo" src="../assets/img/tovote-logo.png" alt="TO VOTE 2027" draggable="false" data-note="Stickers déplaçables à la souris / au doigt">
+    <img class="sticker st-logo" src="../assets/img/tovote-logo.png" alt="TO VOTE 2027" draggable="false">
     <span class="sticker st-round">3 MIN<br>CHRONO</span>
     <span class="pill"><span class="dot"></span>Élections CSE 2027</span>
     <h1 class="h" style="margin-top:24px">Ta voix<br><span class="g">compte</span><br><span class="rotator" id="rotator" aria-live="off"><span class="on">au sol.</span><span>en vol.</span><span>en escale.</span><span>partout.</span></span></h1>
@@ -280,7 +276,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   </div>
 </section>
 
-<div class="marquee" data-note="Bandeaux défilants, effet « stickers » réseaux sociaux"><div class="track">
+<div class="marquee"><div class="track">
   <span>Vote en ligne</span><span>100 % anonyme</span><span>3 minutes chrono</span><span>Depuis ton tel</span><span>Même en escale</span><span>Vote en ligne</span><span>100 % anonyme</span><span>3 minutes chrono</span><span>Depuis ton tel</span><span>Même en escale</span>
 </div></div>
 <div class="marquee alt"><div class="track">
@@ -292,7 +288,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <div class="wrap">
     <h2 class="h sec-title rv">Le CSE en <span class="p">stories.</span></h2>
     <p class="rv" style="margin:16px 0 32px;opacity:.85;max-width:44ch">Tape sur une bulle. 15 secondes chacune, format Insta, pensé pour le téléphone.</p>
-    <div class="stories rv" id="storyRow" data-note="Stories façon Instagram : barre de progression, tap gauche/droite, swipe"></div>
+    <div class="stories rv" id="storyRow"></div>
   </div>
 </section>
 
@@ -311,17 +307,17 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   <div class="wrap">
     <h2 class="h sec-title rv">L'essentiel, <span class="g">d'un coup d'œil.</span></h2>
     <div class="bento">
-      <article class="tile b1 rv tilt" data-note="Compte à rebours live">
+      <article class="tile b1 rv tilt">
         <div><span class="sub" style="text-transform:uppercase;letter-spacing:.08em;font-size:.82rem">Le vote ouvre dans</span><div class="h" style="margin-top:10px">16 → 19 mars</div></div>
         <div class="cd" id="cd"><div><b data-u="d">0</b><small>jours</small></div><div><b data-u="h">0</b><small>h</small></div><div><b data-u="m">0</b><small>min</small></div><div><b data-u="s">0</b><small>sec</small></div></div>
       </article>
-      <article class="tile b2 rv tilt" data-note="Jauge de participation animée (live pendant le scrutin)">
+      <article class="tile b2 rv tilt">
         <span class="sub">Participation 2023</span>
         <div class="gauge"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="58" stroke="rgba(255,255,255,.1)"/><circle id="gaugeArc" cx="70" cy="70" r="58" stroke="#05CE78" stroke-linecap="round" stroke-dasharray="364.4" stroke-dashoffset="364.4" style="transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/></svg><div class="val"><div><b id="gaugeVal">0%</b><br><small style="opacity:.75">chiffre fictif</small></div></div></div>
         <p>Objectif 2027 : faire mieux. Tu en es ?</p>
       </article>
       <article class="tile b3 rv tilt"><span style="font-size:2rem">🎟️</span><div><h3 class="sub">Activités sociales</h3><p>Billetterie, vacances, sport : géré par le CSE.</p></div></article>
-      <article class="tile b4 rv tilt" data-note="Mini-calendrier : jours de vote surlignés">
+      <article class="tile b4 rv tilt">
         <h3 class="sub">Mars 2027</h3>
         <div class="mini-cal"><span>15</span><span class="v">16</span><span class="v">17</span><span class="v">18</span><span class="v">19</span><span>20</span></div>
         <p style="font-size:.9rem">Vote ouvert 24h/24 pendant 4 jours.</p>
@@ -338,12 +334,12 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
       <span class="pill">Jeu</span>
       <h2 class="h sec-title" style="margin-top:18px">Vrai ou <span class="o">faux ?</span></h2>
       <p style="margin-top:16px;opacity:.85;max-width:40ch">Swipe à droite si c'est vrai, à gauche si c'est faux. On démonte les idées reçues.</p>
-      <div class="poll" id="poll" data-note="Mini-sondage : résultats instantanés (stockés en base à terme)">
+      <div class="poll" id="poll">
         <p class="sub" style="font-size:1.15rem">Ce qui compte le plus pour toi au CSE ?</p>
         <div id="pollOpts"></div>
       </div>
     </div>
-    <div data-note="Cartes à swiper façon appli (souris, doigt ou boutons)">
+    <div>
       <div class="deck" id="deck"></div>
       <div class="swipe-btns"><button class="sw-f" id="btnF" aria-label="Faux">✕</button><button class="sw-t" id="btnT" aria-label="Vrai">✓</button></div>
       <p class="verdict" id="verdict" aria-live="polite"></p>
@@ -352,7 +348,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 </section>
 
 <!-- ================= ÉTAPES (scroll horizontal) ================= -->
-<section class="hscroll" id="hscroll" data-note="Défilement horizontal piloté par le scroll vertical (section épinglée)">
+<section class="hscroll" id="hscroll">
   <div class="hs-sticky">
     <div class="wrap"><h2 class="h sec-title">Voter, <span class="g">mode d'emploi.</span></h2></div>
     <div class="hs-track" id="hsTrack">
@@ -372,7 +368,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
       <h2 class="h sec-title" style="margin-top:18px">Une question ?<br><span class="g">Demande.</span></h2>
       <p style="margin-top:16px;opacity:.85;max-width:42ch">Un assistant qui répond 24h/24 à partir des documents officiels (PAP, règlement du vote). Si ça coince : relais vers un·e humain·e des RH.</p>
     </div>
-    <div class="phone" data-note="Assistant conversationnel (réponses ici simulées), sourcé sur le PAP">
+    <div class="phone">
       <div class="phone-head"><img src="../assets/img/tovote-icon.png" alt=""><div><b>Assistant TO VOTE</b><small>● en ligne</small></div></div>
       <div class="msgs" id="msgs"></div>
       <div class="chips" id="chips"></div>
@@ -384,7 +380,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 <!-- ================= CHECKLIST ================= -->
 <section class="sec" style="padding-top:0">
   <div class="wrap">
-    <div class="check-wrap" data-note="Checklist perso sauvegardée sur l'appareil + confettis à 100 %">
+    <div class="check-wrap">
       <div>
         <h2 class="h">Ta checklist<br>électeur·rice.</h2>
         <p style="margin-top:16px;max-width:38ch">Coche au fur et à mesure. On garde ta progression, même si tu reviens demain.</p>
@@ -405,7 +401,7 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <h2 class="h sec-title rv">Les listes. <span class="p">Bientôt.</span></h2>
-    <div class="lists" id="lists" data-note="Listes floutées jusqu'au jour J, ordre tiré au sort (neutralité)">
+    <div class="lists" id="lists">
       <div class="lcard"><div class="bl"><b>Liste ███████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
       <div class="lcard"><div class="bl"><b>Liste █████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
       <div class="lcard"><div class="bl"><b>Liste █████████</b><p>Profession de foi, candidat·es, priorités…</p></div><div class="lock"><span>🔒 Déblocage le 2 mars</span></div></div>
@@ -433,7 +429,6 @@ body.notes [data-note]::before{content:"💡 " attr(data-note);position:absolute
   </div>
 </footer>
 
-<button class="notes-toggle" id="notesToggle" aria-pressed="true">💡 Masquer les annotations</button>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -442,7 +437,6 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600)};
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
 
-$('#notesToggle').onclick=e=>{const on=document.body.classList.toggle('notes');e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'💡 Masquer les annotations':'💡 Afficher les annotations'};
 
 /* Halo qui suit le curseur + anneau de progression */
 addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){const h=$('#halo');h.style.left=e.clientX+'px';h.style.top=e.clientY+'px'}});
