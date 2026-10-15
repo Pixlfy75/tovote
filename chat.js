@@ -285,7 +285,7 @@
   }
 
   /* ---------- Interface ---------- */
-  var PNC = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><circle cx="16" cy="6.5" r="3.6"/><path d="M11.6 12.2c0-1.3 1-2.2 2.2-2.2h4.4c1.2 0 2.2.9 2.2 2.2v7.6h-2.3V29h-4.2v-9.2h-2.3z"/><path d="M9.4 13.6 6.8 19.4l1.9.9 2.9-5.6zM22.6 13.6l2.6 5.8-1.9.9-2.9-5.6z"/></svg>';
+  var PNC = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><circle cx="16" cy="10.5" r="5.6"/><path d="M5.5 28c0-6.4 4.7-11 10.5-11s10.5 4.6 10.5 11z"/></svg>'; /* buste : le pictogramme d'appel PNC */
   var PLANE = window.planeSVG ? planeSVG({ yaw: -14, pitch: 8, roll: 22, elev: 12, heading: true, stroke: '#140D8A', sw: .05 }) :
     '<svg viewBox="0 0 64 50" aria-hidden="true"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#9DBBF7"/></svg>';
   var css = '' +
@@ -295,7 +295,7 @@
     '.tvc-fab:active{transform:translateY(1px) scale(.95);box-shadow:0 8px 16px -8px rgba(20,13,138,.55),0 0 0 4px rgba(255,255,255,.85),inset 0 4px 10px rgba(20,13,138,.22)}' +
     '.tvc-fab:focus-visible{outline:3px solid #140D8A;outline-offset:4px}' +
     '.tvc-fab .tvc-pnc{position:absolute;inset:0;display:grid;place-items:center}' +
-    '.tvc-fab .tvc-pnc svg{width:34px;height:34px;transition:color .3s}' +
+    '.tvc-fab .tvc-pnc svg{width:30px;height:30px;transition:color .3s}' +
     '.tvc-fab .tvc-led{position:absolute;top:9px;right:12px;width:9px;height:9px;border-radius:50%;background:#C9CBDB;box-shadow:inset 0 1px 2px rgba(20,13,138,.25);transition:background .25s,box-shadow .25s}' +
     '.tvc-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #FFB547;opacity:0;pointer-events:none}' +
     '.tvc-ping .tvc-fab::after{animation:tvc-ping 1.8s ease-out 3}' +
