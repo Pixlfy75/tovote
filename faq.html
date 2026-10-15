@@ -221,7 +221,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
         <form id="askForm">
           <select id="askCat" aria-label="Thème de ta question"><option value="">Thème (facultatif)</option></select>
           <textarea id="askTxt" required placeholder="Ta question…" aria-label="Ta question"></textarea>
-          <div class="row"><button class="btn btn-ink" type="submit">Envoyer ma question</button><span class="note">Pour une question sur le programme d'une liste, adresse-toi directement à la liste concernée.</span></div>
+          <div class="row"><button class="btn btn-ink" type="submit">✉️ Écrire à l'équipe RH</button><span class="note">Ta messagerie s'ouvre avec ta question, à envoyer à <a href="mailto:to-vote@fr.transavia.com">to-vote@fr.transavia.com</a>. Pour une question sur le programme d'une liste, adresse-toi directement à la liste concernée.</span></div>
         </form>
       </div>
     </section>
@@ -313,7 +313,11 @@ $$('[data-char]').forEach(el=>el.innerHTML=charSVG(el.dataset.char));
 if(!reduce)setInterval(()=>wave($('#askChar .char')),4200);
 
 /* Formulaire (maquette : rien n'est envoyé) */
-$('#askForm').onsubmit=e=>{e.preventDefault();const c=$('#askChar .char');c.classList.add('happy');setTimeout(()=>c.classList.remove('happy'),1200);e.target.reset();toast('📨 Question envoyée à l\'équipe RH')};
+/* Pas de serveur : la question part par la messagerie de la personne, pré-remplie vers l'adresse des élections */
+$('#askForm').onsubmit=e=>{e.preventDefault();const cat=$('#askCat').value,q=$('#askTxt').value.trim();if(!q)return;
+  const subject='Question élections CSE 2027'+(cat?' : '+cat:'');
+  location.href='mailto:to-vote@fr.transavia.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(q+'\n\n');
+  const c=$('#askChar .char');c&&c.classList.add('happy');setTimeout(()=>c&&c.classList.remove('happy'),1200);toast('✉️ Ta messagerie s\'ouvre : il ne reste qu\'à envoyer')};
 
 /* Ciel qui évolue au défilement */
 const root=document.documentElement;

@@ -25,8 +25,7 @@
     { t: 'Préparation', w: 'avant le 25 février 2027', items: [
       { id: 'liste', l: 'Inscription sur la liste électorale', s: 'Vérifiée', r: 'PAP, art. 7.3', w: wListe },
       { id: 'college', l: 'Mon collège', s: 'Vérifié', w: wCollege },
-      { id: 'adresse', l: 'Mon adresse postale', s: 'À jour', r: 'PAP, art. 8.7.2.3', w: wAdresse },
-      { id: 'mail', l: 'Accès à ma messagerie pro', s: 'OK', r: 'PAP, art. 8.7.2.3', w: wMail }
+      { id: 'adresse', l: 'Mon adresse postale', s: 'À jour', r: 'PAP, art. 8.7.2.3', w: wAdresse }
     ] },
     { t: 'Campagne', w: 'du 5 au 17 mars 2027', items: [
       { id: 'listes', l: 'Listes et professions de foi de mon collège', s: 'Consultées', w: wListes },
@@ -82,11 +81,6 @@
     return '<p>Ton identifiant arrive par courrier, à l\'adresse connue de l\'entreprise à la date d\'arrêt des listes électorales. ' +
       (before ? 'Envoi dès le 10 mars, ' + inDays('courrier') + ' : vérifie-la dès maintenant dans ton espace RH.' : 'Le courrier est parti : si tu as déménagé, voir la procédure A.') + '</p>' +
       '<div class="ck-acts">' + (before ? '' : proc('A', 'Procédure A')) + ok('Mon adresse est à jour') + '</div>';
-  }
-  function wMail(st) {
-    return '<p>Ton mot de passe arrive sur ta messagerie pro au moment de te connecter. Y auras-tu accès entre le 18 et le 31 mars ?</p>' +
-      '<div class="ck-acts"><button type="button" class="ck-c" data-act="done">Oui ✓</button><button type="button" class="ck-c' + (st.noMail ? ' on' : '') + '" data-act="nomail">Non, ou pas sûr·e</button></div>' +
-      (st.noMail ? '<p class="ck-warn">Pas de souci : tu pourras recevoir ton mot de passe sur une autre adresse mail, via la cellule RH. ' + proc('B', 'Voir la procédure B') + '</p><div class="ck-acts">' + ok('J\'ai noté la procédure') + '</div>' : '');
   }
   function wListes(st) {
     var c = st.col && COL[st.col], before = Date.now() < t('listes');
@@ -200,7 +194,7 @@
 
   var TICK = '<svg viewBox="0 0 14 14" fill="none" stroke="#140D8A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7.5 2.6 2.6L11 4.5"/></svg>';
   var CHEV = '<svg class="ck-chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg>';
-  /* état : { done: [...], col, noMail, idAns, votes: { t, s } } (ancienne version : simple liste) */
+  /* état : { done: [...], col, idAns, votes: { t, s } } (ancienne version : simple liste) */
   function load() {
     var v; try { v = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
     if (Array.isArray(v)) v = { done: v };
@@ -282,7 +276,6 @@
       else if (act === 'proc') showProc(b.dataset.p);
       else if (act === 'jobs') { var j = it.querySelector('.ck-jobs'); j.hidden = !j.hidden; }
       else if (act === 'col') { s.col = b.dataset.col; save(s); setDone('college', true, true); }
-      else if (act === 'nomail') { s.noMail = !s.noMail; save(s); fillPanel(id); }
       else if (act === 'id') { s.idAns = s.idAns === b.dataset.v ? null : b.dataset.v; save(s); fillPanel(id); }
       else if (act === 'vote') {
         s.votes = s.votes || {}; s.votes[b.dataset.v] = !s.votes[b.dataset.v]; save(s);
