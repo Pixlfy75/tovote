@@ -5,7 +5,7 @@
 (function () {
   var d = document, nav = d.querySelector('.nav');
   if (!nav) return;
-  var links = [].slice.call(nav.querySelectorAll('a.l'));
+  var links = [].slice.call(nav.querySelectorAll('.l')); /* liens, et rubriques verrouillées (<span class="l locked">) */
   if (!links.length) return;
   var cur = links.filter(function (a) { return a.getAttribute('aria-current') === 'page'; })[0];
 
@@ -15,7 +15,7 @@
     '.menu-btn .ch{width:12px;height:12px;transition:transform .3s}' +
     '.menu-btn[aria-expanded="true"] .ch{transform:rotate(180deg)}' +
     '.menu-btn:focus-visible{outline:3px solid var(--blue,#0053FF);outline-offset:3px}' +
-    '@media (max-width:1000px){.nav a.l{display:none!important}.menu-btn{display:inline-flex}}' +
+    '@media (max-width:1000px){.nav .l{display:none!important}.menu-btn{display:inline-flex}}' +
     '.menu-scrim{position:fixed;inset:0;z-index:79;background:rgba(20,13,138,.18);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}' +
     '.menu-scrim.on{opacity:1;visibility:visible}' +
     '.menu-on .nav{z-index:84}' + /* le menu et son panneau passent devant la bulle de l\'assistant */
@@ -24,6 +24,7 @@
     '.mp-row{display:block;padding:13px 16px;border-radius:14px;text-decoration:none;color:inherit;font-family:var(--f-head,Arial Black,sans-serif);font-weight:900;font-stretch:115%;font-size:1.05rem}' +
     '.mp-row:focus-visible{outline:3px solid var(--blue,#0053FF);outline-offset:-3px}' +
     '.mp-row.cur{background:var(--ink,#140D8A);color:#fff}' +
+    '.mp-row.locked{opacity:.4;cursor:not-allowed}' +
     '[data-theme="dark"] .menu-panel{background:rgba(22,16,78,.95);color:#fff;box-shadow:0 30px 60px -24px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.12)}' +
     '[data-theme="dark"] .mp-row.cur{background:#fff;color:#140D8A}' +
     '[data-theme="dark"] .menu-scrim{background:rgba(0,0,0,.35)}' +
@@ -45,6 +46,7 @@
   panel.setAttribute('aria-label', 'Toutes les pages'); panel.setAttribute('aria-hidden', 'true');
   panel.innerHTML = links.map(function (a) {
     var here = a === cur;
+    if (a.tagName !== 'A') return '<span class="mp-row locked" aria-disabled="true">' + a.textContent.trim() + '</span>';
     return '<a class="mp-row' + (here ? ' cur' : '') + '" href="' + a.getAttribute('href') + '"' + (here ? ' aria-current="page"' : '') + '>' + a.textContent.trim() + '</a>';
   }).join('');
   d.body.appendChild(scrim); d.body.appendChild(panel);
