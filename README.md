@@ -19,6 +19,7 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `night.css`, `theme.js` : mode nuit (bouton lune / soleil dans le menu, choix mémorisé, sinon réglage de l'appareil)
 - `plane.js` : l'avion en papier en 3D, commun à tout le site (accueil, plan de vol, quiz, affiche, assistant). Un petit modèle 3D projeté en SVG sous l'angle voulu (`planeSVG({ yaw, pitch, roll, elev })`), avec des vues prêtes (`data-plane="route"`). Le grand avion de l'accueil pivote au fil du défilement
 - `pictos.js` : les pictogrammes « carte de sécurité », communs à l'accueil, la FAQ et les documents
+- `assets/audio/chime-pnc.mp3` : carillon d'appel PNC (A320), extrait de 2 s du son « A320 tritone chime » (freesound_community, Pixabay), joué à l'appui sur le bouton de l'assistant
 - `assets/` : logos Transavia et TO VOTE, polices Söhne (Buch, Halbfett)
 
 Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.

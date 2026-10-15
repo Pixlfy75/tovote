@@ -666,14 +666,23 @@
     state.open = on; save();
     if (on) { hideTease(); if (!log.children.length) welcome(); log.scrollTop = log.scrollHeight; if (focus !== false && matchMedia('(pointer:fine)').matches) setTimeout(function () { input.focus(); }, 60); }
   }
-  /* Le « ding » du bouton d'appel, synthétisé (aucun fichier son) ; joué seulement quand on appuie */
+  /* Le carillon du bouton d'appel : joué seulement quand on appuie */
   var BELL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>';
   var BELL_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 9.5-4.9M18 11v5l1.5 2h-15"/><path d="M10 20.5a2 2 0 0 0 4 0"/><path d="M4 4l16 16"/></svg>';
   var actx = null, snd = $('.tvc-snd');
   function soundOn() { try { return localStorage.getItem('tv_chime') !== 'off'; } catch (e) { return true; } }
   function paintSnd() { var on = soundOn(); snd.innerHTML = on ? BELL : BELL_OFF; snd.setAttribute('aria-pressed', on); snd.title = on ? 'Couper le son du bouton d\'appel' : 'Activer le son du bouton d\'appel'; }
+  /* le carillon d'appel PNC d'un A320 (extrait de 2 s) ; à défaut, une cloche synthétisée */
+  var chimeEl = null;
   function chime() {
     if (!soundOn()) return;
+    try {
+      chimeEl = chimeEl || new Audio('assets/audio/chime-pnc.mp3');
+      chimeEl.volume = .6; chimeEl.currentTime = 0;
+      var pl = chimeEl.play(); if (pl && pl.catch) pl.catch(synth);
+    } catch (e) { synth(); }
+  }
+  function synth() {
     try {
       actx = actx || new (window.AudioContext || window.webkitAudioContext)();
       if (actx.state === 'suspended') actx.resume();
