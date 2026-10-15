@@ -83,9 +83,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 @media (max-width:700px){.intro-card{grid-template-columns:1fr;text-align:center;justify-items:center}}
 .intro-card .who svg{width:170px;height:auto}
 .intro-card h2{font-size:clamp(1.5rem,3vw,2.2rem)}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
-@media (max-width:700px){.facts{justify-content:center}}
-.facts span{font-weight:600;font-size:.88rem;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.intro-card #start{margin-top:22px}
 .best{margin-top:12px;font-size:.88rem;font-weight:600;opacity:.75}
 
 /* ---------- Plan de vol du quiz (progression) ---------- */
@@ -97,9 +95,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .track .done{position:absolute;left:0;top:calc(50% - 2px);height:4px;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--green));transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .track .plane svg{display:block;width:100%;height:auto}
 .track .plane{position:absolute;top:50%;width:64px;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 5px 8px rgba(20,13,138,.25));transition:left .6s cubic-bezier(.2,.8,.2,1)}
-.dots{display:flex;justify-content:space-between;margin-top:4px}
-.dots i{width:10px;height:10px;border-radius:50%;background:rgba(20,13,138,.15);transition:background .3s}
-.dots i.ok{background:var(--green)}.dots i.ko{background:var(--peach)}.dots i.cur{background:var(--ink)}
 
 /* ---------- Question ---------- */
 .stage{max-width:900px;margin:18px auto 0;display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:end}
@@ -126,8 +121,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .feedback.ok b{color:var(--web-green)}.feedback.ko b{color:#d0482a}
 .next-row{display:flex;justify-content:flex-end;margin-top:16px}
 .stage .mascot svg{width:170px;height:auto}
-.kbd{font-size:.78rem;opacity:.6;margin-top:10px;text-align:center}
-@media (hover:none){.kbd{display:none}}
 
 /* ---------- Résultats ---------- */
 .results{max-width:960px;margin:40px auto 0}
@@ -151,7 +144,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .bar-row{display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;font-weight:600;font-size:.9rem}
 .bar{height:12px;border-radius:6px;background:rgba(20,13,138,.1);overflow:hidden}
 .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--pink),var(--green));width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
-.next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.next-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
 @media (max-width:800px){.next-steps{grid-template-columns:1fr}}
 .step-card{padding:22px;display:flex;flex-direction:column;gap:10px}
 .step-card h3{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:1.2rem;line-height:1.1}
@@ -209,7 +202,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 <header class="top wrap">
   <span class="chip"><i></i>Quiz · Élections CSE 2027</span>
   <h1 class="h xl" aria-label="Prêt·e pour le décollage ?"><span data-split>Prêt·e pour</span><br><span data-split class="g">le décollage ?</span></h1>
-  <p class="lead">18 questions pour vérifier que tu sais tout sur le vote, le CSE et les candidatures. Réponds, découvre l'explication, et repars avec ton score.</p>
+  <p class="lead">18 questions sur le vote, le CSE et les candidatures. Environ 4&nbsp;minutes.</p>
 </header>
 
 <section class="wrap quiz-zone">
@@ -218,7 +211,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
     <div class="who bob" data-char="pnt" id="introChar"></div>
     <div>
       <h2 class="h">Ton contrôle <span class="g">avant vol.</span></h2>
-      <div class="facts"><span>🗳️ Voter · 8 questions</span><span>🏛️ Le CSE · 6 questions</span><span>✋ Candidater · 4 questions</span><span>⏱️ Environ 4 minutes</span></div>
       <button class="btn btn-ink" id="start">Commencer le quiz →</button>
       <p class="best" id="best" hidden></p>
     </div>
@@ -227,9 +219,8 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <!-- Questions -->
   <div id="play" hidden>
     <div class="flight glass" aria-hidden="true">
-      <div class="flight-top"><span id="qTheme"></span><b id="qCount"></b></div>
+      <div class="flight-top"><span>Ta progression</span><b id="qCount"></b></div>
       <div class="track"><span class="done" id="trackDone"></span><span class="plane" id="trackPlane" data-plane="route" aria-hidden="true"></span></div>
-      <div class="dots" id="dots"></div>
     </div>
     <div class="stage">
       <article class="qcard glass" aria-live="polite">
@@ -238,7 +229,6 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
         <div class="opts" id="opts" role="group" aria-label="Réponses"></div>
         <div class="feedback" id="fb" hidden><b id="fbTitle"></b><p id="fbText"></p><span class="ref" id="fbRef"></span></div>
         <div class="next-row"><button class="btn btn-ink" id="next" hidden>Question suivante →</button></div>
-        <p class="kbd">Astuce : réponds avec les touches 1 à 4, puis Entrée.</p>
       </article>
       <div class="mascot" id="mascot" aria-hidden="true"></div>
     </div>
@@ -255,14 +245,12 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
       <div class="res-txt">
         <h2 class="h" id="resTitle"></h2>
         <p id="resText"></p>
-        <div class="bars" id="bars"></div>
       </div>
     </div>
 
     <div class="next-steps">
       <article class="step-card glass"><div class="pic" data-picto="formation"></div><h3>Te former sur TO Learn</h3><p>Le module de formation sur le CSE et les élections professionnelles, à ton rythme.</p><a class="btn btn-ink btn-sm" id="toLearn" target="_blank" rel="noopener">Aller sur TO Learn →</a></article>
       <article class="step-card glass"><div class="pic" data-picto="cse"></div><h3>Comprendre le CSE</h3><p>Qui siège, à quoi il sert, ses moyens et ce qu'il change pour toi, en une page.</p><a class="btn btn-glass btn-sm" href="cse.html">Découvrir le CSE →</a></article>
-      <article class="step-card glass"><div class="pic" data-picto="calendrier"></div><h3>Garder le cap</h3><p>Toutes les dates du vote, du lancement aux résultats, dans le plan de vol.</p><a class="btn btn-glass btn-sm" href="calendrier.html">Voir le calendrier →</a></article>
     </div>
 
     <details class="review glass" id="review"><summary>Revoir mes réponses</summary><ol id="reviewList"></ol></details>
@@ -328,14 +316,12 @@ function start(){
   order=shuffle(Q).map(q=>({...q,opts:q.vf===undefined?shuffle(q.o):null}));i=0;answers=[];
   $('#intro').hidden=true;$('#results').hidden=true;$('#play').hidden=false;
   mascot.innerHTML=charSVG(['pnc','pnt','sol'][Math.random()*3|0]);
-  $('#dots').innerHTML=order.map(()=>'<i></i>').join('');
   show();$('#play').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
 }
-function progress(){const n=order.length,p=i/n*100;$('#trackDone').style.width=p+'%';$('#trackPlane').style.left=`calc(${p}% + ${p<3?30:0}px)`;
-  $$('#dots i').forEach((d,k)=>d.className=k<answers.length?(answers[k].ok?'ok':'ko'):k===i?'cur':'')}
+function progress(){const n=order.length,p=i/n*100;$('#trackDone').style.width=p+'%';$('#trackPlane').style.left=`calc(${p}% + ${p<3?30:0}px)`;}
 function show(){
   const q=order[i];locked=false;$('#fb').hidden=true;$('#next').hidden=true;
-  $('#qCount').textContent=`${i+1} / ${order.length}`;$('#qTheme').textContent=THEMES[q.t];$('#qThemeChip').textContent=THEMES[q.t]+(q.vf!==undefined?' · Vrai ou faux':'');
+  $('#qCount').textContent=`${i+1} / ${order.length}`;$('#qThemeChip').textContent=THEMES[q.t]+(q.vf!==undefined?' · Vrai ou faux':'');
   $('#qText').textContent=q.q;
   const o=$('#opts');
   if(q.vf!==undefined){o.className='opts vf';o.innerHTML='<button class="opt" data-v="true">Vrai</button><button class="opt" data-v="false">Faux</button>'}
@@ -365,8 +351,6 @@ function finish(){
   $('#resDate').textContent='Délivrée le '+new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
   $('#resTitle').innerHTML=n===tot?'Sans faute, <span class="g">bravo !</span>':n>=13?'Très beau <span class="g">vol !</span>':n>=8?'Bon <span class="g">décollage.</span>':'Prochain vol, <span class="g">tu&nbsp;y&nbsp;es.</span>';
   $('#resText').textContent=txt;
-  $('#bars').innerHTML=Object.entries(THEMES).map(([k,name])=>{const a=answers.filter(x=>x.q.t===k),g=a.filter(x=>x.ok).length;return `<div class="bar-row"><span>${name}</span><div class="bar"><i data-w="${a.length?g/a.length*100:0}"></i></div><span>${g}/${a.length}</span></div>`}).join('');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>$$('#bars i').forEach(b=>b.style.width=b.dataset.w+'%')));
   $('#reviewList').innerHTML=answers.map(a=>`<li class="${a.ok?'ok':'ko'}"><span class="m">${a.ok?'✓':'✕'}</span><div><b>${a.q.q}</b><p>${a.ok?'Ta réponse : ':`Ta réponse : ${a.given}. Bonne réponse : `}${a.ok?a.given:(a.q.vf!==undefined?(a.q.vf?'Vrai':'Faux'):a.q.o[0])}.</p><p>${a.q.e}</p>${a.q.r?`<span class="ref">${a.q.r}</span>`:''}</div></li>`).join('');
   const best=store.get('tv_quiz_best',0);if(n>best)store.set('tv_quiz_best',n);
   setTimeout(()=>{const s=$('#resChar .char');if(s){s.classList.add(n>=tot/2?'happy':'sad');setTimeout(()=>s.classList.remove('happy','sad'),1300)}},500);
