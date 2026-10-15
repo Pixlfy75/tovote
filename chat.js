@@ -80,6 +80,7 @@
     /* Documents et site */
     { id: 'docs', q: 'Où trouver les documents officiels ?', a: '<b>Sur la page Documents.</b> Le PAP y est déjà ; les autres documents (note de lancement, listes électorales, notice de vote, procès-verbaux…) y apparaissent le jour de leur publication.', l: ['documents.html', 'Voir les documents'], k: 'documents document officiels pdf telecharger lieu trouver accord vote electronique' },
     { id: 'notice', q: 'Où trouver la notice de vote ?', a: '<b>Elle t\'est envoyée par courrier avec ton identifiant, dès le 10 mars 2027.</b> Elle sera aussi en ligne sur la page Documents.', r: 'PAP, art. 8.7', l: ['documents.html#notice', 'Voir la notice'], k: 'lieu notice mode emploi guide explication' },
+    { id: 'checklist', q: 'Est-ce que j\'ai tout pour voter ?', a: '<b>Fais ta checklist avant vol !</b> Liste électorale, collège, adresse, messagerie pro, IBAN, identifiant… point par point, avec les procédures si ton identifiant ou ton mot de passe n\'est pas arrivé.', l: ['checklist.html', 'Ouvrir la checklist'], k: 'checklist tout pour voter pret preparer preparation verifier' },
     { id: 'quiz', q: 'Je veux tester mes connaissances.', a: '<b>Fais le grand quiz !</b> 18 questions sur le vote, le CSE et les candidatures, environ 4 minutes, avec une explication après chaque réponse.', l: ['quiz.html', 'Lancer le quiz'], k: 'quiz test tester connaissances jeu evaluer evaluation niveau' },
     { id: 'formation', q: 'Il existe une formation sur le CSE ?', a: '<b>Oui, sur TO Learn.</b> Un module sur le CSE et les élections professionnelles, à suivre à ton rythme. Tu le retrouves à la fin du quiz.', l: ['quiz.html', 'Faire le quiz'], k: 'formation former apprendre to learn tolearn module learning cours' },
     { id: 'checkin', q: 'Est-ce que moi, je peux voter ou me présenter ?', a: '<b>Fais ton check-in sur l\'accueil :</b> trois infos, et tu sais si tu peux voter ou te présenter. Ta carte d\'embarquement t\'attend.', l: ['index.html#checkin', 'Faire mon check-in'], k: 'moi eligible check verifier droit mon cas situation carte embarquement' },
@@ -543,7 +544,8 @@
     formation: 'formations?|former|apprendre|to learn|tolearn|module|cours|e learning',
     checkin: 'check in|checkin|carte d embarquement|mon cas|ma situation',
     contact: 'contact\\w*|humain|quelqu un|rh|ressources humaines|mail|email|joindre|parler a|numero|hotline|assistance|perso|personnelle',
-    theme: 'mode nuit|mode sombre|dark|theme|mode jour'
+    theme: 'mode nuit|mode sombre|dark|theme|mode jour',
+    checklist: 'checklist|check list|tout pour voter|tout ce qu il faut|pret a voter|prete a voter|me preparer|preparer mon vote|avant de voter'
   };
   var GENERIC = { vote: 1, cse: 1, elu: 1, liste: 1, lieu: 1, online: 1, comment_gen: 1, definition: 1 };
   var CRE = {};
@@ -582,7 +584,7 @@
     'delegue-liste': 'delegue_liste liste', 'depot': 'depot candidater dates liste', 'lancement': 'lancement dates',
     'campagne': 'campagne dates', 'tour2-dates': 'second_tour dates', 'docs': 'documents', 'notice': 'notice documents vote',
     'quiz': 'quiz', 'formation': 'formation cse', 'checkin': 'checkin droit_vote candidater', 'contact': 'contact',
-    'theme': 'theme', 'elu-role': 'elu role missions', 'pourquoi-voter': 'pourquoi_voter vote', 'nb-listes': 'nb_listes liste syndicat'
+    'theme': 'theme', 'checklist': 'checklist vote', 'elu-role': 'elu role missions', 'pourquoi-voter': 'pourquoi_voter vote', 'nb-listes': 'nb_listes liste syndicat'
   };
 
   var TOPICS = ['Comment voter en ligne ?', 'Qui peut voter ?', 'Qui peut se présenter ?', 'À quoi sert le CSE ?', 'Quelles sont les dates clés ?'];

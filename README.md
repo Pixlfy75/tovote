@@ -8,6 +8,7 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `candidatures.html` : Candidatures par collège (PNC, PNT, Cadres, ETAM) et listes déposées
 - `faq.html` : FAQ avec recherche
 - `documents.html` : Documents officiels (PAP, listes, guide du vote, résultats), publiés à leur date
+- `checklist.html`, `checklist.js` : la checklist avant vol (liste électorale, collège, adresse, messagerie pro, IBAN, identifiant, vote) et les procédures anormales du PAP (identifiant ou mot de passe non reçu, autre difficulté). Le module se place n'importe où avec `<div data-checklist></div>` et `checklist.js` ; la page est hors menu pour l'instant
 - `quiz.html` : Grand quiz d'auto-évaluation (18 questions sur le vote, le CSE et les candidatures), licence de vol, correction détaillée et liens vers TO Learn et la page CSE
 - `crew.js` : l'équipage illustré, commun à toutes les pages (une variante femme ou homme par métier, tirée au hasard à chaque ouverture, puis qui change toute seule toutes les 6 secondes)
 - `assets/vendor/pdfjs/` : PDF.js 3.11.174 (Mozilla, licence Apache 2.0), pour afficher les documents dans la visionneuse de la page Documents
