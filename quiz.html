@@ -149,7 +149,11 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .step-card{padding:22px;display:flex;flex-direction:column;gap:10px}
 .step-card h3{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:1.2rem;line-height:1.1}
 .step-card p{font-size:.92rem;flex:1}
+.step-card .pic{display:flex;height:63px}
 .step-card .pic svg{width:84px;height:63px}
+/* logo TO Learn sur sa plaque blanche (lisible aussi en mode nuit) */
+.step-card .tl-logo{align-self:flex-start;display:flex;align-items:center;height:63px;padding:0 14px;border-radius:14px;background:#fff}
+.step-card .tl-logo img{height:44px;width:auto}
 .review{margin-top:22px;padding:6px 22px}
 .review summary{cursor:pointer;list-style:none;font-weight:600;padding:14px 0;display:flex;justify-content:space-between}
 .review summary::-webkit-details-marker{display:none}
@@ -249,7 +253,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
     </div>
 
     <div class="next-steps">
-      <article class="step-card glass"><div class="pic" data-picto="formation"></div><h3>Te former sur TO Learn</h3><p>Le module de formation sur le CSE et les élections professionnelles, à ton rythme.</p><a class="btn btn-ink btn-sm" id="toLearn" target="_blank" rel="noopener">Aller sur TO Learn →</a></article>
+      <article class="step-card glass"><div class="tl-logo"><img src="assets/img/tolearn-logo.png" alt="TO Learn" width="207" height="59"></div><h3>Te former sur TO Learn</h3><p>Le module de formation sur le CSE et les élections professionnelles, à ton rythme.</p><a class="btn btn-ink btn-sm" id="toLearn" target="_blank" rel="noopener">Aller sur TO Learn →</a></article>
       <article class="step-card glass"><div class="pic" data-picto="cse"></div><h3>Comprendre le CSE</h3><p>Qui siège, à quoi il sert, ses moyens et ce qu'il change pour toi, en une page.</p><a class="btn btn-glass btn-sm" href="cse.html">Découvrir le CSE →</a></article>
     </div>
 
