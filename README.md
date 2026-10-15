@@ -11,6 +11,7 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `quiz.html` : Grand quiz d'auto-évaluation (18 questions sur le vote, le CSE et les candidatures), licence de vol, correction détaillée et liens vers TO Learn et la page CSE
 - `crew.js` : l'équipage illustré, commun à toutes les pages (une variante femme ou homme par métier, tirée au hasard à chaque ouverture, puis qui change toute seule toutes les 6 secondes)
 - `assets/vendor/pdfjs/` : PDF.js 3.11.174 (Mozilla, licence Apache 2.0), pour afficher les documents dans la visionneuse de la page Documents
+- `affiche-candidatures.html` : affiche A4 de l'appel à candidatures (30 sièges, panneau des départs, plan de cabine, plan de vol), à imprimer ou enregistrer en PDF depuis le navigateur. Page hors menu, pour la communication interne
 - `chat.js` : l'assistant de bord, sur toutes les pages (bouton rond en bas à droite). Il reconnaît les questions posées avec ses propres mots et répond à partir du contenu du site : la FAQ (27 questions) et une cinquantaine de fiches (CSE, collèges, calendrier, candidatures, documents). Tout se passe dans le navigateur, rien n'est envoyé ; la conversation suit la navigation dans l'onglet. Pour ajouter une réponse : une entrée dans `CARDS` (question type, réponse, référence, lien, mots-clés)
 - `faq-data.js` : le contenu de la FAQ, partagé par la page FAQ et l'assistant
 - `night.css`, `theme.js` : mode nuit (bouton lune / soleil dans le menu, choix mémorisé, sinon réglage de l'appareil)
