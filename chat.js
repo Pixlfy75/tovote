@@ -285,35 +285,40 @@
   }
 
   /* ---------- Interface ---------- */
+  var PNC = '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><circle cx="16" cy="6.5" r="3.6"/><path d="M11.6 12.2c0-1.3 1-2.2 2.2-2.2h4.4c1.2 0 2.2.9 2.2 2.2v7.6h-2.3V29h-4.2v-9.2h-2.3z"/><path d="M9.4 13.6 6.8 19.4l1.9.9 2.9-5.6zM22.6 13.6l2.6 5.8-1.9.9-2.9-5.6z"/></svg>';
   var PLANE = window.planeSVG ? planeSVG({ yaw: -14, pitch: 8, roll: 22, elev: 12, heading: true, stroke: '#140D8A', sw: .05 }) :
     '<svg viewBox="0 0 64 50" aria-hidden="true"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#9DBBF7"/></svg>';
   var css = '' +
-    '.tvc-fab{position:fixed;right:22px;bottom:22px;z-index:80;width:64px;height:64px;padding:0;border:0;border-radius:50%;background:#05CE78;cursor:pointer;box-shadow:0 16px 30px -10px rgba(20,13,138,.55),0 0 0 4px rgba(255,255,255,.75);transition:transform .35s cubic-bezier(.2,.9,.3,1.3),background .25s,opacity .25s;-webkit-tap-highlight-color:transparent}' +
-    '.tvc-fab:hover{transform:scale(1.07) rotate(-6deg)}' +
+    /* bouton d'appel PNC, comme au-dessus du siège : touche claire, voyant qui s'allume à l'appel */
+    '.tvc-fab{position:fixed;right:22px;bottom:22px;z-index:80;width:64px;height:64px;padding:0;border:0;border-radius:50%;cursor:pointer;color:#140D8A;background:radial-gradient(circle at 35% 28%,#fff 0%,#F1F2F9 45%,#D9DBEA 100%);box-shadow:0 16px 30px -10px rgba(20,13,138,.55),0 0 0 4px rgba(255,255,255,.85),inset 0 -4px 8px rgba(20,13,138,.12),inset 0 2px 2px #fff;transition:transform .2s cubic-bezier(.2,.9,.3,1.3),box-shadow .3s,opacity .25s;-webkit-tap-highlight-color:transparent}' +
+    '.tvc-fab:hover{transform:translateY(-2px)}' +
+    '.tvc-fab:active{transform:translateY(1px) scale(.95);box-shadow:0 8px 16px -8px rgba(20,13,138,.55),0 0 0 4px rgba(255,255,255,.85),inset 0 4px 10px rgba(20,13,138,.22)}' +
     '.tvc-fab:focus-visible{outline:3px solid #140D8A;outline-offset:4px}' +
-    '.tvc-fab img{width:100%;height:100%;border-radius:50%;display:block;transition:transform .4s,opacity .25s}' +
-    '.tvc-fab .tvc-x{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:rotate(-90deg) scale(.6);transition:transform .4s,opacity .25s}' +
-    '.tvc-fab .tvc-x svg{width:24px;height:24px}' +
-    '.tvc-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #05CE78;opacity:0;pointer-events:none}' +
+    '.tvc-fab .tvc-pnc{position:absolute;inset:0;display:grid;place-items:center}' +
+    '.tvc-fab .tvc-pnc svg{width:34px;height:34px;transition:color .3s}' +
+    '.tvc-fab .tvc-led{position:absolute;top:9px;right:12px;width:9px;height:9px;border-radius:50%;background:#C9CBDB;box-shadow:inset 0 1px 2px rgba(20,13,138,.25);transition:background .25s,box-shadow .25s}' +
+    '.tvc-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #FFB547;opacity:0;pointer-events:none}' +
     '.tvc-ping .tvc-fab::after{animation:tvc-ping 1.8s ease-out 3}' +
     '@keyframes tvc-ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}' +
-    '.tvc-open .tvc-fab{background:#140D8A}' +
-    '.tvc-open .tvc-fab img{opacity:0;transform:rotate(90deg) scale(.6)}' +
-    '.tvc-open .tvc-fab .tvc-x{opacity:1;transform:none}' +
+    '.tvc-open .tvc-fab{box-shadow:0 0 0 4px #FFB547,0 0 28px 6px rgba(255,181,71,.65),inset 0 4px 10px rgba(20,13,138,.18)}' +
+    '.tvc-open .tvc-fab .tvc-led{background:#FFB547;box-shadow:0 0 8px 2px rgba(255,181,71,.9)}' +
+    '.tvc-open .tvc-fab .tvc-pnc svg{color:#B86A00}' +
     '.tvc-tease{position:fixed;right:98px;bottom:36px;z-index:80;max-width:min(240px,calc(100vw - 130px));padding:10px 16px;border:0;border-radius:18px 18px 6px 18px;background:#fff;color:#140D8A;font:600 .88rem/1.35 var(--f-body,Arial,sans-serif);text-align:left;cursor:pointer;box-shadow:0 14px 30px -12px rgba(20,13,138,.45);opacity:0;visibility:hidden;transform:translateX(10px) scale(.95);transform-origin:right bottom;transition:opacity .35s,transform .45s cubic-bezier(.2,.9,.3,1.3),visibility .35s}' +
     '.tvc-tease.on{opacity:1;visibility:visible;transform:none}' +
     '.tvc-open .tvc-tease{opacity:0;visibility:hidden}' +
     '.tvc-panel{position:fixed;right:22px;bottom:100px;z-index:81;width:min(392px,calc(100vw - 24px));height:min(610px,calc(100vh - 130px));display:flex;flex-direction:column;border-radius:28px;overflow:hidden;color:#140D8A;font-family:var(--f-body,Arial,sans-serif);background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 40px 80px -30px rgba(20,13,138,.6),inset 0 0 0 1.5px rgba(255,255,255,.85);transform-origin:right bottom;transform:translateY(18px) scale(.9);opacity:0;visibility:hidden;transition:transform .45s cubic-bezier(.2,.9,.3,1.2),opacity .3s,visibility .3s}' +
     '.tvc-open .tvc-panel{transform:none;opacity:1;visibility:visible}' +
-    '.tvc-head{position:relative;display:flex;align-items:center;gap:12px;padding:16px 14px 16px 18px;background:linear-gradient(120deg,#140D8A,#2E22C9 70%,#4B3BE6);color:#fff;overflow:hidden}' +
+    '.tvc-head{position:relative;display:flex;align-items:center;gap:8px;padding:16px 12px 16px 16px;background:linear-gradient(120deg,#140D8A,#2E22C9 70%,#4B3BE6);color:#fff;overflow:hidden}' +
     '.tvc-head::before{content:"";position:absolute;right:-40px;top:-50px;width:170px;height:120px;border-radius:50%;background:rgba(255,255,255,.12);filter:blur(16px)}' +
     '.tvc-av{position:relative;flex:none;width:44px;height:44px}' +
     '.tvc-av img{width:100%;height:100%;border-radius:50%;display:block;box-shadow:0 0 0 3px rgba(255,255,255,.25)}' +
     '.tvc-av i{position:absolute;right:0;bottom:1px;width:11px;height:11px;border-radius:50%;background:#05CE78;box-shadow:0 0 0 2.5px #1F15A6}' +
-    '.tvc-ttl{flex:1;min-width:0;position:relative}' +
-    '.tvc-ttl b{display:block;font-family:var(--f-head,Arial Black,sans-serif);font-weight:900;font-stretch:115%;font-size:1.05rem;letter-spacing:.01em;line-height:1.15}' +
+    '.tvc-ttl{flex:1;min-width:0;position:relative;overflow:hidden}' +
+    '.tvc-ttl b,.tvc-ttl small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+    '@media (max-width:400px){.tvc-av{width:36px;height:36px}.tvc-hb{width:32px;height:32px}.tvc-reset{display:none!important}}' +
+    '.tvc-ttl b{display:block;white-space:nowrap;font-family:var(--f-head,Arial Black,sans-serif);font-weight:900;font-stretch:110%;font-size:1rem;letter-spacing:.01em;line-height:1.15}' +
     '.tvc-ttl small{display:block;font-size:.76rem;opacity:.8;margin-top:2px}' +
-    '.tvc-hb{position:relative;flex:none;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:grid;place-items:center}' +
+    '.tvc-hb{position:relative;flex:none;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:grid;place-items:center}' +
     '.tvc-hb svg{width:17px;height:17px}' +
     '.tvc-hb:focus-visible{outline:2px solid #fff;outline-offset:2px}' +
     '.tvc-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 10px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}' +
@@ -349,8 +354,8 @@
     '@media (max-width:560px){.tvc-fab{right:16px;bottom:16px;width:58px;height:58px}.tvc-tease{right:84px;bottom:26px}' +
       '.tvc-panel{left:8px;right:8px;bottom:8px;width:auto;height:min(82dvh,660px);border-radius:24px}' +
       '.tvc-open .tvc-fab{opacity:0;pointer-events:none}}' +
-    '[data-theme="dark"] .tvc-fab{box-shadow:0 16px 30px -10px rgba(0,0,0,.7),0 0 0 4px rgba(255,255,255,.14)}' +
-    '[data-theme="dark"] .tvc-open .tvc-fab{background:#2E22C9}' +
+    '[data-theme="dark"] .tvc-fab{box-shadow:0 16px 30px -10px rgba(0,0,0,.7),0 0 0 4px rgba(255,255,255,.14),inset 0 -4px 8px rgba(20,13,138,.12),inset 0 2px 2px #fff}' +
+    '[data-theme="dark"] .tvc-open .tvc-fab{box-shadow:0 0 0 4px #FFB547,0 0 30px 8px rgba(255,181,71,.55),inset 0 4px 10px rgba(20,13,138,.18)}' +
     '[data-theme="dark"] .tvc-tease{background:#2A2177;color:#fff}' +
     '[data-theme="dark"] .tvc-panel{background:rgba(22,16,78,.92);color:#fff;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.12)}' +
     '[data-theme="dark"] .tvc-bot{background:rgba(255,255,255,.1);color:#fff;box-shadow:none}' +
@@ -368,10 +373,11 @@
   var st = d.createElement('style'); st.textContent = css; d.head.appendChild(st);
   var box = d.createElement('div'); box.className = 'tvc';
   box.innerHTML =
-    '<button type="button" class="tvc-tease" tabindex="-1" aria-hidden="true">Une question sur les élections ? Demande-moi ✈️</button>' +
+    '<button type="button" class="tvc-tease" tabindex="-1" aria-hidden="true">Une question sur les élections ? Appuie sur le bouton d\'appel 🔔</button>' +
     '<section class="tvc-panel" id="tvcPanel" role="dialog" aria-label="Assistant de bord TO VOTE" aria-hidden="true">' +
       '<header class="tvc-head"><div class="tvc-av"><img src="assets/img/tovote-icon.png" alt=""><i></i></div>' +
-        '<div class="tvc-ttl"><b>Assistant de bord</b><small>Réponses tirées du site TO VOTE</small></div>' +
+        '<div class="tvc-ttl"><b>Assistant de bord</b><small>Réponses tirées du site</small></div>' +
+        '<button type="button" class="tvc-hb tvc-snd" aria-pressed="true" aria-label="Son du bouton d\'appel" title="Son du bouton d\'appel"></button>' +
         '<button type="button" class="tvc-hb tvc-reset" aria-label="Nouvelle conversation" title="Nouvelle conversation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg></button>' +
         '<button type="button" class="tvc-hb tvc-close" aria-label="Fermer l\'assistant" title="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '</header>' +
@@ -379,7 +385,7 @@
       '<form class="tvc-form" autocomplete="off"><input class="tvc-in" type="text" maxlength="200" placeholder="Pose ta question…" aria-label="Ta question"><button class="tvc-send" type="submit" aria-label="Envoyer">' + PLANE + '</button></form>' +
       '<p class="tvc-note">Réponses automatiques · cas personnel : ' + MAIL + '</p>' +
     '</section>' +
-    '<button type="button" class="tvc-fab" aria-label="Ouvrir l\'assistant TO VOTE" aria-expanded="false" aria-controls="tvcPanel"><img src="assets/img/tovote-icon.png" alt=""><span class="tvc-x"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>';
+    '<button type="button" class="tvc-fab" aria-label="Appel personnel navigant : ouvrir l\'assistant" title="Appel personnel navigant" aria-expanded="false" aria-controls="tvcPanel"><span class="tvc-led" aria-hidden="true"></span><span class="tvc-pnc" aria-hidden="true">' + PNC + '</span></button>';
   d.body.appendChild(box);
   var $ = function (s) { return box.querySelector(s); };
   var fab = $('.tvc-fab'), panel = $('.tvc-panel'), log = $('.tvc-log'), form = $('.tvc-form'), input = $('.tvc-in'), tease = $('.tvc-tease');
@@ -655,12 +661,36 @@
   /* Ouvrir / fermer */
   function setOpen(on, focus) {
     box.classList.toggle('tvc-open', on);
-    fab.setAttribute('aria-expanded', on); fab.setAttribute('aria-label', on ? 'Fermer l\'assistant' : 'Ouvrir l\'assistant TO VOTE');
+    fab.setAttribute('aria-expanded', on); fab.setAttribute('aria-label', on ? 'Appel personnel navigant : fermer l\'assistant' : 'Appel personnel navigant : ouvrir l\'assistant');
     panel.setAttribute('aria-hidden', !on);
     state.open = on; save();
     if (on) { hideTease(); if (!log.children.length) welcome(); log.scrollTop = log.scrollHeight; if (focus !== false && matchMedia('(pointer:fine)').matches) setTimeout(function () { input.focus(); }, 60); }
   }
-  fab.onclick = function () { var on = !box.classList.contains('tvc-open'); setOpen(on); if (!on) fab.focus(); };
+  /* Le « ding » du bouton d'appel, synthétisé (aucun fichier son) ; joué seulement quand on appuie */
+  var BELL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>';
+  var BELL_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 9.5-4.9M18 11v5l1.5 2h-15"/><path d="M10 20.5a2 2 0 0 0 4 0"/><path d="M4 4l16 16"/></svg>';
+  var actx = null, snd = $('.tvc-snd');
+  function soundOn() { try { return localStorage.getItem('tv_chime') !== 'off'; } catch (e) { return true; } }
+  function paintSnd() { var on = soundOn(); snd.innerHTML = on ? BELL : BELL_OFF; snd.setAttribute('aria-pressed', on); snd.title = on ? 'Couper le son du bouton d\'appel' : 'Activer le son du bouton d\'appel'; }
+  function chime() {
+    if (!soundOn()) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      var t0 = actx.currentTime, out = actx.createGain();
+      out.gain.value = .16; out.connect(actx.destination);
+      /* une cloche douce : une note aiguë et deux harmoniques qui s'éteignent plus vite */
+      [[1318.5, 1, 1.6], [2637, .28, .7], [3955, .1, .35]].forEach(function (h) {
+        var o = actx.createOscillator(), g = actx.createGain();
+        o.type = 'sine'; o.frequency.value = h[0];
+        g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(h[1], t0 + .008); g.gain.exponentialRampToValueAtTime(.0001, t0 + h[2]);
+        o.connect(g); g.connect(out); o.start(t0); o.stop(t0 + h[2] + .05);
+      });
+    } catch (e) {}
+  }
+  snd.onclick = function () { var on = !soundOn(); try { localStorage.setItem('tv_chime', on ? 'on' : 'off'); } catch (e) {} paintSnd(); if (on) chime(); };
+  paintSnd();
+  fab.onclick = function () { var on = !box.classList.contains('tvc-open'); if (on) chime(); setOpen(on); if (!on) fab.focus(); };
   $('.tvc-close').onclick = function () { setOpen(false); fab.focus(); };
   $('.tvc-reset').onclick = function () { log.innerHTML = ''; state.log = []; state.ctx = null; save(); welcome(); input.focus(); };
   form.onsubmit = function (e) { e.preventDefault(); var v = input.value; input.value = ''; ask(v); };
@@ -679,7 +709,7 @@
   /* Petite bulle d'invitation, une fois par session, quand rien d'autre n'occupe l'écran */
   var teaseT;
   function hideTease() { clearTimeout(teaseT); tease.classList.remove('on'); }
-  tease.onclick = function () { setOpen(true); };
+  tease.onclick = function () { chime(); setOpen(true); };
   function seen() { try { return sessionStorage.getItem('tv_chat_hi'); } catch (e) { return 1; } }
   function tryTease(n) {
     if (state.open || seen() || n > 20) return;
