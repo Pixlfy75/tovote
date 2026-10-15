@@ -386,7 +386,7 @@ const ROLES={
 const LIST=[['pres'],['collab'],['collab'],['collab'],...byCol.map(c=>['tit',c]),['rs'],['rs'],['rs'],null,...byCol.map(c=>['sup',c])];
 LIST[4]=['sec',byCol[0]];LIST[5]=['tre',byCol[1]];
 let html='',i=0;
-for(let col=0;i<LIST.length;col++){for(let r=0;r<5;r++){if(r===2){html+=`<div class="aisle" aria-hidden="true"><span>${col===0?'AVANT':''}</span></div>`;continue}
+for(let col=0;i<LIST.length;col++){for(let r=0;r<5;r++){if(r===2){html+=`<div class="aisle" aria-hidden="true"><span></span></div>`;continue}
   const it=LIST[i++];if(!it){html+='<div></div>';continue}const k=it[0],R=ROLES[k];
   html+=`<button class="seat ${R.c}" data-r="${k}"${it[1]?` data-c="${it[1]}"`:''} ${k==='sec'?'data-badge="S"':k==='tre'?'data-badge="T"':''} aria-label="${R.n}"><span class="b">${k==='sec'?'S':'T'}</span></button>`}}
 $('#seats').innerHTML=html;
@@ -453,6 +453,7 @@ $$('.word').forEach(w=>w.onclick=()=>w.classList.toggle('on'));
 const root=document.documentElement;
 addEventListener('scroll',()=>root.style.setProperty('--p',Math.min(1,scrollY/(root.scrollHeight-innerHeight||1)).toFixed(4)),{passive:true});
 </script>
+<script src="menu.js"></script>
 <script src="theme.js"></script>
 <script src="plane.js"></script>
 <script src="chat.js"></script>

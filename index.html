@@ -508,7 +508,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 <!-- ================= VIDÉOS : DIVERTISSEMENT À BORD ================= -->
 <section class="sec" id="videos" style="padding-top:0">
   <div class="wrap">
-    <div class="center"><h2 class="h sec-title rv">À l'affiche <span class="g">à bord.</span></h2><p class="sec-lead rv">Ton écran de divertissement en vol : des vidéos courtes pour tout comprendre des élections.</p></div>
+    <div class="center"><h2 class="h sec-title rv">Divertissement <span class="g">à bord.</span></h2><p class="sec-lead rv">Ton écran de divertissement en vol : des vidéos courtes pour tout comprendre des élections.</p></div>
     <div class="ife rv">
       <div class="ife-screen">
         <div class="ife-bar">
@@ -749,6 +749,7 @@ $$('.panel').forEach(p=>p.onclick=()=>p.classList.toggle('on'));
 $('#addCal').onclick=()=>{const c=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TO VOTE//FR','BEGIN:VEVENT','UID:tovote2027@transavia','DTSTAMP:20270101T000000Z','DTSTART:20270318T080000Z','DTEND:20270331T140000Z','SUMMARY:🗳️ Élections CSE : vote en ligne','DESCRIPTION:Vote en ligne du 18 mars 9h00 au 31 mars 16h00 (heure de Paris) sur www.transavia.webvote.fr','URL:https://www.transavia.webvote.fr/','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/calendar'}));a.download='vote-cse-2027.ics';a.click();toast('📅 Ajouté à ton agenda')};
 onScroll();
 </script>
+<script src="menu.js"></script>
 <script src="theme.js"></script>
 <script src="chat.js"></script>
 </body>
