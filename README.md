@@ -2,7 +2,7 @@
 
 Site d'information sur les élections professionnelles (CSE) de Transavia, direction artistique **Envol** : ciel en dégradés doux, verre dépoli, titres XXL, équipage illustré.
 
-- `index.html` : accueil (compte à rebours, équipage, Vrai/Faux, itinéraire, check-in et carte d'embarquement, listes derrière les hublots, consignes de sécurité)
+- `index.html` : accueil (compte à rebours, équipage, Vrai/Faux, plan de vol, check-in et carte d'embarquement, hublots des listes par collège, vidéos façon écran de divertissement en vol, consignes de sécurité, contact). Pour publier une vidéo YouTube : renseigner son identifiant dans le tableau `VIDEOS` du script
 - `cse.html` : Le CSE (composition, missions, moyens, qui fait quoi, lexique)
 - `calendrier.html` : Calendrier en plan de vol (préparation, campagne, scrutin)
 - `candidatures.html` : Candidatures par collège (PNC, PNT, Cadres, ETAM) et listes déposées

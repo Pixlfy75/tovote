@@ -144,7 +144,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 footer{padding:0 0 36px}
 footer .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 28px;border-radius:999px}
-footer img{height:24px}
+footer img{height:20px;width:auto}
 footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
 @media (max-width:760px){footer .bar{border-radius:24px}}
 
@@ -259,7 +259,7 @@ function render(){
   $('#docs').innerHTML=DOCS.map((d,i)=>{const out=isOut(d),rot=[-1.2,.8,-.4,1,-.8,.5][i%6];
     const when=out?(d.size||(d.pub?`Publié le ${day(d.pub)}`:'Publié')):(d.pub?`🔒 Le ${day(d.pub)}`:'🔒 Bientôt en ligne');
     const act=out?(d.page?`<a class="btn btn-ink btn-sm" href="${d.page}">Voir →</a>`:`<button class="btn btn-ink btn-sm" data-open="${d.id}">📄 Consulter</button>`)
-                 :`<button class="btn btn-glass btn-sm" data-alert="${d.id}">🔔 Préviens-moi</button>`;
+                 :'';
     return `<article class="doc${out?'':' locked'}" id="${d.id}" data-cat="${d.cat}" style="--rot:${rot}deg"${cat!=='all'&&d.cat!==cat?' hidden':''}>
       <div class="pic">${picto(d.picto)}</div>
       <div class="kind"><span class="tag ${d.page?'page':'pdf'}">${d.page?'Page':'PDF'}</span><span class="tag">${CATS.find(c=>c[0]===d.cat)[1]}</span></div>
@@ -272,8 +272,7 @@ function render(){
 $('#filters').onclick=e=>{const b=e.target.closest('[data-cat]');if(!b)return;cat=b.dataset.cat;$$('#filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()};
 $('#demo').onchange=e=>{demo=e.target.checked;render()};
 $('#docs').onclick=e=>{
-  const o=e.target.closest('[data-open]');if(o){const d=DOCS.find(x=>x.id===o.dataset.open);d.file?openDoc(d):toast('📄 Le fichier sera déposé ici à sa publication');return}
-  const a=e.target.closest('[data-alert]');if(a){a.textContent='✅ C\'est noté';a.disabled=true;toast('🔔 Tu seras prévenu·e à la publication')}};
+  const o=e.target.closest('[data-open]');if(o){const d=DOCS.find(x=>x.id===o.dataset.open);d.file?openDoc(d):toast('📄 Le fichier sera déposé ici à sa publication');return}};
 /* ---------- Visionneuse : le PDF s'ouvre dans une modale, téléchargeable depuis l'en-tête ----------
    PDF.js (assets/vendor/pdfjs, Mozilla, licence Apache 2.0) n'est chargé que si le navigateur n'a pas de lecteur intégré. */
 const viewer=$('#viewer');let pdfjsP=null,task=null,obs=null,slowT=0;
