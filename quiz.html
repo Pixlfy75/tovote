@@ -95,7 +95,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .track{position:relative;height:34px;margin-top:8px}
 .track::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:3px dashed rgba(20,13,138,.2)}
 .track .done{position:absolute;left:0;top:calc(50% - 2px);height:4px;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--green));transition:width .6s cubic-bezier(.2,.8,.2,1)}
-.track .plane{position:absolute;top:50%;width:44px;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 5px 8px rgba(20,13,138,.25));transition:left .6s cubic-bezier(.2,.8,.2,1)}
+.track .plane svg{display:block;width:100%;height:auto}
+.track .plane{position:absolute;top:50%;width:64px;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 5px 8px rgba(20,13,138,.25));transition:left .6s cubic-bezier(.2,.8,.2,1)}
 .dots{display:flex;justify-content:space-between;margin-top:4px}
 .dots i{width:10px;height:10px;border-radius:50%;background:rgba(20,13,138,.15);transition:background .3s}
 .dots i.ok{background:var(--green)}.dots i.ko{background:var(--peach)}.dots i.cur{background:var(--ink)}
@@ -227,7 +228,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
   <div id="play" hidden>
     <div class="flight glass" aria-hidden="true">
       <div class="flight-top"><span id="qTheme"></span><b id="qCount"></b></div>
-      <div class="track"><span class="done" id="trackDone"></span><svg class="plane" id="trackPlane" viewBox="0 0 64 50" aria-hidden="true"><g stroke="#140D8A" stroke-width="3" stroke-linejoin="round"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#7FA3F0"/></g></svg></div>
+      <div class="track"><span class="done" id="trackDone"></span><span class="plane" id="trackPlane" data-plane="route" aria-hidden="true"></span></div>
       <div class="dots" id="dots"></div>
     </div>
     <div class="stage">
@@ -283,6 +284,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 
 <script src="crew.js"></script>
 <script src="pictos.js"></script>
+<script src="plane.js"></script>
 <script>
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -329,7 +331,7 @@ function start(){
   $('#dots').innerHTML=order.map(()=>'<i></i>').join('');
   show();$('#play').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
 }
-function progress(){const n=order.length,p=i/n*100;$('#trackDone').style.width=p+'%';$('#trackPlane').style.left=`calc(${p}% + ${p<3?22:0}px)`;
+function progress(){const n=order.length,p=i/n*100;$('#trackDone').style.width=p+'%';$('#trackPlane').style.left=`calc(${p}% + ${p<3?30:0}px)`;
   $$('#dots i').forEach((d,k)=>d.className=k<answers.length?(answers[k].ok?'ok':'ko'):k===i?'cur':'')}
 function show(){
   const q=order[i];locked=false;$('#fb').hidden=true;$('#next').hidden=true;

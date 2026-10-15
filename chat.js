@@ -284,7 +284,8 @@
   }
 
   /* ---------- Interface ---------- */
-  var PLANE = '<svg viewBox="0 0 64 50" aria-hidden="true"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#9DBBF7"/></svg>';
+  var PLANE = window.planeSVG ? planeSVG({ yaw: -14, pitch: 8, roll: 22, elev: 12, heading: true, stroke: '#140D8A', sw: .05 }) :
+    '<svg viewBox="0 0 64 50" aria-hidden="true"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#9DBBF7"/></svg>';
   var css = '' +
     '.tvc-fab{position:fixed;right:22px;bottom:22px;z-index:80;width:64px;height:64px;padding:0;border:0;border-radius:50%;background:#05CE78;cursor:pointer;box-shadow:0 16px 30px -10px rgba(20,13,138,.55),0 0 0 4px rgba(255,255,255,.75);transition:transform .35s cubic-bezier(.2,.9,.3,1.3),background .25s,opacity .25s;-webkit-tap-highlight-color:transparent}' +
     '.tvc-fab:hover{transform:scale(1.07) rotate(-6deg)}' +
@@ -339,7 +340,7 @@
     '.tvc-in::placeholder{color:rgba(20,13,138,.45)}' +
     '.tvc-in:focus{border-color:#140D8A}' +
     '.tvc-send{flex:none;width:46px;height:46px;border:0;border-radius:50%;background:#140D8A;cursor:pointer;display:grid;place-items:center;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}' +
-    '.tvc-send svg{width:25px;height:auto;margin-left:2px}' +
+    '.tvc-send svg{width:40px;height:auto;margin-left:1px}' +
     '.tvc-send:active{transform:translateX(4px) rotate(-8deg)}' +
     '.tvc-send:focus-visible{outline:2px solid #140D8A;outline-offset:2px}' +
     '.tvc-note{margin:0;padding:0 16px 12px;font-size:.7rem;text-align:center;opacity:.6}' +

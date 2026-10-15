@@ -119,7 +119,8 @@ h1 .t{display:block;font-size:13.5mm;line-height:.92}
 .stop .d{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:11pt;line-height:5mm;height:5mm;white-space:nowrap}
 .stop .l{font-size:8.2pt;line-height:1.25;margin-top:.6mm;font-weight:600}
 .stop.now .d{color:var(--ruby)}
-.plane{position:absolute;top:8.6mm;width:15mm;margin-left:-7.5mm;filter:drop-shadow(0 1.5mm 2mm rgba(20,13,138,.3))}
+.plane svg{display:block;width:100%;height:auto}
+.plane{position:absolute;top:5mm;width:18mm;margin-left:-9mm;filter:drop-shadow(0 1.5mm 2mm rgba(20,13,138,.3))}
 .here{position:absolute;top:1.6mm;transform:translateX(-50%);background:var(--ruby);color:#fff;font-weight:600;font-size:7.5pt;padding:.8mm 2.4mm;border-radius:999px;white-space:nowrap}
 
 /* ---------- Pied ---------- */
@@ -219,7 +220,7 @@ h1 .t{display:block;font-size:13.5mm;line-height:.92}
           <line x1="10" y1="5" x2="90" y2="5" stroke="#140D8A" stroke-opacity=".25" stroke-width="1.6" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"/>
           <line x1="10" y1="5" x2="20" y2="5" stroke="#05CE78" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
         </svg>
-        <svg class="plane" style="left:20%" viewBox="0 0 64 50" aria-hidden="true"><g stroke="#140D8A" stroke-width="2.8" stroke-linejoin="round"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#7FA3F0"/></g></svg>
+        <span class="plane" style="left:20%" data-plane="route" aria-hidden="true"></span>
         <span class="here" style="left:20%">Tu es ici</span>
         <div class="stops">
           <div class="stop done"><span class="dot"></span><div class="d">21.12</div><div class="l">Lancement des élections</div></div>
@@ -241,6 +242,7 @@ h1 .t{display:block;font-size:13.5mm;line-height:.92}
 </div></div>
 
 <script src="crew.js"></script>
+<script src="plane.js"></script>
 <script>
 /* Personnages figés pour l'impression : variante imposée, sans animation ni changement automatique */
 document.querySelectorAll('[data-char]').forEach(function (el) {

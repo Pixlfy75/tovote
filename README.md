@@ -15,6 +15,7 @@ Site d'information sur les élections professionnelles (CSE) de Transavia, direc
 - `chat.js` : l'assistant de bord, sur toutes les pages (bouton rond en bas à droite). Il reconnaît le thème de la question par mots-clés (`CONCEPTS`), tient compte de la question précédente pour les relances (« et pour les cadres ? ») et ne répond directement que si une réponse se détache nettement ; sinon il propose les questions possibles (« Je ne suis pas sûr d'avoir bien compris… »). Il répond à partir du contenu du site : la FAQ (27 questions) et une cinquantaine de fiches. Tout se passe dans le navigateur, rien n'est envoyé. Pour ajouter une réponse : une entrée dans `CARDS` (question type, réponse, référence, lien, mots-clés) et ses thèmes dans `TAGS` (le premier est le thème principal)
 - `faq-data.js` : le contenu de la FAQ, partagé par la page FAQ et l'assistant
 - `night.css`, `theme.js` : mode nuit (bouton lune / soleil dans le menu, choix mémorisé, sinon réglage de l'appareil)
+- `plane.js` : l'avion en papier en 3D, commun à tout le site (accueil, plan de vol, quiz, affiche, assistant). Un petit modèle 3D projeté en SVG sous l'angle voulu (`planeSVG({ yaw, pitch, roll, elev })`), avec des vues prêtes (`data-plane="route"`). Le grand avion de l'accueil pivote au fil du défilement
 - `pictos.js` : les pictogrammes « carte de sécurité », communs à l'accueil, la FAQ et les documents
 - `assets/` : logos Transavia et TO VOTE, polices Söhne (Buch, Halbfett)
 

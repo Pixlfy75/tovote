@@ -58,8 +58,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 /* Formes géantes en parallaxe */
 .giant{position:fixed;z-index:-1;pointer-events:none;will-change:transform}
 .giant-t{width:clamp(260px,34vw,520px);right:-4vw;top:12vh;opacity:.9}
-.giant-plane{width:clamp(110px,12vw,190px);left:44vw;top:74vh;filter:drop-shadow(0 18px 22px rgba(20,13,138,.22))}
+.giant-plane{width:clamp(150px,16vw,250px);left:42vw;top:68vh;filter:drop-shadow(0 18px 22px rgba(20,13,138,.22))}
 @media (max-width:760px){.giant-t{opacity:.45;right:-30vw}.giant-plane{opacity:.6}}
+.giant-plane svg,.route-plane svg{display:block;width:100%;height:auto}
 
 /* ---------- Verre dépoli ---------- */
 .glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1.5px solid var(--glass-b);border-radius:var(--r);box-shadow:0 30px 60px -30px rgba(20,13,138,.35)}
@@ -165,14 +166,14 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 .route-svg path{fill:none;stroke-linecap:round}
 .route-svg .base{stroke:rgba(20,13,138,.22);stroke-width:3;stroke-dasharray:3 12}
 .route-svg .done{stroke:url(#grad);stroke-width:6}
-.route-plane{position:absolute;left:0;top:0;width:72px;z-index:2;offset-rotate:auto;filter:drop-shadow(0 8px 14px rgba(20,13,138,.35))}
+.route-plane{position:absolute;left:0;top:0;width:104px;z-index:2;offset-rotate:auto;filter:drop-shadow(0 8px 14px rgba(20,13,138,.35))}
 .stops{list-style:none;display:grid;gap:clamp(40px,7vw,96px);position:relative;z-index:1}
 .stop{width:min(400px,46%);padding:24px 26px}
 .stop:nth-child(even){margin-left:auto}
 .stop .d{display:inline-block;font-weight:600;font-size:.8rem;background:var(--ink);color:#fff;border-radius:999px;padding:.3em .8em}
 .stop h3{font-family:var(--f-head);font-weight:900;font-stretch:125%;font-size:clamp(1.4rem,2.6vw,2rem);margin:12px 0 4px;line-height:1}
 /* mobile : une ligne droite dans la marge gauche, une escale par carte, l'avion qui descend le long du trajet */
-@media (max-width:760px){.stops{padding-left:58px;gap:28px}.stop{width:100%;position:relative}.route-plane{width:46px}
+@media (max-width:760px){.stops{padding-left:58px;gap:28px}.stop{width:100%;position:relative}.route-plane{width:62px}
   .stop::before{content:"";position:absolute;left:-41px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:#fff;border:3px solid var(--ink);box-sizing:border-box;z-index:1}}
 .route-more{margin-top:clamp(36px,5vw,56px);text-align:center}
 
@@ -362,7 +363,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 <div class="cloud c2" aria-hidden="true" data-speed="-.18"></div>
 <div class="cloud c3" aria-hidden="true" data-speed=".12"></div>
 <img class="giant giant-t" src="assets/img/transavia-t-white.svg" alt="" aria-hidden="true" data-speed="-.35" data-rot="0">
-<svg class="giant giant-plane" viewBox="0 0 64 50" aria-hidden="true" data-speed=".5" data-rot="-24"><g stroke="#140D8A" stroke-width="1.6" stroke-linejoin="round"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#7FA3F0"/></g></svg>
+<div class="giant giant-plane" id="heroPlane" aria-hidden="true" data-speed=".5" data-rot="0"></div>
 
 <nav class="nav glass" aria-label="Navigation principale">
   <a href="index.html" aria-label="Accueil TO VOTE"><img src="assets/img/tovote-icon.png" alt=""></a>
@@ -456,7 +457,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
     <div class="center"><h2 class="h sec-title rv">Plan <span class="g">de vol.</span></h2><p class="sec-lead rv">4 escales, environ 3 minutes de vol.</p></div>
     <div class="route-wrap" id="routeWrap">
       <svg class="route-svg" id="routeSvg"><defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F385FF"/><stop offset=".5" stop-color="#05CE78"/><stop offset="1" stop-color="#0053FF"/></linearGradient></defs><path class="base" id="rBase"/><path class="done" id="rDone"/></svg>
-      <svg class="route-plane" id="rPlane" viewBox="0 0 64 50" aria-hidden="true"><g stroke="#140D8A" stroke-width="2.6" stroke-linejoin="round"><path d="M62 20 3 3l21 22z" fill="#fff"/><path d="M62 20 24 25 6 42z" fill="#D6E5FF"/><path d="M62 20 24 25l6 22z" fill="#7FA3F0"/></g></svg>
+      <div class="route-plane" id="rPlane" data-plane="route" aria-hidden="true"></div>
       <ol class="stops">
         <li class="stop glass rv"><span class="d">Dès le 10 mars</span><h3>Tes codes</h3><p>Par courrier, chez toi.</p></li>
         <li class="stop glass rv"><span class="d">18 → 31 mars</span><h3>Connexion</h3><p>Depuis ton tel, où que tu sois.</p></li>
@@ -574,6 +575,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem
 
 <script src="crew.js"></script>
 <script src="pictos.js"></script>
+<script src="plane.js"></script>
 <script>
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -588,11 +590,18 @@ $$('[data-split]').forEach(el=>{const words=el.textContent.split(' ');el.innerHT
 $$('[data-char]').forEach(el=>el.innerHTML=charSVG(el.dataset.char));
 if(!reduce)setInterval(()=>{const vis=$$('.char').filter(s=>{const r=s.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0&&!s.classList.contains('happy')&&!s.classList.contains('sad')});if(vis.length)wave(vis[Math.random()*vis.length|0])},3200);
 
+/* ---------- Le grand avion en papier pivote en 3D au fil du défilement (plane.js) ---------- */
+let heroKey=-1;
+function heroPlane3d(){const q=reduce?0:Math.min(1,scrollY/innerHeight),k=Math.round(q*80);if(k===heroKey)return;heroKey=k;
+  planeLive($('#heroPlane'),{yaw:-30+60*q,pitch:12-6*q,roll:24-56*q,elev:14,sw:.05})}
+heroPlane3d();
+
 /* ---------- Défilement : ciel, parallaxe, altimètre ---------- */
 const root=document.documentElement,giants=$$('[data-speed]');
 function onScroll(){const p=Math.min(1,scrollY/(root.scrollHeight-innerHeight||1));root.style.setProperty('--p',p.toFixed(4));
   $('#altiVal').textContent=Math.round(p*10000).toLocaleString('fr-FR')+' m';
   if(!reduce)giants.forEach(g=>{const s=+g.dataset.speed,rot=+(g.dataset.rot||0);g.style.transform=`translateY(${scrollY*s}px) rotate(${rot+p*(rot?40:0)}deg)`});
+  heroPlane3d();
   route()}
 addEventListener('scroll',onScroll,{passive:true});
 
