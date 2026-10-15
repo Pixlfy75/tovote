@@ -29,6 +29,8 @@
     { id: 'connexion', q: 'Je n\'arrive pas à me connecter.', a: '<b>Vérifie les trois étapes :</b><ul><li>ton identifiant, reçu par courrier</li><li>les 5 derniers caractères de ton IBAN</li><li>le mot de passe reçu sur ta messagerie pro, valable 1 heure</li></ul>Toujours bloqué·e ? Pendant le vote, l\'assistance téléphonique répond 24h/24 ; son numéro figure sur la notice et sur le site de vote.', r: 'PAP, art. 8.7', l: ['faq.html#codes', 'Codes perdus ou pas reçus'], k: 'connecter connexion connecte bloque bloquee probleme marche fonctionne erreur bug' },
     { id: 'organisation', q: 'Qui organise les élections ?', a: '<b>L\'entreprise, selon les règles du PAP</b> négocié avec les organisations syndicales. Le vote en ligne est confié à un prestataire extérieur, et un bureau de vote composé de salarié·es électeur·rices veille au bon déroulement du scrutin.', r: 'PAP, art. 8.2 et 8.6.1', l: ['documents.html#pap', 'Lire le PAP'], k: 'organise organisation organisateur gere prestataire bureau vote deroulement' },
 
+    { id: 'pourquoi-voter', q: 'Pourquoi voter ?', a: '<b>Parce que tu choisis qui te représentera pendant 4 ans.</b> Tes élu·es seront consulté·es sur l\'organisation du travail, porteront tes réclamations et géreront les activités sociales. Et la participation compte : si moins de la moitié des inscrit·es vote au 1er tour, un 2nd tour doit être organisé.', r: 'Art. L.2312-8 et L.2314-29 C. trav.', l: ['cse.html#missions', 'Ce que fait le CSE'], k: 'pourquoi voter utile interet importance' },
+
     /* Collèges */
     { id: 'colleges', q: 'Quels sont les collèges ?', a: '<b>Il y a 4 collèges :</b><ul><li>1er collège, ETAM : 2 sièges</li><li>2e collège, Cadres : 3 sièges</li><li>3e collège, PNT : 10 sièges</li><li>4e collège, PNC : 15 sièges</li></ul>Tu votes uniquement pour les listes de ton collège.', r: 'PAP du 13 octobre 2026', l: ['candidatures.html#colleges', 'Voir les collèges'], k: 'college colleges quels combien nombre quatre categorie categories groupe repartition sieges' },
     { id: 'col-pnc', q: 'Je suis PNC : quel est mon collège ?', a: '<b>Tu votes dans le 4e collège, PNC</b> (hôtesses, stewards, chef·fes de cabine) : 15 sièges titulaires et 15 suppléant·es. En cas de doute, vérifie la liste électorale publiée le 22 février.', l: ['candidatures.html#pnc', 'Voir le collège PNC'], k: 'pnc hotesse steward chef cabine navigant commercial mon college' },
@@ -50,6 +52,8 @@
     { id: 'expert', q: 'Le CSE peut faire appel à des expert·es ?', a: '<b>Oui.</b> Il peut se faire assister par des expert·es, par exemple sur la situation économique de l\'entreprise ou sur un projet important.', r: 'Art. L.2315-78 C. trav.', l: ['cse.html#moyens', 'Voir ses moyens'], k: 'expert experts expertise cabinet assister economique' },
     { id: 'qfq', q: 'CSE, syndicats, direction : qui fait quoi ?', a: '<ul><li><b>Le CSE</b>, élu par les salarié·es : il donne des avis, porte les réclamations et gère les activités sociales</li><li><b>Les organisations syndicales</b> : elles négocient les accords d\'entreprise et présentent les listes au 1er tour</li><li><b>La direction</b> : elle décide, après consultation du CSE</li></ul>', l: ['cse.html#qui-fait-quoi', 'Voir le tableau'], k: 'difference syndicat syndicats direction qui fait quoi negocie negociation accords delegue syndical confondre' },
 
+    { id: 'elu-role', q: 'Que fait un·e élu·e du CSE ?', a: '<b>Il ou elle porte ta voix auprès de la direction.</b> Les élu·es siègent aux réunions du CSE, donnent un avis sur les projets de l\'entreprise, présentent les réclamations des salarié·es, suivent la santé et la sécurité, et gèrent les activités sociales. Pour cela, les titulaires disposent d\'heures de délégation.', r: 'Art. L.2312-8 C. trav.', l: ['cse.html#missions', 'Les missions en détail'], k: 'elu elus fait role mission' },
+
     /* Lexique */
     { id: 'lx-titulaire', q: 'C\'est quoi un·e titulaire ?', a: '<b>Un·e élu·e qui siège au CSE et y vote.</b> Tu en élis dans ton collège.', l: ['cse.html#lexique', 'Voir le lexique'], k: 'titulaire titulaires definition' },
     { id: 'lx-suppleant', q: 'C\'est quoi un·e suppléant·e ?', a: '<b>Un·e élu·e qui remplace un·e titulaire absent·e.</b> Tu votes aussi pour les suppléant·es.', l: ['cse.html#lexique', 'Voir le lexique'], k: 'suppleant suppleants suppleante remplace remplacant definition' },
@@ -63,6 +67,7 @@
 
     /* Candidatures */
     { id: 'listes-cand', q: 'Où voir les listes de candidat·es ?', a: '<b>Sur la page Candidatures, dès le 5 mars 2027.</b> Toutes les listes y sont présentées au même format, par ordre alphabétique des organisations syndicales, avec leurs professions de foi.', l: ['candidatures.html', 'Voir les listes'], k: 'lieu listes candidats candidates voir qui se presente presentent noms syndicats lesquels quels affichage' },
+    { id: 'nb-listes', q: 'Combien y a-t-il de listes ?', a: '<b>On le saura le 5 mars 2027</b>, date d\'affichage des listes de candidat·es. Elles seront présentées collège par collège, au même format, par ordre alphabétique des organisations syndicales.', l: ['candidatures.html', 'Voir la page Candidatures'], k: 'combien listes nombre syndicats' },
     { id: 'pdf-foi', q: 'C\'est quoi une profession de foi ?', a: '<b>Le programme d\'une liste.</b> Elle est déposée avec la liste au plus tard le 1er mars 2027 à 12h00, puis publiée le 5 mars. Pour une question sur son contenu, adresse-toi directement à la liste concernée.', l: ['candidatures.html', 'Voir les listes'], k: 'profession foi programme programmes propositions tract' },
     { id: 'delegue-liste', q: 'C\'est quoi un·e délégué·e de liste ?', a: '<b>La personne qui représente une liste pendant les opérations électorales.</b> Chaque liste la désigne au plus tard avec son dépôt, le 1er mars 2027 à 12h00.', r: 'PAP, art. 8.3.1 et annexe 1', l: ['calendrier.html#preparation', 'Voir le calendrier'], k: 'delegue liste representant operations electorales' },
     { id: 'depot', q: 'Quelle est la date limite pour déposer une liste ?', a: '<b>Le 1er mars 2027 à 12h00</b> pour le 1er tour, avec les professions de foi. En cas de 2nd tour : le 5 avril 2027 à 12h00.', r: 'PAP, annexe 1', l: ['calendrier.html#preparation', 'Voir le calendrier'], k: 'date limite depot deposer liste listes candidature delai quand candidater' },
@@ -378,7 +383,7 @@
   var fab = $('.tvc-fab'), panel = $('.tvc-panel'), log = $('.tvc-log'), form = $('.tvc-form'), input = $('.tvc-in'), tease = $('.tvc-tease');
 
   /* Mémoire de l'onglet : la conversation suit la navigation */
-  var KEY = 'tv_chat', state = { open: false, log: [] };
+  var KEY = 'tv_chat', state = { open: false, log: [], ctx: null };
   try { var sv = JSON.parse(sessionStorage.getItem(KEY) || 'null'); if (sv && sv.log) state = sv; } catch (e) {}
   function save() { try { state.log = state.log.slice(-40); sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
@@ -430,24 +435,218 @@
   }
   function $$(s) { return Array.prototype.slice.call(box.querySelectorAll(s)); }
 
+  /* ---------- Compréhension par thèmes ----------
+     Chaque thème est reconnu par des mots-clés (texte sans accents ni majuscules). Chaque réponse est rattachée à
+     un thème principal (le premier de sa liste) et à des thèmes secondaires. L'assistant ne répond directement que
+     si une réponse se détache nettement ; sinon il propose les questions possibles. */
+  var CONCEPTS = {
+    /* thèmes génériques : ils départagent mais ne suffisent jamais à répondre */
+    vote: 'vot\\w*|scrutin|elections?|elire|bulletins?',
+    cse: 'cse|comite|instance',
+    elu: 'elus?|elue|elues|representants?|representantes?',
+    liste: 'listes?',
+    lieu: 'lieu',
+    online: 'electronique|en ligne|internet|numerique',
+    comment_gen: 'comment|demarches?|procedure|faire pour|devenir',
+    definition: 'est quoi|definition|ca veut dire|veut dire|signifie|definir',
+
+    /* voter */
+    droit_vote: 'droit de vote|droit de voter|peux voter|puis voter|peut voter|pouvoir voter|ai le droit|electeurs?|electrices?|qui vote|nouveau|nouvelle|arrive dans|viens d arriver|embauche\\w*|anciennete|age|16 ans|3 mois|trois mois',
+    contrat: 'cdd|cdi|alternan\\w*|apprenti\\w*|stagiaires?|stage|temps partiel|mi temps|contrat\\w*|saisonnier\\w*',
+    interim: 'interim\\w*|mis a disposition|mise a disposition|prestataires? exterieur\\w*|sous traitan\\w*',
+    liste_elec: 'listes? electorales?|inscrit\\w*|inscription|pas sur la liste|pas dans la liste|emargement',
+    pour_qui: 'pour qui (je|on) vote|vote pour qui|vote pour quoi|pour quoi (je|on) vote|on elit qui|elire qui|qu on elit',
+    choix: 'pour qui voter|pour qui dois|pour qui devrais|qui choisir|quelle liste choisir|choisir une liste|meilleure?s?|conseil\\w*|recommand\\w*|vaut mieux|preferable',
+    rature: 'ratur\\w*|ray\\w*|barr\\w*|panach\\w*|melang\\w*',
+    blanc: 'blanc|nul|abstention|abstenir',
+    comment_voter: 'comment (je |on )?vot\\w*|comment ca marche|comment se passe|comment ca se passe|etapes? du vote|deroul\\w*|procedure de vote|fonctionne le vote|marche le vote',
+    anonymat: 'anonym\\w*|secret\\w*|confidenti\\w*|trac\\w*|savoir pour qui|voir (mon|ma|pour qui|ce que)|saura|saurait|connaitre mon vote',
+    securite_vote: 'fiab\\w*|securis\\w*|pirat\\w*|hack\\w*|fraud\\w*|truqu\\w*|trich\\w*',
+    codes: 'codes?|identifiants?|login|acces|sms|courriers?|lettre|par la poste|pas recu|recu|recois|perdu\\w*|oubli\\w*|egare\\w*',
+    mdp: 'mots? de passe|mdp|password|messagerie|valable|expir\\w*',
+    connexion: 'connect\\w*|connexion|bloqu\\w*|marche pas|fonctionne pas|erreurs?|bugs?|impossible|arrive pas|plante',
+    iban: 'iban|rib|bancaire|banque|5 derniers|cinq derniers|caracteres',
+    adresse: 'adresse|demenag\\w*|domicile',
+    materiel: 'ordinateurs?|ordi|pc|telephone|smartphone|portable|mobile|tablette|appareil|materiel|appli\\w*',
+    absence: 'rotations?|en vol|en escale|conges?|vacances|maladie|arret|maternite|paternite|parental|absent\\w*|absence|etranger|deplacement|decalage horaire',
+    procuration: 'procuration\\w*|a ma place|a sa place|pour (un|une|mon|ma) collegue|voter pour quelqu un|faire voter|deleguer mon vote|mandataire',
+    papier: 'papier|urne|isoloir|enveloppe|physique|correspondance',
+    obligatoire: 'obligatoire\\w*|oblige\\w*|forc\\w*|dois voter|obligation|sanction\\w* si',
+    pourquoi_voter: 'pourquoi voter|pourquoi je (dois|devrais) voter|a quoi sert (mon|de) vot\\w*|utile de voter|sert a rien|interet de voter|importance du vote|ca change quoi de voter',
+    site_vote: 'site de vote|site du vote|lien|url|webvote|lieu (je |on |est ce que je |dois je )?vot\\w*|bouton je vote',
+    duree_vote: 'combien de temps|prend combien|duree du vote|minutes|rapide|long',
+    deux_votes: 'deux fois|deux votes|2 votes|2 fois|double',
+
+    /* dates */
+    dates: 'quand|dates?|calendrier|jours?|periode|planning|etapes cles|delais?',
+    ouverture: 'ouvr\\w*|commenc\\w*|debut\\w*|demarr\\w*',
+    fin: 'ferm\\w*|fin|finit|termin\\w*|clotur\\w*|jusqu|jusqu a quand|derniere minute|dernier jour|trop tard|heure limite|combien de temps (j ai|reste|il reste)',
+    lancement: 'lancement|lance\\w*|annonce\\w*|top depart',
+    campagne: 'campagne\\w*|propagande',
+    resultats: 'resultats?|gagn\\w*|vainqueurs?|proclam\\w*|scores?|qui est elu',
+    contester: 'contest\\w*|recours|tribunal|annul\\w*|irregul\\w*|litige',
+    second_tour: 'second tour|2nd tour|2e tour|2eme tour|deuxieme tour|2nd|second',
+    premier_tour: 'premier tour|1er tour',
+    pourquoi: 'pourquoi|raisons?|dans quel cas|si personne|pas assez',
+    quorum: 'quorum|participation|moitie des inscrits|taux',
+
+    /* candidater */
+    candidater: 'candidat\\w*|presenter|presente|eligib\\w*|devenir elu\\w*|etre elu\\w*|me lancer|postuler|m engager',
+    conditions: 'conditions?|qui peut|criteres?|age|anciennete|18 ans|faut il',
+    syndicat: 'syndica\\w*|organisations? syndicales?|cfdt|cgt|fo|unsa|sud|snpl|snpnc|unac|cfe|spaf',
+    parite: 'parit\\w*|femmes?|hommes?|egalite|alternance|proportion',
+    protection: 'proteg\\w*|protection|licenci\\w*|represailles|discrimin\\w*|virer|vire',
+    listes_cand: 'affichage|affichage des listes|listes? (de |des )?candidat\\w*|qui se present\\w*|qui sont les candidat\\w*|voir les listes|noms des candidats|quelles listes|listes en lice',
+    nb_listes: 'combien de listes|nombre de listes|combien de syndicats|combien d organisations',
+    profession_foi: 'professions? de foi|programmes?|tracts?|propositions',
+    delegue_liste: 'delegue\\w* de liste',
+    depot: 'depos\\w*|depot|date limite',
+
+    /* le CSE */
+    role: 'a quoi sert|sert a quoi|role|utilite|utile|fait quoi|que fait|ca sert',
+    missions: 'missions?|attributions?|competences?',
+    mandat: 'mandat\\w*|duree du mandat|4 ans|quatre ans|elus? pour combien|combien de temps (dure|durent|sont)',
+    sieges: 'sieges?|combien d elus?|nombre d elus?|combien de places|combien de personnes|combien de membres',
+    asc: 'asc|activites sociales|billetterie|cheques? vacances|cheques?|sport|loisirs?|avantages?|reductions?|voyages?|cadeaux?|noel',
+    colleges: 'colleges?|categories?|mon college|quel college',
+    pnc: 'pnc|hotesses?|stewards?|chef\\w* de cabine|navigants? commerciaux|navigant commercial',
+    pnt: 'pnt|pilotes?|commandants?|cdb|copilotes?|opl|officiers?|navigants? techniques?',
+    cadre: 'cadres?',
+    etam: 'etam|agents? d escale|agent escale|techniciens?|technicienne|employes?|employee|maitrise|ouvriers?',
+    sol: 'au sol|sol|siege social',
+    compo: 'qui siege|composition|compose\\w*|membres?|president\\w*|presidence|qui fait partie|autour de la table',
+    hierarchie: 'employeur|entreprise|direction|manager\\w*|chef|cheffe|hierarchi\\w*|patron|superieur\\w*',
+    neutralite: 'neutr\\w*|impartial\\w*|influenc\\w*|pression\\w*',
+    decide: 'decid\\w*|decision\\w*|pouvoir|veto|avis|consult\\w*',
+    reclam: 'reclamations?|paie|salaires?|primes?|remuneration|aider|defendre|probleme avec',
+    sante: 'sante|securite|conditions de travail|fatigue|repos|risques?|accidents?|dangers?|stress|harcelement',
+    cssct: 'cssct',
+    pour_moi: 'pour moi|change quoi|concret\\w*|quotidien|me concerne|interet pour moi',
+    moyens: 'moyens?|budgets?|argent|financ\\w*|masse salariale|ressources',
+    heures: 'heures de delegation|delegation|credit d heures|elus? (sont )?payes?|remunere\\w*|temps pour (leur|le) mandat',
+    reunions: 'reunions?|reunit|frequence|souvent|par mois',
+    expert: 'experts?|expertes?|expertises?|cabinet',
+    qfq: 'difference|differences|confond\\w*|qui fait quoi|versus|vs',
+    titulaire: 'titulaires?',
+    suppleant: 'suppleant\\w*',
+    pap: 'pap|protocole\\w*|preelectoral',
+    pv: 'pv|proces verbal|proces verbaux',
+    bdese: 'bdese|bdes|base de donnees',
+    alerte: 'alerte\\w*|danger grave',
+    organisation: 'organis\\w*|gedivote|bureau de vote|qui gere',
+
+    /* site */
+    documents: 'documents?|pdf|telecharg\\w*|fichiers?',
+    notice: 'notice|mode d emploi|guide|tuto\\w*',
+    quiz: 'quiz|test\\w*|jeu|evaluer|connaissances',
+    formation: 'formations?|former|apprendre|to learn|tolearn|module|cours|e learning',
+    checkin: 'check in|checkin|carte d embarquement|mon cas|ma situation',
+    contact: 'contact\\w*|humain|quelqu un|rh|ressources humaines|mail|email|joindre|parler a|numero|hotline|assistance|perso|personnelle',
+    theme: 'mode nuit|mode sombre|dark|theme|mode jour'
+  };
+  var GENERIC = { vote: 1, cse: 1, elu: 1, liste: 1, lieu: 1, online: 1, comment_gen: 1, definition: 1 };
+  var CRE = {};
+  Object.keys(CONCEPTS).forEach(function (k) { CRE[k] = new RegExp('(?:^| )(?:' + CONCEPTS[k] + ')(?= |$)'); });
+  function concepts(text) {
+    var n = ' ' + norm(text) + ' ', out = {};
+    Object.keys(CRE).forEach(function (k) { if (CRE[k].test(n)) out[k] = 1; });
+    return out;
+  }
+
+  /* Thèmes de chaque réponse : le premier est le thème principal (« a|b » : l'un ou l'autre) */
+  var TAGS = {
+    /* FAQ */
+    'qui-vote': 'droit_vote conditions vote', 'cdd': 'contrat droit_vote', 'interim': 'interim droit_vote',
+    'liste-electorale': 'liste_elec liste', 'pour-qui': 'pour_qui titulaire suppleant vote', 'ratures': 'rature liste',
+    'blanc': 'blanc vote', 'comment': 'comment_voter vote online', 'rotation': 'absence droit_vote vote',
+    'anonymat': 'anonymat|securite_vote hierarchie vote online', 'codes': 'codes', 'procuration': 'procuration droit_vote vote',
+    'materiel': 'materiel vote online', 'qui-candidat': 'candidater conditions', 'premier-tour': 'candidater syndicat premier_tour comment_gen liste',
+    'second-tour': 'second_tour candidater', 'parite': 'parite liste candidater', 'protection': 'protection candidater',
+    'role': 'cse role definition', 'mandat': 'mandat elu duree_vote', 'sieges': 'sieges elu cse', 'asc': 'asc cse definition',
+    'dates': 'dates', 'second-tour-pourquoi': 'second_tour pourquoi quorum', 'publication': 'resultats dates',
+    'contester': 'contester', 'neutralite': 'neutralite choix hierarchie',
+    /* fiches */
+    'quand-vote': 'vote+dates|ouverture vote dates online', 'fin-vote': 'fin vote dates duree_vote', 'site-vote': 'site_vote vote lieu online',
+    'duree': 'duree_vote vote', 'deux-votes': 'deux_votes titulaire suppleant vote', 'iban': 'iban codes',
+    'mdp': 'mdp codes connexion', 'adresse': 'adresse codes', 'conseil': 'choix liste vote', 'obligatoire': 'obligatoire vote',
+    'papier': 'papier vote', 'connexion': 'connexion codes online', 'organisation': 'organisation vote',
+    'colleges': 'colleges', 'col-pnc': 'pnc colleges', 'col-pnt': 'pnt colleges', 'col-cadre': 'cadre colleges',
+    'col-sol': 'sol colleges', 'col-etam': 'etam colleges', 'compo': 'compo cse', 'missions': 'missions cse role',
+    'decide': 'decide cse hierarchie', 'reclam': 'reclam cse elu', 'sante': 'sante cssct cse', 'pour-moi': 'pour_moi cse',
+    'moyens': 'moyens cse', 'heures': 'heures elu', 'reunions': 'reunions cse', 'expert': 'expert cse',
+    'qfq': 'qfq syndicat cse hierarchie', 'lx-titulaire': 'titulaire definition elu', 'lx-suppleant': 'suppleant definition elu',
+    'lx-college': 'definition+colleges colleges', 'lx-pap': 'pap definition documents', 'lx-quorum': 'quorum definition',
+    'lx-pv': 'pv resultats definition documents', 'lx-cssct': 'cssct sante definition', 'lx-bdese': 'bdese definition',
+    'lx-alerte': 'alerte definition', 'listes-cand': 'listes_cand candidater liste', 'pdf-foi': 'profession_foi liste',
+    'delegue-liste': 'delegue_liste liste', 'depot': 'depot candidater dates liste', 'lancement': 'lancement dates',
+    'campagne': 'campagne dates', 'tour2-dates': 'second_tour dates', 'docs': 'documents', 'notice': 'notice documents vote',
+    'quiz': 'quiz', 'formation': 'formation cse', 'checkin': 'checkin droit_vote candidater', 'contact': 'contact',
+    'theme': 'theme', 'elu-role': 'elu role missions', 'pourquoi-voter': 'pourquoi_voter vote', 'nb-listes': 'nb_listes liste syndicat'
+  };
+
+  var TOPICS = ['Comment voter en ligne ?', 'Qui peut voter ?', 'Qui peut se présenter ?', 'À quoi sert le CSE ?', 'Quelles sont les dates clés ?'];
+  /* intitulés des propositions quand la question de la FAQ ne se comprend pas seule */
+  var CHIP = { 'second-tour': 'Comment se présenter au 2nd tour ?', 'codes': 'Je n\'ai pas reçu mes codes', 'dates': 'Quelles sont les dates clés ?' };
+  function label(e) { return CHIP[e.id] || e.q; }
+  function byQ(q) { build(); var n = norm(q); for (var i = 0; i < KB.length; i++) if (norm(KB[i].q) === n || norm(label(KB[i])) === n) return KB[i]; return null; }
+
+  /* Classement par thèmes, avec le contexte de la réponse précédente pour les relances (« et pour les cadres ? ») */
+  function intents(text) {
+    build();
+    var C = concepts(text), strong = Object.keys(C).filter(function (k) { return !GENERIC[k]; });
+    var ctx = {}, prev = state.ctx && KB.filter(function (e) { return e.id === state.ctx; })[0];
+    var follow = prev && (/^\s*(et|aussi|mais|sinon|du coup|ok et|d accord et)\b/.test(norm(text)) || strong.length <= 1 && norm(text).split(' ').length <= 5);
+    if (follow) (TAGS[prev.id] || '').split(' ').forEach(function (t) { t.split('|').forEach(function (x) { if (!C[x]) ctx[x] = 1; }); });
+    var tok = {}; rank(text).list.forEach(function (x) { tok[x.e.id] = x.score; });
+    var list = KB.map(function (e) {
+      var tags = (TAGS[e.id] || '').split(' ').filter(Boolean);
+      if (!tags.length) return null;
+      /* thème principal : « a|b » l'un ou l'autre, « a+b » les deux ensemble */
+      var prim = tags[0].split('|'), own = {};
+      var primHit = prim.some(function (p) { return p.split('+').every(function (x) { return C[x]; }); });
+      prim.forEach(function (p) { p.split('+').forEach(function (x) { own[x] = 1; }); });
+      var score = primHit ? 3 : 0, other = 0;
+      tags.slice(1).forEach(function (t) { own[t] = 1; if (C[t]) { score += GENERIC[t] ? .6 : 1.5; if (!GENERIC[t]) other++; } else if (ctx[t]) score += .7; });
+      strong.forEach(function (k) { if (!own[k]) score -= .8; }); /* le message parle d'autre chose */
+      /* relance : le sujet principal peut venir de la question précédente (« et les dates ? » après le 2nd tour) */
+      if (!primHit && other && follow && prim.some(function (p) { return p.split('+').every(function (x) { return C[x] || ctx[x]; }); })) { score += 2.5; primHit = true; }
+      if (!primHit && !other) return null;
+      return { e: e, score: score + Math.min(.5, (tok[e.id] || 0) * .04), prim: primHit };
+    }).filter(Boolean).sort(function (a, b) { return b.score - a.score; });
+    return { list: list, strong: strong, follow: !!follow };
+  }
+
   function answer(text) {
     var small = talk(text);
     if (small) return { html: small };
-    var r = rank(text), L = r.list, top = L[0];
-    /* assez sûr ? un message d'un mot doit tomber juste ; au-delà, il faut retrouver l'essentiel du message */
-    var n = L.n || r.q.length;
-    var good = top && top.score >= (n === 1 ? 2 : 2.6) && (n === 1 || top.cover >= .66 || (top.cover >= .5 && top.score >= 4.2));
-    if (good) {
-      var more = L.slice(1, 6).filter(function (x) { return x.score >= top.score * .62; }).slice(0, 2).map(function (x) { return x.e.q; });
+    if (norm(text) === norm(NONE_Q)) return { html: 'D\'accord ! Reformule ta question avec d\'autres mots, ou pose-la directement à l\'équipe RH : ' + MAIL + '.<a class="tvc-go" href="faq.html#ask">Poser ma question aux RH</a>', more: TOPICS, moreTitle: 'Ou choisis un thème' };
+    var exact = byQ(text);
+    if (exact) { state.ctx = exact.id; return { html: card(exact), more: related(exact), moreTitle: 'Tu cherchais peut-être' }; }
+    var r = intents(text), L = r.list, top = L[0], second = L[1];
+    var gap = top ? top.score - (second ? second.score : 0) : 0;
+    if (top && top.prim && top.score >= 2.2 && gap >= (r.follow ? .5 : 1.4)) {
+      state.ctx = top.e.id;
+      var more = L.slice(1, 4).filter(function (x) { return x.prim && x.score >= 2; }).slice(0, 2).map(function (x) { return label(x.e); });
       return { html: card(top.e), more: more, moreTitle: 'Tu cherchais peut-être' };
     }
-    var near = L.slice(0, 3).filter(function (x) { return x.score >= 2 && x.cover >= .5; }).map(function (x) { return x.e.q; });
-    return {
-      html: 'Hmm, je n\'ai pas de réponse sûre à ça. 🤔 ' + (near.length ? 'Une de ces questions s\'en rapproche ?' : 'Essaie avec d\'autres mots, ou demande directement à l\'équipe RH : ' + MAIL + '.') +
-        '<a class="tvc-go" href="faq.html#ask">Poser ma question aux RH</a>',
-      more: near.length ? near : ['Comment voter en ligne ?', 'À quoi sert le CSE ?', 'Quelles sont les dates clés ?'],
-      moreTitle: near.length ? 'Questions proches' : 'Tu peux aussi demander'
+    var props = L.filter(function (x) { return x.score >= 1.4; }).slice(0, 4).map(function (x) { return label(x.e); });
+    if (!props.length) { /* aucun thème reconnu : on regarde quand même les mots du message */
+      var t = rank(text).list, n = t.n || 1;
+      props = t.filter(function (x) { return x.score >= 2.6 && x.cover >= (n > 1 ? .5 : 1); }).slice(0, 3).map(function (x) { return label(x.e); });
+    }
+    if (props.length) return {
+      html: 'Je ne suis pas sûr d\'avoir bien compris ta question. 🤔 Est-ce que cela concerne l\'une de celles-ci ?',
+      more: props.concat(NONE_Q), moreTitle: 'Choisis une question'
     };
+    return {
+      html: 'Je n\'ai pas compris ta question. 😕 Essaie avec d\'autres mots, ou choisis un thème ci-dessous. Tu peux aussi écrire à l\'équipe RH : ' + MAIL + '.',
+      more: TOPICS, moreTitle: 'Les thèmes'
+    };
+  }
+  var NONE_Q = 'Aucune de ces questions';
+  function related(e) {
+    var r = intents(e.q).list.filter(function (x) { return x.e !== e && x.prim && x.score >= 2; });
+    return r.slice(0, 2).map(function (x) { return label(x.e); });
   }
 
   /* Ouvrir / fermer */
@@ -460,7 +659,7 @@
   }
   fab.onclick = function () { var on = !box.classList.contains('tvc-open'); setOpen(on); if (!on) fab.focus(); };
   $('.tvc-close').onclick = function () { setOpen(false); fab.focus(); };
-  $('.tvc-reset').onclick = function () { log.innerHTML = ''; state.log = []; save(); welcome(); input.focus(); };
+  $('.tvc-reset').onclick = function () { log.innerHTML = ''; state.log = []; state.ctx = null; save(); welcome(); input.focus(); };
   form.onsubmit = function (e) { e.preventDefault(); var v = input.value; input.value = ''; ask(v); };
   log.addEventListener('click', function (e) {
     var c = e.target.closest('.tvc-chip'); if (c) { ask(c.textContent); return; }
@@ -493,5 +692,5 @@
   if (!window.TV_FAQ) { var s = d.createElement('script'); s.src = 'faq-data.js'; s.onload = function () { KB = null; }; d.head.appendChild(s); }
 
   /* Pour les tests */
-  window.tvChat = { ask: ask, rank: function (t) { return rank(t).list.slice(0, 3).map(function (x) { return [x.e.id, +x.score.toFixed(2), +x.cover.toFixed(2)]; }); }, answer: answer };
+  window.tvChat = { ask: ask, intents: function (t) { return intents(t).list.slice(0, 4).map(function (x) { return [x.e.id, +x.score.toFixed(2)]; }); }, state: state, rank: function (t) { return rank(t).list.slice(0, 3).map(function (x) { return [x.e.id, +x.score.toFixed(2), +x.cover.toFixed(2)]; }); }, answer: answer };
 })();
