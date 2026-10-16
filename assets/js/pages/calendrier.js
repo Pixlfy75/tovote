@@ -1,7 +1,6 @@
 /* TO VOTE · Envol — script de la page calendrier.html */
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2400)};
 let ci=0;$$('[data-split]').forEach(el=>{el.innerHTML=el.textContent.split(' ').map(w=>`<span class="w">${[...w].map(c=>`<span class="ch" style="--i:${ci++}">${c}</span>`).join('')}</span>`).join(' ');el.setAttribute('aria-hidden','true')});
 
 /* ---------- Plan de vol (dates du calendrier électoral, heure de Paris) ----------
@@ -49,29 +48,19 @@ $('#phases').innerHTML=PHASES.map(ph=>{
     ${ph.id==='scrutin'?`<li class="item glass ghost" data-ghost><div class="date"><b class="rng mono">9→16</b><span>avr 2027</span></div><div class="it-body"><h3>2nd tour, si nécessaire</h3><p>Seulement dans les collèges où le quorum n'est pas atteint ou où des sièges restent à pourvoir. Appel à candidatures le 1er avril, dépôt jusqu'au 5 avril à 12h00, listes affichées le 7 avril. Vote du 9 avril 9h00 au 16 avril 16h00, résultats le 16 avril.</p><p class="ref" style="margin-top:6px">PAP, art. 1 et annexe 1</p></div></li>`:''}
   </ol></section>`}).join('');
 
-/* ---------- Statuts selon la date (réelle ou simulée) ---------- */
-let NOW=new Date(),filter='all';
+/* ---------- Statuts selon la date du jour ---------- */
 function render(){
-  const t=NOW;
+  const t=new Date();
   all.forEach(it=>{const el=$('#'+it.id),s=D(it.s),e=D(it.e);
     const st=t>e?'done':t>=s?'now':'future';el.classList.remove('done','now');if(st!=='future')el.classList.add(st);
     const b=$('[data-st]',el);b.className='st '+(st==='future'?'':st);
     b.textContent=st==='done'?'✓ Fait':st==='now'?'● En cours':'À venir';
-    if(st==='now'&&it.e===it.s)b.textContent='● Maintenant';
-    el.hidden=filter==='next'&&st==='done'});
-  $$('[data-ghost]').forEach(g=>g.hidden=false);
+    if(st==='now'&&it.e===it.s)b.textContent='● Maintenant'});
   if(typeof fit==='function')requestAnimationFrame(fit);
   PHASES.forEach(ph=>{const d=ph.items.filter(it=>t>D(it.e)).length,n=ph.items.length;
     $(`[data-state="${ph.id}"]`).textContent=d===n?'Phase terminée ✓':d||ph.items.some(it=>t>=D(it.s))?`${d} étape${d>1?'s':''} sur ${n} terminée${d>1?'s':''}`:'Phase à venir'});
 }
-$$('.seg button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));render()});
-
-/* Démo : date simulée, du 1er décembre 2026 au 20 avril 2027 */
-const SIM0=D('2026-12-01T10:00:00+01:00');
-const simLabel=()=>$('#simLab').textContent=NOW.toLocaleDateString('fr-FR',{timeZone:'Europe/Paris',day:'numeric',month:'short',year:'numeric'});
-$('#sim').oninput=e=>{NOW=new Date(SIM0.getTime()+e.target.value*864e5);simLabel();render()};
-$('#simReset').onclick=()=>{NOW=new Date();const v=Math.round((NOW-SIM0)/864e5);$('#sim').value=Math.max(0,Math.min(140,v));simLabel();render()};
-simLabel();render();
+render();
 
 /* ---------- Timeline : pastilles alignées sur le bloc de date, ligne de la première à la dernière pastille ---------- */
 function fit(){

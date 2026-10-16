@@ -106,7 +106,6 @@ les objets « physiques » (carte d'embarquement, hublots, safety card, étiquet
 [data-theme="dark"] .st.now{background:#EEECFF;color:#140D8A}
 [data-theme="dark"] .ghost{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
 [data-theme="dark"] .ghost .date{color:var(--night-text)}
-[data-theme="dark"] .sim input[type=range]{accent-color:#EEECFF}
 
 /* ---------- Candidatures ---------- */
 [data-theme="dark"] .phase li::before{background:#130E46;border-color:rgba(255,255,255,.35)}
@@ -162,3 +161,6 @@ les objets « physiques » (carte d'embarquement, hublots, safety card, étiquet
 [data-theme="dark"] .review li{background:rgba(255,255,255,.07)}
 [data-theme="dark"] .review li .m{color:#140D8A}
 [data-theme="dark"] .step-card .btn-glass{color:var(--night-text)}
+[data-theme="dark"] .seat-tray{background:linear-gradient(180deg,#3d3878,#2a2662);box-shadow:inset 0 2px 0 rgba(255,255,255,.14)}
+[data-theme="dark"] .seat-tray i{background:#1b1750}
+[data-theme="dark"] .seat-head{background:linear-gradient(180deg,#d6d4ec,#b9b6dc)}

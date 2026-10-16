@@ -1,6 +1,7 @@
 /* TO VOTE · Envol — l'équipage illustré, commun à toutes les pages.
    charSVG(k[, g]) renvoie le SVG d'un personnage (pnc | pnt | cadre | etam, ou sol = Cadres ou ETAM au hasard), en variante femme ou homme
-   tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer), puis qui change toute seule de temps en temps ;
+   tirée au hasard à chaque ouverture de page (g = 'f' | 'h' pour la forcer), puis qui change toute seule de temps en temps
+   (sauf à l'intérieur d'un élément [data-fixed]) ;
    wave(svg) lui fait faire coucou.
    Classes à poser sur le SVG : .happy (saut de joie), .sad (non de la tête), .wave (coucou), .boop (petit rebond).
    Le SVG reste lisible sans CSS (export en image de la carte d'embarquement). */
@@ -233,6 +234,7 @@
       var c = combos[Math.random() * combos.length | 0]; SOL.k = c[0]; SOL.g = c[1]; html = charSVG('sol');
     } else { var g = other(GENDER[k]); GENDER[k] = g; html = charSVG(k, g); }
     [].forEach.call(document.querySelectorAll('.char[data-k="' + k + '"]'), function (s) {
+      if (s.closest('[data-fixed]')) return;
       var t = document.createElement('template'); t.innerHTML = html;
       var n = t.content.firstElementChild, r = s.getBoundingClientRect();
       if (reduce || !r.width || r.bottom < 0 || r.top > innerHeight) { s.replaceWith(n); return; }
@@ -243,7 +245,7 @@
   /* Toutes les 6 secondes, un métier visible à l'écran change de variante */
   setInterval(function () {
     if (document.hidden) return;
-    var v = visible().filter(function (s) { return s.dataset.k && !BUSY.some(function (c) { return s.classList.contains(c); }); });
+    var v = visible().filter(function (s) { return s.dataset.k && !s.closest('[data-fixed]') && !BUSY.some(function (c) { return s.classList.contains(c); }); });
     if (v.length) swap(v[Math.random() * v.length | 0].dataset.k);
   }, 6000);
 

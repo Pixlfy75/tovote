@@ -81,20 +81,25 @@ if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.
     <h2 class="h sec-title rv">Le CSE, pour <span class="g">qui ?</span></h2>
     <p class="sec-lead rv">Pour tout l'équipage. Touche un personnage, ou <a href="cse.html" style="font-weight:600">découvre tout le rôle du CSE →</a></p>
     <div class="crew">
-      <button class="member glass rv" data-k="pnc">
-        <div class="bob" data-char="pnc"></div>
-        <div class="name">PNC</div>
-        <div class="bubble">« Mes rotations, mes repos, ma fatigue : le CSE est consulté sur tout ça. Et je vote depuis l'escale. »</div>
-      </button>
       <button class="member glass rv" data-k="pnt">
         <div class="bob" data-char="pnt"></div>
         <div class="name">PNT</div>
         <div class="bubble">« Organisation des vols, formation, conditions de travail : mes élu·es portent ma voix. »</div>
       </button>
-      <button class="member glass rv" data-k="sol">
-        <div class="bob" data-char="sol"></div>
-        <div class="name">Sol</div>
-        <div class="bubble">« Horaires, organisation, télétravail, activités sociales : le CSE, c'est aussi pour moi. »</div>
+      <button class="member glass rv" data-k="pnc">
+        <div class="bob" data-char="pnc"></div>
+        <div class="name">PNC</div>
+        <div class="bubble">« Mes rotations, mes repos, ma fatigue : le CSE est consulté sur tout ça. Et je vote depuis l'escale. »</div>
+      </button>
+      <button class="member glass rv" data-k="cadre">
+        <div class="bob" data-char="cadre"></div>
+        <div class="name">Cadres</div>
+        <div class="bubble">« Organisation, télétravail, formation : le CSE est consulté, et mon collège a ses propres élu·es. »</div>
+      </button>
+      <button class="member glass rv" data-k="etam">
+        <div class="bob" data-char="etam"></div>
+        <div class="name">ETAM</div>
+        <div class="bubble">« Horaires, conditions de travail, activités sociales : le CSE, c'est aussi pour moi. »</div>
       </button>
     </div>
   </div>
@@ -107,8 +112,8 @@ if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.
       <span class="chip"><i></i>Jeu</span>
       <h2 class="h sec-title" style="margin-top:16px">Vrai ou <span class="g">faux ?</span></h2>
       <p class="sec-lead">Glisse à droite si c'est vrai, à gauche si c'est faux.</p>
-      <div class="mascot">
-        <div class="bob" data-char="pnc" id="mascot"></div>
+      <div class="mascot" data-fixed>
+        <div class="bob" id="mascot"></div>
         <div class="m-bubble" id="mBubble">À toi de jouer ! 👉</div>
       </div>
     </div>
@@ -179,18 +184,13 @@ if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.
 <section class="sec" id="videos" style="padding-top:0">
   <div class="wrap">
     <div class="center"><h2 class="h sec-title rv">Divertissement <span class="g">à bord.</span></h2><p class="sec-lead rv">Ton écran de divertissement en vol : des vidéos courtes pour tout comprendre des élections.</p></div>
-    <div class="ife rv">
-      <div class="ife-screen">
-        <div class="ife-bar">
-          <span class="ife-brand"><img src="assets/img/tovote-icon.png" alt="">TO VOTE · Divertissement à bord</span>
-          <span class="ife-tabs" aria-hidden="true"><span class="on">Vidéos</span><span>Infos vol</span><span>Musique</span></span>
-          <span class="ife-clock"><i></i><span id="ifeClock">--:--</span></span>
-        </div>
-        <div class="ife-grid" id="ifeGrid"></div>
-        <div class="ife-foot"><span>🎧 Branche ton casque, ou active les sous-titres sur YouTube.</span><span>Nouveaux programmes pendant la campagne</span></div>
+    <div class="seat rv">
+      <div class="seat-head" aria-hidden="true"></div>
+      <div class="seat-back">
+        <div class="ife"><div class="ife-grid" id="ifeGrid"></div></div>
+        <div class="seat-tray" aria-hidden="true"><i></i></div>
       </div>
     </div>
-    <div class="ife-under" aria-hidden="true"><span></span><span></span></div>
   </div>
 </section>
 
@@ -225,8 +225,8 @@ if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.
 <section class="final">
   <div class="wrap">
     <h2 class="xl rv" style="--i0:20" aria-label="Une question ? Écris-nous."><span data-split>Une question ?</span><br><span data-split class="g">Écris-nous.</span></h2>
-    <p class="lead-c rv">L'équipe RH te répond sous 48&nbsp;h.</p>
-    <div style="margin-top:26px;display:flex;justify-content:center"><a class="btn btn-ink mail" href="mailto:to-vote@fr.transavia.com">✉️ to-vote@fr.transavia.com</a></div>
+    <p class="lead-c rv">La réponse t'attend peut-être déjà dans la FAQ. Sinon, l'équipe RH te répond sous 48&nbsp;h.</p>
+    <div class="contact-btns"><a class="btn btn-glass" href="faq.html">📖 Consulter la FAQ</a><a class="btn btn-ink" href="mailto:to-vote@fr.transavia.com">✉️ to-vote@fr.transavia.com</a></div>
     <p class="hint-bot">Pressé·e ? Pose-la à l'assistant de bord, en bas à droite.</p>
   </div>
 </section>

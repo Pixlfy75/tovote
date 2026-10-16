@@ -41,11 +41,14 @@ $$('.member').forEach(m=>m.onclick=()=>{m.classList.toggle('on');wave($('.char',
 const CARDS=[['Il faut être syndiqué·e pour voter.',false,'Faux : 16 ans et 3 mois d\'ancienneté suffisent.'],['Mon vote reste anonyme, même en ligne.',true,'Vrai : identité et bulletin sont séparés.'],['En rotation, je ne peux pas voter.',false,'Faux : tu votes depuis ton téléphone.'],['Les élu·es siègent 4 ans.',true,'Vrai : sauf accord qui réduit la durée.']];
 const TINTS=['rgba(243,133,255,.45)','rgba(5,206,120,.4)','rgba(255,136,103,.45)','rgba(0,83,255,.3)'];
 let k=0,good=0;
-const CREW=['pnc','pnt','sol'];
-function mascotFor(i){const m=$('#mascot');m.dataset.char=CREW[i%3];m.innerHTML=charSVG(CREW[i%3])}
+/* La mascotte : un personnage tiré au hasard pour la session, qui ne change plus */
+const MASCOT=(()=>{const R=['pnc','pnt','cadre','etam'];let m;try{m=JSON.parse(sessionStorage.getItem('tv_mascot'))}catch(e){}
+  if(!m||!R.includes(m.k)||!['f','h'].includes(m.g)){m={k:R[Math.random()*4|0],g:Math.random()<.5?'f':'h'};try{sessionStorage.setItem('tv_mascot',JSON.stringify(m))}catch(e){}}
+  return m})();
+$('#mascot').innerHTML=charSVG(MASCOT.k,MASCOT.g);
 function say(t){const b=$('#mBubble');b.textContent=t;b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')}
 function react(ok){const s=$('#mascot .char');s.classList.add(ok?'happy':'sad');say(ok?['Bien vu ! 🎉','Exactement ✈️','Yes ! 🙌'][good%3]:'Raté… mais maintenant tu sais 😉');
-  setTimeout(()=>{s.classList.remove('happy','sad');if(k<CARDS.length){mascotFor(k);say('Et celle-là ? 👉')}},1300)}
+  setTimeout(()=>{s.classList.remove('happy','sad');if(k<CARDS.length)say('Et celle-là ? 👉')},1300)}
 function deck(){const d=$('#deck');d.innerHTML='';
   if(k>=CARDS.length){setTimeout(()=>{const s=$('#mascot .char');s&&s.classList.add('happy');setTimeout(()=>s&&s.classList.remove('happy'),1200)},1350);d.innerHTML=`<div class="done glass"><div><div class="h" style="font-size:3.4rem;color:var(--web-green)">${good}/${CARDS.length}</div><p class="sub" style="margin-top:8px">${good===CARDS.length?'Sans turbulence ✈️':'Bon vol quand même 😉'}</p><button class="btn btn-ink" style="margin-top:16px" id="again">Rejouer</button></div></div>`;$('#again').onclick=()=>{k=0;good=0;$('#verdict').textContent='';mascotFor(0);say('À toi de jouer ! 👉');deck()};return}
   CARDS.slice(k,k+3).reverse().forEach((c,i,arr)=>{const depth=arr.length-1-i,el=document.createElement('div');el.className='card glass';
@@ -134,8 +137,6 @@ $('#ifeGrid').onclick=e=>{const c=e.target.closest('.vcard');if(!c)return;const 
 const vmClose=()=>{$('#vmodal').close()};
 $('#vmX').onclick=vmClose;$('#vmodal').onclick=e=>{if(e.target.id==='vmodal')vmClose()};
 $('#vmodal').addEventListener('close',()=>{$('#vmVideo').innerHTML=''}); /* coupe le son à la fermeture */
-const ifeClock=()=>{try{$('#ifeClock').textContent=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Paris'})}catch(e){}};
-ifeClock();setInterval(ifeClock,30000);
 
 /* ---------- Consignes de sécurité ---------- */
 $$('.panel').forEach(p=>p.onclick=()=>p.classList.toggle('on'));
