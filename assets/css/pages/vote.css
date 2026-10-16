@@ -1,0 +1,87 @@
+/* TO VOTE · Envol — styles propres à la page vote.html */
+:root{
+  --green:#05CE78; --web-green:#01AB61; --ruby:#E20076; --ink:#140D8A;
+  --pink:#F385FF; --peach:#FF8867; --blue:#0053FF;
+  --f-head:"Archivo","Soehne",Arial Black,sans-serif;
+  --f-body:"Soehne",Arial,sans-serif;
+  --glass:rgba(255,255,255,.55); --glass-b:rgba(255,255,255,.75);
+  --r:28px; --gutter:clamp(16px,5vw,72px); --maxw:1240px; --p:0;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:100px;overflow-x:clip}
+body{font-family:var(--f-body);color:var(--ink);line-height:1.55;overflow-x:hidden;background:#FFE3D8}
+.g{color:var(--web-green)}
+.center{text-align:center}
+
+/* ---------- Ciel ---------- */
+.sky{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(60vmax 50vmax at calc(15% + var(--p)*30%) calc(10% + var(--p)*20%),rgba(243,133,255,calc(.5 - var(--p)*.3)),transparent 70%),
+    radial-gradient(55vmax 45vmax at calc(90% - var(--p)*20%) 20%,rgba(255,136,103,calc(.5 - var(--p)*.35)),transparent 70%),
+    radial-gradient(70vmax 60vmax at 50% calc(110% - var(--p)*40%),rgba(5,206,120,calc(.25 + var(--p)*.35)),transparent 70%),
+    radial-gradient(60vmax 50vmax at calc(80% - var(--p)*10%) calc(70% - var(--p)*30%),rgba(0,83,255,calc(.16 + var(--p)*.24)),transparent 70%),
+    linear-gradient(180deg,#FFE9E0,#F3ECFF 50%,#E6F7FF)}
+.cloud{position:fixed;z-index:-1;border-radius:50%;background:#fff;filter:blur(30px);opacity:.7;pointer-events:none}
+.c1{width:420px;height:150px;left:-80px;top:30%}
+.c2{width:520px;height:170px;right:-120px;top:65%}
+.btn{display:inline-flex;align-items:center;gap:.55em;padding:.9em 1.4em;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn-glass{background:rgba(255,255,255,.7);border:1.5px solid #fff}
+.chip{display:inline-flex;align-items:center;gap:.5em;padding:.4em .9em;border-radius:999px;background:rgba(255,255,255,.7);border:1.5px solid #fff;font-weight:600;font-size:.82rem}
+@media (max-width:1000px){.nav a.l:not([aria-current]){display:none}}
+.xl .ch{display:inline-block;animation:pop .9s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:calc(var(--i)*30ms)}
+
+/* ---------- Haut de page ---------- */
+.top{padding-top:120px;text-align:center}
+.top h1{font-size:clamp(2.6rem,8vw,6.4rem);margin-top:16px}
+.top .lead{font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:44ch;margin:16px auto 0}
+[hidden]{display:none!important}
+footer{padding:0 0 36px}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);padding:12px 22px;border-radius:999px;font-weight:600;z-index:90;box-shadow:0 14px 30px -12px rgba(20,13,138,.4);transition:transform .4s cubic-bezier(.2,.9,.3,1.3)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Page « Je vote » : écran de porte d'embarquement ---------- */
+.gate{padding-top:110px;padding-bottom:80px;text-align:center}
+.gate h1{font-size:clamp(2.6rem,8vw,6.2rem);margin-top:16px}
+.gate .lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:46ch;margin:16px auto 0}
+.board{max-width:860px;margin:36px auto 0;border-radius:30px;background:#140D8A;color:#fff;overflow:hidden;text-align:left;box-shadow:0 40px 70px -40px rgba(20,13,138,.8)}
+.board-top{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 18px;padding:18px 26px;border-bottom:1.5px dashed rgba(255,255,255,.18)}
+.board-top small{display:block;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.board-top b{display:block;font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(.95rem,2vw,1.15rem);margin-top:2px}
+.board-top .st b{display:inline-flex;align-items:center;gap:8px;color:var(--green)}
+.board-top .st b::before{content:"";width:10px;height:10px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(5,206,120,.25);animation:blink 1.4s infinite}
+.board-top .st.off b{color:#FFB547}
+.board-top .st.off b::before{box-shadow:0 0 0 4px rgba(255,181,71,.25)}
+.board-top .st.closed b{color:#C9CBDB}
+.board-top .st.closed b::before{animation:none;box-shadow:none}
+@keyframes blink{50%{opacity:.35}}
+.board-mid{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,36px);align-items:center;padding:clamp(22px,4vw,34px) 26px}
+.ring{position:relative;width:clamp(130px,22vw,170px);aspect-ratio:1}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring .bg{stroke:rgba(255,255,255,.12)}
+.ring .fg{stroke:var(--green);stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.ring .num{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .num b{font-family:var(--f-head);font-weight:900;font-stretch:110%;font-size:clamp(2.8rem,6vw,3.8rem);line-height:1;font-variant-numeric:tabular-nums}
+.ring .num small{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-top:4px}
+.board-txt h2{font-family:var(--f-head);font-weight:900;font-stretch:115%;font-size:clamp(1.3rem,2.8vw,1.8rem);line-height:1.1}
+.board-txt p{margin-top:10px;opacity:.85;line-height:1.5}
+.board-txt .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.board-txt .acts .btn-glass{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.board-txt .url{display:block;margin-top:14px;font-size:.78rem;opacity:.6}
+.board-plane{position:relative;height:46px;margin:0 26px 18px;border-top:2px dashed rgba(255,255,255,.18)}
+.board-plane .pl{position:absolute;top:-24px;left:0;width:48px;transition:left 1s linear}
+.kit{max-width:860px;margin:22px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
+.kit div{padding:16px 18px;border-radius:20px}
+.kit b{display:block;font-weight:700}
+.kit span{display:block;font-size:.86rem;opacity:.75;margin-top:4px;line-height:1.4}
+.help{margin-top:18px;font-size:.9rem}
+.help a{font-weight:600}
+.demo{margin-top:26px;font-size:.78rem;opacity:.6}
+.demo a{margin:0 4px}
+@media (max-width:700px){.board-top{grid-template-columns:1fr 1fr}
+.board-top .st{grid-column:1/-1}
+.board-mid{grid-template-columns:1fr;justify-items:center;text-align:center}
+.board-txt .acts{justify-content:center}
+.kit{grid-template-columns:1fr}}

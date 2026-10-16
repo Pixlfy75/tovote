@@ -1,7 +1,7 @@
 /* TO VOTE · Envol — mode nuit (« vol de nuit »), commun à toutes les pages.
-   Activé par <html data-theme="dark"> (theme.js : choix mémorisé, sinon réglage de l'appareil).
+Activé par <html data-theme="dark"> (theme.js : choix mémorisé, sinon réglage de l'appareil).
    Principe : le ciel devient nocturne et étoilé, le verre s'assombrit, le texte passe en clair ;
-   les objets « physiques » (carte d'embarquement, hublots, safety card, étiquettes, documents) restent blancs, texte ink. */
+les objets « physiques » (carte d'embarquement, hublots, safety card, étiquettes, documents) restent blancs, texte ink. */
 
 :root[data-theme="dark"]{
   color-scheme:dark;
@@ -59,9 +59,7 @@
 [data-theme="dark"] .char{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.75)) drop-shadow(0 8px 14px rgba(0,0,0,.35))}
 
 /* ---------- Objets physiques : restent blancs, texte ink ---------- */
-[data-theme="dark"] .pass,[data-theme="dark"] .safety,[data-theme="dark"] .hub .cap,[data-theme="dark"] .pf-in,
-[data-theme="dark"] .fuselage,[data-theme="dark"] .tag,[data-theme="dark"] .doc,[data-theme="dark"] .viewer,
-[data-theme="dark"] .date,[data-theme="dark"] .bubble,[data-theme="dark"] .m-bubble,[data-theme="dark"] .word .f{color:#140D8A}
+[data-theme="dark"] .pass,[data-theme="dark"] .safety,[data-theme="dark"] .hub .cap,[data-theme="dark"] .fuselage,[data-theme="dark"] .tag,[data-theme="dark"] .doc,[data-theme="dark"] .viewer,[data-theme="dark"] .date,[data-theme="dark"] .bubble,[data-theme="dark"] .m-bubble,[data-theme="dark"] .word .f{color:#140D8A}
 [data-theme="dark"] .pass .h,[data-theme="dark"] .safety h3,[data-theme="dark"] .tag h3,[data-theme="dark"] .doc h3,[data-theme="dark"] .viewer b,
 [data-theme="dark"] .pass b,[data-theme="dark"] .date b,[data-theme="dark"] .safety b{color:inherit}
 [data-theme="dark"] .safety-head,[data-theme="dark"] .safety-head b{color:#fff}
@@ -151,8 +149,6 @@
 /* ---------- Quiz ---------- */
 [data-theme="dark"] .facts span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
 [data-theme="dark"] .track::before{border-color:rgba(255,255,255,.25)}
-[data-theme="dark"] .dots i{background:rgba(255,255,255,.2)}
-[data-theme="dark"] .dots i.cur{background:#EEECFF}
 [data-theme="dark"] .opt{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:var(--night-text)}
 [data-theme="dark"] .opt:hover:not(:disabled){border-color:#EEECFF}
 [data-theme="dark"] .opt .k{background:rgba(255,255,255,.14)}

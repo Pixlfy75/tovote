@@ -731,7 +731,7 @@
   setTimeout(function () { tryTease(0); }, 3500);
 
   /* La FAQ n'est chargée que sur sa page : on la récupère ailleurs, sans bloquer l'affichage */
-  if (!window.TV_FAQ) { var s = d.createElement('script'); s.src = 'faq-data.js'; s.onload = function () { KB = null; }; d.head.appendChild(s); }
+  if (!window.TV_FAQ) { var s = d.createElement('script'); s.src = 'assets/js/faq-data.js'; s.onload = function () { KB = null; }; d.head.appendChild(s); }
 
   /* Pour les tests */
   window.tvChat = { ask: ask, intents: function (t) { return intents(t).list.slice(0, 4).map(function (x) { return [x.e.id, +x.score.toFixed(2)]; }); }, state: state, rank: function (t) { return rank(t).list.slice(0, 3).map(function (x) { return [x.e.id, +x.score.toFixed(2), +x.cover.toFixed(2)]; }); }, answer: answer };
