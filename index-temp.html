@@ -8,7 +8,7 @@
 <meta name="description" content="TO VOTE : embarquement immédiat pour ton CSE. Tout pour voter aux élections CSE 2027.">
 <meta name="theme-color" content="#FFE3D8">
 <link rel="icon" href="assets/img/tovote-icon.png">
-<script>/* thème appliqué avant l'affichage : choix mémorisé, sinon réglage de l'appareil */(function(){var t;try{t=localStorage.getItem('tv_theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
+<script src="assets/js/theme.js"></script>
 <script>/* Ouverture en nuages : une fois par session de navigation (cookie de session, effacé à la fermeture du navigateur) */
 (function(){var seen=false;try{seen=/(^|; )tv_intro=1/.test(document.cookie)}catch(e){}try{seen=seen||sessionStorage.getItem('tv_intro')==='1'}catch(e){}
 if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.add('no-intro')})();</script>
@@ -220,6 +220,5 @@ if(seen||/[?&]intro=0/.test(location.search))document.documentElement.classList.
 <script src="assets/js/plane.js"></script>
 <script src="assets/js/pages/index-temp.js"></script>
 <script src="assets/js/menu.js"></script>
-<script src="assets/js/theme.js"></script>
 </body>
 </html>

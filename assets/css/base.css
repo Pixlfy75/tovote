@@ -29,3 +29,13 @@ footer img{height:20px;width:auto}
 footer nav{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.85rem}
 @media (max-width:760px){footer .bar{border-radius:24px}}
 .toast.show{transform:translate(-50%,0);visibility:visible}
+
+/* ---------- Aube et crépuscule : le ciel se réchauffe (theme.js règle --tw de 0 à 1 selon la hauteur du soleil) ---------- */
+.sky::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:calc(var(--tw,0)*.92);transition:opacity 3s;
+  background:
+    radial-gradient(circle 9vmax at var(--sun-x) calc(100% + 3vmax),#FFF1C9 0 96%,transparent 100%),
+    radial-gradient(60vmax 40vmax at var(--sun-x) 100%,var(--tw-glow),transparent 70%),
+    linear-gradient(180deg,var(--tw-a),var(--tw-b) 40%,var(--tw-c) 75%,var(--tw-d))}
+:root{--sun-x:78%;--tw-glow:rgba(255,150,90,.75);--tw-a:#B9A6FF;--tw-b:#EBA8D8;--tw-c:#FFAE8F;--tw-d:#FFC27A}
+:root[data-sky="dawn"]{--sun-x:22%;--tw-glow:rgba(255,190,140,.7);--tw-a:#CFC4FF;--tw-b:#F7C6E4;--tw-c:#FFD0B5;--tw-d:#FFE3A8}
+html .cloud{background:color-mix(in srgb,#FFC4AE calc(var(--tw,0)*75%),#fff)}

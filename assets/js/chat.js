@@ -85,7 +85,7 @@
     { id: 'formation', q: 'Il existe une formation sur le CSE ?', a: '<b>Oui, sur TO Learn.</b> Un module sur le CSE et les élections professionnelles, à suivre à ton rythme. Tu le retrouves à la fin du quiz.', l: ['quiz.html', 'Faire le quiz'], k: 'formation former apprendre to learn tolearn module learning cours' },
     { id: 'checkin', q: 'Est-ce que moi, je peux voter ou me présenter ?', a: '<b>Fais ton check-in sur l\'accueil :</b> trois infos, et tu sais si tu peux voter ou te présenter. Ta carte d\'embarquement t\'attend.', l: ['index.html#checkin', 'Faire mon check-in'], k: 'moi eligible check verifier droit mon cas situation carte embarquement' },
     { id: 'contact', q: 'Je veux parler à quelqu\'un de l\'équipe RH.', a: '<b>Écris à ' + MAIL + '</b>, ou pose ta question depuis la FAQ : l\'équipe RH te répond sous 48 h. Pendant le vote, une assistance téléphonique répond 24h/24.', l: ['faq.html#ask', 'Poser ma question'], k: 'contact contacter parler humain quelqu rh question perso personnel personnelle cas mail email joindre telephone assistance hotline numero conseiller' },
-    { id: 'theme', q: 'Comment passer en mode nuit ?', a: 'Touche la lune 🌙 dans le menu, en haut de la page. Le soleil ☀️ te ramène au mode jour.', k: 'mode nuit sombre dark theme clair jour lune' }
+    { id: 'theme', q: 'Comment passer en mode nuit ?', a: 'Le ciel du site suit le soleil là où tu te trouves : jour, aube ou crépuscule, puis nuit. Pour garder la main, touche le bouton à côté de « Je vote », en haut de la page : il passe de Auto à Jour ☀️, puis à Nuit 🌙. Ton choix est mémorisé sur ton appareil.', k: 'mode nuit sombre dark theme clair jour lune soleil ambiance aube crepuscule ciel auto' }
   ];
 
   /* Mots-clés ajoutés à certaines questions de la FAQ */
@@ -550,7 +550,7 @@
     formation: 'formations?|former|apprendre|to learn|tolearn|module|cours|e learning',
     checkin: 'check in|checkin|carte d embarquement|mon cas|ma situation',
     contact: 'contact\\w*|humain|quelqu un|rh|ressources humaines|mail|email|joindre|parler a|numero|hotline|assistance|perso|personnelle',
-    theme: 'mode nuit|mode sombre|dark|theme|mode jour',
+    theme: 'mode nuit|mode sombre|dark|theme|mode jour|ambiance|crepuscule|aube',
     checklist: 'checklist|check list|tout pour voter|tout ce qu il faut|pret a voter|prete a voter|me preparer|preparer mon vote|avant de voter'
   };
   var GENERIC = { vote: 1, cse: 1, elu: 1, liste: 1, lieu: 1, online: 1, comment_gen: 1, definition: 1 };

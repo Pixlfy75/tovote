@@ -9,7 +9,7 @@ Site statique, sans étape de construction : chaque page HTML ne contient que so
 ```
 *.html                     les pages (contenu seul ; menu et pied de page répétés dans chaque page)
 assets/css/base.css        styles communs : polices, réinitialisation, verre dépoli, menu, pied de page
-assets/css/night.css       mode nuit
+assets/css/night.css       mode nuit et bouton d'ambiance
 assets/css/pages/<page>.css   styles propres à chaque page
 assets/js/<module>.js      modules communs (équipage, avion, menu, assistant, checklist…)
 assets/js/pages/<page>.js     script propre à chaque page
@@ -18,7 +18,7 @@ assets/img/, fonts/, audio/, vendor/   logos, polices Söhne, carillon, PDF.js
 outils/index-temp.py       génère la version restreinte de l'accueil
 ```
 
-Seul le petit script qui applique le mode nuit reste dans l'en-tête de chaque page (et, sur l'accueil, celui de l'ouverture en nuages) : il doit s'exécuter avant l'affichage pour éviter un éclair de couleur.
+`assets/js/theme.js` est chargé dans l'en-tête de chaque page (et, sur l'accueil, le petit script de l'ouverture en nuages y reste en ligne) : l'ambiance doit être posée avant l'affichage pour éviter un éclair de couleur.
 
 Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://localhost:8000.
 
@@ -42,7 +42,7 @@ Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://lo
 - `plane.js` : l'avion en papier en 3D (accueil, plan de vol, quiz, affiche, assistant). Un petit modèle 3D projeté en SVG sous l'angle voulu (`planeSVG({ yaw, pitch, roll, elev })`), avec des vues prêtes (`data-plane="route"`). Le grand avion de l'accueil pivote au fil du défilement
 - `pictos.js` : les pictogrammes « carte de sécurité » (accueil, FAQ, documents)
 - `menu.js` : le menu des petits écrans (moins de 1000 px) : un bouton au nom de la page en cours ouvre la liste des pages, reprise automatiquement du menu
-- `theme.js` (avec `assets/css/night.css`) : mode nuit (bouton lune / soleil dans le menu, choix mémorisé, sinon réglage de l'appareil)
+- `theme.js` (avec `assets/css/night.css` et la fin de `base.css`) : l'ambiance du ciel suit le soleil là où se trouve l'appareil. Jour, puis aube ou crépuscule (seul le fond se réchauffe, soleil bas à l'horizon), puis nuit (mode nuit complet). La position est estimée d'après le fuseau horaire de l'appareil, ou exacte si le site a déjà l'autorisation de localisation (jamais demandée). La page ouverte se met à jour toute seule, en fondu. Bouton dans le menu : Auto → Jour → Nuit, choix mémorisé sur l'appareil (`tv_ambiance`)
 - `chat.js` : l'assistant de bord, sur toutes les pages (bouton d'appel PNC en bas à droite). Il reconnaît le thème de la question par mots-clés (`CONCEPTS`), tient compte de la question précédente pour les relances (« et pour les cadres ? ») et ne répond directement que si une réponse se détache nettement ; sinon il propose les questions possibles (« Je ne suis pas sûr d'avoir bien compris… »). Il répond à partir du contenu du site : la FAQ (27 questions) et une cinquantaine de fiches. Tout se passe dans le navigateur, rien n'est envoyé. Pour ajouter une réponse : une entrée dans `CARDS` (question type, réponse, référence, lien, mots-clés) et ses thèmes dans `TAGS` (le premier est le thème principal)
 - `faq-data.js` : le contenu de la FAQ, partagé par la page FAQ et l'assistant
 - `checklist.js` : la checklist avant vol, à placer n'importe où avec `<div data-checklist></div>` et `<script src="assets/js/checklist.js"></script>`

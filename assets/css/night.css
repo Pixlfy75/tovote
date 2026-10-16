@@ -1,5 +1,5 @@
 /* TO VOTE · Envol — mode nuit (« vol de nuit »), commun à toutes les pages.
-Activé par <html data-theme="dark"> (theme.js : choix mémorisé, sinon réglage de l'appareil).
+Activé par <html data-theme="dark"> (theme.js : la nuit tombée là où se trouve l'appareil, ou choix « Nuit » dans le menu).
    Principe : le ciel devient nocturne et étoilé, le verre s'assombrit, le texte passe en clair ;
 les objets « physiques » (carte d'embarquement, hublots, safety card, étiquettes, documents) restent blancs, texte ink. */
 
@@ -50,9 +50,18 @@ les objets « physiques » (carte d'embarquement, hublots, safety card, étiquet
 [data-theme="dark"] footer img{filter:none}
 
 /* Bouton lune / soleil (ajouté par theme.js) */
-.theme-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(20,13,138,.07);color:#140D8A;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
-.theme-btn:hover{transform:rotate(-15deg) scale(1.06)}
-.theme-btn svg{width:20px;height:20px}
+.theme-btn{position:relative;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(20,13,138,.07);color:#140D8A}
+.theme-btn svg{width:20px;height:20px;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.theme-btn:hover svg{transform:rotate(-15deg) scale(1.06)}
+/* pastille « A » : ambiance automatique, selon le soleil */
+.theme-btn[data-mode="auto"]::after{content:"A";position:absolute;right:-2px;bottom:-2px;width:16px;height:16px;border-radius:50%;background:#05CE78;color:#140D8A;font-size:9px;font-weight:700;line-height:16px;text-align:center;box-shadow:0 0 0 2px #fff}
+/* bulle qui annonce l'ambiance choisie, juste après un appui */
+.theme-tip{position:absolute;top:calc(100% + 12px);left:50%;transform:translate(-50%,-4px);white-space:nowrap;background:#140D8A;color:#fff;font-size:.75rem;font-weight:600;padding:.45em .9em;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.theme-btn.tip .theme-tip{opacity:1;transform:translate(-50%,0)}
+[data-theme="dark"] .theme-tip{background:#EEECFF;color:#140D8A}
+[data-theme="dark"] .theme-btn[data-mode="auto"]::after{box-shadow:0 0 0 2px #1b1550}
+/* passage d'une ambiance à l'autre : fondu enchaîné de la page */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.8s}
 [data-theme="dark"] .theme-btn{background:rgba(255,255,255,.12);color:#FFE7A3}
 
 /* Personnages : un liseré clair pour qu'ils ressortent sur le ciel de nuit */
