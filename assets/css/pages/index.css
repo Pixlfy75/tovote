@@ -157,15 +157,20 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 /* ---------- Vidéos : écran de divertissement en vol (IFE) ---------- */
 /* Divertissement à bord : l'écran encastré dans le dossier du siège de devant */
 .seat{position:relative;max-width:880px;margin:64px auto 0}
-.seat-back{padding:72px clamp(14px,3.4vw,40px) 0;border-radius:150px 150px 0 0/90px 90px 0 0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 7px),linear-gradient(180deg,#2b2394,#1b1473 55%,#140d55);box-shadow:inset 0 3px 0 rgba(255,255,255,.12);-webkit-mask-image:linear-gradient(#000 calc(100% - 90px),transparent);mask-image:linear-gradient(#000 calc(100% - 90px),transparent);position:relative}
-.seat-back::before{content:"";position:absolute;inset:12px 12px 0;border:2px dashed rgba(255,255,255,.1);border-bottom:0;border-radius:140px 140px 0 0/82px 82px 0 0;pointer-events:none}
+.seat-back{padding:72px clamp(14px,3.4vw,40px) 0;border-radius:150px 150px 0 0/90px 90px 0 0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 7px),linear-gradient(180deg,#14CB7B,#07AC63 55%,#048A4F);box-shadow:inset 0 3px 0 rgba(255,255,255,.3),inset 0 -60px 80px -40px rgba(3,70,40,.45);-webkit-mask-image:linear-gradient(#000 calc(100% - 90px),transparent);mask-image:linear-gradient(#000 calc(100% - 90px),transparent);position:relative}
+.seat-back::before{content:"";position:absolute;inset:12px 12px 0;border:2px dashed rgba(255,255,255,.28);border-bottom:0;border-radius:140px 140px 0 0/82px 82px 0 0;pointer-events:none}
 .seat-head{position:absolute;z-index:1;top:-16px;left:50%;transform:translateX(-50%);width:min(46%,380px);height:66px;border-radius:16px 16px 26px 26px;background:linear-gradient(180deg,#fff,#ECEBF7);box-shadow:0 14px 24px -14px rgba(11,8,48,.6);overflow:hidden}
-.seat-head::after{content:"";position:absolute;left:0;right:0;bottom:12px;height:8px;background:var(--green)}
+.seat-head::after{content:"";position:absolute;left:0;right:0;bottom:12px;height:8px;background:var(--ink)}
 .ife{position:relative;border-radius:22px;padding:10px;background:#07051f;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.1),0 2px 0 rgba(255,255,255,.08);color:#fff;text-align:left}
-.ife-grid{display:grid;grid-template-columns:1.8fr 1fr;gap:12px;border-radius:14px;padding:clamp(12px,1.8vw,18px);background:radial-gradient(120% 90% at 15% 0%,#3a2fd6 0%,#1a1268 42%,#0B0830 100%)}
-.ife-grid .vcard:first-child{grid-row:span 2}
+.ife-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:10px;border-radius:14px;padding:clamp(12px,1.8vw,18px);background:radial-gradient(120% 90% at 15% 0%,#3a2fd6 0%,#1a1268 42%,#0B0830 100%)}
+/* la vidéo à la une, en grand ; les suivantes en liste, comme le menu d'un vrai écran de bord */
 .ife-grid .vcard:first-child .thumb{aspect-ratio:auto;flex:1;min-height:200px}
-.ife-grid .vcard:not(:first-child) .vs{display:none}
+.ife-grid .vcard:not(:first-child){flex-direction:row;align-items:center;gap:12px;padding:8px}
+.ife-grid .vcard:not(:first-child) .thumb{flex:none;width:46%}
+.ife-grid .vcard:not(:first-child) :is(.vs,.tag,.dur){display:none}
+.ife-grid .vcard:not(:first-child) .vt{font-size:.92rem;padding:0}
+.ife-grid .vcard:not(:first-child) .play{width:36px;height:36px;margin:-18px 0 0 -18px}
+.ife-grid .vcard:not(:first-child) .play svg{width:13px}
 .seat-tray{position:relative;height:120px;margin:28px -6px 0;border-radius:20px 20px 0 0;background:linear-gradient(180deg,#dcdbee,#b9b7d8);box-shadow:inset 0 2px 0 #fff}
 .seat-tray i{position:absolute;top:12px;left:50%;width:56px;height:14px;margin-left:-28px;border-radius:7px;background:#8f8cc0;box-shadow:inset 0 2px 3px rgba(0,0,0,.25)}
 .vcard{display:flex;flex-direction:column;gap:9px;text-align:left;color:#fff;border-radius:18px;padding:10px 10px 14px;background:rgba(255,255,255,.06);transition:transform .35s cubic-bezier(.2,.9,.3,1.2),background .3s}
@@ -192,13 +197,11 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 .seat-back::before{border-radius:80px 80px 0 0/50px 50px 0 0}
 .seat-head{width:58%;height:54px;top:-12px}
 .ife{padding:7px;border-radius:18px}
-.ife-grid{grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.ife-grid .vcard:first-child{grid-row:auto;grid-column:span 2}
+.ife-grid{grid-template-columns:1fr;gap:8px;padding:10px}
+.ife-grid .vcard:first-child{grid-row:auto!important}
 .ife-grid .vcard:first-child .thumb{aspect-ratio:16/9;min-height:0}
+.ife-grid .vcard:not(:first-child) .thumb{width:42%}
 .ife-grid .vcard:not(:first-child) .vt{font-size:.88rem}
-.ife-grid .vcard:not(:first-child) :is(.tag,.dur){display:none}
-.ife-grid .vcard:not(:first-child) .play{width:40px;height:40px;margin:-20px 0 0 -20px}
-.ife-grid .vcard:not(:first-child) .play svg{width:15px}
 .seat-tray{height:90px;margin-top:20px}}
 dialog.vmodal{border:0;padding:0;background:transparent;color:#fff;width:min(1000px,94vw);max-width:none;max-height:none;margin:auto;overflow:visible}
 dialog.vmodal::backdrop{background:rgba(11,8,48,.78);backdrop-filter:blur(6px)}

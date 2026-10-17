@@ -120,15 +120,16 @@ $('#ciShare').onclick=async()=>{try{const blob=await new Promise(r=>$('#pass').t
    Pour publier une vidéo : renseigner son identifiant YouTube dans « yt » (la partie après « v= » dans l'adresse),
    et sa durée dans « d ». Sans identifiant, la vignette est illustrée et la vidéo s'affiche « Bientôt à l'affiche ». */
 const VIDEOS=[
+  {yt:'03u881w3PbQ',t:'Les élections CSE 2027 en vidéo',s:'',tag:'À la une',d:'',bg:'linear-gradient(135deg,#05CE78,#0053FF)',who:['pnc','pnt']},
   {yt:'',t:'Le CSE en 2 minutes',s:'Ce que fait le CSE au quotidien, et pourquoi ton vote compte.',tag:'Comprendre',d:'',bg:'linear-gradient(135deg,#F385FF,#7B6CFF)',who:['pnt','sol']},
   {yt:'',t:'Voter en ligne, pas à pas',s:'Identifiant, IBAN, mot de passe : le tuto pour voter en 3 minutes.',tag:'Tuto',d:'',bg:'linear-gradient(135deg,#05CE78,#0053FF)',who:['pnc','pnt']},
   {yt:'',t:'Et pourquoi pas toi ?',s:'Elles et ils sont élu·es : leur mandat raconté en vrai.',tag:'Témoignages',d:'',bg:'linear-gradient(135deg,#FF8867,#F385FF)',who:['sol','pnc']}
 ];
 const PLAY='<svg viewBox="0 0 20 22" aria-hidden="true"><path d="M2 1.5v19L19 11z" fill="#140D8A"/></svg>';
-$('#ifeGrid').innerHTML=VIDEOS.map((v,i)=>`<button class="vcard" data-v="${i}" aria-label="Lire la vidéo : ${v.t}">
-  <span class="thumb" style="--bg:${v.bg}">${v.yt?`<img src="https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg" alt="" loading="lazy">`:`<span class="poster">${v.who.map(k=>`<span class="who">${charSVG(k)}</span>`).join('')}</span>`}
-  <span class="tag">${v.tag}</span><span class="play">${PLAY}</span><span class="dur">${v.yt&&v.d?v.d:'Bientôt'}</span></span>
-  <span class="vt">${v.t}</span><span class="vs">${v.s}</span></button>`).join('');
+$('#ifeGrid').innerHTML=VIDEOS.map((v,i)=>`<button class="vcard" data-v="${i}" aria-label="Lire la vidéo : ${v.t}"${i?'':` style="grid-row:span ${Math.max(1,VIDEOS.length-1)}"`}>
+  <span class="thumb" style="--bg:${v.bg}">${v.yt?`<img src="https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:`<span class="poster">${v.who.map(k=>`<span class="who">${charSVG(k)}</span>`).join('')}</span>`}
+  <span class="tag">${v.tag}</span><span class="play">${PLAY}</span>${v.d||!v.yt?`<span class="dur">${v.d||'Bientôt'}</span>`:''}</span>
+  <span class="vt">${v.t}</span>${v.s?`<span class="vs">${v.s}</span>`:''}</button>`).join('');
 $('#ifeGrid').onclick=e=>{const c=e.target.closest('.vcard');if(!c)return;const v=VIDEOS[+c.dataset.v];
   $('#vmTitle').textContent=v.t;
   $('#vmVideo').innerHTML=v.yt?`<iframe src="https://www.youtube-nocookie.com/embed/${v.yt}?autoplay=1&rel=0&modestbranding=1&cc_lang_pref=fr" title="${v.t}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`
