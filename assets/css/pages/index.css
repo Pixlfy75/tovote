@@ -80,6 +80,57 @@ body.ready .xl.intro .ch,.xl.rv.in .ch{animation:pop .9s cubic-bezier(.2,.9,.3,1
 .pass .cd small{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;opacity:.7}
 .pass .foot{display:flex;justify-content:space-between;margin-top:16px;font-size:.82rem;font-weight:600}
 
+/* ---------- ESSAI : autres dispositions du billet (index.html?billet=a|b|c), à trancher puis nettoyer ---------- */
+.billet-try{position:fixed;left:16px;bottom:16px;z-index:80;display:flex;gap:4px;align-items:center;padding:6px;border-radius:999px;background:#140D8A;color:#fff;font-size:.78rem;font-weight:600;box-shadow:0 14px 30px -12px rgba(20,13,138,.6)}
+.billet-try span{padding:0 8px}
+.billet-try a{color:#fff;text-decoration:none;padding:.45em .85em;border-radius:999px}
+.billet-try a[aria-current]{background:#fff;color:#140D8A}
+@media (min-width:901px){
+  /* A : billet compact sous les boutons, dans la colonne du texte */
+  .hero[data-billet="a"] .grid{grid-template-columns:minmax(0,1fr) minmax(0,.55fr);row-gap:34px}
+  .hero[data-billet="a"] .pass{grid-column:1;max-width:620px;transform:rotate(-1.5deg);display:grid;grid-template-columns:auto 1fr;grid-template-areas:"top route" "cd cd" "foot foot";column-gap:22px;align-items:center;padding:18px 22px}
+  .hero[data-billet="a"] .pass:hover{transform:rotate(0) translateY(-4px)}
+  .hero[data-billet="a"] .pass .top{grid-area:top;flex-direction:column;align-items:flex-start;gap:8px}
+  .hero[data-billet="a"] .pass .top img{width:92px}
+  .hero[data-billet="a"] .pass .route{grid-area:route;margin:0}
+  .hero[data-billet="a"] .pass .route b{font-size:1.5rem}
+  .hero[data-billet="a"] .pass .cd{grid-area:cd;margin-top:16px}
+  .hero[data-billet="a"] .pass .cd b{font-size:1.6rem}
+  .hero[data-billet="a"] .pass .foot{grid-area:foot;margin-top:14px}
+  /* B : carte d'embarquement en bande, sur toute la largeur, sous le texte */
+  .hero[data-billet="b"] .grid{grid-template-columns:minmax(0,1fr) minmax(0,.6fr);row-gap:40px}
+  .hero[data-billet="b"] .pass{grid-column:1/-1;transform:none;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:26px;padding:18px 0 18px 26px;border-radius:26px;overflow:hidden}
+  .hero[data-billet="b"] .pass:hover{transform:translateY(-4px)}
+  .hero[data-billet="b"] .pass .top{flex-direction:column;align-items:flex-start;gap:8px}
+  .hero[data-billet="b"] .pass .top img{width:100px}
+  .hero[data-billet="b"] .pass .route{margin:0}
+  .hero[data-billet="b"] .pass .route b{font-size:1.35rem}
+  .hero[data-billet="b"] .pass .cd{grid-template-columns:repeat(4,minmax(62px,88px));justify-content:center}
+  .hero[data-billet="b"] .pass .foot{align-self:stretch;flex-direction:column;justify-content:center;gap:6px;margin:-18px 0;padding:18px 28px;border-left:2.5px dashed rgba(20,13,138,.22);background:rgba(255,255,255,.45)}
+}
+/* C : panneau des départs, en tête de page */
+@media (min-width:901px){.hero[data-billet="c"] .grid{grid-template-columns:minmax(0,1fr) minmax(0,.6fr)}}
+.hero[data-billet="c"] .pass{grid-column:1/-1;order:-1;transform:none;display:flex;align-items:center;gap:22px;padding:12px 22px;border:0;border-radius:18px;background:#0B0830;color:#FFD34D;box-shadow:0 26px 50px -28px rgba(11,8,48,.8);margin-bottom:clamp(20px,4vh,48px)}
+.hero[data-billet="c"] .pass:hover{transform:none}
+.hero[data-billet="c"] .pass .top{gap:14px}
+.hero[data-billet="c"] .pass .top img{width:76px}
+.hero[data-billet="c"] .pass .top .chip{background:#FFD34D;color:#0B0830;border:0}
+.hero[data-billet="c"] .pass .route{margin:0;flex:1}
+.hero[data-billet="c"] .pass .route b{font-size:clamp(1rem,1.6vw,1.3rem);letter-spacing:.06em}
+.hero[data-billet="c"] .pass .cd{display:flex;gap:6px}
+.hero[data-billet="c"] .pass .cd div{background:#1D1760;border-radius:8px;padding:6px 8px;min-width:58px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.5),inset 0 50% 0 rgba(255,255,255,.04)}
+.hero[data-billet="c"] .pass .cd b{font-size:1.5rem;color:#FFD34D}
+.hero[data-billet="c"] .pass .cd small{color:#fff;opacity:.6;font-size:.6rem}
+.hero[data-billet="c"] .pass .foot{flex-direction:column;gap:2px;margin:0;color:#fff;font-size:.75rem;opacity:.85;text-align:right}
+@media (max-width:900px){
+  .hero[data-billet="c"] .pass{flex-wrap:wrap;gap:12px;padding:12px 14px}
+  .hero[data-billet="c"] .pass .top{width:100%;justify-content:space-between}
+  .hero[data-billet="c"] .pass .route{flex:none;width:100%}
+  .hero[data-billet="c"] .pass .cd{width:100%}
+  .hero[data-billet="c"] .pass .cd div{flex:1;min-width:0}
+  .hero[data-billet="c"] .pass .foot{width:100%;flex-direction:row;justify-content:space-between;text-align:left}
+}
+
 /* ---------- Sections ---------- */
 .sec{padding-block:clamp(70px,10vw,140px)}
 .sec-title{font-size:clamp(2.4rem,6.4vw,5.4rem)}

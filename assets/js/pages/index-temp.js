@@ -34,6 +34,13 @@ $$('.rv').forEach(el=>io.observe(el));
 /* ---------- Compte à rebours : ouverture du 1er tour ---------- */
 
 
+/* ---------- ESSAI : autres dispositions du billet, index.html?billet=a|b|c (sélecteur en bas à gauche), à trancher puis nettoyer ---------- */
+(()=>{const q=new URLSearchParams(location.search);if(!q.has('billet'))return;const v=q.get('billet');
+  if(/^[abc]$/.test(v))$('.hero').dataset.billet=v;
+  const bar=document.createElement('nav');bar.className='billet-try';bar.setAttribute('aria-label','Essai de disposition du billet');
+  bar.innerHTML='<span>Billet :</span>'+[['','Actuel'],['a','A'],['b','B'],['c','C']].map(([k,l])=>`<a href="?billet=${k}"${(k||'')===(/^[abc]$/.test(v)?v:'')?' aria-current="true"':''}>${l}</a>`).join('');
+  document.body.append(bar)})();
+
 /* ---------- Équipage ---------- */
 $$('.member').forEach(m=>m.onclick=()=>{m.classList.toggle('on');wave($('.char',m))});
 
