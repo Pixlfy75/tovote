@@ -254,4 +254,5 @@
   window.crewGender = GENDER;
   window.crewSol = SOL;
   window.wave = wave;
+  window.crewBusy = BUSY; /* classes pendant lesquelles un personnage ne change pas de variante (complétée par crew-gestes.js) */
 })();

@@ -39,6 +39,7 @@ Pour voir le site : `python3 -m http.server` à la racine, puis ouvrir http://lo
 ## Modules communs (`assets/js/`)
 
 - `crew.js` : l'équipage illustré (une variante femme ou homme par métier, tirée au hasard à chaque ouverture, puis qui change toute seule toutes les 6 secondes)
+- `crew-gestes.js` : gestes et expressions de l'équipage, chargé juste après `crew.js`. Gestes du métier de temps en temps (PNC : consignes de sécurité ; PNT : pouce levé et clin d'œil ; Cadres : vote sur le téléphone ; ETAM : guidage au sol avec bâtons), sourire qui s'élargit sous la souris, surprise au survol de « Je vote », applaudissements de la mascotte après un sans-faute au Vrai ou faux. Module indépendant : retirer sa balise `<script>` des pages rend les personnages de base
 - `plane.js` : l'avion en papier en 3D (accueil, plan de vol, quiz, affiche, assistant). Un petit modèle 3D projeté en SVG sous l'angle voulu (`planeSVG({ yaw, pitch, roll, elev })`), avec des vues prêtes (`data-plane="route"`). Le grand avion de l'accueil pivote au fil du défilement
 - `pictos.js` : les pictogrammes « carte de sécurité » (accueil, FAQ, documents)
 - `menu.js` : le menu des petits écrans (moins de 1000 px) : un bouton au nom de la page en cours ouvre la liste des pages, reprise automatiquement du menu
